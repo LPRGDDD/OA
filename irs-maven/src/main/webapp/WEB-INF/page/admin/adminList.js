@@ -16,7 +16,7 @@ layui.config({
 		    ,limits:[10,20,30,40]
 		    ,cols: [[ //表头
               {type:'checkbox'}
-              ,{field:'id', title: 'ID', sort: true}
+              ,{field:'id', title: 'ID', sort: true,width:60}
               ,{field:'username', title: '登陆名'}
               ,{field:'fullname', title: '全称'}
               ,{field:'eMail', title: '邮箱'}
@@ -25,7 +25,8 @@ layui.config({
               ,{field:'address', title: '地址'}
               ,{field:'phone', title: '联系方式'}
               ,{field:'roleName', title: '角色'}
-              ,{title: '操作',toolbar: '#barEdit'}
+              ,{field:'deptName', title: '部门'}
+              ,{title: '操作',toolbar: '#barEdit',width:120}
 		    ]]
 				,page: true //开启分页
 				,where: {timestamp: (new Date()).valueOf()}

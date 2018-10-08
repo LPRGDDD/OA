@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.irs.pojo.TbAdmin;
 import com.lpr.dao.SalDataMapper;
 import com.lpr.entity.SalData;
+import com.lpr.entity.SalaDataAndAdmin;
 import com.lpr.service.SalDataService;
 @Service
 public class SalDataServiceImpl implements SalDataService{
@@ -60,5 +61,17 @@ private SalDataMapper dao;
 		// TODO Auto-generated method stub
 		return dao.findBySalaryFlowId(sid);
 	}
-
+	@Override
+	public int PLInsert(String userStr, List<SalaDataAndAdmin> list) {
+		// TODO Auto-generated method stub
+		int[] intArr=new int[0];//生成一个int数组
+		String[] valArr=userStr.split(",");//根据逗号（，）把userID分割成String数组
+		intArr=new int[valArr.length];//把String数组的长度赋给int数组
+		for (int i = 0; i < valArr.length; i++) {
+			intArr[i]=Integer.parseInt(valArr[i]);//循环把String数组转换int数组
+		}
+		
+		return 0;
+	}
+	
 }

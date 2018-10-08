@@ -79,8 +79,9 @@ public class SalDataController {
 	}
 	@ResponseBody
 	@RequestMapping("/PLInsert")
-	public void PLInsert(@RequestBody List<SalaDataAndAdmin> list){
+	public void PLInsert(@RequestBody List<SalaDataAndAdmin> list,String userStr){
 		System.out.println(list);
+		System.out.println(userStr);
 	}
 	/*≤È—Ø*/
 	@RequestMapping("/chayue/{salaryflow_id}")

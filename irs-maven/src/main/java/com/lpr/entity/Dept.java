@@ -1,5 +1,9 @@
 package com.lpr.entity;
 
+import java.util.List;
+
+import com.lwb.entity.Record;
+
 public class Dept {
 	/**
 	 * 部门信息表
@@ -33,8 +37,17 @@ public class Dept {
     private String deptSequence;//部门排序号
     /*单位信息表*/
     private DwinFormation dwinformation;
+    private List<Record> record;
 
-    public Integer getDeptId() {
+    public List<Record> getRecord() {
+		return record;
+	}
+
+	public void setRecord(List<Record> record) {
+		this.record = record;
+	}
+
+	public Integer getDeptId() {
         return deptId;
     }
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwb.dao.HireDao" >
+  
+  <!-- 查询筛选成功后的计划  -->
+  <select id="hireSePl" resultType="Map">
+        select * from hr_plan  where hr_plan_state=1
+   </select>
+   <!-- 查询计划中经过筛选的人员  -->
+   <select id="hireSeTa" resultType="Map" parameterType="java.lang.Integer">
+        select * from hr_talents where hr_talents.hr_plan_id=#{id} and hr_talents_filestatus=2
+   </select>
+   <!-- 根据ID查询人员信息并把数据赋予页面 -->
+   <select id="hTalentId" resultType="Map" parameterType="java.lang.Integer">
+        select * from hr_talents where hr_talents_id=#{id}
+   </select>
+   <!-- 查询部门  -->
+  <select id="seleDept" resultType="Map">
+        select * from tb_dept
+   </select>
+   
+   <insert id="saveHire" parameterType="com.lwb.entity.Hire" >
+    insert into hr_hire(hr_plan_id,hr_talents_id,dept_id, hr_hire_name, hr_hire_date,hr_hire_type, hr_hire_classa, hr_hire_duty,hr_hire_entrytime, hr_hire_startingsalary, hr_hire_remark,hr_hire_username) values(#{hrPlanId}, #{hrTalentsId},#{deptId}, #{hrHireName}, #{hrHireDate}, #{hrHireType}, #{hrHireClassa}, #{hrHireDuty},#{hrHireEntrytime}, #{hrHireStartingsalary}, #{hrHireRemark},#{hrHireUsername})
+  </insert>
+  <!-- 添加时根据Id修改状态 -->
+  <update id="updateStats4" parameterType="java.lang.Integer">
+       UPDATE hr_talents set hr_talents_filestatus=4 where hr_talents_id=#{id}
+  </update>
+   
+  <!-- <delete id="hTalentId" parameterType="java.lang.Integer" >
+    delete from hr_hire
+    where hr_hire_id = #{hrHireId,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <update id="updateByPrimaryKey" parameterType="com.lwb.entity.Hire" >
+    update hr_hire
+    set hr_plan_id = #{hrPlanId,jdbcType=INTEGER},
+      tb__user_id = #{tbUserId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      hr_hire_name = #{hrHireName,jdbcType=VARCHAR},
+      hr_hire_date = #{hrHireDate,jdbcType=DATE},
+      hr_hire_type = #{hrHireType,jdbcType=VARCHAR},
+      hr_hire_classa = #{hrHireClassa,jdbcType=VARCHAR},
+      hr_hire_duty = #{hrHireDuty,jdbcType=VARCHAR},
+      hr_hire_entrytime = #{hrHireEntrytime,jdbcType=DATE},
+      hr_hire_startingsalary = #{hrHireStartingsalary,jdbcType=DATE},
+      hr_hire_remark = #{hrHireRemark,jdbcType=VARCHAR},
+      hr_hire_username = #{hrHireUsername,jdbcType=VARCHAR},
+      hr_hire_currenttime = #{hrHireCurrenttime,jdbcType=DATE}
+    where hr_hire_id = #{hrHireId,jdbcType=INTEGER}
+  </update> -->
+</mapper>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lpr.dao.DeptMapper;
+import com.lpr.entity.Dept;
 import com.lpr.service.DeptService;
 @Service
 public class DeptServiceImpl implements DeptService{
@@ -28,5 +29,10 @@ private DeptMapper dao;
 	public List<Map> findAllUser() {
 		// TODO Auto-generated method stub
 		return dao.findAllUser();
+	}
+	@Override
+	public List<Dept> findDept() {
+		// TODO Auto-generated method stub
+		return dao.findDept();
 	}
 }

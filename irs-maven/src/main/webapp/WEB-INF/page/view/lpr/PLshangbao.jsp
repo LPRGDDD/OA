@@ -185,20 +185,26 @@
 						});
 					 //工具栏事件:左侧全选
 					  table.on('toolbar(userList)', function(obj){
-					    var checkStatus = table.checkStatus(obj.config.id);
+					    var checkStatus = table.checkStatus(obj.config.id), userStr = '';
 					    switch(obj.event){
 					      case 'getCheckData':
 					        var data = checkStatus.data;
-					        layer.alert(JSON.stringify(data));
-					        $.ajax({
-								url : "http://localhost:8080/oa/saldata/PLInsert",
-								type : 'post',
-								contentType:"application/json;charset=utf-8",
-								data:JSON.stringify(data),
-								dataType : 'json',
-								success : function(data) {
-									alert(data);
-								}
+							var id = "";
+							for (var i = 0; i < length; i++) {
+								id += checkStatus.data[i].id + ","
+							}
+							layer.alert(userStr);
+							layer.confirm('确定添加<strong>'+ data.length+ '</strong>条数据吗？',function(index) {
+						        $.ajax({
+									url : "http://localhost:8080/oa/saldata/PLInsert?userStr="+userStr+"",
+									type : 'post',
+									contentType:"application/json;charset=utf-8",
+									data:JSON.stringify(data),
+									dataType : 'json',
+									success : function(data) {
+										alert(data);
+									}
+								})
 							})
 					      break;
 					      case 'getCheckLength':

@@ -2,6 +2,7 @@ package com.irs.controller;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,8 @@ import com.irs.util.RRException;
 import com.irs.util.ResultUtil;
 import com.irs.util.ShiroUtils;
 import com.irs.util.VerifyCode;
+import com.lpr.entity.Dept;
+import com.lpr.service.DeptService;
 
 @Controller
 @RequestMapping("sys")
@@ -47,6 +50,8 @@ public class AdminController {
 	private AdminService adminServiceImpl;
 	@Autowired  
     private Producer captchaProducer = null;
+	@Autowired
+	private DeptService deptSer;
 	
 	@RequestMapping("/main")
 	public String main() {
@@ -403,8 +408,10 @@ public class AdminController {
 	@RequestMapping("/addAdmin")
 	@RequiresPermissions("sys:admin:save")
 	public String addAdmin(HttpServletRequest req){
-		List<TbRoles> roles = adminServiceImpl.selRoles();
+		List<TbRoles> roles = adminServiceImpl.selRoles();//≤È—Ø»®œﬁ
+		List<Dept> d=deptSer.findDept();
 		req.setAttribute("roles", roles);
+		req.setAttribute("d", d);
 		return "page/admin/addAdmin";
 	}
 	
@@ -463,6 +470,8 @@ public class AdminController {
 	public String editAdmin(HttpServletRequest req,@PathVariable("id")Long id) {
 		TbAdmin ad = adminServiceImpl.selAdminById(id);
 		List<TbRoles> roles = adminServiceImpl.selRoles();
+		List<Dept> d=deptSer.findDept();
+		req.setAttribute("d", d);
 		req.setAttribute("ad",ad);
 		req.setAttribute("roles", roles);
 		return "page/admin/editAdmin";

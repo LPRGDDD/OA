@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.ExaminationMapper" >
+
+  <select id="selectByPrimaryKey" resultType="Map">
+    select * from examination
+  </select>
+  <select id="selectById" resultType="Examination">
+  	select * from examination where exId=#{id}
+  </select>
+  <!--添加审批规则  -->
+  <insert id="insert" parameterType="com.lxm.entity.Examination" >
+    insert into examination (exId, department, staff,departmentName,staffName
+      )
+    values (#{exid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{staff,jdbcType=VARCHAR},#{departmentName},#{staffName}
+      )
+  </insert>
+ <!--修改-->
+ 	<update id="update" parameterType="Examination">
+ 		 update examination
+    set staff = #{staff},
+      staffName = #{staffName},
+      departmentName = #{departmentName},
+      department = #{department}
+    where exid = #{exid}
+ 	</update>
+ 	<!--删除  -->
+ 	<delete id="delete" parameterType="Integer">
+ 		delete from examination where exId=#{id}
+ 	</delete>
+</mapper>

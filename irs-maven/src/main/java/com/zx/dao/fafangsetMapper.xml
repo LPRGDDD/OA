@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.fafangsetMapper" >
+  <resultMap id="BaseResultMap" type="com.zx.entity.fafangset" >
+    <id column="fs_id" property="fsId" jdbcType="INTEGER" />
+    <result column="fa_id" property="faId" jdbcType="INTEGER" />
+    <result column="fs_name" property="fsName" jdbcType="VARCHAR" />
+    <result column="fs_shenlin" property="fsShenlin" jdbcType="VARCHAR" />
+    <result column="fs_num" property="fsNum" jdbcType="INTEGER" />
+    <result column="fs_statu" property="fsStatu" jdbcType="INTEGER" />
+    <result column="fs_caozuo" property="fsCaozuo" jdbcType="VARCHAR" />
+    <result column="fs_beizhu" property="fsBeizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fs_id, fa_id, fs_name, fs_shenlin, fs_num, fs_statu, fs_caozuo, fs_beizhu
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fafangset
+    where fs_id = #{fsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fafangset
+    where fs_id = #{fsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zx.entity.fafangset" >
+    insert into fafangset (fs_id, fa_id, fs_name, 
+      fs_shenlin, fs_num, fs_statu, 
+      fs_caozuo, fs_beizhu)
+    values (#{fsId,jdbcType=INTEGER}, #{faId,jdbcType=INTEGER}, #{fsName,jdbcType=VARCHAR}, 
+      #{fsShenlin,jdbcType=VARCHAR}, #{fsNum,jdbcType=INTEGER}, #{fsStatu,jdbcType=INTEGER}, 
+      #{fsCaozuo,jdbcType=VARCHAR}, #{fsBeizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zx.entity.fafangset" >
+    insert into fafangset
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fsId != null" >
+        fs_id,
+      </if>
+      <if test="faId != null" >
+        fa_id,
+      </if>
+      <if test="fsName != null" >
+        fs_name,
+      </if>
+      <if test="fsShenlin != null" >
+        fs_shenlin,
+      </if>
+      <if test="fsNum != null" >
+        fs_num,
+      </if>
+      <if test="fsStatu != null" >
+        fs_statu,
+      </if>
+      <if test="fsCaozuo != null" >
+        fs_caozuo,
+      </if>
+      <if test="fsBeizhu != null" >
+        fs_beizhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fsId != null" >
+        #{fsId,jdbcType=INTEGER},
+      </if>
+      <if test="faId != null" >
+        #{faId,jdbcType=INTEGER},
+      </if>
+      <if test="fsName != null" >
+        #{fsName,jdbcType=VARCHAR},
+      </if>
+      <if test="fsShenlin != null" >
+        #{fsShenlin,jdbcType=VARCHAR},
+      </if>
+      <if test="fsNum != null" >
+        #{fsNum,jdbcType=INTEGER},
+      </if>
+      <if test="fsStatu != null" >
+        #{fsStatu,jdbcType=INTEGER},
+      </if>
+      <if test="fsCaozuo != null" >
+        #{fsCaozuo,jdbcType=VARCHAR},
+      </if>
+      <if test="fsBeizhu != null" >
+        #{fsBeizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zx.entity.fafangset" >
+    update fafangset
+    <set >
+      <if test="faId != null" >
+        fa_id = #{faId,jdbcType=INTEGER},
+      </if>
+      <if test="fsName != null" >
+        fs_name = #{fsName,jdbcType=VARCHAR},
+      </if>
+      <if test="fsShenlin != null" >
+        fs_shenlin = #{fsShenlin,jdbcType=VARCHAR},
+      </if>
+      <if test="fsNum != null" >
+        fs_num = #{fsNum,jdbcType=INTEGER},
+      </if>
+      <if test="fsStatu != null" >
+        fs_statu = #{fsStatu,jdbcType=INTEGER},
+      </if>
+      <if test="fsCaozuo != null" >
+        fs_caozuo = #{fsCaozuo,jdbcType=VARCHAR},
+      </if>
+      <if test="fsBeizhu != null" >
+        fs_beizhu = #{fsBeizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fs_id = #{fsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zx.entity.fafangset" >
+    update fafangset
+    set fa_id = #{faId,jdbcType=INTEGER},
+      fs_name = #{fsName,jdbcType=VARCHAR},
+      fs_shenlin = #{fsShenlin,jdbcType=VARCHAR},
+      fs_num = #{fsNum,jdbcType=INTEGER},
+      fs_statu = #{fsStatu,jdbcType=INTEGER},
+      fs_caozuo = #{fsCaozuo,jdbcType=VARCHAR},
+      fs_beizhu = #{fsBeizhu,jdbcType=VARCHAR}
+    where fs_id = #{fsId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -17,6 +17,7 @@
     <result column="dept_role" property="deptRole" jdbcType="VARCHAR" />
     <result column="dept_sequence" property="deptSequence" jdbcType="VARCHAR" />
     <association property="dwinformation" column="dwinformationId" javaType="com.lpr.entity.DwinFormation" autoMapping="true"></association>
+  	<collection property="record" column="hrRecordId" javaType="com.lwb.entity.Record" autoMapping="true"></collection>
   </resultMap>
   <sql id="Base_Column_List" >
     dept_id, dwinformation_id, dept_name, dept_number, dept_address, dept_zhuguan, dept_aid, 
@@ -221,5 +222,8 @@
   <!-- 查询所有的员工 -->
   <select id="findAllUser" resultType="java.util.Map">
   	  	select *,d.dept_id,d.dept_name from tb_admin a join tb_dept d on a.dept_id=d.dept_id
+  </select>
+  <select id="findDept" resultMap="BaseResultMap">
+  	  	select * from  tb_dept
   </select>
 </mapper>

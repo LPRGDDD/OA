@@ -60,4 +60,5 @@ public interface DeptMapper {
      * @return
      */
     public List<Map> findAllUser();
+    public List<Dept> findDept();
 }

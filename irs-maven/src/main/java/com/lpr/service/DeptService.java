@@ -3,6 +3,8 @@ package com.lpr.service;
 import java.util.List;
 import java.util.Map;
 
+import com.lpr.entity.Dept;
+
 public interface DeptService {
 	/**
 	 * 部门表的查询
@@ -16,4 +18,5 @@ public interface DeptService {
 	 */
 	List<Map> findUser(Integer deptId);
 	public List<Map> findAllUser();
+	public List<Dept> findDept();
 }

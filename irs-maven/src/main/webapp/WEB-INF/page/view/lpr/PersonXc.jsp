@@ -345,7 +345,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function personxcInsert() {
 		alert($("#form1").serialize());
 		$.ajax({
-			url : "personxc/insert?userId=" + $("#personxcId").val() + "",
+			url : "personxc/insert?userId=" + $("#e").val() + "",
 			type : 'post',
 			async : true,
 			data : $("#form1").serialize(),

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
@@ -17,9 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 	<link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="page/resources/layui/css/layui.css" media="all">
@@ -29,81 +26,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </head>
   
  <body>
-	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-		<ul class="layui-tab-title">
-			<li class="layui-this">薪酬项目定义</li>
-			<li>保险系数设置</li>
-		</ul>
-		<div class="layui-tab-content" style="height:100px;">
-			<div class="layui-tab-item layui-show">
-				<!-- 薪酬项目定义-->
-				<!-- 添加-->
-				<h3 align="left">添加薪酬项目信息</h3>
-				<form method="post" align="center" id="form1">
-					<div class="layui-form-item">
-						<div class="layui-inline">
-							<label class="layui-form-label">薪酬项目编号：</label>
-							<div class="layui-input-inline">
-								<input name="itemId" autocomplete="off" id="itemId"
-									class="layui-input" type="text" /><br />
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">薪酬项目名称:</label>
-							<div class="layui-input-inline">
-								<input name="itemName" autocomplete="off" id="itemName"
-									class="layui-input" type="text" /><br />
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label"> 项目类型:</label>
-							<div class="layui-input-inline">
-								<select name="itemtype.itemtypeId" lay-verify="required"
-									lay-search="" id="qqq" class="qq">
-								</select>
-							</div>
-						</div>
-						<button class="layui-btn" onclick="salitemInsert()">添加</button>
-						<button class="layui-btn" onclick="salitemUpdate()">修改</button>
-					</div>
-				</form>
-				<!-- 薪酬项目定义查询-->
-				<!-- 查询-->
-				<h3 align="left">薪酬项目定义查询</h3>
-				<div class="panel-body">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>编号:</th>
-								<th>薪酬项目名称：</th>
-								<th>项目类型：</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody id="si"></tbody>
-					</table>
-				</div>
-				<!-- 保险系数设置查询 -->
-				<!-- 查询 -->
-			</div>
-			<div class="layui-tab-item">
-				<h3 align="left">保险系数设置查询</h3>
-				<form action="">
-					<table align="center">
-						<thead>
-							<tr>
-								<th>保险系数名称:</th>
-								<th>个人支付百分比:</th>
-								<th>单位支付百分比:</th>
-							</tr>
-						</thead>
-						<tbody id="sft"></tbody>
-					</table>
-					<button class="layui-btn" onclick="sddds()">保存</button>
-				</form>
-			</div>
-		</div>
-	</div>
+ <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+      <ul class="layui-tab-title">
+          <li class="layui-this">薪酬项目定义</li>
+          <li>保险系数设置</li>
+      </ul>
+      <div class="layui-tab-content" style="height:100px;">
+          <div class="layui-tab-item layui-show">
+               <!-- 薪酬项目定义-->
+		       <!-- 添加-->
+                <h3 align="left">添加薪酬项目信息</h3>
+                <form method="post" align="center" id="form1">
+			          <div class="layui-form-item">
+			               <div class="layui-inline">
+	               			 <label class="layui-form-label">薪酬项目编号：</label> 
+	               			 <div class="layui-input-inline">
+	               			      <input name="itemId" autocomplete="off" id="itemId" class="layui-input" type="text"/><br/>
+	               			 </div>
+	               		   </div>	 
+	               			 <div class="layui-inline">
+	               			 <label class="layui-form-label">薪酬项目名称:</label> 
+	               			 <div class="layui-input-inline">
+	               			      <input name="itemName" autocomplete="off" id="itemName" class="layui-input" type="text"/><br/>
+	               			 </div>
+	               		   </div>
+	               			<div class="layui-inline">
+	               			 <label class="layui-form-label"> 项目类型:</label> 
+	               			 <div class="layui-input-inline">
+	               			      <select name="itemtype.itemtypeId" lay-verify="required" lay-search="" id="qq">
+	               			      </select>
+	               			 </div>
+	               		   </div>
+	               			<button class="layui-btn" onclick="salitemInsert()">添加</button>
+	               			<button class="layui-btn" onclick="salitemUpdate()">修改</button>
+	                   </div>
+		        </form>
+		        <!-- 薪酬项目定义查询-->
+                 <!-- 查询-->
+                <h3 align="left">薪酬项目定义查询</h3>
+                <div class="panel-body">
+			           <table class="table table-hover">
+					    <thead>
+						  <tr>
+							<th>编号:</th>
+					        <th>薪酬项目名称：</th>
+					        <th>项目类型：</th>
+					        <th>操作</th>
+						</tr>
+					    </thead>
+					        <tbody id="si"></tbody>
+			           </table>
+                 </div>
+          <!-- 保险系数设置查询 -->
+          <!-- 查询 -->
+      </div>
+          <div class="layui-tab-item">
+                <h3 align="left">保险系数设置查询</h3>
+               <form action="">
+               <table align="center">
+			      <thead> 
+			         <tr>
+			         <th>保险系数名称:</th>
+			         <th>个人支付百分比:</th>
+			         <th>单位支付百分比:</th>
+			         </tr>
+			       </thead>
+		           <tbody id="sft"></tbody>
+		        </table>
+		        <button class="layui-btn" onclick="sddds()">保存</button>
+		        </form>
+          </div>
+          </div>
+</div>
 
 </body>
 </html>
@@ -141,76 +135,41 @@ layui.use('element',function(){
                 }
              })
         }
- /* 薪酬项目定义表的添加 */
-    function salitemInsert(){
-             $.ajax({
-                url:"salitem/insert",
-                type:'post',
-                async:true,//异步，true是异步开启
-                data:$("#form1").serialize(),//表单序列化
-                dataType:"text",//后台返回的数据类型
-                success:function(data){
-                    alert(data);
-                    refresh();
-                },
-                error:function(data){
-                    alert(data);
-                    refresh();
-                }
-             })
-	}
-	/* 薪酬项目编辑前的查询 */
-	$("body").on("click", ".get", function() {
-		var id = this.id;
-		//下拉框默认显示数据
-		$.ajax({
-			url : "itemtype/findAll",
-			dataType : 'json',
-			type : 'post',
-			success : function(data) {
-				$(".qq").html(""); //清空内容数据
-				var ary = data;
-				var qq = ""; //下拉框默认显示数据
-				for (var i = 0; i < ary.length; i++) {
-					var obj = ary[i]; //获取当前对象
-					if (id == obj.Itemtype_id) {
-						qq = qq + "<option selected class='form-control' value='" + obj.ItemtypeId + "'>" + obj.Itemtype_name + "</option>"; //下拉框默认显示数据
-					} else {
-						qq = qq + "<option class='form-control' value='" + obj.ItemtypeId + "'>" + obj.Itemtype_name + "</option>"; //下拉框默认显示数据
-					}
-				}
-				$(".qq").html(qq); //追加行
-			}
-		})
-	})
-	$("body").on("click", ".get", function() {
-		var id = this.id;
-		$.ajax({
-			url : "salitem/selectByPrimaryKey",
-			async : false, //下拉框默认显示数据
-			type : "post",
-			dataType : "json",
-			data : {
-				//不用往后台传id
-				//如果只是点击编辑让下拉默认选中的话外面的ajax可以不要  如果需要其他值从后台查询异步改同步就行async:false,
-				"itemId" : id,
-			},
-			success : function(data) {
-				$("#itemId").html();
-				$("#itemName").html();
-				var ary = data;
-				$("#itemId").val(ary.itemId);
-				$("#itemName").val(ary.itemName);
-			}
-		})
-	})
-	/* 薪酬项目定义表编辑 */
-	function salitemUpdate(){
+       
+       /* 薪酬项目编辑前的查询 */
+    $("#si").on("click",".get",function(){
+         var id=this.id;
+         alert(id);
+         $.ajax({
+           url:"salitem/selectByPrimaryKey",
+           type:"post",
+           dataType:"json",
+           data:{
+                "itemId":id,
+           },
+           success:function(data){
+              $("#itemId").html();
+              $("#itemName").html();
+              var ary=data;
+              alert(ary.itemId);
+              $("#itemId").val(ary.itemId);
+              $("#itemName").val(ary.itemName);
+           }
+         })
+    })
+        /* 薪酬项目定义表编辑 */
+        function salitemUpdate(){
+        alert($("#form1").serialize());
         $.ajax({
-           url:"salitem/update",
+           url:"../salitem/update",
            type:'post',
            async:true,
-           data:$("#form1").serialize(),
+           data:$("#form1").serialize()
+          /*  {
+           "itemId":$("#itemId").val(),
+           "itemName":$("#itemName").val(),
+           "itemtype.itemtypeId":$("#qq").val(),
+           } */,
            dataType:'text',
            success:function(data){
               alert(data);
@@ -250,15 +209,33 @@ layui.use('element',function(){
              success:function(data){
                 $("#qq").html("");//清空内容数据
                 var ary=data;
-                var qq="";//下拉框默认显示数据
                 for(var i=0;i<ary.length;i++){
                   var obj=ary[i];//获取当前对象
-                  qq=qq+"<option class='form-control' value='"+obj.ItemtypeId+"'>"+obj.Itemtype_name+"</option>";//下拉框默认显示数据
+                  $("#qq").append("<option class='form-control' value='"+obj.itemtypeId+"'>"+obj.Itemtype_name+"</option>");//追加行
+                 
                  }
-                $(".qq").html(qq);//追加行
+                
              }
           })
        }
+        /* 薪酬项目定义表的添加 */
+        function salitemInsert(){
+             $.ajax({
+                url:"salitem/insert",
+                type:'post',
+                async:true,//异步，true是异步开启
+                data:$("#form1").serialize(),//表单序列化
+                dataType:"text",//后台返回的数据类型
+                success:function(data){
+                    alert(data);
+                    refresh();
+                },
+                error:function(data){
+                    alert(data);
+                    refresh();
+                }
+             })
+      }
        /* 保险系数查询*/
         function safefactorFind(){
              $.ajax({
@@ -271,7 +248,7 @@ layui.use('element',function(){
                   for(var i=0;i<ary.length;i++){
                      var obj=ary[i];//获取当前对象
                      var tr="<tr>";
-                     tr+="<td><input type='text' value='"+obj.safefactor_name+"'/><br/>";
+                     tr+="<td><input type='text' value='"+obj.safefactorName+"'/><br/>";
                      tr+="<td><input type='text' value='"+obj.grpayment+"'/>%<br/>";
                      tr+="<td><input type='text' value='"+obj.dwpayment+"'/>%<br/>";
                      tr+="</tr>";
@@ -282,8 +259,8 @@ layui.use('element',function(){
         }
     /* 页面刷新调用查询方法 */
    $(function(){
-     salitemFind();//薪酬项目定义查询
      itemtypeFind();//项目类型查询 
+     salitemFind();//薪酬项目定义查询
      safefactorFind();//保险系数表查询
      
    })

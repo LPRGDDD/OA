@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.lpr.entity.SalData;
+import com.lpr.entity.SalaDataAndAdmin;
 
 public interface SalDataService {
 	/**
@@ -21,4 +22,5 @@ public interface SalDataService {
 	 * @return
 	 */
 	public List<Map> findBySalaryFlowId(int sid);
+	public int PLInsert(String userStr,List<SalaDataAndAdmin> list);
 }
