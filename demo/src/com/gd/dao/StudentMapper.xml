@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.dao.StudentDao">
+	<sql id="columns">sid,sname</sql>
+
+	<select id="select" resultType="stu" parameterType="int">
+		select * from students where sid = #{0} 
+	</select>
+	<select id="select2" resultType="map">
+		select * from students
+	</select>
+	<insert id="save" parameterType="stu" keyProperty="sid" useGeneratedKeys="true">
+		insert into students(sid,cid,sname,sgender) values(#{sid},#{cid},#{sname},#{sgender}) 
+	</insert>
+	
+	<select id="findAll" resultType="stu">
+		select<include refid="columns" />from students
+	</select>
+
+
+	<select id="queryByName" resultType="stu">
+		select * from Students where sname like concat('%',#{sname},'%')
+		<!-- select * from Students where sname like #{sname} -->
+		<!-- select * from Students where sname like '%${_parameter}%' -->
+	</select>
+	
+	<resultMap type="stu" id="getStudentResultMap" autoMapping="true">
+		<association property="classes" column="cid" javaType="Classes" autoMapping="true"></association>
+	</resultMap>
+	<select id="queryStudent" resultMap="getStudentResultMap">
+		select sid,sname,sgender,c.cid,c.cname
+		from students s join classes c on s.cid=c.cid
+	</select>
+</mapper> 
