@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gd.dao.GoodsDao" >
+  <resultMap id="BaseResultMap" type="com.gd.entity.Goods" >
+    <id column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodsDesc" property="goodsdesc" jdbcType="VARCHAR" />
+    <result column="goodsUnitPrice" property="goodsunitprice" jdbcType="DOUBLE" />
+    <result column="goodsImageName" property="goodsimagename" jdbcType="VARCHAR" />
+    <result column="sellCount" property="sellcount" jdbcType="INTEGER" />
+    <result column="goodsDate" property="goodsdate" jdbcType="TIMESTAMP" />
+     <association property="goodstype" column="typeid" javaType="Goodstype" autoMapping="true"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goodsId, goodsName, typeId, goodsDesc, goodsUnitPrice, goodsImageName, sellCount, 
+    goodsDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from tb_goods g LEFT JOIN tb_goods_type gt on g.typeId=gt.typeId 
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_goods
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gd.entity.Goods" >
+    insert into tb_goods (goodsId, goodsName, typeId, 
+      goodsDesc, goodsUnitPrice, goodsImageName, 
+      sellCount, goodsDate)
+    values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{goodstype.typeid,jdbcType=INTEGER}, 
+      #{goodsdesc,jdbcType=VARCHAR}, #{goodsunitprice,jdbcType=DOUBLE}, #{goodsimagename,jdbcType=VARCHAR}, 
+      #{sellcount,jdbcType=INTEGER}, #{goodsdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gd.entity.Goods" >
+    insert into tb_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="typeid != null" >
+        typeId,
+      </if>
+      <if test="goodsdesc != null" >
+        goodsDesc,
+      </if>
+      <if test="goodsunitprice != null" >
+        goodsUnitPrice,
+      </if>
+      <if test="goodsimagename != null" >
+        goodsImageName,
+      </if>
+      <if test="sellcount != null" >
+        sellCount,
+      </if>
+      <if test="goodsdate != null" >
+        goodsDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsdesc != null" >
+        #{goodsdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsunitprice != null" >
+        #{goodsunitprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsimagename != null" >
+        #{goodsimagename,jdbcType=VARCHAR},
+      </if>
+      <if test="sellcount != null" >
+        #{sellcount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsdate != null" >
+        #{goodsdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gd.entity.Goods" >
+    update tb_goods
+    <set >
+      <if test="goodsname != null" >
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsdesc != null" >
+        goodsDesc = #{goodsdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsunitprice != null" >
+        goodsUnitPrice = #{goodsunitprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsimagename != null" >
+        goodsImageName = #{goodsimagename,jdbcType=VARCHAR},
+      </if>
+      <if test="sellcount != null" >
+        sellCount = #{sellcount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsdate != null" >
+        goodsDate = #{goodsdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gd.entity.Goods" >
+    update tb_goods
+    set goodsName = #{goodsname,jdbcType=VARCHAR},
+      typeId = #{typeid,jdbcType=INTEGER},
+      goodsDesc = #{goodsdesc,jdbcType=VARCHAR},
+      goodsUnitPrice = #{goodsunitprice,jdbcType=DOUBLE},
+      goodsImageName = #{goodsimagename,jdbcType=VARCHAR},
+      sellCount = #{sellcount,jdbcType=INTEGER},
+      goodsDate = #{goodsdate,jdbcType=TIMESTAMP}
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <resultMap type="Goods" id="getGoodResultMap">
+  	<association property="goodstype" column="typeid" javaType="Goodstype" autoMapping="true"></association>
+  </resultMap>
+  <!-- 查询所有的方法 -->
+  <select id="findAll" resultMap="BaseResultMap">
+  		select * from tb_goods g LEFT JOIN tb_goods_type gt on g.typeId=gt.typeId
+  		<where>
+			<if test="goodsname!=null and goodsname!=''">
+				and goodsname like concat('%',#{goodsname},'%')
+			</if>
+		</where>
+  </select>
+  <!-- 模糊查询 -->
+  <select id="mohuFind" resultMap="BaseResultMap">
+  		select * from tb_goods g LEFT JOIN tb_goods_type gt on g.typeId=gt.typeId
+		where goodsname like concat('%',#{goodsname},'%')
+  </select>
+  <!-- 分页查询 -->
+  <select id="pageFind" resultMap="BaseResultMap">
+  	select * from tb_goods g LEFT JOIN tb_goods_type gt on g.typeId=gt.typeId LIMIT #{startIndex},#{pageSize}
+  </select>
+  <!-- 查询总数据 -->
+  <select id="getCount" resultType="int">
+		select COUNT(*) from tb_goods g LEFT JOIN tb_goods_type gt on g.typeId=gt.typeId 
+	</select>
+</mapper>

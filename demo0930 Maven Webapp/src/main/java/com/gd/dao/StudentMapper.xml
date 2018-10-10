@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.dao.StudentDao">
+
+	<select id="findAll" resultType="Student">
+		select * from students
+	</select>
+	<insert id="save" parameterType="Student" keyProperty="sid" useGeneratedKeys="true">
+		insert into students(sid,cid,sname,sgender) values(#{sid},#{cid},#{sname},#{sgender}) 
+	</insert>
+</mapper> 
