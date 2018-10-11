@@ -63,9 +63,9 @@
 	<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
 	<script type="text/html" id="toolbarDemo">
  	<div class="layui-btn-container">
-    	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-   		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-  	    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">上报</button>
+   		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">上报数目</button>
+  	    <button class="layui-btn layui-btn-sm" lay-event="isAll">是否全选</button>
   	</div>
 	</script>
 	<script type="text/html" id="barEdit">
@@ -177,35 +177,43 @@
 							   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
 							   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
 							   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center'},//员工表现
-							   {field : 'sal_SSalary',title : '实发工资', totalRow: true,edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
+							   {field : 'salSsalary',title : '实发工资', totalRow: true,edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
        							 return d.personxc_s1+d.personxc_s2+d.personxc_s3+d.personxc_s4+d.personxc_s5+d.personxc_s6+d.personxc_s7-d.personxc_gryl-d.personxc_grmedical-d.personxc_grsy-d.personxc_grzf
-     							 }}
+     							 }},
   							 ] ],
 							page : true,
 						});
+					  table.on('edit(userList)',function(obj){
+					  	var data=obj.data;  //得到所在行的所有键值
+					  	layer.alert(JSON.stringify(data));
+					  })
 					 //工具栏事件:左侧全选
 					  table.on('toolbar(userList)', function(obj){
-					    var checkStatus = table.checkStatus(obj.config.id), userStr = '';
+					    var checkStatus = table.checkStatus(obj.config.id);
 					    switch(obj.event){
 					      case 'getCheckData':
+					        var c = table.checkStatus('userList'); 
 					        var data = checkStatus.data;
+					        var lengths = checkStatus.data.length;
 							var id = "";
-							for (var i = 0; i < length; i++) {
-								id += checkStatus.data[i].id + ","
+							for (var i = 0; i < lengths; i++) {
+								id += c.data[i].id + ","
 							}
-							layer.alert(userStr);
-							layer.confirm('确定添加<strong>'+ data.length+ '</strong>条数据吗？',function(index) {
+							//layer.alert();
+							/* layer.confirm('确定添加<strong>'+ data.length+ '</strong>条数据吗？',function(index) {
 						        $.ajax({
-									url : "http://localhost:8080/oa/saldata/PLInsert?userStr="+userStr+"",
+									url : "http://localhost:8080/oa/saldata/PLInsert?userStr="+id+"&salaryflowIdStr="+${salaryflow_id}+"",
 									type : 'post',
 									contentType:"application/json;charset=utf-8",
 									data:JSON.stringify(data),
-									dataType : 'json',
+									dataType : 'text',
 									success : function(data) {
+										layer.closeAll();
 										alert(data);
+										
 									}
 								})
-							})
+							}) */
 					      break;
 					      case 'getCheckLength':
 					        var data = checkStatus.data;

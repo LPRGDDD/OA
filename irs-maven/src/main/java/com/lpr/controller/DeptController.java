@@ -18,6 +18,10 @@ public class DeptController {
 	/*自动注入*/
 	@Autowired
 	private DeptService service;
+	@RequestMapping("/find.action")
+	public String find(){
+		return "page/view/lpr/Dept";
+	}
 	@ResponseBody
 	@RequestMapping("findAll")
 	//部门表的查询

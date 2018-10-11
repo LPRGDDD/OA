@@ -22,5 +22,12 @@ public interface SalDataService {
 	 * @return
 	 */
 	public List<Map> findBySalaryFlowId(int sid);
-	public int PLInsert(String userStr,List<SalaDataAndAdmin> list);
+	/**
+	 * ÅúÁ¿Â¼Èë
+	 * @param userStr
+	 * @param salaryflowIdStr
+	 * @param list
+	 * @return
+	 */
+	public int PLInsert(String userStr,String salaryflowIdStr,List<SalaDataAndAdmin> list);
 }

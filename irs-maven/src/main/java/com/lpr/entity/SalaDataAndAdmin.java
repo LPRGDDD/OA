@@ -41,11 +41,11 @@ public class SalaDataAndAdmin {
 
     private Double personxc_s7;//薪酬项目7
 
-    private Double personxcS8;//薪酬项目8
+    private Double personxc_s8;//薪酬项目8
 
-    private Double personxcS9;//薪酬项目9
+    private Double personxc_s9;//薪酬项目9
 
-    private Double personxcS10;//薪酬项目10
+    private Double personxc_s10;//薪酬项目10
 
     private Double personxc_insurejs;//员工保险基数
 
@@ -81,7 +81,11 @@ public class SalaDataAndAdmin {
 
     private Double personxc_grzf;//员工个人住房
 
-    private String personxcExpression;//员工表现
+    private String personxc_expression;//员工表现
+    
+    private Double salSsalary;//应发工资
+    
+    private Integer salaryflowId;//流程表ID
 
 	public Long getId() {
 		return id;
@@ -251,28 +255,28 @@ public class SalaDataAndAdmin {
 		this.personxc_s7 = personxc_s7;
 	}
 
-	public Double getPersonxcS8() {
-		return personxcS8;
+	public Double getPersonxc_s8() {
+		return personxc_s8;
 	}
 
-	public void setPersonxcS8(Double personxcS8) {
-		this.personxcS8 = personxcS8;
+	public void setPersonxc_s8(Double personxc_s8) {
+		this.personxc_s8 = personxc_s8;
 	}
 
-	public Double getPersonxcS9() {
-		return personxcS9;
+	public Double getPersonxc_s9() {
+		return personxc_s9;
 	}
 
-	public void setPersonxcS9(Double personxcS9) {
-		this.personxcS9 = personxcS9;
+	public void setPersonxc_s9(Double personxc_s9) {
+		this.personxc_s9 = personxc_s9;
 	}
 
-	public Double getPersonxcS10() {
-		return personxcS10;
+	public Double getPersonxc_s10() {
+		return personxc_s10;
 	}
 
-	public void setPersonxcS10(Double personxcS10) {
-		this.personxcS10 = personxcS10;
+	public void setPersonxc_s10(Double personxc_s10) {
+		this.personxc_s10 = personxc_s10;
 	}
 
 	public Double getPersonxc_insurejs() {
@@ -411,90 +415,30 @@ public class SalaDataAndAdmin {
 		this.personxc_grzf = personxc_grzf;
 	}
 
-	public String getPersonxcExpression() {
-		return personxcExpression;
+	public String getPersonxc_expression() {
+		return personxc_expression;
 	}
 
-	public void setPersonxcExpression(String personxcExpression) {
-		this.personxcExpression = personxcExpression;
+	public void setPersonxc_expression(String personxc_expression) {
+		this.personxc_expression = personxc_expression;
 	}
 
-	public SalaDataAndAdmin(Long id, String username, String password, String salt, String fullname, String eMail,
-			String sex, String birthday, String address, String phone, Long roleId, String roleName,
-			Integer personxc_id, Integer dept_id, Double personxc_s1, Double personxc_s2, Double personxc_s3,
-			Double personxc_s4, Double personxc_s5, Double personxc_s6, Double personxc_s7, Double personxcS8,
-			Double personxcS9, Double personxcS10, Double personxc_insurejs, Double personxc_ylinsure,
-			Double personxc_dwyl, Double personxc_gryl, Double personxc_ylbx, Double personxc_dw_medical,
-			Double personxc_grmedical, Double personxc_group, Double personxc_dwsy, Double personxc_sybx,
-			Double personxc_dwshiye, Double personxc_grsy, Double personxc_gsbx, Double personxc_dwgs,
-			Double personxc_housingfund, Double personxc_dwzf, Double personxc_grzf, String personxcExpression) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.salt = salt;
-		this.fullname = fullname;
-		this.eMail = eMail;
-		this.sex = sex;
-		this.birthday = birthday;
-		this.address = address;
-		this.phone = phone;
-		this.roleId = roleId;
-		this.roleName = roleName;
-		this.personxc_id = personxc_id;
-		this.dept_id = dept_id;
-		this.personxc_s1 = personxc_s1;
-		this.personxc_s2 = personxc_s2;
-		this.personxc_s3 = personxc_s3;
-		this.personxc_s4 = personxc_s4;
-		this.personxc_s5 = personxc_s5;
-		this.personxc_s6 = personxc_s6;
-		this.personxc_s7 = personxc_s7;
-		this.personxcS8 = personxcS8;
-		this.personxcS9 = personxcS9;
-		this.personxcS10 = personxcS10;
-		this.personxc_insurejs = personxc_insurejs;
-		this.personxc_ylinsure = personxc_ylinsure;
-		this.personxc_dwyl = personxc_dwyl;
-		this.personxc_gryl = personxc_gryl;
-		this.personxc_ylbx = personxc_ylbx;
-		this.personxc_dw_medical = personxc_dw_medical;
-		this.personxc_grmedical = personxc_grmedical;
-		this.personxc_group = personxc_group;
-		this.personxc_dwsy = personxc_dwsy;
-		this.personxc_sybx = personxc_sybx;
-		this.personxc_dwshiye = personxc_dwshiye;
-		this.personxc_grsy = personxc_grsy;
-		this.personxc_gsbx = personxc_gsbx;
-		this.personxc_dwgs = personxc_dwgs;
-		this.personxc_housingfund = personxc_housingfund;
-		this.personxc_dwzf = personxc_dwzf;
-		this.personxc_grzf = personxc_grzf;
-		this.personxcExpression = personxcExpression;
+	public Double getSalSsalary() {
+		return salSsalary;
 	}
 
-	public SalaDataAndAdmin() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setSalSsalary(Double salSsalary) {
+		this.salSsalary = salSsalary;
 	}
 
-	@Override
-	public String toString() {
-		return "SalaDataAndAdmin [id=" + id + ", username=" + username + ", password=" + password + ", salt=" + salt
-				+ ", fullname=" + fullname + ", eMail=" + eMail + ", sex=" + sex + ", birthday=" + birthday
-				+ ", address=" + address + ", phone=" + phone + ", roleId=" + roleId + ", roleName=" + roleName
-				+ ", personxc_id=" + personxc_id + ", dept_id=" + dept_id + ", personxc_s1=" + personxc_s1
-				+ ", personxc_s2=" + personxc_s2 + ", personxc_s3=" + personxc_s3 + ", personxc_s4=" + personxc_s4
-				+ ", personxc_s5=" + personxc_s5 + ", personxc_s6=" + personxc_s6 + ", personxc_s7=" + personxc_s7
-				+ ", personxcS8=" + personxcS8 + ", personxcS9=" + personxcS9 + ", personxcS10=" + personxcS10
-				+ ", personxc_insurejs=" + personxc_insurejs + ", personxc_ylinsure=" + personxc_ylinsure
-				+ ", personxc_dwyl=" + personxc_dwyl + ", personxc_gryl=" + personxc_gryl + ", personxc_ylbx="
-				+ personxc_ylbx + ", personxc_dw_medical=" + personxc_dw_medical + ", personxc_grmedical="
-				+ personxc_grmedical + ", personxc_group=" + personxc_group + ", personxc_dwsy=" + personxc_dwsy
-				+ ", personxc_sybx=" + personxc_sybx + ", personxc_dwshiye=" + personxc_dwshiye + ", personxc_grsy="
-				+ personxc_grsy + ", personxc_gsbx=" + personxc_gsbx + ", personxc_dwgs=" + personxc_dwgs
-				+ ", personxc_housingfund=" + personxc_housingfund + ", personxc_dwzf=" + personxc_dwzf
-				+ ", personxc_grzf=" + personxc_grzf + ", personxcExpression=" + personxcExpression + "]";
+	public Integer getSalaryflowId() {
+		return salaryflowId;
 	}
+
+	public void setSalaryflowId(Integer salaryflowId) {
+		this.salaryflowId = salaryflowId;
+	}
+
+	
     
 }

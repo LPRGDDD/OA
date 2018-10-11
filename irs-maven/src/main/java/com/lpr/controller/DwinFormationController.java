@@ -15,6 +15,10 @@ public class DwinFormationController {
 	@Autowired
 	/*自动注入*/
 	private DwinFormationService service;
+	@RequestMapping("/find.action")
+	public String find(){
+		return "page/view/lpr/DwinFormation";
+	}
 	//单位信息表的查询
 	@ResponseBody
 	@RequestMapping("findAll")

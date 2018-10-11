@@ -35,6 +35,12 @@ public interface SalDataMapper {
      */
     public List<Map> findByStatus();
     public List<Map> findByStatus1();
+    /**
+     * 根据UID和sid查询数据
+     * @param id
+     * @param pid
+     * @return
+     */
     public int findById(@Param("id")long id,@Param("pid") Integer pid);
     public int countxc(@Param("id")int id,@Param("uid")long uid);
     /**

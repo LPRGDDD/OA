@@ -23,6 +23,8 @@ import com.github.pagehelper.PageInfo;
 public class MailController {
 @Autowired
    private MailService ser;
+
+
 @RequestMapping("/find.action")
 public String find(){
 	return "page/view/chl/transform";

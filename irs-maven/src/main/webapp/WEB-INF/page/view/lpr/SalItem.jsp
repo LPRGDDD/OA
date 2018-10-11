@@ -159,9 +159,8 @@ layui.use('element',function(){
     })
         /* 薪酬项目定义表编辑 */
         function salitemUpdate(){
-        alert($("#form1").serialize());
         $.ajax({
-           url:"../salitem/update",
+           url:"salitem/update",
            type:'post',
            async:true,
            data:$("#form1").serialize()
@@ -184,7 +183,6 @@ layui.use('element',function(){
         /* 薪酬项目定义表删除 */
          $("#si").on("click",".delete",function(){
          var itemId=this.id;
-         alert(itemId);
          if(confirm("确定要删除吗？？？")){
           $.ajax({
           url:"salitem/delete",
@@ -211,7 +209,7 @@ layui.use('element',function(){
                 var ary=data;
                 for(var i=0;i<ary.length;i++){
                   var obj=ary[i];//获取当前对象
-                  $("#qq").append("<option class='form-control' value='"+obj.itemtypeId+"'>"+obj.Itemtype_name+"</option>");//追加行
+                  $("#qq").append("<option class='form-control' value='"+obj.Itemtype_id+"'>"+obj.Itemtype_name+"</option>");//追加行
                  
                  }
                 
@@ -248,7 +246,7 @@ layui.use('element',function(){
                   for(var i=0;i<ary.length;i++){
                      var obj=ary[i];//获取当前对象
                      var tr="<tr>";
-                     tr+="<td><input type='text' value='"+obj.safefactorName+"'/><br/>";
+                     tr+="<td><input type='text' value='"+obj.safefactor_name+"'/><br/>";
                      tr+="<td><input type='text' value='"+obj.grpayment+"'/>%<br/>";
                      tr+="<td><input type='text' value='"+obj.dwpayment+"'/>%<br/>";
                      tr+="</tr>";

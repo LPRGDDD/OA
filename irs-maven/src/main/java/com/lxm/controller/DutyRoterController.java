@@ -62,9 +62,11 @@ public class DutyRoterController {
 		return num;
 	}
 	@RequestMapping("/updateById/{drId}")
+	
 	public String selectID(HttpServletRequest req,@PathVariable("drId") int id){
 		DutyRoster list= ds.selectById(id);
 		req.setAttribute("list", list); 
+		System.out.println(list.toString());
 		//Map map=new HashMap();
 		//map.put("dd", list);
 		return "page/view/lxm/PaiBanUpdate";

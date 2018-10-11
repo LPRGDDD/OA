@@ -7,8 +7,8 @@
     <result column="drName1" property="drname1" jdbcType="VARCHAR" />
     <result column="drName2" property="drname2" jdbcType="VARCHAR" />
     <result column="dtname" property="dtname" jdbcType="VARCHAR" />
-    <result column="dtDate_start" property="dtdateStart" jdbcType="DATE" />
-    <result column="dtDate_end" property="dtdateEnd" jdbcType="DATE" />
+    <result column="dtDate_start" property="dtDate_Start"/>
+    <result column="dtDate_end" property="dtDate_End"/>
     <result column="dtstate" property="dtstate" jdbcType="INTEGER" />
     <result column="monday" property="monday" jdbcType="INTEGER" />
     <result column="tuesday" property="tuesday" jdbcType="INTEGER" />
@@ -43,8 +43,8 @@
   <insert id="insert" parameterType="com.lxm.entity.DutyRoster" >
     insert into dutyroster (drId, scid, drName1,drNameId,drnameId2,drName2,dtname,dtDate_start,dtDate_end,dtstate)
     values (#{drid,jdbcType=INTEGER}, #{scid,jdbcType=INTEGER}, #{drname1,jdbcType=VARCHAR},#{drnameId},#{drnameId2}, 
-      #{drname2,jdbcType=VARCHAR}, #{dtname,jdbcType=VARCHAR}, #{dtdateStart,jdbcType=DATE}, 
-      #{dtdateEnd,jdbcType=DATE}, #{dtstate,jdbcType=INTEGER}
+      #{drname2,jdbcType=VARCHAR}, #{dtname,jdbcType=VARCHAR}, #{dtDate_Start}, 
+      #{dtDate_End}, #{dtstate,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.lxm.entity.DutyRoster" >
@@ -65,10 +65,10 @@
       <if test="dtname != null" >
         dtname,
       </if>
-      <if test="dtdateStart != null" >
+      <if test="dtDate_Start != null" >
         dtDate_start,
       </if>
-      <if test="dtdateEnd != null" >
+      <if test="dtDate_End != null" >
         dtDate_end,
       </if>
       <if test="dtstate != null" >
@@ -112,10 +112,10 @@
       <if test="dtname != null" >
         #{dtname,jdbcType=VARCHAR},
       </if>
-      <if test="dtdateStart != null" >
-        #{dtdateStart,jdbcType=DATE},
+      <if test="dtDate_Start != null" >
+        #{dtDate_Start},
       </if>
-      <if test="dtdateEnd != null" >
+      <if test="dtDate_End != null" >
         #{dtdateEnd,jdbcType=DATE},
       </if>
       <if test="dtstate != null" >
@@ -165,11 +165,11 @@
       <if test="dtname != null" >
         dtname = #{dtname,jdbcType=VARCHAR},
       </if>
-      <if test="dtdateStart != null" >
-        dtDate_start = #{dtdateStart,jdbcType=DATE},
+      <if test="dtDate_Start != null" >
+        dtDate_start = #{dtDate_Start},
       </if>
-      <if test="dtdateEnd != null" >
-        dtDate_end = #{dtdateEnd,jdbcType=DATE},
+      <if test="dtDate_End != null" >
+        dtDate_end = #{dtDate_End},
       </if>
       <if test="dtstate != null" >
         dtstate = #{dtstate,jdbcType=INTEGER},
@@ -206,8 +206,8 @@
       dtname = #{dtname,jdbcType=VARCHAR},
       drNameId=#{drnameId},
       drnameId2=#{drnameId2},
-      dtDate_start = #{dtdateStart,jdbcType=DATE},
-      dtDate_end = #{dtdateEnd,jdbcType=DATE},
+      dtDate_start = #{dtDate_Start},
+      dtDate_end = #{dtDate_End},
       dtstate = #{dtstate,jdbcType=INTEGER},
       monday = #{monday,jdbcType=INTEGER},
       tuesday = #{tuesday,jdbcType=INTEGER},

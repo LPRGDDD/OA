@@ -176,7 +176,9 @@
 							   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:120,align:'center'},//员工住房公积金
 							   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
 							   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
-							   {field : 'sal_SSalary',title : '应发工资',fixed: 'right',edit: 'text',width:120,align:'center'},//员工个人住房
+							   {field : 'sal_Ssalary',title : '实发工资', totalRow: true,edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
+       							 return d.personxc_s1+d.personxc_s2+d.personxc_s3+d.personxc_s4+d.personxc_s5+d.personxc_s6+d.personxc_s7-d.personxc_gryl-d.personxc_grmedical-d.personxc_grsy-d.personxc_grzf
+     							 }},
 							   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center',fixed: 'right'}//员工表现
   							 ] ],
 							page : true,

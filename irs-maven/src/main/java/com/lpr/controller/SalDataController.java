@@ -79,9 +79,15 @@ public class SalDataController {
 	}
 	@ResponseBody
 	@RequestMapping("/PLInsert")
-	public void PLInsert(@RequestBody List<SalaDataAndAdmin> list,String userStr){
-		System.out.println(list);
-		System.out.println(userStr);
+	public void PLInsert(@RequestBody List<SalaDataAndAdmin> list,String userStr,String salaryflowIdStr,HttpServletResponse response) throws IOException{
+		int a=service.PLInsert(userStr, salaryflowIdStr, list);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		if (a!=0) {
+			out.print("执行成功！");
+		}else{
+			out.print("执行失败！");
+		}
 	}
 	/*查询*/
 	@RequestMapping("/chayue/{salaryflow_id}")
@@ -89,7 +95,7 @@ public class SalDataController {
 		req.setAttribute("salaryflow_id", salaryflow_id);
 		return "page/view/lpr/chayue";
 	}
-	//员工薪酬基数的批量添加
+	//上报数据的添加
 	@RequestMapping("/insert")
 	@ResponseBody
 	public void insert(SalData s,String userId,HttpServletRequest request,HttpServletResponse response) throws IOException{

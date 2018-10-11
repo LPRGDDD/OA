@@ -7,34 +7,18 @@ public class DutyRoster {
     private Integer scid;
 
     private String drname1;
-  
+    
     private String drnameId;
     
     private String drnameId2;
     
-    public String getDrnameId() {
-		return drnameId;
-	}
-
-	public void setDrnameId(String drnameId) {
-		this.drnameId = drnameId;
-	}
-
-	public String getDrnameId2() {
-		return drnameId2;
-	}
-
-	public void setDrnameId2(String drnameId2) {
-		this.drnameId2 = drnameId2;
-	}
-
 	private String drname2;
 
     private String dtname;
 
-    private String dtdateStart;
+    private String dtDate_Start;
 
-    private String dtdateEnd;
+    private String dtDate_End;
 
     private Integer dtstate;
 
@@ -76,6 +60,22 @@ public class DutyRoster {
 		this.drname1 = drname1;
 	}
 
+	public String getDrnameId() {
+		return drnameId;
+	}
+
+	public void setDrnameId(String drnameId) {
+		this.drnameId = drnameId;
+	}
+
+	public String getDrnameId2() {
+		return drnameId2;
+	}
+
+	public void setDrnameId2(String drnameId2) {
+		this.drnameId2 = drnameId2;
+	}
+
 	public String getDrname2() {
 		return drname2;
 	}
@@ -92,20 +92,20 @@ public class DutyRoster {
 		this.dtname = dtname;
 	}
 
-	public String getDtdateStart() {
-		return dtdateStart;
+	public String getDtDate_Start() {
+		return dtDate_Start;
 	}
 
-	public void setDtdateStart(String dtdateStart) {
-		this.dtdateStart = dtdateStart;
+	public void setDtDate_Start(String dtDate_Start) {
+		this.dtDate_Start = dtDate_Start;
 	}
 
-	public String getDtdateEnd() {
-		return dtdateEnd;
+	public String getDtDate_End() {
+		return dtDate_End;
 	}
 
-	public void setDtdateEnd(String dtdateEnd) {
-		this.dtdateEnd = dtdateEnd;
+	public void setDtDate_End(String dtDate_End) {
+		this.dtDate_End = dtDate_End;
 	}
 
 	public Integer getDtstate() {
@@ -171,4 +171,15 @@ public class DutyRoster {
 	public void setSunday(Integer sunday) {
 		this.sunday = sunday;
 	}
+
+	@Override
+	public String toString() {
+		return "DutyRoster [drid=" + drid + ", scid=" + scid + ", drname1=" + drname1 + ", drnameId=" + drnameId
+				+ ", drnameId2=" + drnameId2 + ", drname2=" + drname2 + ", dtname=" + dtname + ", dtDate_Start="
+				+ dtDate_Start + ", dtDate_End=" + dtDate_End + ", dtstate=" + dtstate + ", monday=" + monday
+				+ ", tuesday=" + tuesday + ", wednesday=" + wednesday + ", thursday=" + thursday + ", friday=" + friday
+				+ ", saturday=" + saturday + ", sunday=" + sunday + "]";
+	}
+
+
 }

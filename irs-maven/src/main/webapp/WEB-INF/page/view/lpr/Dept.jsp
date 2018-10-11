@@ -20,12 +20,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-    <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="resources/layui/css/layui.css" media="all">
-	<script type="text/javascript" src="resources/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="resources/layui/layui.js"></script>
-	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="page/resources/layui/css/layui.css" media="all">
+	<script type="text/javascript" src="page/resources/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="page/resources/layui/layui.js"></script>
+	<script type="text/javascript" src="page/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="page/resources/layui/layui.all.js"></script>
   </head>
   
   <body>

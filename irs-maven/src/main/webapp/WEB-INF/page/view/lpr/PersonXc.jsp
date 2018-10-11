@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-   <link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="page/resources/bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="page/resources/layui/css/layui.css" media="all">
 	<script type="text/javascript" src="page/resources/jquery-1.11.3.min.js"></script>
@@ -236,7 +236,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   page:true
 			       });
 			$("#btn1").click(function() {
-				var checkStatus = table.checkStatus('myTab'); //test即为基础参数id对应的值
+				var checkStatus = table.checkStatus('myTab'); 
 				var length = checkStatus.data.length;
 				var id = "";
 				var name = "";
@@ -368,37 +368,125 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   {type: 'checkbox', fixed: 'left'},
 	   {field : 'personxc_id',title : '编号',fixed: 'left',sort : true,width:80,align:'center',totalRowText: '合计',unresize: true},//员工薪酬基数编号
 	   {field : 'fullname',title : '员工名称',fixed: 'left',width:100,align:'center'},//用户名称
-	   {field : 'personxc_s1',title : '薪酬项目1',edit: 'text',width:120,align:'center', totalRow: true},//薪酬项目1
-	   {field : 'personxc_s2',title : '薪酬项目2',edit: 'text',width:120,align:'center'},//薪酬项目2 
-	   {field : 'personxc_s3',title : '薪酬项目3',edit: 'text',width:120,align:'center'},//薪酬项目3
-	   {field : 'personxc_s4',title : '薪酬项目4',edit: 'text',width:120,align:'center'},//薪酬项目4
-	   {field : 'personxc_s5',title : '薪酬项目5',edit: 'text',width:120,align:'center'},//薪酬项目5
-	   {field : 'personxc_s6',title : '薪酬项目6',edit: 'text',width:120,align:'center'},//薪酬项目6
-	   {field : 'personxc_s7',title : '薪酬项目7',edit: 'text',width:120,align:'center'},//薪酬项目7
-	   {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:120,align:'center'},//薪酬项目8
-	   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:120,align:'center'},//薪酬项目9
-	   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:120,align:'center'},//薪酬项目10
-	   {field : 'personxc_insurejs',title : '保险基数',edit: 'text',width:120,align:'center', totalRow: true},//员工保险基数 
-	   {field : 'personxc_ylinsure',title : '养老保险',edit: 'text',width:120,align:'center'},//员工养老保险
-	   {field : 'personxc_dwyl',title : '单位养老',edit: 'text',width:120,align:'center'},//员工单位养老
-	   {field : 'personxc_gryl',title : '个人养老',edit: 'text',width:120,align:'center'},//员工个人养老
-	   {field : 'personxc_ylbx',title : '医疗保险',edit: 'text',width:120,align:'center'},//员工医疗保险
-	   {field : 'personxc_dw_medical',title : '单位医疗',edit: 'text',width:120,align:'center'},//员工单位医疗
-	   {field : 'personxc_grmedical',title : '个人医疗',edit: 'text',width:120,align:'center'},//员工个人医疗
-	   {field : 'personxc_group',title : '生育保险',edit: 'text',width:120,align:'center'},//员工生育保险
-	   {field : 'personxc_dwsy',title : '单位生育',edit: 'text',width:120,align:'center'},//员工单位生育
-	   {field : 'personxc_sybx',title : '失业保险',edit: 'text',width:120,align:'center'},//员工失业保险
-	   {field : 'personxc_dwshiye',title : '单位失业',edit: 'text',width:120,align:'center'},//员工单位失业
-	   {field : 'personxc_grsy',title : '个人失业',edit: 'text',width:120,align:'center'},//员工个人失业
-	   {field : 'personxc_gsbx',title : '工伤保险',edit: 'text',width:120,align:'center'},//员工工伤保险
-	   {field : 'personxc_dwgs',title : '单位工伤',edit: 'text',width:120,align:'center'},//员工单位工伤
-	   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:120,align:'center'},//员工住房公积金
-	   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
-	   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
-	   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center',fixed: 'right'}//员工表现
+	   {field : 'personxc_s1',title : '1',width:100},//薪酬项目1
+	   {field : 'personxc_s2',title : '薪酬项目2',edit: 'text',width:100,align:'center'},//薪酬项目2 
+	   {field : 'personxc_s3',title : '薪酬项目3',edit: 'text',width:100,align:'center'},//薪酬项目3
+	   {field : 'personxc_s4',title : '薪酬项目4',edit: 'text',width:100,align:'center'},//薪酬项目4
+	   {field : 'personxc_s5',title : '薪酬项目5',edit: 'text',width:100,align:'center'},//薪酬项目5
+	   {field : 'personxc_s6',title : '薪酬项目6',edit: 'text',width:100,align:'center'},//薪酬项目6
+	   {field : 'personxc_s7',title : '薪酬项目7',edit: 'text',width:100,align:'center'},//薪酬项目7
+	   {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:100,align:'center'},//薪酬项目8
+	   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:100,align:'center'},//薪酬项目9
+	   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:100,align:'center'},//薪酬项目10
+	   {field : 'personxc_insurejs',title : '保险基数',edit: 'text',width:100,align:'center', totalRow: true},//员工保险基数 
+	   {field : 'personxc_ylinsure',title : '养老保险',edit: 'text',width:100,align:'center'},//员工养老保险
+	   {field : 'personxc_dwyl',title : '单位养老',edit: 'text',width:100,align:'center'},//员工单位养老
+	   {field : 'personxc_gryl',title : '个人养老',edit: 'text',width:100,align:'center'},//员工个人养老
+	   {field : 'personxc_ylbx',title : '医疗保险',edit: 'text',width:100,align:'center'},//员工医疗保险
+	   {field : 'personxc_dw_medical',title : '单位医疗',edit: 'text',width:100,align:'center'},//员工单位医疗
+	   {field : 'personxc_grmedical',title : '个人医疗',edit: 'text',width:100,align:'center'},//员工个人医疗
+	   {field : 'personxc_group',title : '生育保险',edit: 'text',width:100,align:'center'},//员工生育保险
+	   {field : 'personxc_dwsy',title : '单位生育',edit: 'text',width:100,align:'center'},//员工单位生育
+	   {field : 'personxc_sybx',title : '失业保险',edit: 'text',width:100,align:'center'},//员工失业保险
+	   {field : 'personxc_dwshiye',title : '单位失业',edit: 'text',width:100,align:'center'},//员工单位失业
+	   {field : 'personxc_grsy',title : '个人失业',edit: 'text',width:100,align:'center'},//员工个人失业
+	   {field : 'personxc_gsbx',title : '工伤保险',edit: 'text',width:100,align:'center'},//员工工伤保险
+	   {field : 'personxc_dwgs',title : '单位工伤',edit: 'text',width:100,align:'center'},//员工单位工伤
+	   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:100,align:'center'},//员工住房公积金
+	   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:100,align:'center'},//员工单位住房
+	   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:100,align:'center'},//员工个人住房
+	   {field : 'personxc_expression',title : '表现',edit: 'text',width:100,align:'center',fixed: 'right'}//员工表现
 		       ] ],
-	   page:true
-		       });
+	   page:true,
+	   done: function (res, curr, count) {
+	   		var j = [];
+                for (i=0;i<res.list.length;i++){
+                    j[i] = res.list[i].Item_name
+                }
+                //数据的回调用，可不写 15 16 17 18 19
+                //alert(j[0]);
+                $("[data-field='personxc_s1']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s1']").css("display","none");
+                    }else {
+                        $('th').eq(3).text(j[0]);
+                        $('th').eq(3).css('width','100');
+                    }
+                });
+                /*  $("[data-field='personxc_s2']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s2']").css("display","none");
+                    }else {
+                        $('th').eq(4).text(j[1]);
+                        $('th').eq(4).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s3']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s3']").css("display","none");
+                    }else {
+                        $('th').eq(5).text(j[2]);
+                        $('th').eq(5).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s4']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s4']").css("display","none");
+                    }else {
+                        $('th').eq(6).text(j[3]);
+                        $('th').eq(6).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s5']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s5']").css("display","none");
+                    }else {
+                        $('th').eq(7).text(j[4]);
+                        $('th').eq(7).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s6']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s6']").css("display","none");
+                    }else {
+                        $('th').eq(8).text(j[5]);
+                        $('th').eq(8).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s7']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s7']").css("display","none");
+                    }else {
+                        $('th').eq(9).text(j[6]);
+                        $('th').eq(9).css("width","100");
+                    }
+                });*/
+                 $("[data-field='personxc_s8']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[10] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s8']").css("display","none");
+                    }else {
+                        $('th').eq(11).text(j[10]);
+                        $('th').eq(11).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s9']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[11] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s9']").css("display","none");
+                    }else {
+                        $('th').eq(12).text(j[11]);
+                        $('th').eq(12).css("width","100");
+                    }
+                });
+                 $("[data-field='personxc_s10']").children().each(function () {
+                    if ($(this).text() == 0 || $(this).text() == "" || j[12] == null) {
+                        $(".layui-table-box").find("[data-field='personxc_s10']").css("display","none");
+                    }else {
+                        $('th').eq(13).text(j[12]);
+                        $('th').eq(13).css("width","100");
+                    }
+                });
+	   }
+	});
 		//工具栏事件
 	  table.on('toolbar(myTab1)', function(obj){
 	    var checkStatus = table.checkStatus(obj.config.id);

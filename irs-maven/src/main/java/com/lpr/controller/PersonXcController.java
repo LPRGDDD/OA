@@ -18,11 +18,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lpr.entity.PersonXc;
 import com.lpr.service.PersonXcService;
+import com.lpr.service.SalItemService;
 @Controller
 @RequestMapping("/personxc")
 public class PersonXcController {
 	@Autowired
 	private PersonXcService service;
+	@Autowired
+	private SalItemService salSer;
 	/*薪酬基数的跳转*/
 	@RequestMapping("/find.action")
 	public String findxcjs(){
@@ -41,12 +44,14 @@ public class PersonXcController {
 	public Map findPage(Integer page,Integer limit){
 		PageHelper.startPage(page,limit);
 		List<Map> list=service.findPage();
+		List<Map<String, Object>> slist= salSer.findAll();
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);
         map.put("msg", "");
         map.put("count",info.getTotal());
         map.put("data", info.getList());
+        map.putIfAbsent("list", slist);
 		return map;
 	}
 	//员工薪酬基数的批量添加
