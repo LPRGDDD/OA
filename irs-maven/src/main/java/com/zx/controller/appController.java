@@ -28,6 +28,7 @@ import com.zx.service.appService;
 public class appController {
 	@Autowired
 	private appService app;
+	
 	/*页面跳转*/
 	@RequestMapping("/find.action")
 	public String find(){
@@ -37,6 +38,12 @@ public class appController {
 	public String find2(){
 		return "page/view/zx/table";
 	}
+	@RequestMapping("find3.action")
+	public String find3(){
+		return "page/view/zx/report";
+		
+	}
+	
 	  @ResponseBody
 	  @RequestMapping("/findapp")
 		public List<Map> recivJson1(Map map) throws IOException{
@@ -75,7 +82,7 @@ public class appController {
 		public int deleteapp(@RequestParam int ApId) throws IOException{
 	  		int num=app.deleteone(ApId);
 	  		System.out.println(ApId);
-			return ApId;
+			return num;
 		}
 		/*详情查询*/
 		@RequestMapping("/findById/{ApId}")
@@ -85,6 +92,20 @@ public class appController {
 			System.out.println(list);
 			req.setAttribute("list", list);
 			return "page/view/zx/detail";
+		}
+		@ResponseBody
+		@RequestMapping("/findById2")
+		public List<Map> findById2(int id) throws IOException{
+	  		List<Map> list=app.findById2(id);
+	  		System.out.println(id);
+			return list;
+		}
+		@ResponseBody
+		@RequestMapping("/findById3")
+		public List<Map> findById3(int ApId) throws IOException{
+	  		List<Map> list=app.findById3(ApId);
+	  		System.out.println(ApId);
+			return list;
 		}
 		@ResponseBody
 		  @RequestMapping("/findByState")
@@ -129,5 +150,20 @@ public class appController {
 		public int finddetai6(shop s) throws IOException{
 			  int a=app.updateNum(s);
 			return a;
+		}
+		@ResponseBody
+		@RequestMapping("/insapp")
+		public void finddetai7(apply a) throws IOException{
+			   app.insapp(a);
+		}
+		@ResponseBody
+		@RequestMapping("findcondition")
+		public List<Map<String,Object>> WaiSelect(int cId,int goId,int sId){
+			Map<String, Object> map1 = new HashMap<String, Object>();
+			map1.put("cId", cId);
+			map1.put("goId", goId);
+			map1.put("sId", sId);
+			List<Map<String, Object>> map=app.findBycondition(map1);
+			return map;
 		}
 } 

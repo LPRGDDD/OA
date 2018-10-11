@@ -2,7 +2,7 @@ package com.zx.entity;
 
 import java.util.Date;
 
-import com.lxm.entity.TbUse;
+import com.lxm.entity.TbAdmin;
 
 public class apply {
 	private Integer apId;
@@ -11,9 +11,9 @@ public class apply {
 
 	private Integer sId;
 
-	private String borrow;
+	private Integer id;
 
-	private Integer apPrice;
+	private Integer sPrice;
 
 	private Integer apNum;
 
@@ -25,7 +25,7 @@ public class apply {
 
 	private String apDate;
 
-	private String apOperator;
+	private Integer apOperator;
 
 	private Integer apState;
 
@@ -65,31 +65,7 @@ public class apply {
 
 	private shop shop;
 
-	private TbUse user;
-
-	public court getCourt() {
-		return court;
-	}
-
-	public void setCourt(court court) {
-		this.court = court;
-	}
-
-	public shop getShop() {
-		return shop;
-	}
-
-	public void setShop(shop shop) {
-		this.shop = shop;
-	}
-
-	public TbUse getUser() {
-		return user;
-	}
-
-	public void setUser(TbUse user) {
-		this.user = user;
-	}
+	private TbAdmin user;
 
 	public Integer getApId() {
 		return apId;
@@ -115,21 +91,20 @@ public class apply {
 		this.sId = sId;
 	}
 
-	
-	public String getBorrow() {
-		return borrow;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setBorrow(String borrow) {
-		this.borrow = borrow;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getApPrice() {
-		return apPrice;
+	public Integer getsPrice() {
+		return sPrice;
 	}
 
-	public void setApPrice(Integer apPrice) {
-		this.apPrice = apPrice;
+	public void setsPrice(Integer sPrice) {
+		this.sPrice = sPrice;
 	}
 
 	public Integer getApNum() {
@@ -145,7 +120,7 @@ public class apply {
 	}
 
 	public void setApBei(String apBei) {
-		this.apBei = apBei == null ? null : apBei.trim();
+		this.apBei = apBei;
 	}
 
 	public String getApName() {
@@ -153,7 +128,7 @@ public class apply {
 	}
 
 	public void setApName(String apName) {
-		this.apName = apName == null ? null : apName.trim();
+		this.apName = apName;
 	}
 
 	public String getApFlag() {
@@ -161,7 +136,7 @@ public class apply {
 	}
 
 	public void setApFlag(String apFlag) {
-		this.apFlag = apFlag == null ? null : apFlag.trim();
+		this.apFlag = apFlag;
 	}
 
 	public String getApDate() {
@@ -172,12 +147,12 @@ public class apply {
 		this.apDate = apDate;
 	}
 
-	public String getApOperator() {
+	public Integer getApOperator() {
 		return apOperator;
 	}
 
-	public void setApOperator(String apOperator) {
-		this.apOperator = apOperator == null ? null : apOperator.trim();
+	public void setApOperator(Integer apOperator) {
+		this.apOperator = apOperator;
 	}
 
 	public Integer getApState() {
@@ -201,7 +176,7 @@ public class apply {
 	}
 
 	public void setApReson(String apReson) {
-		this.apReson = apReson == null ? null : apReson.trim();
+		this.apReson = apReson;
 	}
 
 	public String getApCompany() {
@@ -209,7 +184,7 @@ public class apply {
 	}
 
 	public void setApCompany(String apCompany) {
-		this.apCompany = apCompany == null ? null : apCompany.trim();
+		this.apCompany = apCompany;
 	}
 
 	public String getBand() {
@@ -217,7 +192,7 @@ public class apply {
 	}
 
 	public void setBand(String band) {
-		this.band = band == null ? null : band.trim();
+		this.band = band;
 	}
 
 	public Integer getCycleNo() {
@@ -249,7 +224,7 @@ public class apply {
 	}
 
 	public void setApKeeper(String apKeeper) {
-		this.apKeeper = apKeeper == null ? null : apKeeper.trim();
+		this.apKeeper = apKeeper;
 	}
 
 	public String getGrantor() {
@@ -257,7 +232,7 @@ public class apply {
 	}
 
 	public void setGrantor(String grantor) {
-		this.grantor = grantor == null ? null : grantor.trim();
+		this.grantor = grantor;
 	}
 
 	public Integer getGrantorStatus() {
@@ -273,7 +248,7 @@ public class apply {
 	}
 
 	public void setDeptManger(String deptManger) {
-		this.deptManger = deptManger == null ? null : deptManger.trim();
+		this.deptManger = deptManger;
 	}
 
 	public Integer getDeptStatus() {
@@ -305,7 +280,7 @@ public class apply {
 	}
 
 	public void setReturnReason(String returnReason) {
-		this.returnReason = returnReason == null ? null : returnReason.trim();
+		this.returnReason = returnReason;
 	}
 
 	public String getAvailable() {
@@ -313,6 +288,32 @@ public class apply {
 	}
 
 	public void setAvailable(String available) {
-		this.available = available == null ? null : available.trim();
+		this.available = available;
 	}
+
+	public court getCourt() {
+		return court;
+	}
+
+	public void setCourt(court court) {
+		this.court = court;
+	}
+
+	public shop getShop() {
+		return shop;
+	}
+
+	public void setShop(shop shop) {
+		this.shop = shop;
+	}
+
+	public TbAdmin getUser() {
+		return user;
+	}
+
+	public void setUser(TbAdmin user) {
+		this.user = user;
+	}
+
+	
 }

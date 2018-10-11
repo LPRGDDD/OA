@@ -358,7 +358,7 @@
 	height: auto;
 	position: relative;
 	left: 300px;
-	top: -400px;
+	top: -300px;
 }
 
 .form-control {
@@ -466,13 +466,12 @@
 					<div id="cha">
 						<label for="name">选择仓库</label><select id="chioce"
 							class="form-control">
-
 						</select> <label for="name">选择类型</label> <select id="chioce2"
 							class="form-control">
-							<option>默认</option>
+							<option value="0">默认</option>
 						</select> <label for="name">选择商品</label> <select id="chioce3"
 							class="form-control">
-							<option>默认</option>
+							<option value="0">默认</option>
 						</select> <input class="btn btn-primary" type="button" value="查询"
 							id="findtype2">
 					</div>
@@ -593,8 +592,8 @@
 				<div class="form-group">
 					<label for="lastname" class="col-sm-2 control-label">时间</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="sDate"
-							placeholder="时间" readonly="readonly">
+						<input type="Date" class="form-control" id="sDate"
+							placeholder="时间">
 					</div>
 				</div>
 			</div>

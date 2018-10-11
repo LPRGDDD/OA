@@ -76,5 +76,24 @@ private applyMapper dao;
 		// TODO Auto-generated method stub
 		return dao.updateNum(s);
 	}
-
+	@Override
+	public List<Map> findById2(int id) {
+		// TODO Auto-generated method stub
+		return dao.findById2(id);
+	}
+	@Override
+	public List<Map> findById3(int ApId) {
+		// TODO Auto-generated method stub
+		return dao.findById3(ApId);
+	}
+	@Override
+	public int insapp(apply a) {
+		// TODO Auto-generated method stub
+		return dao.insapp(a);
+	}
+	@Override
+	public List<Map<String, Object>> findBycondition(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.findBycondition(map);
+	}
 }

@@ -19,7 +19,7 @@ public interface shopMapper {
 //	根据goID查询商品
 	public List<shop> findshop(int goId);
 //	模糊查询
-	public List<Map> findvag(@Param("cId")int cId,@Param("goId")int goId,@Param("sId")int sId);
+	public List<Map<String,Object>> findvag(Map<String,Object> map);
 //根据编号
 
 }

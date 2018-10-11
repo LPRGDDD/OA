@@ -60,16 +60,16 @@
 		#{sDate,jdbcType=DATE}
 		)
 	</insert>
-  <select id="findvag" parameterType="java.lang.Integer" resultType="Map">
+  <select id="findvag" parameterType="Map" resultType="Map">
         select s.sId,s.sName,gt.goName,s.sGong,s.sUpAlert,s.sNow,s.sCreator from shop s LEFT JOIN goodtype gt on s.goId=gt.goId LEFT JOIN court c ON gt.cId=c.cId
    <where>
-      <if test="cId!='' and cId!=null">
+      <if test="cId!=0">
           c.cId like '%${cId}%' 
       </if>
-      <if test="goId!='' and goId!=null">
+      <if test="goId!=0">
         and gt.goId like '%${goId}%'
       </if>
-      <if test="sId!='' and sId!=null">
+      <if test="sId!=0">
          and s.sId like '%${sId}%'
       </if>
     </where>

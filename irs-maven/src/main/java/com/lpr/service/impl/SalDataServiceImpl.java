@@ -185,14 +185,16 @@ private SalDataMapper dao;
 						if (count==0) {//当没有数据时
 							user.setId(a);
 							sal.setUser(user);
-							sal.setSalDataId(null);
-							slist.set(j, sal);
+							sal.setSalDataId(null);//把saldataId置空
+							slist.set(j, sal);//放进slist里
 							dao.insert(slist.get(j));
 						}else{
 							int b=dao.findById(a,salaryflowId);
 							user.setId(a);
 							sal.setUser(user);
 							sal.setSalDataId(b);
+							sal.setSalDataId(null);
+							slist.set(j, sal);
 							dao.updateByPrimaryKey(slist.get(j));
 						}
 					}

@@ -49,11 +49,12 @@
 	src="${pageContext.request.contextPath}/page/resources/jquery-1.11.3.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/page/resources/esayui/jquery.easyui.min.js"></script>
-<script
+<script   
 	src="${pageContext.request.contextPath}/page/resources/bootstrap/js/bootstrap.min.js"></script>
 <script>
 	layui.use('table', function() {
 		var table = layui.table;
+		var id=$("#id").val();
 		table.render({
 			elem : '#tableDemo',
 			toolbar : '#toolbarDemo',
@@ -181,9 +182,10 @@
 	}
 </script>
 <script type="text/javascript">
-	function add() {
-		var obj = $("#ff").serialize() //将表单数据转换成json对象
-		alert(obj)
+		$(function(){
+		  $("#add").click(function(){
+		  var id=$("#ff").serialize()
+		alert(id)
 		$.ajax({
 			url : "apply/save2",
 			type : "post",
@@ -195,11 +197,11 @@
 	       	 	//dataType : 'text',//返回的数据类型
 	       	 	dataType:'json', */
 			success : function(data) {
-
-				findAll(); //再次加载数据
+				location.reload();
 			}
 		});
-	}
+	})
+	})
 	//用品库查询
 	$(function() {
 		var url = "court/findone"
@@ -240,7 +242,7 @@
 				}
 			})
 		});
-		
+
 		$("#opt2").change(function() {
 			let $dom = $("#opt2");
 			let id = $dom[0].options[$dom[0].selectedIndex].value;
@@ -264,10 +266,9 @@
 			})
 		})
 		/* 为商品价格赋值 */
-		$("#opt1").change(function(){
-		     let $dom = $("#opt1");
+		$("#opt1").change(function() {
+			let $dom = $("#opt1");
 			let id = $dom[0].options[$dom[0].selectedIndex].value;
-			alert(id)
 			$.ajax({
 				url : "shop/findById",
 				dataType : "json",
@@ -277,34 +278,9 @@
 				},
 				ansy : false,
 				success : function(data) {
-				   $("#sPrice").val(data[0].sPrice)
+					$("#sPrice").val(data[0].sPrice)
 				}
 			})
-		})
-		})
-	
-	
-	$(function() {
-		var url = "use/findAll"
-		$.ajax({
-			url : url,
-			dataType : "json",
-			type : "post",
-			ansy : false,
-			success : function(data) {
-				$("#box").html(""); //清空内容数据
-				var ary = data;
-				for (var i = 0; i < ary.length; i++) {
-					var obj = ary[i]; //获取当前对象
-					var tr = "<tr>";
-					tr += "<td>" + obj.user_id + "</td>";
-					tr += "<td>" + obj.user_name + "</td>";
-					tr += "<td ><input type='button' value='处理' id=" + obj.user_name + " class='deta btn btn-info' /></td>";
-					tr += "</tr>";
-					$("#box").append(tr); //追加行	
-
-				}
-			}
 		})
 	})
 
@@ -353,7 +329,124 @@
 				});
 			}
 		})
+			
 	});
+	$(function(){
+	 $("#mo3").click(function(){
+	   $("#myModal3").modal('show');
+	   $.ajax({
+	       url : 'shop/findAll',
+			dataType : "json",
+			type : "post",
+			ansy : false,
+			success : function(data) {
+				$("#box").html(""); //清空内容数据
+				var ary = data;
+				for (var i = 0; i < ary.length; i++) {
+					var obj = ary[i]; //获取当前对象
+					var tr = "<tr>";
+					tr += "<td>" + obj.user_id + "</td>";
+					tr += "<td>" + obj.user_name + "</td>";
+					tr += "<td ><input type='button' value='处理' id=" + obj.user_name + " class='deta btn btn-info' /></td>";
+					tr += "</tr>";
+					$("#box").append(tr); //追加行	
+
+				}
+			}
+			
+	   })
+	 })
+	   $("#hid").click(function() {
+			$("#myModal3").modal('hide');
+		})
+	})
+	$(function(){
+	     var id=$("#id").val();
+		$.ajax({
+		   url : 'apply/findById2',
+		   data:{
+		      "id":id
+		   },
+			dataType : "json",
+			type : "post",
+			ansy : false,
+			success : function(data) {
+				$("#tbod4").html(""); //清空内容数据
+				var ary = data;
+				for (var i = 0; i < ary.length; i++) {
+					var obj = ary[i]; //获取当前对象
+					var tr = "<tr>";
+					tr += "<td>" + obj.sName + "</td>";
+					tr += "<td>" + obj.ApFlag + "</td>"; 
+					tr += "<td>" + obj.ApNum + "</td>";	
+					tr += "<td>" + obj.ApDate + "</td>";
+					tr += "<td>" + obj.username + "</td>";
+					tr += "<td>" + obj.ApBei + "</td>";
+					tr += "<td>" + get1(obj.ApState) + "</td>";
+					tr += "<td ><input type='button' value='删除' id=" + obj.ApId + "  class='delet btn btn-primary' /><input type='button' value='详情' id=" + obj.ApId + " class='detail2 btn btn-primary' /></td>";
+					tr += "</tr>";
+					$("#tbod4").append(tr); //追加行	
+				}
+			}
+		})
+		 function get1(status){
+	       if(status==0)
+	       return '未审批';
+	       if(status==1)
+	       return '已驳回';
+	       if(status>=2)
+	       return '已过审';
+	    }
+	    $("#tbod4").on("click", ".delet", function() {
+	        var id=this.id;
+	        alert(id);
+	        $.ajax({
+	          url:'apply/deleteapp',
+	          data:{
+		      "ApId":id
+		   },
+			dataType : "json",
+			type : "post",
+			ansy : false,
+			success : function(data) {
+			   location.reload();
+			}
+	        })
+	    })
+	     $("#tbod4").on("click",".detail2",function(){
+	         var id=this.id;
+	        alert(id);
+	        $.ajax({
+	          url:'apply/findById3',
+	          data:{
+		      "ApId":id
+		   },
+		   dataType : "json",
+			type : "post",
+			ansy : false,
+			success : function(data) {
+			  $("#tbod5").html(""); //清空内容数据
+				var ary = data;
+				for (var i = 0; i < ary.length; i++) {
+					var obj = ary[i]; //获取当前对象
+					var tr = "<tr>";
+					tr += "<td>"+'办公用品名称：'+"</td><td>" + obj.sName + "</td></tr><tr>";
+					tr += "<td>"+'申请类型：'+"</td><td>" + obj.ApFlag + "</td></tr><tr>"; 
+					tr += "<td>"+'时间：'+"</td><td>" + obj.ApDate + "</td></tr><tr>";
+					tr += "<td>"+'申请人：'+"</td><td>" + obj.username + "</td></tr><tr>";
+					tr += "<td>"+'警戒线：'+"</td><td>" + obj.sLowAlert + "到"+obj.sUpAlert+"</td></tr><tr>";
+					tr += "<td>"+'状态：'+"</td><td>" + get1(obj.ApState) + "</td></tr><tr>";
+					tr += "<td>"+'数量：'+"</td><td>" + obj.ApNum + "</td></tr><tr>";
+					tr += "</tr>";
+					$("#tbod5").append(tr); //追加行	
+				}
+			}
+	        }) 
+	    })  
+	    $(".detail2").click(function() {
+			$("#myModal5").modal('show');
+		})
+	})
 </script>
 <style type="text/css">
 #div4 {
@@ -371,6 +464,15 @@
 	width: 500px;
 	height: 300px;
 }
+
+#mo3 {
+	color: red;
+	position: relative;
+	left: 200px;
+	top: -30px;
+	font-size: small;
+}
+
 </style>
 </head>
 
@@ -379,7 +481,7 @@
 		<li class="layui-nav-item" data-toggle="modal" data-target="#myModal">办公用品申领</li>
 		<li class="layui-nav-item layui-this"><a href="javascript:;"
 			onclick="openwin()">详情申领</a></li>
-		<li class="layui-nav-item" onclick="openwin2()">我的申领记录</li>
+		<li class="layui-nav-item" data-toggle="modal" data-target="#myModal4">我的申领记录</li>
 		<li class="layui-nav-item"><a href="">社区</a></li>
 	</ul>
 	<div id="serch">
@@ -401,8 +503,8 @@
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="width:600px;height:800px;">
-			<div class="modal-content">
+		<div class="modal-dialog" style="width:700px;height:1000px;">
+			<div class="modal-content" style="width:700px;height:1000px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
@@ -422,83 +524,139 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><label for="name">选择仓库</label><select name="cId" id="opt" class="form-control">
+											<td><label for="name">选择仓库</label><select name="cId"
+												id="opt" class="form-control">
 
 											</select></td>
 										</tr>
 										<tr>
-											<td><label for="name">选择类型</label><select name="goId" id="opt2" class="form-control"></select></td>
+											<td><label for="name">选择类型</label><select name="goId"
+												id="opt2" class="form-control"></select></td>
 										</tr>
 										<tr>
-											<td><label for="name">选择商品</label><select name="sId" id="opt1" class="form-control"></select></td>
+											<td><label for="name">选择商品</label><select name="sId"
+												id="opt1" class="form-control"></select></td>
 										</tr>
 										<tr>
-											<td><input type="hidden" name="id" id="id" value="<shiro:principal property="id"/>"></td>
+											<td><input type="hidden" name="id" id="id"
+												value="<shiro:principal property="id"/>"></td>
 										</tr>
 										<tr>
-											<td><label for="name">选择方式</label> <select name="apFlag" id="Tid" class="form-control">
+											<td><label for="name">选择方式</label> <select name="apFlag"
+												id="Tid" class="form-control">
 													<option value="领用">领用</option>
 													<option value="借用">借用</option>
-											</select>
-											</td>
+											</select></td>
 										</tr>
 										<tr>
-											<td><label for="name">价格</label><input class="form-control" placeholder="请输入名称" type="text"
-												name="apPrice" id="sPrice"></td>
+											<td><label for="name">价格</label><input
+												class="form-control" placeholder="请输入名称" type="text"
+												name="sPrice" id="sPrice"></td>
 										</tr>
 										<tr>
-											<td><span><label for="name">申请数量</label></span><input class="form-control" id="name" placeholder="请输入名称"
+											<td><span><label for="name">申请数量</label></span><input
+												class="form-control" id="name" placeholder="请输入名称"
 												name="apNum" type="number" value="" placeholder="0" /></td>
 										</tr>
 										<tr>
-											<td><label for="name">时间</label><input class="form-control" id="name" placeholder="请输入名称" type="Date"
-												 name="apDate"
-												id="apDate"></td>
+											<td><span><label for="name">审批</label></span><input
+												class="form-control" id="name" placeholder="请输入名称"
+												name="ApOperator" type="number" value="" placeholder="0" /><span
+												id="mo3">+添加</span></td>
 										</tr>
 										<tr>
-											<td><label for="name">备注</label>
-												 <textarea class="form-control" rows="3" name="apBei" id="Apbei" placeholder="请输入名称"></textarea>
-												</td>
+											<td><label for="name">时间</label><input
+												class="form-control" id="name" placeholder="请输入名称"
+												type="Date" name="apDate" id="apDate"></td>
+										</tr>
+										<tr>
+											<td><label for="name">备注</label> <textarea
+													class="form-control" rows="3" name="apBei" id="Apbei"
+													placeholder="请输入名称"></textarea></td>
 										</tr>
 										<tr>
 											<td><input class="easyui-textbox" type="hidden"
 												name="apState" id="state" value="0"></td>
 										</tr>
 										<tr>
-											<td><input type="button" class="btn btn-primary" value="添加" onclick="add()"></td>
+											<td><input type="button" class="btn btn-primary"
+												value="添加" id="add"></td>
 										</tr>
 									</tbody>
 								</table>
-								<div id="win" class="easyui-window" title="选择人" closed="true"
-									style="width:300px;height:100px;padding:0px;">
-									<table style="width:200px;">
-										<thead>
-											<tr>
-												<td>编号</td>
-												<td>名称</td>
-											</tr>
-										</thead>
-										<tbody id="box">
-
-										</tbody>
-									</table>
-								</div>
-								<p>
-									总价：<label id="total"></label>
-								</p>
 							</form>
 						</div>
 					</div>
 				</div>
-				<div class="modal-body">在这里添加一些文本</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary">提交更改</button>
-				</div>
+				<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">添加审批人</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+          <thead>
+               <tr>
+                   <td>编号</td>
+                   <td>名称</td>
+               </tr>
+          </thead>
+          <tbody id="box">
+               
+          </tbody>
+      </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="hid">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+				
 			</div>
 			<!-- /.modal-content -->
 		</div>
 		<!-- /.modal -->
 	</div>
+	<!-- 模态框3 -->
+	<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">我的申请记录</h4>
+            </div>
+            <div class="modal-body">
+               <table class="table table-hover">
+                    <thead>
+                        <tr>
+                           <td>办公名称</td>
+                           <td>登记类型</td>
+                           <td>申请数量</td>
+                           <td>日期</td>
+                           <td>处理人</td>
+                           <td>备注</td>
+                           <td>状态</td>
+                           <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbod4">
+                    </tbody>
+               </table>
+               <table class="table table-hover">
+                    <thead></thead>
+                    <tbody id="tbod5"></tbody>
+               </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+            
 </body>
 </html>

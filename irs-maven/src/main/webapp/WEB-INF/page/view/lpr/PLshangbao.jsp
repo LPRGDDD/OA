@@ -183,10 +183,10 @@
   							 ] ],
 							page : true,
 						});
-					  table.on('edit(userList)',function(obj){
+					  /* table.on('edit(userList)',function(obj){
 					  	var data=obj.data;  //得到所在行的所有键值
 					  	layer.alert(JSON.stringify(data));
-					  })
+					  }) */
 					 //工具栏事件:左侧全选
 					  table.on('toolbar(userList)', function(obj){
 					    var checkStatus = table.checkStatus(obj.config.id);
@@ -200,7 +200,7 @@
 								id += c.data[i].id + ","
 							}
 							//layer.alert();
-							/* layer.confirm('确定添加<strong>'+ data.length+ '</strong>条数据吗？',function(index) {
+							layer.confirm('确定添加<strong>'+ data.length+ '</strong>条数据吗？',function(index) {
 						        $.ajax({
 									url : "http://localhost:8080/oa/saldata/PLInsert?userStr="+id+"&salaryflowIdStr="+${salaryflow_id}+"",
 									type : 'post',
@@ -213,7 +213,7 @@
 										
 									}
 								})
-							}) */
+							})
 					      break;
 					      case 'getCheckLength':
 					        var data = checkStatus.data;

@@ -31,6 +31,12 @@ public interface applyMapper {
 	public int updateState(int ApId);
 //第二次修改状态 
 	public int updateState1(int ApId);
-	
-	
+//	根据id查申请记录
+	public List<Map> findById2(int id);
+//	根据id查申请记录
+	public List<Map> findById3(int ApId);
+//	录入拒绝批准理由
+	public int insapp(apply a);
+//	多条件查询
+	public List<Map<String,Object> > findBycondition(Map<String,Object> map);
 }

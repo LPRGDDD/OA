@@ -13,12 +13,16 @@ public interface appService {
    public List<Map> findAll();
    //录入
    public int insert(apply ap);
-   //查询
+   //查询分页的
    public List<Map> getAll();
    //删除
    public int deleteone(int ApId);
    //详情查询
    public List<Map> findById(int ApId);
+//   根据Id查询2
+   public List<Map> findById2(int id);
+// 根据Id查询2
+ public List<Map> findById3(int ApId);
 //   已申请未审批
    public List<Map> findByState(int id);
 //   状态查询2
@@ -33,4 +37,8 @@ public interface appService {
    public List<Map> findBydetail(int ApId);
    //修改库存
    public int updateNum(shop s);
+//   录入拒绝理由
+   public int insapp(apply a);
+//   多条件查询
+   public List<Map<String,Object>> findBycondition(Map<String,Object> map);
 }

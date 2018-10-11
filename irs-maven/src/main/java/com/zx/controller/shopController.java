@@ -2,6 +2,7 @@ package com.zx.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.irs.pojo.TbAdmin;
 import com.zx.dao.goodtypeMapper;
 import com.zx.entity.EmployeeTree;
 import com.zx.entity.goodtype;
@@ -77,9 +79,14 @@ private goodtypeMapper dao;
 			}	
 		 @ResponseBody
 			@RequestMapping("/findvag")  
-		 public List<Map> recivJson5(@Param("cId")int cId, @Param("goId")int goId, @Param("sId")int sId) throws IOException{
-				List<Map> list=service.findvag(cId, goId, sId);
-				return list;
+		 public List<Map<String,Object>> recivJson5(int cId, int goId, int sId){
+			 Map<String, Object> map1 = new HashMap<String, Object>();
+	         map1.put("cId", cId);
+	         map1.put("goId", goId);
+	         map1.put("sId", sId);
+	         System.out.println(map1);
+	         List<Map<String, Object>> map=service.findvag(map1);
+				return map;
 			}
 		 @ResponseBody
 			@RequestMapping("/findshop2")  

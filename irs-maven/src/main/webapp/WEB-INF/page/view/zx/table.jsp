@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
 	isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -39,7 +39,7 @@
 		findAll2();
 	})
 	function findAll() {
-	var id=1
+	var id=$("#id").val();
 		$.ajax({
 			url : "findByState",
 			data:{
@@ -56,7 +56,7 @@
 					var tr = "<tr>";
 					tr += "<td>" + obj.ApId + "</td>";
 					tr += "<td>" + obj.cName + "</td>";
-					tr += "<td>" + obj.ApName + "</td>";
+					tr += "<td>" + obj.sName + "</td>";
 					tr += "<td>" + obj.ApFlag + "</td>";
 					tr += "<td>" + obj.username + "</td>";
 					tr += "<td>" + obj.ApNum + "</td>";
@@ -83,7 +83,7 @@
 					var tr = "<tr>";
 					tr += "<td>" + obj.ApId + "</td>"; 
 					tr += "<td>" + obj.cName + "</td>";
-					tr += "<td>" + obj.ApName + "</td>";
+					tr += "<td>" + obj.sName + "</td>";
 					tr += "<td>" + obj.ApFlag + "</td>";
 					tr += "<td>" + obj.username + "</td>";
 					tr += "<td>" + obj.ApNum + "</td>";
@@ -147,7 +147,7 @@
 				       dataType : 'JSON', //返回的数据类型
 				        success:function(data){
 				        	if(data.state>0){
-				        		findAll();
+				        		location.reload();
 				        		//清空数据
 				        	}
 				        }
@@ -196,12 +196,12 @@
 					var tr = "<tr>";
 					tr += "<td>" + obj.ApId + "</td>"; 
 					tr += "<td>" + obj.cName + "</td>";
-					tr += "<td>" + obj.ApName + "</td>";
+					tr += "<td>" + obj.sName + "</td>";
 					tr += "<td>" + obj.ApFlag + "</td>";
 					tr += "<td>" + obj.username + "</td>";
 					tr += "<td>" + obj.ApNum + "</td>";
-					tr += "<td>" + obj.ApDate + "</td>";
-					tr += "<td ><input type='button' value='审批' id=" + obj.ApId + " class='change btn btn-info' /><input type='button' value='驳回' id=" + obj.ApId + " class='findState btn btn-warning' /></td>";
+					tr += "<td>" + obj.ApDate + "</td></tr><tr>";
+					tr += "<td ><input type='button' value='审批' id=" + obj.ApId + " class='change btn btn-info' /></td><td data-toggle='modal' data-target='#myModalzx'><input type='button' value='驳回' id=" + obj.ApId + " class='ret btn btn-warning' /></td>";
 					tr += "</tr>";
 					$("#box3").append(tr); //追加行	
 
@@ -209,10 +209,13 @@
 			      }
 			      });
 	   })
+	   $("#return").click(function() {
+			$("#myModalzx").modal('hide');
+		}) 
 	})
 	
 	$(function(){
-	   $("#box").on("click",".change",function(){
+	   $("#box3").on("click",".change",function(){
 				var pid=this.id;
  $.ajax({
 				        url:"updateState",
@@ -231,6 +234,8 @@
 			      });
 	   })
 	})
+	
+	
 	
 	function get1(ApState) {
 		if (ApState == 1)
@@ -284,25 +289,47 @@
 				}
 			}
 		})
+		$("#box3").on("click",".ret",function(){
+	         var id=this.id
+	         $("#hidebox").val(id)
+	   })
 	})
+	   
+function insapp(){
+    var text=$("#textarea").val();
+    var id=$("#hidebox").val();
+    alert(text)
+    alert(id)
+     $.ajax({
+        url:'insapp',
+        data:{
+            "apId":id,
+            "apReson":text
+        },
+        type:'post',
+        datatype:'json',
+        ansy : false,
+        success:function(data){
+           location.reload();
+        }
+    }) 
+}	
 	
-	function openwin(){
-	 window.open ("MyJsp4.jsp", 
-	 "newwindow", 
-	 "height=800, width=800, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no") 
-	 }
 </script>
 <style type="text/css">
 #box {
 	text-align: center;
 	line-height: 200px;
 }
-#snow{
-    width:50px;
+
+#snow {
+	width: 50px;
 }
-#ApNum{
-   width:50px;
+
+#ApNum {
+	width: 50px;
 }
+
 </style>
 </head>
 <body>
@@ -358,8 +385,9 @@
 							</ul></li>
 					</ul>
 				</div>
-
 				</nav>
+				<input type="hidden" name="id" id="id"
+					value="<shiro:principal property="id"/>">
 				<table class="table table-striped" id="tab1">
 					<thead>
 						<tr>
@@ -381,7 +409,7 @@
 				<!-- 模态框2（Modal） -->
 				<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog" style="width:900px;">
+					<div class="modal-dialog" style="width:900px; height: 500px;">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
@@ -399,7 +427,6 @@
 											<td>申请数量</td>
 											<td>申请备注</td>
 											<td>部门审批人</td>
-											<td>归还信息</td>
 										</tr>
 									</thead>
 									<tbody id="box3">
@@ -407,6 +434,39 @@
 									</tbody>
 								</table>
 							</form>
+							<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModalzx" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" id="return">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					不批准理由
+				</h4>
+			</div>
+			<div class="modal-body">
+				<table>
+				    <tr>
+				        <td>
+				            <textarea class="form-control" rows="4" cols="50" id="textarea"></textarea>
+				        </td>
+				        </tr>
+				        
+				    <tr>
+				         <td><p>请输入不批准理由</p></td>
+				         <td><input type="hidden" id="hidebox"></td>
+				    </tr>
+				</table>
+				
+			</div>
+			<div class="modal-footer">
+								<button type="button" class="btn btn-primary" onclick="insapp()">提交</button>
+							</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">关闭</button>

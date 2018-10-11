@@ -46,8 +46,10 @@ private shopMapper mapper;
 	}
 
 	@Override
-	public List<Map> findvag(@Param("cId")int cId, @Param("goId")int goId, @Param("sId")int sId) {
+	public List<Map<String, Object>> findvag(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return mapper.findvag(cId, goId, sId);
+		return mapper.findvag(map);
 	}
+
+	
 }

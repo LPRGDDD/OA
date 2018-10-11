@@ -22,6 +22,10 @@ public class DeptController {
 	public String find(){
 		return "page/view/lpr/Dept";
 	}
+	@RequestMapping("/mailfind.action")
+	public String mail(){
+		return "page/view/chl/transform";
+	}
 	@ResponseBody
 	@RequestMapping("findAll")
 	//部门表的查询

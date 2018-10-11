@@ -26,7 +26,7 @@ public class MailController {
 
 
 @RequestMapping("/find.action")
-public String find(){
+public String find11(){
 	return "page/view/chl/transform";
 }
 @RequestMapping("/login")
