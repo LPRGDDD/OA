@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.irs.mapper.testMapping">
+	<select id="test" resultType="java.util.Map">
+			select 
+		u.user_id,u.user_name,u.user_loginname,u.user_userpsw,u.user_phone,r.user_role_id,r.user_role_name
+		from tb_use u,sys_role r,sys_user_role ur
+		WHERE
+		r.user_role_id=ur.user_role_id and ur.id=u.user_id     
+          
+	</select>
+</mapper>
