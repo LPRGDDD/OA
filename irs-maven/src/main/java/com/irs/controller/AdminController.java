@@ -170,11 +170,6 @@ public class AdminController {
 	public String adminList() {
 		return "page/admin/adminList";
 	}
-	/*²âÊÔ*/
-	@RequestMapping("/test")
-	public String test() {
-		return "page/lpr/lpr";
-	}
 	@RequestMapping("/menuList")
 	public String menuList() {
 		return "page/admin/menuList";

@@ -29,7 +29,7 @@
 	</bean>
 	<!-- 配置扫描包，加载mapper代理对象 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.irs.mapper,com.irs.lpr.dao"></property>
+		<property name="basePackage" value="com.irs.mapper,com.lpr.dao"></property>
 	</bean>
 	
 	<!-- 验证码 -->
