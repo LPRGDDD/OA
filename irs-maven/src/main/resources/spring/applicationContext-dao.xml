@@ -25,11 +25,13 @@
 	<!-- 配置sqlsessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>
+		<property name="mapperLocations" value="classpath:com/lxm/dao/*.xml"></property><!-- 自动扫描mapper -->
+		<property name="typeAliasesPackage" value="com.lxm.entity"></property>
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<!-- 配置扫描包，加载mapper代理对象 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.irs.mapper,com.irs.lpr.dao"></property>
+		<property name="basePackage" value="com.irs.mapper,com.lxm.dao"></property>
 	</bean>
 	
 	<!-- 验证码 -->

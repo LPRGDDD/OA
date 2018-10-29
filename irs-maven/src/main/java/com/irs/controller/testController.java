@@ -27,7 +27,7 @@ private testService ser;
 /*Ò³ÃæÌø×ª*/
 @RequestMapping("/find.action")
 public String test() {
-	return "page/lpr/test";
+	return "page/view/lxm/MyJsp";
 }
 /*²âÊÔ²éÑ¯*/
 @RequestMapping("/testfind")
