@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.DutyRosterMapper" >
+  <resultMap id="BaseResultMap" type="com.lxm.entity.DutyRoster" >
+    <id column="drId" property="drid" jdbcType="INTEGER" />
+    <result column="scid" property="scid" jdbcType="INTEGER" />
+    <result column="drName1" property="drname1" jdbcType="VARCHAR" />
+    <result column="drName2" property="drname2" jdbcType="VARCHAR" />
+    <result column="dtname" property="dtname" jdbcType="VARCHAR" />
+    <result column="dtDate_start" property="dtdateStart" jdbcType="DATE" />
+    <result column="dtDate_end" property="dtdateEnd" jdbcType="DATE" />
+    <result column="dtstate" property="dtstate" jdbcType="INTEGER" />
+    <result column="monday" property="monday" jdbcType="INTEGER" />
+    <result column="tuesday" property="tuesday" jdbcType="INTEGER" />
+    <result column="wednesday" property="wednesday" jdbcType="INTEGER" />
+    <result column="thursday" property="thursday" jdbcType="INTEGER" />
+    <result column="friday" property="friday" jdbcType="INTEGER" />
+    <result column="saturday" property="saturday" jdbcType="INTEGER" />
+    <result column="sunday" property="sunday" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drId, scid, drName1, drName2, dtname, dtDate_start, dtDate_end, dtstate, monday, 
+    tuesday, wednesday, thursday, friday, saturday, sunday
+  </sql>
+  <select id="selectByPrimaryKey" resultType="Map">
+    select 
+    *
+    from dutyroster
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer"  >
+    delete from dutyroster
+    where drId = #{drid,jdbcType=INTEGER}
+  </delete>
+  <!--修改 是否启用 的状态 -->
+  <update id="updateState" parameterType="Map">
+  	update dutyroster set dtstate=#{state} where drid=#{id}
+  </update>
+  <!--修改 查询排班  -->
+  <select id="selectById" resultType="DutyRoster" parameterType="Integer">
+  	select * from dutyroster where drId=#{id}
+  </select>
+  
+  <insert id="insert" parameterType="com.lxm.entity.DutyRoster" >
+    insert into dutyroster (drId, scid, drName1,drNameId,drnameId2,drName2,dtname,dtDate_start,dtDate_end,dtstate)
+    values (#{drid,jdbcType=INTEGER}, #{scid,jdbcType=INTEGER}, #{drname1,jdbcType=VARCHAR},#{drnameId},#{drnameId2}, 
+      #{drname2,jdbcType=VARCHAR}, #{dtname,jdbcType=VARCHAR}, #{dtdateStart,jdbcType=DATE}, 
+      #{dtdateEnd,jdbcType=DATE}, #{dtstate,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lxm.entity.DutyRoster" >
+    insert into dutyroster
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drid != null" >
+        drId,
+      </if>
+      <if test="scid != null" >
+        scid,
+      </if>
+      <if test="drname1 != null" >
+        drName1,
+      </if>
+      <if test="drname2 != null" >
+        drName2,
+      </if>
+      <if test="dtname != null" >
+        dtname,
+      </if>
+      <if test="dtdateStart != null" >
+        dtDate_start,
+      </if>
+      <if test="dtdateEnd != null" >
+        dtDate_end,
+      </if>
+      <if test="dtstate != null" >
+        dtstate,
+      </if>
+      <if test="monday != null" >
+        monday,
+      </if>
+      <if test="tuesday != null" >
+        tuesday,
+      </if>
+      <if test="wednesday != null" >
+        wednesday,
+      </if>
+      <if test="thursday != null" >
+        thursday,
+      </if>
+      <if test="friday != null" >
+        friday,
+      </if>
+      <if test="saturday != null" >
+        saturday,
+      </if>
+      <if test="sunday != null" >
+        sunday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drid != null" >
+        #{drid,jdbcType=INTEGER},
+      </if>
+      <if test="scid != null" >
+        #{scid,jdbcType=INTEGER},
+      </if>
+      <if test="drname1 != null" >
+        #{drname1,jdbcType=VARCHAR},
+      </if>
+      <if test="drname2 != null" >
+        #{drname2,jdbcType=VARCHAR},
+      </if>
+      <if test="dtname != null" >
+        #{dtname,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdateStart != null" >
+        #{dtdateStart,jdbcType=DATE},
+      </if>
+      <if test="dtdateEnd != null" >
+        #{dtdateEnd,jdbcType=DATE},
+      </if>
+      <if test="dtstate != null" >
+        #{dtstate,jdbcType=INTEGER},
+      </if>
+      <if test="monday != null" >
+        #{monday,jdbcType=INTEGER},
+      </if>
+      <if test="tuesday != null" >
+        #{tuesday,jdbcType=INTEGER},
+      </if>
+      <if test="wednesday != null" >
+        #{wednesday,jdbcType=INTEGER},
+      </if>
+      <if test="thursday != null" >
+        #{thursday,jdbcType=INTEGER},
+      </if>
+      <if test="friday != null" >
+        #{friday,jdbcType=INTEGER},
+      </if>
+      <if test="saturday != null" >
+        #{saturday,jdbcType=INTEGER},
+      </if>
+      <if test="sunday != null" >
+        #{sunday,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateRoter" parameterType="com.lxm.entity.DutyRoster" >
+    update dutyroster
+    <set >
+      <if test="scid != null" >
+        scid = #{scid,jdbcType=INTEGER},
+      </if>
+      <if test="drname1 != null" >
+        drName1 = #{drname1,jdbcType=VARCHAR},
+      </if>
+      <if test="drnameId != null" >
+        drNameId = #{drnameId,jdbcType=VARCHAR},
+      </if>
+      <if test="drnameId2 != null" >
+        drnameId2 = #{drnameId2,jdbcType=VARCHAR},
+      </if>
+      <if test="drname2 != null" >
+        drName2 = #{drname2,jdbcType=VARCHAR},
+      </if>
+      <if test="dtname != null" >
+        dtname = #{dtname,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdateStart != null" >
+        dtDate_start = #{dtdateStart,jdbcType=DATE},
+      </if>
+      <if test="dtdateEnd != null" >
+        dtDate_end = #{dtdateEnd,jdbcType=DATE},
+      </if>
+      <if test="dtstate != null" >
+        dtstate = #{dtstate,jdbcType=INTEGER},
+      </if>
+      <if test="monday != null" >
+        monday = #{monday,jdbcType=INTEGER},
+      </if>
+      <if test="tuesday != null" >
+        tuesday = #{tuesday,jdbcType=INTEGER},
+      </if>
+      <if test="wednesday != null" >
+        wednesday = #{wednesday,jdbcType=INTEGER},
+      </if>
+      <if test="thursday != null" >
+        thursday = #{thursday,jdbcType=INTEGER},
+      </if>
+      <if test="friday != null" >
+        friday = #{friday,jdbcType=INTEGER},
+      </if>
+      <if test="saturday != null" >
+        saturday = #{saturday,jdbcType=INTEGER},
+      </if>
+      <if test="sunday != null" >
+        sunday = #{sunday,jdbcType=INTEGER},
+      </if>
+    </set>
+    where drId = #{drid,jdbcType=INTEGER}
+  </update>
+  <update id="updateDuty" parameterType="com.lxm.entity.DutyRoster" >
+    update dutyroster
+    set scid = #{scid,jdbcType=INTEGER},
+      drName1 = #{drname1,jdbcType=VARCHAR},
+      drName2 = #{drname2,jdbcType=VARCHAR},
+      dtname = #{dtname,jdbcType=VARCHAR},
+      drNameId=#{drnameId},
+      drnameId2=#{drnameId2},
+      dtDate_start = #{dtdateStart,jdbcType=DATE},
+      dtDate_end = #{dtdateEnd,jdbcType=DATE},
+      dtstate = #{dtstate,jdbcType=INTEGER},
+      monday = #{monday,jdbcType=INTEGER},
+      tuesday = #{tuesday,jdbcType=INTEGER},
+      wednesday = #{wednesday,jdbcType=INTEGER},
+      thursday = #{thursday,jdbcType=INTEGER},
+      friday = #{friday,jdbcType=INTEGER},
+      saturday = #{saturday,jdbcType=INTEGER},
+      sunday = #{sunday,jdbcType=INTEGER}
+    where drId = #{drid,jdbcType=INTEGER}
+  </update>
+</mapper>
