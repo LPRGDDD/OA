@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.ratiMapper" >
+  <resultMap id="BaseResultMap" type="com.zx.entity.rati" >
+    <id column="Ra_id" property="raId" jdbcType="INTEGER" />
+    <result column="Ap_id" property="apId" jdbcType="INTEGER" />
+    <result column="Ra_deng" property="raDeng" jdbcType="VARCHAR" />
+    <result column="Ra_sum" property="raSum" jdbcType="INTEGER" />
+    <result column="Ra_Date" property="raDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Ra_id, Ap_id, Ra_deng, Ra_sum, Ra_Date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rati
+    where Ra_id = #{raId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rati
+    where Ra_id = #{raId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zx.entity.rati" >
+    insert into rati (Ra_id, Ap_id, Ra_deng, 
+      Ra_sum, Ra_Date)
+    values (#{raId,jdbcType=INTEGER}, #{apId,jdbcType=INTEGER}, #{raDeng,jdbcType=VARCHAR}, 
+      #{raSum,jdbcType=INTEGER}, #{raDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zx.entity.rati" >
+    insert into rati
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="raId != null" >
+        Ra_id,
+      </if>
+      <if test="apId != null" >
+        Ap_id,
+      </if>
+      <if test="raDeng != null" >
+        Ra_deng,
+      </if>
+      <if test="raSum != null" >
+        Ra_sum,
+      </if>
+      <if test="raDate != null" >
+        Ra_Date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="raId != null" >
+        #{raId,jdbcType=INTEGER},
+      </if>
+      <if test="apId != null" >
+        #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="raDeng != null" >
+        #{raDeng,jdbcType=VARCHAR},
+      </if>
+      <if test="raSum != null" >
+        #{raSum,jdbcType=INTEGER},
+      </if>
+      <if test="raDate != null" >
+        #{raDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zx.entity.rati" >
+    update rati
+    <set >
+      <if test="apId != null" >
+        Ap_id = #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="raDeng != null" >
+        Ra_deng = #{raDeng,jdbcType=VARCHAR},
+      </if>
+      <if test="raSum != null" >
+        Ra_sum = #{raSum,jdbcType=INTEGER},
+      </if>
+      <if test="raDate != null" >
+        Ra_Date = #{raDate,jdbcType=DATE},
+      </if>
+    </set>
+    where Ra_id = #{raId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zx.entity.rati" >
+    update rati
+    set Ap_id = #{apId,jdbcType=INTEGER},
+      Ra_deng = #{raDeng,jdbcType=VARCHAR},
+      Ra_sum = #{raSum,jdbcType=INTEGER},
+      Ra_Date = #{raDate,jdbcType=DATE}
+    where Ra_id = #{raId,jdbcType=INTEGER}
+  </update>
+</mapper>

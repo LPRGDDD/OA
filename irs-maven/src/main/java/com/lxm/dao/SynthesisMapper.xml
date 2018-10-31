@@ -52,12 +52,17 @@
     )
   </insert>
   <!--查询systate=1 时 的  外出表  -->
-  <select id="selectAll" resultType="Map" parameterType="Integer">
+  <select id="selectAll" resultType="Map" parameterType="Map">
   	select  s.sId,s.shenId,s.id,s.syReason,s.syShen,s.syTime,
       s.wcTimeTwo, s.wcTimeOne, s.wcTime, 
       s.wcTimeEnd, s.car, s.exState,s.syState,t.username,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=1 and s.id=#{id}
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=1
+      	and
+      	<if test="username != null">
+      		s.syShen LIKE concat(concat('%',#{username}),'%') and
+      	</if> 
+        s.id=#{id} order by  s.syShen desc
   </select>
   <!--查询单条外出登记   -->
   <select id="selectUpdate" resultType="Map" >
@@ -88,12 +93,16 @@
   	delete from synthesis where sId=#{id}
   </delete>
   <!--查询待审批  exState=0 待审批 -->
-  <select id="selectDaiShen" resultType="Map" parameterType="Integer">
+  <select id="selectDaiShen" resultType="Map" parameterType="Map">
   	select  s.sId,s.shenId,s.id,s.syReason,s.syShen,s.syTime,
       s.wcTimeTwo, s.wcTimeOne, s.wcTime,s.timeOne,s.timeTwo,
       s.wcTimeEnd, s.car, s.exState,s.syState,t.username,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where  s.shenId=#{id} and s.exState=0
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where  s.shenId=#{id}  and
+      	<if test="username != null">
+      		t.username LIKE concat(concat('%',#{username}),'%') and
+      	</if> 
+       s.exState=0 order by s.syShen desc
   </select>
   <!--查看详情 个人详情   外出  请假 加班 出差-->
   <select id="selectXiang" resultType="Map">
@@ -121,66 +130,81 @@
       	<if test="username != null">
       		t.username LIKE concat(concat('%',#{username}),'%') and
       	</if> 
-         s.shenId=#{id} and s.exState BETWEEN 2 and 3
+         s.shenId=#{id} and s.exState BETWEEN 2 and 3 order by s.syShen desc
   </select>
   <!--请假  已批准 已回归  -->
-  <select id="ShenQing" resultType="Map" parameterType="Integer"> 
+  <select id="ShenQing" resultType="Map" parameterType="Map"> 
   		select  *,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=2 and s.shenId=#{id} and s.exState BETWEEN 2 and 3
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=2 and
+      <if test="username != null">
+      		t.username LIKE concat(concat('%',#{username}),'%') and
+      </if> 
+       s.shenId=#{id} and s.exState BETWEEN 2 and 3 order by s.syShen desc
   </select>
   <!--加班  已批准 已回归  -->
-  <select id="ShenJia" resultType="Map" parameterType="Integer"> 
+  <select id="ShenJia" resultType="Map" parameterType="Map"> 
   		select  *,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=3 and s.shenId=#{id} and s.exState BETWEEN 2 and 3
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=3 and
+       <if test="username != null">
+      		t.username LIKE concat(concat('%',#{username}),'%') and 
+      </if> 
+       s.shenId=#{id} and s.exState BETWEEN 2 and 3 order by s.syShen desc
   </select>
   <!--出差 已批准 以回归  -->
-   <select id="ShenChuChai" resultType="Map" parameterType="Integer"> 
+   <select id="ShenChuChai" resultType="Map" parameterType="Map"> 
   		select  *,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=4 and s.shenId=#{id} and s.exState BETWEEN 2 and 3
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=4 and 
+       <if test="username != null">
+      		t.username LIKE concat(concat('%',#{username}),'%') and
+      </if> 
+      s.shenId=#{id} and s.exState BETWEEN 2 and 3 order by s.syShen desc
   </select>
   <!--请假登记添加  -->
   <insert id="QingJiaSave" parameterType="com.lxm.entity.Synthesis">
   	insert into synthesis (shenId, 
       id, syReason, syShen, 
       wcTimeTwo, wcTimeOne, wcTime, 
-      wcTimeEnd, exState, syState
-      )
+      wcTimeEnd, exState, syState,syTime      )
     value(#{shenid},#{id},#{syreason},#{syshen},#{wctimetwo}
-    ,#{wctimeone},#{wctime},#{wctimeend},#{exstate},#{systate}
+    ,#{wctimeone},#{wctime},#{wctimeend},#{exstate},#{systate},#{sytime}
     )
   </insert>
   <!--出差登记添加  -->
    <insert id="JiaBanSave" parameterType="com.lxm.entity.Synthesis">
   	insert into synthesis (shenId, 
       id, syReason, syShen,timeAddress, wcTimeOne, wcTime, 
-      wcTimeEnd, exState, syState
+      wcTimeEnd, exState, syState,syTime
       )
     value(#{shenid},#{id},#{syreason},#{syshen},#{timeaddress}
-    ,#{wctimeone},#{wctime},#{wctimeend},#{exstate},#{systate}
+    ,#{wctimeone},#{wctime},#{wctimeend},#{exstate},#{systate},#{sytime}
     )
   </insert>
   <!--查询请假记录  -->
-  <select id="QingJiaSel" resultType="Map" parameterType="Integer">
+  <select id="QingJiaSel" resultType="Map" parameterType="Map">
   			select  s.sId,s.shenId,s.id,s.syReason,s.syShen,
       s.wcTimeTwo, s.wcTimeOne, s.wcTime, 
       s.wcTimeEnd, s.exState,s.syState,t.username,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=2 and s.id=#{id}
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=2 and
+      <if test="username != null">
+      		s.syShen LIKE concat(concat('%',#{username}),'%') and
+      </if> 
+       s.id=#{id} order by s.syShen desc
   </select>
   <!--查询加班记录  -->
    <select id="JiaBanSel" resultType="Map" parameterType="Integer">
   			select *,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=3 and s.id=#{id}
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=3 and s.id=#{id} order by s.syShen desc
   </select>
   <!--查询出差记录  -->
    <select id="ChuChaiSel" resultType="Map" parameterType="Integer">
   			select *,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=4 and s.id=#{id}
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=4 and s.id=#{id} order by s.syShen desc
   </select>
   <!--单条查询 请假记录   -->
   <select id="QingJiaUpdate" resultType="Map" parameterType="Integer">

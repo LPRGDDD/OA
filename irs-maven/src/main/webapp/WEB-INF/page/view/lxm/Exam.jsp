@@ -164,8 +164,7 @@
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-				      {field:'exId', title: '审批规则编号', width:150, sort: true}
-				      ,{field:'departmentName', title: '被审批部门', width:450}
+				      {field:'departmentName', title: '被审批部门', width:450}
 				      ,{field:'staffName',title: '审批人', width:450}
 				        ,{width:200, align:'center', toolbar: '#barDemo'}
 				    ]]

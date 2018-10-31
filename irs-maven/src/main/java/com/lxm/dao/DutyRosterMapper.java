@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.lxm.entity.DutyRoster;
+import com.lxm.entity.Pbjl;
 
 public interface DutyRosterMapper {
+	
+	public List<Pbjl> selectLxm(Map<String,Object> map);
 	/**
 	 * 删除
 	 * @param drid
@@ -48,4 +51,21 @@ public interface DutyRosterMapper {
 	 * @return
 	 */
 	public int updateRoter(DutyRoster dr);
+	
+	/**
+	 * 查询排班班次信息
+	 * @return
+	 */
+	public List<Map<String,Object>> qeruyAll();
+	/**
+	 * 考勤统计
+	 * @param map
+	 * @return
+	 */
+	public List<Map<String,Object>> KaoQinTongJi(Map<String,Object> map);
+	/**
+	 * 全部查询  考情统计
+	 * @return
+	 */
+	public List<Map<String,Object>> selectTongji(Map map);
 }

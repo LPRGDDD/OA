@@ -63,6 +63,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<div class="layui-tab-item layui-show">
 					<input type="hidden" id="id" value="<shiro:principal property="id"/>"/>
+						<div class="demoTable">
+					  搜索申请人：
+					  <div class="layui-inline">
+					    <input name="username" class="layui-input" id="demoReload4" autocomplete="off">
+					  </div>
+					  <button class="layui-btn" lay-submit="" data-type="sousuo4">搜索</button>
+					</div>
 					<table class="layui-hide" lay-filter="demo" id="test"></table> 
 					<script id="barDemo" type="text/html">
  						<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
@@ -73,11 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 外出查询 -->  
 			<div class="layui-tab-item">
 					<div class="demoTable">
-					  搜索ID：
+					  搜索申请人：
 					  <div class="layui-inline">
 					    <input name="username" class="layui-input" id="demoReload" autocomplete="off">
 					  </div>
-					  <button class="layui-btn" data-type="reload">搜索</button>
+					  <button class="layui-btn" lay-submit="" data-type="sousuo">搜索</button>
 					</div>
 					
 					<table class="layui-hide" lay-filter="demo1" id="test1"></table> 
@@ -90,6 +97,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!--请假查询  -->
 			<div class="layui-tab-item">
+				<div class="demoTable">
+					  搜索申请人：
+					  <div class="layui-inline">
+					    <input name="username" class="layui-input" id="demoReload1" autocomplete="off">
+					  </div>
+					  <button class="layui-btn" lay-submit="" data-type="sousuo1">搜索</button>
+					</div>
 				<table class="layui-hide" lay-filter="demo2" id="test2"></table> 
 				<script id="qingjia" type="text/html">
  						{{#if(d.exState==2){  }}
@@ -100,6 +114,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!--加班查询 -->
 			<div class="layui-tab-item">
+				<div class="demoTable">
+					  搜索申请人：
+					  <div class="layui-inline">
+					    <input name="username" class="layui-input" id="demoReload2" autocomplete="off">
+					  </div>
+					  <button class="layui-btn" lay-submit="" data-type="sousuo2">搜索</button>
+					</div>
 				<table class="layui-hide" lay-filter="demo3" id="test3"></table> 
 				<script id="jiaban" type="text/html">
  						{{#if(d.exState==2){  }}
@@ -110,6 +131,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!--出差查询  -->
 			<div class="layui-tab-item">
+					<div class="demoTable">
+					  搜索申请人：
+					  <div class="layui-inline">
+					    <input name="username" class="layui-input" id="demoReload3" autocomplete="off">
+					  </div>
+					  <button class="layui-btn" lay-submit="" data-type="sousuo3">搜索</button>
+					</div>
 					<table class="layui-hide" lay-filter="demo4" id="test4"></table> 
 					<script id="chuchai" type="text/html">
  						{{#if(d.exState==2){  }}
@@ -141,7 +169,7 @@ layui.use('table', function(){
      ,cols: [[
       {field:'syState', width:120, title: '类型'}
       ,{field:'username', width:120, title: '申请人'}
-      ,{field:'syTime', width:120, title: '外出时间'}
+      ,{field:'syTime', width:120, title: '外出时间',templet: '<div>{{ formatTime(d.syTime,"yyyy-MM-dd")}}</div>'}
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
@@ -161,6 +189,7 @@ layui.use('table', function(){
 							})
 					 }
     ,page:true
+    ,id:'testReload4'
   }); 
 
   
@@ -186,7 +215,6 @@ layui.use('table', function(){
 				}
 			})
     } else if(obj.event === 'del'){
-      
          layer.open({
             type:2,
             title:"驳回原因",
@@ -207,11 +235,19 @@ layui.use('table', function(){
   });
   
   var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
+     sousuo4: function(){
+      var demoReload4 = $('#demoReload4');
+      //执行重载
+      table.reload('testReload4',{
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where:{
+            username:demoReload4.val()
+        }
+      });
     }
+
     ,getCheckLength: function(){ //获取选中数目
       var checkStatus = table.checkStatus('idTest')
       ,data = checkStatus.data;
@@ -256,11 +292,11 @@ layui.use('table', function(){
      ,cols: [[
       {field:'exState', width:120, title: '类型'}
       ,{field:'username', width:120, title: '申请人'}
-      ,{field:'syTime', width:120, title: '外出时间'}
+      ,{field:'syTime', width:120, title: '外出时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>' }
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>' }
       ,{fixed: 'right', width:178, align:'center', toolbar: '#waichu'}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -280,22 +316,6 @@ layui.use('table', function(){
     ,page:true
     ,id: 'testReload'
   }); 
-	var $ = layui.$, active = {
-    reload: function(){
-      var demoReload = $('#demoReload');
-      //执行重载
-      table.reload('testReload', {
-        page: {
-          curr: 1 //重新从第 1 页开始
-        }
-        ,where: {
-          key: {
-            username:demoReload.val()
-          }
-        }
-      });
-    }
-  };
 
   //监听工具条
   table.on('tool(demo1)', function(obj){
@@ -335,10 +355,17 @@ layui.use('table', function(){
     }
   });
   var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
+    sousuo: function(){
+      var demoReload = $('#demoReload');
+      //执行重载
+      table.reload('testReload',{
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where:{
+            username:demoReload.val()
+        }
+      });
     }
     ,getCheckLength: function(){ //获取选中数目
       var checkStatus = table.checkStatus('idTest')
@@ -356,6 +383,32 @@ layui.use('table', function(){
     active[type] ? active[type].call(this) : '';
   });
 });
+//格式化时间
+function formatTime(datetime,fmt){
+	if (parseInt(datetime)==datetime) {
+	    if (datetime.length==10) {
+	      datetime=parseInt(datetime)*1000;
+	    } else if(datetime.length==13) {
+	      datetime=parseInt(datetime);
+	    }
+	  }
+	  datetime=new Date(datetime);
+	  var o = {
+	  "M+" : datetime.getMonth()+1,                 //月份   
+	  "d+" : datetime.getDate(),                    //日   
+	  "h+" : datetime.getHours(),                   //小时   
+	  "m+" : datetime.getMinutes(),                 //分   
+	  "s+" : datetime.getSeconds(),                 //秒   
+	  "q+" : Math.floor((datetime.getMonth()+3)/3), //季度   
+	  "S"  : datetime.getMilliseconds()             //毫秒   
+	  };   
+	  if(/(y+)/.test(fmt))   
+	  fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));   
+	  for(var k in o)   
+	  if(new RegExp("("+ k +")").test(fmt))   
+	  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+	  return fmt;
+}
 </script>
 <!--审批后请假查询  -->
 <script>
@@ -386,7 +439,7 @@ layui.use('table', function(){
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>' }
       ,{fixed: 'right', width:178, align:'center', toolbar: '#qingjia'}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -404,6 +457,7 @@ layui.use('table', function(){
 							
 					 }
     ,page:true
+    ,id: 'testReload1'
   }); 
 
   
@@ -445,10 +499,17 @@ layui.use('table', function(){
     }
   });
   var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
+    sousuo1: function(){
+      var demoReload1 = $('#demoReload1');
+      //执行重载
+      table.reload('testReload1',{
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where:{
+            username:demoReload1.val()
+        }
+      });
     }
     ,getCheckLength: function(){ //获取选中数目
       var checkStatus = table.checkStatus('idTest')
@@ -465,7 +526,34 @@ layui.use('table', function(){
     var type = $(this).data('type');
     active[type] ? active[type].call(this) : '';
   });
+
 });
+  //格式化时间
+function formatTime(datetime,fmt){
+	if (parseInt(datetime)==datetime) {
+	    if (datetime.length==10) {
+	      datetime=parseInt(datetime)*1000;
+	    } else if(datetime.length==13) {
+	      datetime=parseInt(datetime);
+	    }
+	  }
+	  datetime=new Date(datetime);
+	  var o = {
+	  "M+" : datetime.getMonth()+1,                 //月份   
+	  "d+" : datetime.getDate(),                    //日   
+	  "h+" : datetime.getHours(),                   //小时   
+	  "m+" : datetime.getMinutes(),                 //分   
+	  "s+" : datetime.getSeconds(),                 //秒   
+	  "q+" : Math.floor((datetime.getMonth()+3)/3), //季度   
+	  "S"  : datetime.getMilliseconds()             //毫秒   
+	  };   
+	  if(/(y+)/.test(fmt))   
+	  fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));   
+	  for(var k in o)   
+	  if(new RegExp("("+ k +")").test(fmt))   
+	  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+	  return fmt;
+}
 </script>
 <!--审批后加班查询  -->
 <script>
@@ -496,9 +584,14 @@ layui.use('table', function(){
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>' }
       ,{fixed: 'right',title:'操作', width:178, align:'center', toolbar: '#jiaban  '}
     ]],done:function(){
+					   $("[data-field='syXiao']").children().each(function(){
+    						if($(this).text()==null){		
+								$(this).text("未回归")		
+							}
+    					})
 					   //分类显示中文名称	
 					    $("[data-field='exState']").children().each(function(){
 							if($(this).text()=='2'){		
@@ -514,6 +607,7 @@ layui.use('table', function(){
 							
 					 }
     ,page:true
+    ,id:'testReload2'
   }); 
 
   
@@ -555,10 +649,17 @@ layui.use('table', function(){
     }
   });
   var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
+    sousuo2: function(){
+      var demoReload2 = $('#demoReload2');
+      //执行重载
+      table.reload('testReload2',{
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where:{
+            username:demoReload2.val()
+        }
+      });
     }
     ,getCheckLength: function(){ //获取选中数目
       var checkStatus = table.checkStatus('idTest')
@@ -606,7 +707,7 @@ layui.use('table', function(){
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>' }
       ,{fixed: 'right',title:'操作', width:178, align:'center', toolbar: '#chuchai  '}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -624,6 +725,7 @@ layui.use('table', function(){
 							
 					 }
     ,page:true
+    ,id:'testReload3'
   }); 
 
   
@@ -665,11 +767,19 @@ layui.use('table', function(){
     }
   });
   var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
+     sousuo3: function(){
+      var demoReload3 = $('#demoReload3');
+      //执行重载
+      table.reload('testReload3',{
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where:{
+            username:demoReload3.val()
+        }
+      });
     }
+
     ,getCheckLength: function(){ //获取选中数目
       var checkStatus = table.checkStatus('idTest')
       ,data = checkStatus.data;

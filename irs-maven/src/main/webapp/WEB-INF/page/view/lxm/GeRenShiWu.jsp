@@ -61,6 +61,14 @@
 		<!--外出登记  -->
 		<div class="layui-tab-content">
 			<div class="layui-tab-item layui-show">
+					
+					<div class="demoTable">
+					  搜索申请人：
+					  <div class="layui-inline">
+					    <input name="username" class="layui-input" id="test1" autocomplete="off">
+					  </div>
+					  <button class="layui-btn" lay-submit="" data-type="sousuo4">搜索</button>
+					</div>
 					<table class="layui-hide" id="test" lay-filter="demo"></table>
 					<script id="barDemo" type="text/html">
   						{{#if(d.exState==2){  }}
@@ -94,7 +102,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label"><span class="yan">*</span>外出时间</label>
 							<div class="layui-input-inline">
-								<input class="layui-input lxm" readonly="readonly" id="test1" name="sytime"
+								<input class="layui-input lxm" readonly="readonly" id="test50" name="sytime"
 									type="text" style="height:35px" placeholder="yyyy-MM-dd" lay-verify="date">
 							</div>
 						</div>
@@ -158,6 +166,7 @@
 					<input type="hidden" name="exstate" value="0"/>
 					<input type="hidden" name="syshen" id="xitong">
 					<input type="hidden" name="id" id="id" value="<shiro:principal property="id"/>">
+					<input type="hidden" id="deptId" value="<shiro:principal property="deptId"/>">
 				</form>
 
 
@@ -235,7 +244,9 @@
 			laydate.render({
 				elem : '#test1'
 			});
-	
+	laydate.render({
+				elem : '#test50'
+			});
 			//国际版
 			laydate.render({
 				elem : '#test1-1',
@@ -622,7 +633,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 				url:"GeRen/One",
 				type:"post",
 				data:{
-					'deptId':1
+					'deptId':$("#deptId").val()
 				},
 				dataType:"json",
 				success:function(data){
@@ -740,9 +751,8 @@ layui.use('table', function(){
     	id:num
     }
     ,cols:[[
-      {field:'sId', width:80, title: 'ID', sort: true}
-      ,{field:'username', width:120, title: '外出人员'}
-      ,{field:'syShen', width:120, title: '申请时间',sort: true}
+      {field:'username', width:120, title: '外出人员'}
+      ,{field:'syShen', width:120, title: '申请时间',templet: '<div>{{ formatTime(d.syShen,"yyyy-MM-dd")}}</div>' }
       ,{field:'shenname', width:120,title: '审批人员'}
       ,{field:'syReason', width:120, title: '外出原因'}
       ,{field:'wcTime', width:120, title: '开始时间', }
@@ -766,7 +776,9 @@ layui.use('table', function(){
 							})
 					 }
     ,page:true
+    ,id:'testReload4'
   });
+ 
   //监听工具条
   table.on('tool(demo)', function(obj){
     var data = obj.data;
@@ -834,10 +846,17 @@ layui.use('table', function(){
   });
   
   var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
+    sousuo4: function(){
+      var demoReload4 = $('#test1');
+      //执行重载
+      table.reload('testReload4',{
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where:{
+            username:demoReload4.val()
+        }
+      });
     }
     ,getCheckLength: function(){ //获取选中数目
       var checkStatus = table.checkStatus('idTest')
@@ -854,7 +873,34 @@ layui.use('table', function(){
     var type = $(this).data('type');
     active[type] ? active[type].call(this) : '';
   });
+  
 });
+ //格式化时间
+function formatTime(datetime,fmt){
+	if (parseInt(datetime)==datetime) {
+	    if (datetime.length==10) {
+	      datetime=parseInt(datetime)*1000;
+	    } else if(datetime.length==13) {
+	      datetime=parseInt(datetime);
+	    }
+	  }
+	  datetime=new Date(datetime);
+	  var o = {
+	  "M+" : datetime.getMonth()+1,                 //月份   
+	  "d+" : datetime.getDate(),                    //日   
+	  "h+" : datetime.getHours(),                   //小时   
+	  "m+" : datetime.getMinutes(),                 //分   
+	  "s+" : datetime.getSeconds(),                 //秒   
+	  "q+" : Math.floor((datetime.getMonth()+3)/3), //季度   
+	  "S"  : datetime.getMilliseconds()             //毫秒   
+	  };   
+	  if(/(y+)/.test(fmt))   
+	  fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));   
+	  for(var k in o)   
+	  if(new RegExp("("+ k +")").test(fmt))   
+	  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+	  return fmt;
+}
 </script>
 
 </body>

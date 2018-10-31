@@ -276,10 +276,9 @@
     ,cols: [[ //表头
        //全选
        //edit: 'text'为开启单元格编辑，sort:true开启排序
-      {field:'sfId', title: 'ID', width:80, sort: true}
-      ,{field:'sfName', title: '节假名称', width:120, sort: true, edit: 'text'}
-      ,{field:'sfTime',title: '开始时间', width:120, sort: true}
-      ,{field:'sfTimeEnd',title: '结束时间', width:120, sort: true}
+      {field:'sfName', title: '节假名称', sort: true, edit: 'text'}
+      ,{field:'sfTime',title: '开始时间',  sort: true ,templet : '<div>{{ formatTime(d.sfTime,"yyyy-MM-dd hh:mm:ss")}}</div>'}
+      ,{field:'sfTimeEnd',title: '结束时间', sort: true,templet : '<div>{{ formatTime(d.sfTimeEnd,"yyyy-MM-dd hh:mm:ss")}}</div>'}
       ,{width:200, align:'center', toolbar: '#barDemo'}
     ]]
   });
@@ -365,6 +364,39 @@
 				active[type] ? active[type].call(this) : '';
 			});
 		});
+		//格式化时间
+		function formatTime(datetime, fmt) {
+			if (datetime == null || datetime == 0) {
+				return "";
+			}
+			if (parseInt(datetime) == datetime) {
+				if (datetime.length == 10) {
+					datetime = parseInt(datetime) * 1000;
+				} else if (datetime.length == 13) {
+					datetime = parseInt(datetime);
+				}
+			}
+			datetime = new Date(datetime);
+			var o = {
+				"M+" : datetime.getMonth() + 1, //月份   
+				"d+" : datetime.getDate(), //日   
+				"h+" : datetime.getHours(), //小时   
+				"m+" : datetime.getMinutes(), //分   
+				"s+" : datetime.getSeconds(), //秒   
+				"q+" : Math.floor((datetime.getMonth() + 3) / 3), //季度   
+				"S" : datetime.getMilliseconds()
+			//毫秒   
+			};
+			if (/(y+)/.test(fmt))
+				fmt = fmt.replace(RegExp.$1, (datetime.getFullYear() + "")
+						.substr(4 - RegExp.$1.length));
+			for ( var k in o)
+				if (new RegExp("(" + k + ")").test(fmt))
+					fmt = fmt.replace(RegExp.$1,
+							(RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k])
+									.substr(("" + o[k]).length)));
+			return fmt;
+		}
 	</script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.TongJiMapper" >
+  <resultMap id="BaseResultMap" type="com.lxm.entity.TongJi" >
+    <id column="kid" property="kid" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="yingchu" property="yingchu" jdbcType="INTEGER" />
+    <result column="shichu" property="shichu" jdbcType="INTEGER" />
+    <result column="xiutian" property="xiutian" jdbcType="INTEGER" />
+    <result column="quetian" property="quetian" jdbcType="INTEGER" />
+    <result column="chici" property="chici" jdbcType="INTEGER" />
+    <result column="zaoci" property="zaoci" jdbcType="INTEGER" />
+    <result column="qingci" property="qingci" jdbcType="INTEGER" />
+    <result column="jiaci" property="jiaci" jdbcType="INTEGER" />
+    <result column="chuci" property="chuci" jdbcType="INTEGER" />
+    <result column="waici" property="waici" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    kid, id, username, yingchu, shichu, xiutian, quetian, chici, zaoci, qingci, jiaci, 
+    chuci, waici
+  </sql>
+  <!--添加考勤统计记录-->
+  <insert id="insert" parameterType="com.lxm.entity.TongJi" >
+    insert into tongji (id, username, 
+      yingchu, shichu, xiutian, 
+      quetian, chici, zaoci, 
+      qingci, jiaci, chuci, 
+      waici,tdate)
+    values (#{id}, #{username,jdbcType=VARCHAR}, 
+      #{yingchu}, #{shichu}, #{xiutian}, 
+      #{quetian}, #{chici}, #{zaoci}, 
+      #{qingci}, #{jiaci}, #{chuci}, 
+      #{waici},#{tdate})
+  </insert>
+  <select id="selectId" resultType="Integer" parameterType="Map">
+  	select count(*) from tongji where id=#{id} and tdate like concat(concat('%',#{date}),'%')
+  </select>
+</mapper>

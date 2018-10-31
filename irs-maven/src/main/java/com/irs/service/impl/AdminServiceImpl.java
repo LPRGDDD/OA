@@ -29,6 +29,8 @@ import com.irs.pojo.TbRolesMenusKey;
 import com.irs.pojo.XtreeData;
 import com.irs.service.AdminService;
 import com.irs.util.ResultUtil;
+import com.lpr.dao.DeptMapper;
+import com.lpr.entity.Dept;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -49,7 +51,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private TbMenusMapper tbMenusMapper;
-
+	
+	@Autowired
+	private DeptMapper deptMapper;
 	/**
 	 * 管理员登陆
 	 */
@@ -91,9 +95,15 @@ public class AdminServiceImpl implements AdminService {
 		for (TbAdmin tbAdmin : list) {
 			// tbAdmin.setRoleName();
 			List<TbRoles> roles = selRoles();
-			for (TbRoles tbRole : roles) {
+			List<Dept> depts= deptMapper.findDept();
+			for (TbRoles tbRole : roles) {//查询角色
 				if (tbRole.getRoleId() == tbAdmin.getRoleId()) {
 					tbAdmin.setRoleName(tbRole.getRoleName());
+				}
+			}//查询部门
+			for (Dept dept : depts) {
+				if (dept.getDeptId() == tbAdmin.getDeptId()) {
+					tbAdmin.setDeptName(dept.getDeptName());
 				}
 			}
 		}

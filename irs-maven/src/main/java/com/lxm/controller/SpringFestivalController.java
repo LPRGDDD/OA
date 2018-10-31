@@ -47,16 +47,12 @@ public class SpringFestivalController {
 	
 	
 	@RequestMapping("/save")
-	public void save(SpringFestival sf,HttpServletResponse response) throws IOException{
+	@ResponseBody
+	public int save(SpringFestival sf,HttpServletResponse response) throws IOException{
 		response.resetBuffer();//重置输出流，清空上次遗留信息，防止报错
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
 		int id=ss.save(sf);
-		if (id>0) {
-			out.print("添加成功");
-		}else{
-			out.print("添加失败");
-		}
+		return id;
 	}
 	@RequestMapping("/delete")
 	@ResponseBody
@@ -80,6 +76,7 @@ public class SpringFestivalController {
 	@RequestMapping("/updateAll")
 	@ResponseBody
 	public int updateAll(SpringFestival sf){
+		System.out.println(sf.toString());
 		int id=ss.updateSpringFestival(sf);
 		return id;
 	}

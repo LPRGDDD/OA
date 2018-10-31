@@ -18,7 +18,7 @@ public interface SynthesisService {
 	    * 查询出 systate=1 时的  外出表
 	    * @return
 	    */
-	   public List<Map<String,Object>> selectAll(int id);
+	   public List<Map<String,Object>> selectAll(Map map);
 	  
 	   /**
 	    * 根据Sid 查询单条记录  进行修改
@@ -45,7 +45,7 @@ public interface SynthesisService {
 	    * @param id 登录的人员ID
 	    * @return
 	    */
-	   public List<Map<String,Object>> selectDaiShen(int id);
+	   public List<Map<String,Object>> selectDaiShen(Map map);
 	   /**
 	    * 查看详情 
 	    * @param id 申请员工id
@@ -94,7 +94,7 @@ public interface SynthesisService {
 	    * @param id denglurenyuanId
 	    * @return
 	    */
-	   public List<Map<String,Object>> QingJiaSel(int id);
+	   public List<Map<String,Object>> QingJiaSel(Map map);
 	   /**
 	    * 登陆人员 查询 syState=3 加班记录
 	    * @param id
@@ -145,13 +145,13 @@ public interface SynthesisService {
 	    * @param id
 	    * @return
 	    */
-	   public List<Map<String,Object>> ShenQing(int id);
+	   public List<Map<String,Object>> ShenQing(Map<String,Object> map);
 	   /**
 	    * 加班 审批后查询  已回归查询
 	    * @param id
 	    * @return
 	    */
-	   public List<Map<String,Object>> ShenJia(int id);
+	   public List<Map<String,Object>> ShenJia(Map<String,Object> map);
 	   /**
 	    * 添加出差登记记录
 	    * @param sy
@@ -169,5 +169,5 @@ public interface SynthesisService {
 	    * @param id
 	    * @return
 	    */
-	   public List<Map<String,Object>> ShenChuChai(int id);
+	   public List<Map<String,Object>> ShenChuChai(Map<String,Object> map);
 }

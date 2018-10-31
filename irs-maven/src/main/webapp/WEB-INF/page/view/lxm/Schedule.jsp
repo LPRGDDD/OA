@@ -22,7 +22,6 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <link rel="stylesheet" href="page/resources/layui/css/layui.css" media="all">
-<link rel="stylesheet" href="page/resources/calendar.css">
 <link
 	href="page/resources/bootstrap-datetimepicker/sampleinbootstrap/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" media="screen">
@@ -30,7 +29,6 @@
 	href="page/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet" media="screen">
 <script src="page/resources/jquery-1.11.3.min.js"></script>
-<script src="page/resources/calendar.js"></script>
 <script src="page/resources/jquery.form.js"></script>
 <script src="page/resources/jqueryExt.js"></script>
 <script src="page/resources/layui/layui.js"></script>
@@ -106,7 +104,7 @@
 							<label class="layui-form-label"><span class="yan">*</span>第三次签到</label>
 							<div class="layui-input-inline">
 								<input class="layui-input lxm" readonly="readonly"  name="duty_time3" value="${sche.duty_time3 }"  style="height:35px" id="test6"
-									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi">
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi1">
 							</div>
 						</div>
 					</div>
@@ -115,7 +113,7 @@
 							<label class="layui-form-label"><span class="yan">*</span>第四次签到</label>
 							<div class="layui-input-inline">
 								<input class="layui-input lxm" readonly="readonly"  name="duty_time4" value="${sche.duty_time4 }"  style="height:35px" id="test7"
-									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi">
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi2">
 							<input type="hidden" name="scid" value="${sche.scid }">
 							</div>
 						</div>
@@ -131,57 +129,7 @@
 		</div>
 	</div>
 	<!-- javascript  -->
-	<script src="page/resources/jquery-1.12.4.min.js"></script>
-	<script src="page/resources/calendar.js"></script>
-	<script type="text/javascript"
-		src="page/resources/bootstrap-datetimepicker/sampleinbootstrapv3/jquery/jquery-1.8.3.min.js"
-		charset="UTF-8"></script>
-	<script type="text/javascript"
-		src="page/resources/bootstrap-datetimepicker/sampleinbootstrap/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="page/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
-		charset="UTF-8"></script>
-	<script type="text/javascript"
-		src="page/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js"
-		charset="UTF-8"></script>
-	<script type="text/javascript">
-		$('.form_datetime').datetimepicker({
-			//language:  'fr',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			forceParse : 0,
-			showMeridian : 1
-		});
-		$('.form_date').datetimepicker({
-			language : 'fr',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : 0
-		});
-		$('.form_time').datetimepicker({
-			language : 'fr',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 1,
-			minView : 0,
-			maxView : 1,
-			forceParse : 0
-		});
-	</script>
-	<script>
-		$(function() {
-			$('#calendar').calendar();
-		})
-	</script>
+	
 			<script>
 		layui.use('laydate', function() {
 			var laydate = layui.laydate;
@@ -226,12 +174,11 @@
     ,cols: [[ //表头
        //全选
        //edit: 'text'为开启单元格编辑，sort:true开启排序
-      {field:'scid', title: 'ID', width:80, sort: true}
-      ,{field:'sname', title: '班次名称', width:150, edit: 'text'}
-      ,{field:'duty_time1',title: '第一次签到时间', width:150,  edit: 'text'}
-      ,{field:'duty_time2',title: '第二次签到时间', width:150,  edit: 'text'}
-      ,{field:'duty_time3',title: '第三次签到时间', width:150,  edit: 'text'}
-      ,{field:'duty_time4',title: '第四次签到时间', width:150,  edit: 'text'}
+      {field:'sname', title: '班次名称', width:150, edit: 'text'}
+      ,{field:'duty_time1',title: '第一次签到时间', width:150,  }
+      ,{field:'duty_time2',title: '第二次签到时间', width:150,  }
+      ,{field:'duty_time3',title: '第三次签到时间', width:150,  }
+      ,{field:'duty_time4',title: '第四次签到时间', width:150,  }
       ,{width:200, align:'center', toolbar: '#barDemo'}
     ]]
   });
@@ -291,9 +238,6 @@
            // offset: ['10px', '100px'],
             content:"http://localhost:8080/oa/schedule/findById/"+data.scid
         });
-	
-	
-					
 				}
 			});
 	
@@ -321,18 +265,46 @@
 			});
 		});
 	</script>
-		   <script>
-   var id=${list.shenId}
+	
+	<script>
 layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form
   ,layer = layui.layer
   ,layedit = layui.layedit
   ,laydate = layui.laydate;
-  layui.use('form', function(data){
-        var form = layui.form; 
-    });
-    
   
+  //日期
+  laydate.render({
+    elem: '#date'
+  });
+  laydate.render({
+    elem: '#date1'
+  });
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,kaishi:function(value){
+    	if(value.length<2){
+    		return '开始时间必填';
+    	}
+    }
+    ,jieshi:function(value){
+    	if(value.length<2){
+    		return '结束时间必填';
+    	}
+    }
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
   
   //监听指定开关
   form.on('switch(switchTest)', function(data){
@@ -342,7 +314,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
   });
   
-  //监听提交
+      //监听提交
   form.on('submit(demo1)', function(data){
     var obj=$("#form1").serialize();
 			$.ajax({
@@ -364,21 +336,24 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                     }
                 }
 			});
-			return false;
+    return false;
   });
  
   //表单初始赋值
   form.val('example', {
-    "syreason": "外出商谈" // "name": "value"
+    "username": "贤心" // "name": "value"
     ,"password": "123456"
-    ,"interest":1
+    ,"interest": 1
     ,"like[write]": true //复选框选中状态
     ,"close": true //开关状态
     ,"sex": "女"
     ,"desc": "我爱 layui"
   })
+  
+  
 });
 </script>
+
 	<!--动态Tab  -->
 	<script>
 		layui.use('element', function() {

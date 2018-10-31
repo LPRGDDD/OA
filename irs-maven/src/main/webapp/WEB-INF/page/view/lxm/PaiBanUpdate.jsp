@@ -150,20 +150,25 @@
 							checked="checked" style="display: none" />
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">开始日期</label>
-					<div class="layui-input-inline">
-						<input class="layui-input lxm" style="height:35px" name="dtDate_start"
-							id="test-limit1" type="text" value="${list.dtdateStart}" placeholder="${list.dtdateStart}">
+				
+				<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label"><span class="yan">*</span>开始日期</label>
+							<div class="layui-input-inline">
+								<input class="layui-input lxm" readonly="readonly" value="${list.dtDate_Start}" name="dtDate_Start"   style="height:35px" id="test50"
+									type="text"  lay-verify="kaishi">
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">结束日期</label>
-					<div class="layui-input-inline">
-						<input class="layui-input lxm" style="height:35px" name="dtDate_end" value="${list.dtdateEnd}" id="test-limit2"
-							type="text" >
+				<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label"><span class="yan">*</span>结束日期</label>
+							<div class="layui-input-inline">
+								<input class="layui-input lxm" readonly="readonly" value="${list.dtDate_End}" name="dtDate_End" id="test51"   style="height:35px"
+									type="text"  lay-verify="jieshi">
+							</div>
+						</div>
 					</div>
-				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">班次选择</label>
 				    <select
@@ -182,7 +187,6 @@
 						</tbody>
 					</table>
 				</div>
-				
 			</div>
 		</div>
 		<div class="site-demo-button" style="margin-top: 20px;">
@@ -207,6 +211,7 @@
         		var obj=data[i];
 				 var tr="<option value='"+obj.scid+"'>"+obj.sname+"</option>";
 			  	$("#sele").append(tr);    			
+        		$("#sele option[value='"+${list.scid}+"']").attr("selected", true);
         		}
         		
   			}
@@ -246,7 +251,14 @@ layui.use('laydate', function(){
   laydate.render({
     elem: '#test1'
   });
-  
+    //常规用法
+  laydate.render({
+    elem: '#test50'
+  });
+    //常规用法
+  laydate.render({
+    elem: '#test51'
+  });
   //国际版
   laydate.render({
     elem: '#test1-1'
@@ -389,174 +401,43 @@ layui.use('laydate', function(){
 
 });
 </script>
-
-	<!--排班查询 修改 删除  -->
-	<script>
-		layui.use('table', function() {
-			var table = layui.table;
-			//监听表格复选框选择
-			table.on('checkbox(demo)', function(obj) {
-				console.log(obj)
-			});
-			layui.use('table', function(){
-				  var table = layui.table;
-				  //监听单元格编辑
-				   table.render({
-				    elem: '#tableDemo'
-				    ,height:500
-				    ,url: 'duty/select' //数据接口
-				    ,page: true //开启分页
-				    ,cols: [[ //表头
-				       //全选
-				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-				      {field:'drId', title: '排班号',width:80, sort: true}
-				      ,{field:'dtname',title:'排班名称',width:100}
-				      ,{field:'drNameId',title:'排班部门', width:100}
-				      ,{field:'drnameId2',title:'排班人员', width:100}
-				      ,{field:'dtstate',title:'是否启用', width:100,templet: "#state"}
-				        ,{width:200, align:'center', toolbar: '#barDemo'}
-				    ]],done:function(){
-					   //分类显示中文名称	
-					    $("[data-field='dtstate']").children().each(function(){
-							if($(this).text()=='0'){		
-								$(this).text("禁用")		
-							}else if($(this).text()=='1'){	
-								$(this).text("启用")	
-							}
-							})
-					 }
-				  });
-				});
-			
-			//监听工具条
-			table.on('tool(demo)', function(obj) {
-				var data = obj.data;
-				if (obj.event === 'detail') {
-					if(data.dtstate=="0"){
-						data.dtstate=1;
-						$.ajax({
-							url : "duty/update",
-							data : {
-								'id' : data.drId,
-								'state':data.dtstate
-							},
-							type : "post",
-							dataType : 'Json',
-							success : function(data) {
-								if(data>0){
-									layer.msg("更改成功");
-									location.reload();
-								}else{
-									layer.msg("更改失败");
-								}
-							}
-						})
-					}else if(data.dtstate=="1"){
-						data.dtstate=0;
-						$.ajax({
-							url : "duty/update",
-							data : {
-								'id' : data.drId,
-								'state':data.dtstate
-							},
-							type : "post",
-							dataType : 'Json',
-							success : function(data) {
-								if(data>0){
-									layer.msg("更改成功");
-									location.reload();
-								}else{
-									layer.msg("更改失败");
-								}
-							}
-						})
-					}
-				} else if (obj.event === 'del') {
-					layer.confirm('真的删除行么',function(index) {
-						obj.del();
-						layer.close(index);
-						$.ajax({
-							url : "duty/delete",
-							data : {
-								'id' : data.drId
-							},
-							type : "post",
-							dataType : 'Json',
-							success : function(data) {
-								if(data>0){
-									layer.msg("删除成功");
-								}else{
-									layer.msg("删除失败");
-								}
-							}
-						})
-					});
-				} else if (obj.event === 'edit') {
-					
-				}
-			});
-	
-			var $ = layui.$,
-				active = {
-					getCheckData : function() { //获取选中数据
-						var checkStatus = table.checkStatus('idTest'),
-							data = checkStatus.data;
-						layer.alert(JSON.stringify(data));
-					},
-					getCheckLength : function() { //获取选中数目
-						var checkStatus = table.checkStatus('idTest'),
-							data = checkStatus.data;
-						layer.msg('选中了：' + data.length + ' 个');
-					},
-					isAll : function() { //验证是否全选
-						var checkStatus = table.checkStatus('idTest');
-						layer.msg(checkStatus.isAll ? '全选' : '未全选')
-					}
-				};
-	
-			$('.demoTable .layui-btn').on('click', function() {
-				var type = $(this).data('type');
-				active[type] ? active[type].call(this) : '';
-			});
-		});
-	</script>
-	<!--模态框操作 添加  -->
-	<script>
-	function ont(){	
-		var stname=$("#dtname").val();//排版名称
-		var dtstate=$("#dtstate").val();//是否启用
-		var department=$("#showUser2").val();//部门  drName1
-		var staff=$("#showUser3").val();//人员 drName2
-		var staffname=$("#showUser").val();
-		var departmentname=$("#showUser1").val();
-		var scid=$("#sele").val();//班次类型
-		var date=$("#test-limit1").val();//开始日期
-		var date1=$("#test-limit2").val();//结束日期  dtname,dtstate,drName1,drName2,scid,dtDate_start,dtDate_end
-		  $.ajax({
-                        url:"duty/updateDutyAll",
-                        type:'post',
-                        data:{
-                        drid:${list.drid},
-						dtname:stname,
-						dtstate:dtstate,
-						drname1:department,
-						drnameId:departmentname,
-						drnameId2:staffname,
-						drname2:staff,
-						scid:scid,
-						dtdateStart:date,
-						dtdateEnd:date1
-                        },
-                        success:function (data) {
-                            if(data>0){
-                            alert("更改成功！");
-                            parent.location.reload();
-                            }else{
-                            	alert("更改失败！");
-                            }
-                        }
-              })
-           }
+<script>
+		function ont(){	
+			var stname=$("#dtname").val();//排版名称
+				var dtstate=$("#dtstate").val();//是否启用
+				var department=$("#showUser2").val();//部门  drName1
+				var staff=$("#showUser3").val();//人员 drName2
+				var staffname=$("#showUser").val();
+				var departmentname=$("#showUser1").val();
+				var scid=$("#sele").val();//班次类型
+				var date=$("#test50").val();//开始日期
+				var date1=$("#test51").val();//结束日期  dtname,dtstate,drName1,drName2,scid,dtDate_start,dtDate_end
+				  $.ajax({
+		                        url:"duty/updateDutyAll",
+		                        type:'post',
+		                        data:{
+			                        drid:${list.drid},
+									dtname:stname,
+									dtstate:dtstate,
+									drname1:department,
+									drnameId:departmentname,
+									drnameId2:staffname,
+									drname2:staff,
+									scid:scid,
+									dtDate_Start:date,
+									dtDate_End:date1
+		                        },
+		                        dataType:'json',
+		                        success:function (data) {
+		                            if(data>0){
+		                            alert("更改成功！");
+		                            parent.location.reload();
+		                            }else{
+		                            	alert("更改失败！");
+		                            }
+		                        }
+		              })
+        }
 </script>
 	<script>
     //查询所有用户

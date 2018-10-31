@@ -48,9 +48,12 @@ public class SynthesisController {
 	//查询申请记录
 	@RequestMapping("/QingJiaSel")
 	@ResponseBody
-	public Map<String,Object> QingJiaSel(int page,int limit,int id){
+	public Map<String,Object> QingJiaSel(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
-		List<Map<String,Object>> list=ss.QingJiaSel(id);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("id", id);
+		map1.put("username", username);
+		List<Map<String,Object>> list=ss.QingJiaSel(map1);
 		PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("code",0);
@@ -90,9 +93,12 @@ public class SynthesisController {
 	//查询外出登记
 	@RequestMapping("/selectWai")
 	@ResponseBody
-	public Map<String,Object> select(int page,int limit,int id){
+	public Map<String,Object> select(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
-		List<Map<String,Object>> list=ss.selectAll(id);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("id", id);
+		map1.put("username",username);
+		List<Map<String,Object>> list=ss.selectAll(map1);
 		PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("code",0);
@@ -104,7 +110,6 @@ public class SynthesisController {
 	//修改外出登记 iD查询
 	@RequestMapping("/WaiSel/{sId}/{id}")
 	public String updateSel(HttpServletRequest req,@PathVariable("sId")int sId,@PathVariable("id")int id){
-		System.out.println("进来"+sId+"----"+id);
 		Map<String,Object> list=ss.selectUpdate(id,sId);
 		req.setAttribute("list",list); 
 		return "page/view/lxm/updateWai";
@@ -161,9 +166,12 @@ public class SynthesisController {
 	//查询待审批外出、请假、加班、出差
 	@RequestMapping("/DaiShenPi")
 	@ResponseBody
-	public Map<String,Object> selectDaiShen(int page,int limit,int id){
+	public Map<String,Object> selectDaiShen(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
-		List<Map<String,Object>> list=ss.selectDaiShen(id);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("id", id);
+		map1.put("username", username);
+		List<Map<String,Object>> list=ss.selectDaiShen(map1);
 		PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("code",0);
@@ -258,7 +266,6 @@ public class SynthesisController {
 	//驳回
 	@RequestMapping("/BoHui/{sId}")
 	public String Bohui(HttpServletRequest req,@PathVariable("sId")int sid){
-		System.out.println(sid+"获取到");
 		req.setAttribute("sid", sid);
 		return "page/view/lxm/BoHui";
 	}
@@ -278,7 +285,6 @@ public class SynthesisController {
 	public Map<String,Object> WaiSelect(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		System.out.println(id+"号码");
 		map1.put("id", id);
 		map1.put("username", username);
 		List<Map<String,Object>> list=ss.ShenWaiChu(map1);
@@ -294,9 +300,12 @@ public class SynthesisController {
 	//通过审批后  查询请假  已回归
 	@RequestMapping("/TongQing")
 	@ResponseBody
-	public Map<String,Object> SelectQing(int page,int limit,int id){
+	public Map<String,Object> SelectQing(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
-		List<Map<String,Object>> list=ss.ShenQing(id);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("id", id);
+		map1.put("username", username);
+		List<Map<String,Object>> list=ss.ShenQing(map1);
 		PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("code",0);
@@ -308,9 +317,12 @@ public class SynthesisController {
 	//通过审批后  查询加班  已回归
 		@RequestMapping("/TongJia")
 		@ResponseBody
-		public Map<String,Object> SelectJia(int page,int limit,int id){
+		public Map<String,Object> SelectJia(int page,int limit,int id,String username){
 			PageHelper.startPage(page,limit);
-			List<Map<String,Object>> list=ss.ShenJia(id);
+			Map<String, Object> map1 = new HashMap<String, Object>();
+			map1.put("id", id);
+			map1.put("username", username);
+			List<Map<String,Object>> list=ss.ShenJia(map1);
 			PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 			Map<String, Object> map = new HashMap<String, Object>();
 	        map.put("code",0);
@@ -322,9 +334,12 @@ public class SynthesisController {
 		//通过审批后  查询出差   已回归
 				@RequestMapping("/TongChuChai")
 				@ResponseBody
-				public Map<String,Object> Selectchuchai(int page,int limit,int id){
+				public Map<String,Object> Selectchuchai(int page,int limit,int id,String username){
 					PageHelper.startPage(page,limit);
-					List<Map<String,Object>> list=ss.ShenChuChai(id);
+					Map<String, Object> map1 = new HashMap<String, Object>();
+					map1.put("id", id);
+					map1.put("username", username);
+					List<Map<String,Object>> list=ss.ShenChuChai(map1);
 					PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 					Map<String, Object> map = new HashMap<String, Object>();
 			        map.put("code",0);

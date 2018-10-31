@@ -13,6 +13,7 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, salt, fullname, e_mail, sex, birthday, address, phone, role_id
+    id, username, password, salt, fullname, e_mail, sex, birthday, address, phone, role_id,dept_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.irs.pojo.TbAdminExample" >
     select
@@ -109,11 +110,11 @@
     insert into tb_admin (id, username, password, 
       salt, fullname, e_mail, 
       sex, birthday, address, 
-      phone, role_id)
+      phone, role_id, dept_id)
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{salt,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT})
+      #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{deptId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.irs.pojo.TbAdmin" >
     insert into tb_admin
@@ -151,6 +152,9 @@
       <if test="roleId != null" >
         role_id,
       </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -185,6 +189,9 @@
       </if>
       <if test="roleId != null" >
         #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -247,7 +254,8 @@
       birthday = #{record.birthday,jdbcType=DATE},
       address = #{record.address,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      role_id = #{record.roleId,jdbcType=BIGINT}
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      dept_id = #{record.deptId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -285,6 +293,9 @@
       <if test="roleId != null" >
         role_id = #{roleId,jdbcType=BIGINT},
       </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -299,7 +310,8 @@
       birthday = #{birthday,jdbcType=DATE},
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=BIGINT}
+      role_id = #{roleId,jdbcType=BIGINT},
+      dept_id = #{deptId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -56,7 +56,12 @@
 				</table>
 
 				<script id="barDemo" type="text/html">
-                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                {{#if(d.dtstate==1){  }}
+			  						<a class="layui-btn layui-btn-xs" lay-event="detail">禁用</a>		
+				{{#}  }}
+ 				{{#if(d.dtstate==0){  }}
+			  						<a class="layui-btn layui-btn-xs" lay-event="detail">启用</a>		
+				{{#}  }}
 			   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="edit">编辑</a>
                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	          </script>
@@ -149,13 +154,13 @@
 						readonly="readonly" id="showUser3">
 					<button class="layui-btn layui-btn-sm layui-btn-normal"
 						style="height: 30px;  position: absolute;
-  left:420px;
-  top: 33.5%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  font-size: 20px;
-  line-height: 30px;"
+						  left:420px;
+						  top: 33.5%;
+						  width: 30px;
+						  height: 30px;
+						  margin-top: -15px;
+						  font-size: 20px;
+						  line-height: 30px;"
 						data-toggle="modal" data-target="#myModal" onclick="getUsers()">+</button>
 					<input id="userTwo" style="display: none"> <br>
 				</div>
@@ -169,13 +174,13 @@
 					<label class="layui-form-label">开始日期</label>
 					<div class="layui-input-inline">
 						<input class="layui-input lxm" style="height:35px" name="dtDate_start"
-							id="test-limit1" type="text" placeholder="yyyyMMdd">
+							id="test51" type="text" placeholder="yyyyMMdd">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">结束日期</label>
 					<div class="layui-input-inline">
-						<input class="layui-input lxm" style="height:35px" name="dtDate_end" id="test-limit2"
+						<input class="layui-input lxm" style="height:35px" name="dtDate_end" id="test50"
 							type="text" placeholder="yyyyMMdd">
 					</div>
 				</div>
@@ -267,6 +272,15 @@ layui.use('laydate', function(){
   //常规用法
   laydate.render({
     elem: '#test1'
+  });
+   
+  //常规用法
+  laydate.render({
+    elem: '#test50'
+  });
+   //常规用法
+  laydate.render({
+    elem: '#test51'
   });
   
   //国际版
@@ -431,10 +445,9 @@ layui.use('laydate', function(){
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-				      {field:'drId', title: '排班号',width:80, sort: true}
-				      ,{field:'dtname',title:'排班名称',width:100}
+				      {field:'dtname',title:'排班名称',width:100}
 				      ,{field:'drNameId',title:'排班部门', width:100}
-				      ,{field:'drnameId2',title:'排班人员', width:100}
+				      ,{field:'drNameId2',title:'排班人员', width:100}
 				      ,{field:'dtstate',title:'是否启用', width:100,templet: "#state"}
 				        ,{width:200, align:'center', toolbar: '#barDemo'}
 				    ]],done:function(){
@@ -466,10 +479,17 @@ layui.use('laydate', function(){
 							dataType : 'Json',
 							success : function(data) {
 								if(data>0){
-									layer.msg("更改成功");
-									location.reload();
+									layer.confirm("是否启用", function() {
+										layer.alert("操作成功");
+										location.reload();
+									})
+									
 								}else{
-									layer.msg("更改失败");
+									layer.confirm("是否启用用", function() {
+										layer.alert("操作失败");
+										location.reload();
+									})
+									
 								}
 							}
 						})
@@ -485,10 +505,17 @@ layui.use('laydate', function(){
 							dataType : 'Json',
 							success : function(data) {
 								if(data>0){
-									layer.msg("更改成功");
-									location.reload();
+									layer.confirm("是否紧用", function() {
+										layer.alert("操作成功");
+										location.reload();
+									})
+									
 								}else{
-									layer.msg("更改失败");
+									layer.confirm("是否紧用", function() {
+										layer.alert("操作失败");
+										location.reload();
+									})
+									
 								}
 							}
 						})
@@ -514,7 +541,6 @@ layui.use('laydate', function(){
 						})
 					});
 				} else if (obj.event === 'edit') {
-					layer.msg(data.drId);
 					layer.open({
 			            type:2,
 			            title:"查找用户角色",
@@ -560,8 +586,8 @@ layui.use('laydate', function(){
 		var staffname=$("#showUser").val();
 		var departmentname=$("#showUser1").val();
 		var scid=$("#sele").val();//班次类型
-		var date=$("#test-limit1").val();//开始日期
-		var date1=$("#test-limit2").val();//结束日期  dtname,dtstate,drName1,drName2,scid,dtDate_start,dtDate_end
+		var date=$("#test51").val();//开始日期
+		var date1=$("#test50").val();//结束日期  dtname,dtstate,drName1,drName2,scid,dtDate_start,dtDate_end
 		  $.ajax({
                         url:"duty/save",
                         type:'post',
@@ -573,8 +599,8 @@ layui.use('laydate', function(){
 						drnameId2:staffname,
 						drname2:staff,
 						scid:scid,
-						dtdateStart:date,
-						dtdateEnd:date1
+						dtDate_Start:date,
+						dtDate_End:date1
                         },
                         success:function (data) {
                             if(data>0){

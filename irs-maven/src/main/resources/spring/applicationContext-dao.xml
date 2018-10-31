@@ -25,15 +25,15 @@
 	<!-- 配置sqlsessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>
-		<property name="mapperLocations" value="classpath:com/lxm/dao/*.xml"></property><!-- 自动扫描mapper -->
-		<property name="typeAliasesPackage" value="com.lxm.entity"></property>
+		<property name="mapperLocations" value="classpath:com/*/dao/*.xml"></property><!-- 自动扫描mapper -->
+		<property name="typeAliasesPackage" value="com.lpr.entity,com.lwb.entity,com.lxm.entity,com.zx.entity,com.chl.entity"></property>
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<!-- 配置扫描包，加载mapper代理对象 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.irs.mapper,com.lxm.dao"></property>
+		<property name="basePackage" value="com.irs.mapper,com.lpr.dao,com.lwb.dao,com.lxm.dao,com.zx.dao,com.chl.dao"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
-	
 	<!-- 验证码 -->
 	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
         <property name="config">  

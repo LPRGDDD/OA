@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.courtMapper" >
+
+  <sql id="Base_Column_List" >
+    c_id, user_id, T_id, c_name
+  </sql>
+  <select id="findAll" resultType="court">
+      select cId,cName from court
+  </select>
+  <select id="findone" resultType="Map">
+     select cName,cId from court
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from court
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zx.entity.court" >
+    insert into court (cId, userId, TId, 
+      cName)
+    values (#{cId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER}, 
+      #{cName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zx.entity.court" >
+    insert into court
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="tId != null" >
+        T_id,
+      </if>
+      <if test="cName != null" >
+        c_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zx.entity.court" >
+    update court
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        T_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null" >
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zx.entity.court" >
+    update court
+    set user_id = #{userId,jdbcType=INTEGER},
+      T_id = #{tId,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>

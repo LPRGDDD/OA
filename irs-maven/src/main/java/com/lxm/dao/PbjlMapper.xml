@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.PbjlMapper" >
+ <!--添加排班记录  -->
+  <insert id="insertAll" parameterType="com.lxm.entity.Pbjl">
+    insert into pbjl (pDate, btime1, 
+      btime2, btime3, btime4, weekDays,
+      timeState1,timeState2,timeState3,timeState4,
+      id)
+    values (#{pdate,jdbcType=VARCHAR}, #{btime1,jdbcType=VARCHAR}, 
+      #{btime2,jdbcType=VARCHAR}, #{btime3,jdbcType=VARCHAR}, #{btime4,jdbcType=VARCHAR}, 
+      #{weekDays},#{timeState1},#{timeState2},#{timeState3},#{timeState4},#{id,jdbcType=INTEGER})
+  </insert>
+  <!--判断是否重复添加  -->
+  <select id="selectPan" resultType="Integer" parameterType="DutyRoster">
+  	select COUNT(*) from pbjl where  pDate BETWEEN #{dtDate_Start} and #{dtDate_End} and id=#{id}
+  </select>
+ <select id="selectQuery" parameterType="Map" resultType="Pbjl">
+  		select * from pbjl  where pDate='2018-11-01'
+  </select>
+  <!--当前考勤日期 的状况    -->
+  <select id="selectlxm" parameterType="Map" resultType="Pbjl">
+  	select * from pbjl  where  id={id} and
+  	<if test="date!=null">
+  	pDate=#{date} and
+  	</if>
+  	pDate BETWEEN #{strat} and #{end}
+  </select>
+</mapper>

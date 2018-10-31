@@ -20,8 +20,8 @@ public class SynthesisServiceImpl implements SynthesisService {
 		return sm.insert(record);
 	}
 	@Override
-	public List<Map<String, Object>> selectAll(int id) {
-		return sm.selectAll(id);
+	public List<Map<String, Object>> selectAll(Map map) {
+		return sm.selectAll(map);
 	}
 	@Override
 	@Transactional
@@ -41,8 +41,8 @@ public class SynthesisServiceImpl implements SynthesisService {
 	}
 	@Override
 	@Transactional
-	public List<Map<String, Object>> selectDaiShen(int id) {
-		return sm.selectDaiShen(id);
+	public List<Map<String, Object>> selectDaiShen(Map map) {
+		return sm.selectDaiShen(map);
 	}
 	@Override
 	@Transactional
@@ -54,11 +54,6 @@ public class SynthesisServiceImpl implements SynthesisService {
 	public int updateState(int sid) {
 		return sm.updateState(sid);
 	}
-/*	@Override
-	@Transactional
-	public List<Map<String, Object>> ShenWaiChu(int id) {
-		return sm.ShenWaiChu(id);
-	}*/
 	@Transactional
 	public int WaiChuHuiGui(Map<String,Object> map) {
 		return sm.WaiChuHuiGui(map);
@@ -75,8 +70,8 @@ public class SynthesisServiceImpl implements SynthesisService {
 	}
 	@Override
 	@Transactional
-	public List<Map<String, Object>> QingJiaSel(int id) {
-		return sm.QingJiaSel(id);
+	public List<Map<String, Object>> QingJiaSel(Map map) {
+		return sm.QingJiaSel(map);
 	}
 	
 	@Override
@@ -94,20 +89,12 @@ public class SynthesisServiceImpl implements SynthesisService {
 		return sm.selectUpdateQing(id, sId);
 	}
 	@Override
-	public List<Map<String, Object>> ShenQing(int id) {
-		return sm.ShenQing(id);
-	}
-	@Override
 	public List<Map<String, Object>> JiaBanSel(int id) {
 		return sm.JiaBanSel(id);
 	}
 	@Override
 	public Map<String, Object> JiaBanUpdate(int id, int sId) {
 		return sm.JiaBanUpdate(id, sId);
-	}
-	@Override
-	public List<Map<String, Object>> ShenJia(int id) {
-		return sm.ShenJia(id);
 	}
 	@Override
 	public int JiaBanSave(Synthesis sy) {
@@ -125,13 +112,23 @@ public class SynthesisServiceImpl implements SynthesisService {
 		return sm.ChuChaiXiu(sy);
 	}
 	@Override
-	public List<Map<String, Object>> ShenChuChai(int id) {
-		return sm.ShenChuChai(id);
+	public List<Map<String, Object>> ShenChuChai(Map<String,Object> map) {
+		return sm.ShenChuChai(map);
 	}
 	@Override
 	public List<Map<String, Object>> ShenWaiChu(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return sm.ShenWaiChu(map);
+	}
+	@Override
+	public List<Map<String, Object>> ShenQing(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sm.ShenQing(map);
+	}
+	@Override
+	public List<Map<String, Object>> ShenJia(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sm.ShenJia(map);
 	}
 	
 	
