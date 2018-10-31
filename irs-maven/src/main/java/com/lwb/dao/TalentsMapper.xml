@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.lwb.dao.TalentsDao" >
+  
+  <insert id="saverck" parameterType="com.lwb.entity.Talents">
+       insert into hr_talents(hr_plan_id,hr_talents_name,hr_talents_birth,hr_talents_sex,hr_talents_age,hr_talents_native,hr_talents_place,hr_talents_nation,hr_talents_state,hr_talents_face,hr_talents_relation,hr_talents_mall,hr_talents_workdate,hr_talents_health,hr_talents_background,hr_talents_degree,hr_talents_graduate,hr_talents_school,hr_talents_major,hr_talents_computer,hr_talents_foreign,hr_talents_level,hr_talents_strong,hr_talents_register,hr_talents_expect,hr_talents_skill,hr_talents_workExperience,hr_talents_projectExperience,hr_talents_dwell,hr_talents_nature,hr_talents_industry,hr_talents_pay,hr_talents_positiondate,hr_talents_picture,hr_talents_remark,hr_talents_accessory,hr_talents_filestatus,hr_talents_username)
+	values(#{plan.hrPlanId},#{hrTalentsName},#{hrTalentsBirth},#{hrTalentsSex},#{hrTalentsAge},#{hrTalentsNative},#{hrTalentsPlace},#{hrTalentsNation},#{hrTalentsState},#{hrTalentsFace},#{hrTalentsRelation},#{hrTalentsMall},#{hrTalentsWorkdate},#{hrTalentsHealth},#{hrTalentsBackground},#{hrTalentsDegree},#{hrTalentsGraduate},#{hrTalentsSchool},#{hrTalentsMajor},#{hrTalentsComputer},#{hrTalentsForeign},#{hrTalentsLevel},#{hrTalentsStrong},#{hrTalentsRegister},#{hrTalentsExpect},#{hrTalentsSkill},#{hrTalentsWorkexperience},#{hrTalentsProjectexperience},#{hrTalentsDwell},#{hrTalentsNature},#{hrTalentsIndustry},#{hrTalentsPay},#{hrTalentsPositiondate},#{hrTalentsPicture},#{hrTalentsRemark},#{hrTalentsAccessory},#{hrTalentsFilestatus},#{hrTalentsUsername})
+  </insert>
+  
+  <select id="queryAllrck" resultType="java.util.Map" parameterType="String">
+     select * from hr_talents t left join hr_plan p on t.hr_plan_id=p.hr_plan_id
+     <where>
+      <if test="keyWord!='' and keyWord!=null">
+          t.hrTalentsName like '%${keyWord}%'
+      </if>
+    </where>
+  </select>
+  
+  
+  <select id="planAll" resultType="Map">
+        select * from  hr_plan where hr_plan_state=1
+   </select>
+  
+   <select id="queryByIdrck" resultType="Map" parameterType="Integer">
+        select * from hr_talents t left join hr_plan p on t.hr_plan_id=p.hr_plan_id where t.hr_talents_id=#{id}
+   </select>
+  
+  <update id="updaterck" parameterType="com.lwb.entity.Talents">
+            update hr_talents set hr_plan_id=#{hrPlanId},hr_talents_name =#{hrTalentsName},hr_talents_birth =#{hrTalentsBirth},hr_talents_sex = #{hrTalentsSex},hr_talents_age =#{hrTalentsAge},hr_talents_native =#{hrTalentsNative},hr_talents_place =#{hrTalentsPlace},hr_talents_nation =#{hrTalentsNation},hr_talents_state =#{hrTalentsState},hr_talents_face =#{hrTalentsFace},hr_talents_relation = #{hrTalentsRelation},hr_talents_mall =#{hrTalentsMall},hr_talents_workdate = #{hrTalentsWorkdate},hr_talents_health =#{hrTalentsHealth},hr_talents_background =#{hrTalentsBackground},hr_talents_degree = #{hrTalentsDegree},hr_talents_graduate =#{hrTalentsGraduate},hr_talents_school =#{hrTalentsSchool},hr_talents_major = #{hrTalentsMajor},hr_talents_computer = #{hrTalentsComputer},hr_talents_foreign = #{hrTalentsForeign},hr_talents_level =#{hrTalentsLevel},hr_talents_strong = #{hrTalentsStrong},hr_talents_register =#{hrTalentsRegister},hr_talents_expect = #{hrTalentsExpect},hr_talents_skill = #{hrTalentsSkill},hr_talents_workExperience = #{hrTalentsWorkexperience},hr_talents_projectExperience = #{hrTalentsProjectexperience},hr_talents_dwell =#{hrTalentsDwell},hr_talents_nature = #{hrTalentsNature},hr_talents_industry = #{hrTalentsIndustry},hr_talents_pay = #{hrTalentsPay},hr_talents_positiondate = #{hrTalentsPositiondate},hr_talents_picture = #{hrTalentsPicture},hr_talents_remark = #{hrTalentsRemark},hr_talents_accessory =#{hrTalentsAccessory},hr_talents_filestatus = #{hrTalentsFilestatus},hr_talents_username =#{hrTalentsUsername} where hr_talents_id = #{hrTalentsId}
+  </update>
+  
+  <delete id="deleterck">
+    delete from hr_talents where hr_talents_id = #{id}
+  </delete>
+</mapper>

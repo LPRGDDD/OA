@@ -31,14 +31,11 @@ import com.irs.pojo.Menu;
 import com.irs.pojo.TbAdmin;
 import com.irs.pojo.TbMenus;
 import com.irs.pojo.TbRoles;
-import com.irs.pojo.XtreeData;
 import com.irs.service.AdminService;
-import com.irs.util.GlobalUtil;
 import com.irs.util.JsonUtils;
 import com.irs.util.RRException;
 import com.irs.util.ResultUtil;
 import com.irs.util.ShiroUtils;
-import com.irs.util.VerifyCode;
 
 @Controller
 @RequestMapping("sys")
