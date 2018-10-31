@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.SalDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.SalData" >
+    <id column="sal_data_id" property="salDataId" jdbcType="INTEGER" />
+    <result column="personxc_id" property="personxcId" jdbcType="INTEGER" />
+    <result column="salaryflow_id" property="salaryflowId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sal_SSalary" property="salSsalary" jdbcType="DOUBLE" />
+    <result column="sal_expression" property="salExpression" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sal_data_id, personxc_id, salaryflow_id, user_id, sal_SSalary, sal_expression
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sal_data
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_sal_data
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.SalData" >
+    insert into tb_sal_data (sal_data_id, personxc_id, salaryflow_id, 
+      user_id, sal_SSalary, sal_expression
+      )
+    values (#{salDataId,jdbcType=INTEGER}, #{personxcId,jdbcType=INTEGER}, #{salaryflowId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{salSsalary,jdbcType=DOUBLE}, #{salExpression,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.SalData" >
+    insert into tb_sal_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salDataId != null" >
+        sal_data_id,
+      </if>
+      <if test="personxcId != null" >
+        personxc_id,
+      </if>
+      <if test="salaryflowId != null" >
+        salaryflow_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="salSsalary != null" >
+        sal_SSalary,
+      </if>
+      <if test="salExpression != null" >
+        sal_expression,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salDataId != null" >
+        #{salDataId,jdbcType=INTEGER},
+      </if>
+      <if test="personxcId != null" >
+        #{personxcId,jdbcType=INTEGER},
+      </if>
+      <if test="salaryflowId != null" >
+        #{salaryflowId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="salSsalary != null" >
+        #{salSsalary,jdbcType=DOUBLE},
+      </if>
+      <if test="salExpression != null" >
+        #{salExpression,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.SalData" >
+    update tb_sal_data
+    <set >
+      <if test="personxcId != null" >
+        personxc_id = #{personxcId,jdbcType=INTEGER},
+      </if>
+      <if test="salaryflowId != null" >
+        salaryflow_id = #{salaryflowId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="salSsalary != null" >
+        sal_SSalary = #{salSsalary,jdbcType=DOUBLE},
+      </if>
+      <if test="salExpression != null" >
+        sal_expression = #{salExpression,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.SalData" >
+    update tb_sal_data
+    set personxc_id = #{personxcId,jdbcType=INTEGER},
+      salaryflow_id = #{salaryflowId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      sal_SSalary = #{salSsalary,jdbcType=DOUBLE},
+      sal_expression = #{salExpression,jdbcType=VARCHAR}
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </update>
+  <!-- 根据状态（1,0）进行分页查询 -->
+ <select id="findByStatus" resultType="java.util.Map">
+    select 
+    *
+    from tb_salaryflow where tb_salaryflow.salaryflow_status=0 
+  </select>
+</mapper>

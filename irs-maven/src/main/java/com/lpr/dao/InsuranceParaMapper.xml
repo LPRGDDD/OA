@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.InsuranceParaMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.InsurancePara" >
+    <id column="insurance_para_id" property="insuranceParaId" jdbcType="INTEGER" />
+    <result column="insurance_para_name" property="insuranceParaName" jdbcType="VARCHAR" />
+    <result column="insurance_para_hktype" property="insuranceParaHktype" jdbcType="VARCHAR" />
+    <result column="insurance_para_pensiongr" property="insuranceParaPensiongr" jdbcType="VARCHAR" />
+    <result column="insurance_para_persiondw" property="insuranceParaPersiondw" jdbcType="VARCHAR" />
+    <result column="insurance_para_medicaldw" property="insuranceParaMedicaldw" jdbcType="VARCHAR" />
+    <result column="insurance_para_losegr" property="insuranceParaLosegr" jdbcType="VARCHAR" />
+    <result column="insurance_para_losedw" property="insuranceParaLosedw" jdbcType="VARCHAR" />
+    <result column="insurance_para_gjjgr" property="insuranceParaGjjgr" jdbcType="VARCHAR" />
+    <result column="insurance_para_gjjdw" property="insuranceParaGjjdw" jdbcType="VARCHAR" />
+    <result column="insurance_para_workgr" property="insuranceParaWorkgr" jdbcType="VARCHAR" />
+    <result column="insurance_para_workdw" property="insuranceParaWorkdw" jdbcType="VARCHAR" />
+    <result column="insurance_para_sygr" property="insuranceParaSygr" jdbcType="VARCHAR" />
+    <result column="insurance_para_sydw" property="insuranceParaSydw" jdbcType="VARCHAR" />
+    <result column="insurance_para_show" property="insuranceParaShow" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    insurance_para_id, insurance_para_name, insurance_para_hktype, insurance_para_pensiongr, 
+    insurance_para_persiondw, insurance_para_medicaldw, insurance_para_losegr, insurance_para_losedw, 
+    insurance_para_gjjgr, insurance_para_gjjdw, insurance_para_workgr, insurance_para_workdw, 
+    insurance_para_sygr, insurance_para_sydw, insurance_para_show
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_insurance_para
+    where insurance_para_id = #{insuranceParaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_insurance_para
+    where insurance_para_id = #{insuranceParaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.InsurancePara" >
+    insert into tb_insurance_para (insurance_para_id, insurance_para_name, 
+      insurance_para_hktype, insurance_para_pensiongr, 
+      insurance_para_persiondw, insurance_para_medicaldw, 
+      insurance_para_losegr, insurance_para_losedw, 
+      insurance_para_gjjgr, insurance_para_gjjdw, 
+      insurance_para_workgr, insurance_para_workdw, 
+      insurance_para_sygr, insurance_para_sydw, insurance_para_show
+      )
+    values (#{insuranceParaId,jdbcType=INTEGER}, #{insuranceParaName,jdbcType=VARCHAR}, 
+      #{insuranceParaHktype,jdbcType=VARCHAR}, #{insuranceParaPensiongr,jdbcType=VARCHAR}, 
+      #{insuranceParaPersiondw,jdbcType=VARCHAR}, #{insuranceParaMedicaldw,jdbcType=VARCHAR}, 
+      #{insuranceParaLosegr,jdbcType=VARCHAR}, #{insuranceParaLosedw,jdbcType=VARCHAR}, 
+      #{insuranceParaGjjgr,jdbcType=VARCHAR}, #{insuranceParaGjjdw,jdbcType=VARCHAR}, 
+      #{insuranceParaWorkgr,jdbcType=VARCHAR}, #{insuranceParaWorkdw,jdbcType=VARCHAR}, 
+      #{insuranceParaSygr,jdbcType=VARCHAR}, #{insuranceParaSydw,jdbcType=VARCHAR}, #{insuranceParaShow,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.InsurancePara" >
+    insert into tb_insurance_para
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuranceParaId != null" >
+        insurance_para_id,
+      </if>
+      <if test="insuranceParaName != null" >
+        insurance_para_name,
+      </if>
+      <if test="insuranceParaHktype != null" >
+        insurance_para_hktype,
+      </if>
+      <if test="insuranceParaPensiongr != null" >
+        insurance_para_pensiongr,
+      </if>
+      <if test="insuranceParaPersiondw != null" >
+        insurance_para_persiondw,
+      </if>
+      <if test="insuranceParaMedicaldw != null" >
+        insurance_para_medicaldw,
+      </if>
+      <if test="insuranceParaLosegr != null" >
+        insurance_para_losegr,
+      </if>
+      <if test="insuranceParaLosedw != null" >
+        insurance_para_losedw,
+      </if>
+      <if test="insuranceParaGjjgr != null" >
+        insurance_para_gjjgr,
+      </if>
+      <if test="insuranceParaGjjdw != null" >
+        insurance_para_gjjdw,
+      </if>
+      <if test="insuranceParaWorkgr != null" >
+        insurance_para_workgr,
+      </if>
+      <if test="insuranceParaWorkdw != null" >
+        insurance_para_workdw,
+      </if>
+      <if test="insuranceParaSygr != null" >
+        insurance_para_sygr,
+      </if>
+      <if test="insuranceParaSydw != null" >
+        insurance_para_sydw,
+      </if>
+      <if test="insuranceParaShow != null" >
+        insurance_para_show,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuranceParaId != null" >
+        #{insuranceParaId,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceParaName != null" >
+        #{insuranceParaName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaHktype != null" >
+        #{insuranceParaHktype,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaPensiongr != null" >
+        #{insuranceParaPensiongr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaPersiondw != null" >
+        #{insuranceParaPersiondw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaMedicaldw != null" >
+        #{insuranceParaMedicaldw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaLosegr != null" >
+        #{insuranceParaLosegr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaLosedw != null" >
+        #{insuranceParaLosedw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaGjjgr != null" >
+        #{insuranceParaGjjgr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaGjjdw != null" >
+        #{insuranceParaGjjdw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaWorkgr != null" >
+        #{insuranceParaWorkgr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaWorkdw != null" >
+        #{insuranceParaWorkdw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaSygr != null" >
+        #{insuranceParaSygr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaSydw != null" >
+        #{insuranceParaSydw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaShow != null" >
+        #{insuranceParaShow,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.InsurancePara" >
+    update tb_insurance_para
+    <set >
+      <if test="insuranceParaName != null" >
+        insurance_para_name = #{insuranceParaName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaHktype != null" >
+        insurance_para_hktype = #{insuranceParaHktype,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaPensiongr != null" >
+        insurance_para_pensiongr = #{insuranceParaPensiongr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaPersiondw != null" >
+        insurance_para_persiondw = #{insuranceParaPersiondw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaMedicaldw != null" >
+        insurance_para_medicaldw = #{insuranceParaMedicaldw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaLosegr != null" >
+        insurance_para_losegr = #{insuranceParaLosegr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaLosedw != null" >
+        insurance_para_losedw = #{insuranceParaLosedw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaGjjgr != null" >
+        insurance_para_gjjgr = #{insuranceParaGjjgr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaGjjdw != null" >
+        insurance_para_gjjdw = #{insuranceParaGjjdw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaWorkgr != null" >
+        insurance_para_workgr = #{insuranceParaWorkgr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaWorkdw != null" >
+        insurance_para_workdw = #{insuranceParaWorkdw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaSygr != null" >
+        insurance_para_sygr = #{insuranceParaSygr,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaSydw != null" >
+        insurance_para_sydw = #{insuranceParaSydw,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceParaShow != null" >
+        insurance_para_show = #{insuranceParaShow,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where insurance_para_id = #{insuranceParaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.InsurancePara" >
+    update tb_insurance_para
+    set insurance_para_name = #{insuranceParaName,jdbcType=VARCHAR},
+      insurance_para_hktype = #{insuranceParaHktype,jdbcType=VARCHAR},
+      insurance_para_pensiongr = #{insuranceParaPensiongr,jdbcType=VARCHAR},
+      insurance_para_persiondw = #{insuranceParaPersiondw,jdbcType=VARCHAR},
+      insurance_para_medicaldw = #{insuranceParaMedicaldw,jdbcType=VARCHAR},
+      insurance_para_losegr = #{insuranceParaLosegr,jdbcType=VARCHAR},
+      insurance_para_losedw = #{insuranceParaLosedw,jdbcType=VARCHAR},
+      insurance_para_gjjgr = #{insuranceParaGjjgr,jdbcType=VARCHAR},
+      insurance_para_gjjdw = #{insuranceParaGjjdw,jdbcType=VARCHAR},
+      insurance_para_workgr = #{insuranceParaWorkgr,jdbcType=VARCHAR},
+      insurance_para_workdw = #{insuranceParaWorkdw,jdbcType=VARCHAR},
+      insurance_para_sygr = #{insuranceParaSygr,jdbcType=VARCHAR},
+      insurance_para_sydw = #{insuranceParaSydw,jdbcType=VARCHAR},
+      insurance_para_show = #{insuranceParaShow,jdbcType=VARCHAR}
+    where insurance_para_id = #{insuranceParaId,jdbcType=INTEGER}
+  </update>
+</mapper>
