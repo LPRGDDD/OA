@@ -208,8 +208,6 @@
         		var obj=data[i];
 				 var tr="<option value='"+obj.scid+"'>"+obj.sname+"</option>";
 			  	$("#sele").append(tr);    			
-        		
-        
         		}
         		
   			}

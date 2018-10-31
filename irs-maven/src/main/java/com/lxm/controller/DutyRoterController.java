@@ -64,9 +64,6 @@ public class DutyRoterController {
 	@RequestMapping("/updateById/{drId}")
 	public String selectID(HttpServletRequest req,@PathVariable("drId") int id){
 		DutyRoster list= ds.selectById(id);
-		System.out.println(list.getDtdateStart()+list.getDtdateEnd());
-		System.out.println(list.getDrnameId()+list.getDrname1());
-		System.out.println(list.getDrnameId2()+list.getDrname2());
 		req.setAttribute("list", list); 
 		//Map map=new HashMap();
 		//map.put("dd", list);

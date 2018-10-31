@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxm.dao.SynthesisMapper">
+  <resultMap id="BaseResultMap" type="com.lxm.entity.Synthesis">
+    <id column="sId" jdbcType="INTEGER" property="sid" />
+    <result column="qtid" jdbcType="INTEGER" property="qtid" />
+    <result column="shenId" jdbcType="INTEGER" property="shenid" />
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="syReason" jdbcType="VARCHAR" property="syreason" />
+    <result column="syShen" jdbcType="TIMESTAMP" property="syshen" />
+    <result column="syTime" jdbcType="DATE" property="sytime" />
+    <result column="timeOne" jdbcType="TIMESTAMP" property="timeone" />
+    <result column="timeTwo" jdbcType="TIMESTAMP" property="timetwo" />
+    <result column="wcTimeTwo" jdbcType="VARCHAR" property="wctimetwo" />
+    <result column="wcTimeOne" jdbcType="VARCHAR" property="wctimeone" />
+    <result column="wcTime" jdbcType="VARCHAR" property="wctime" />
+    <result column="wcTimeEnd" jdbcType="VARCHAR" property="wctimeend" />
+    <result column="timeAddress" jdbcType="VARCHAR" property="timeaddress" />
+    <result column="syName" jdbcType="VARCHAR" property="syname" />
+    <result column="reading" jdbcType="VARCHAR" property="reading" />
+    <result column="car" jdbcType="INTEGER" property="car" />
+    <result column="syXiao" jdbcType="TIMESTAMP" property="syxiao" />
+    <result column="exState" jdbcType="INTEGER" property="exstate" />
+    <result column="syState" jdbcType="INTEGER" property="systate" />
+    <result column="timeChai" jdbcType="INTEGER" property="timechai" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sId, qtid, shenId, id, syReason, syShen, syTime, timeOne, timeTwo, wcTimeTwo, wcTimeOne, 
+    wcTime, wcTimeEnd, timeAddress, syName, reading, car, syXiao, exState, syState, timeChai
+  </sql>
+  <sql id="WaiChu">
+  	  sId,shenId,id, syReason, syShen, syTime,
+      wcTimeTwo, wcTimeOne, wcTime, 
+      wcTimeEnd, car, exState, syState
+  </sql>
+  <sql id="QingJia">
+  	
+  </sql>
+  
+  <!--添加外出登记  -->
+  <insert id="insert" parameterType="com.lxm.entity.Synthesis">
+    insert into synthesis (shenId, 
+      id, syReason, syShen, 
+      syTime,
+      wcTimeTwo, wcTimeOne, wcTime, 
+      wcTimeEnd, 
+      car, 
+      exState, syState
+      )
+    value(#{shenid},#{id},#{syreason},#{syshen},#{sytime},#{wctimetwo}
+    ,#{wctimeone},#{wctime},#{wctimeend},#{car},#{exstate},#{systate}
+    )
+  </insert>
+  <!--查询systate=1 时 的  外出表  -->
+  <select id="selectAll" resultType="Map" parameterType="Integer">
+  	select  s.sId,s.shenId,s.id,s.syReason,s.syShen,s.syTime,
+      s.wcTimeTwo, s.wcTimeOne, s.wcTime, 
+      s.wcTimeEnd, s.car, s.exState,s.syState,t.username,
+      (select a.username from tb_admin a where a.id=s.shenId) shenname
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=1 and s.id=#{id}
+  </select>
+  <!--查询单条外出登记   -->
+  <select id="selectUpdate" resultType="Map" >
+  	  select  s.sId,s.shenId,s.id, s.syReason,s.syShen,s.syTime,
+      s.wcTimeTwo, s.wcTimeOne, s.wcTime, 
+      s.wcTimeEnd, s.car, s.exState,s.syState,t.username,
+      (select a.username from tb_admin a where a.id=s.shenId) shenname
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=1 and s.id=#{id} and s.sId=#{sId}
+  </select>
+  <!--查询后修改  -->
+  <update id="updateWai" parameterType="com.lxm.entity.Synthesis">
+  	update synthesis set 
+  	syReason=#{syreason},syShen=#{syshen},shenId=#{shenid}
+  	,syTime=#{sytime},wcTimeTwo=#{wctimetwo}, wcTimeOne=#{wctimeone},wcTime=#{wctime}, 
+      wcTimeEnd=#{wctimeend},
+      car=#{car}  where sId=#{sid}
+  </update>
+  <!--删除  -->
+  <delete id="delete" parameterType="Integer">
+  	delete from synthesis where sId=#{id}
+  </delete>
+  <!--查询待审批  exState=0 待审批 -->
+  <select id="selectDaiShen" resultType="Map" parameterType="Integer">
+  	select  s.sId,s.shenId,s.id,s.syReason,s.syShen,s.syTime,
+      s.wcTimeTwo, s.wcTimeOne, s.wcTime, 
+      s.wcTimeEnd, s.car, s.exState,s.syState,t.username,
+      (select a.username from tb_admin a where a.id=s.shenId) shenname
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where  s.shenId=#{id} and s.exState=0
+  </select>
+  
+  <update id="updateByPrimaryKey" parameterType="com.lxm.entity.Synthesis">
+    update synthesis
+    set qtid = #{qtid,jdbcType=INTEGER},
+      shenId = #{shenid,jdbcType=INTEGER},
+      id = #{id,jdbcType=INTEGER},
+      syReason = #{syreason,jdbcType=VARCHAR},
+      syShen = #{syshen,jdbcType=TIMESTAMP},
+      syTime = #{sytime,jdbcType=DATE},
+      timeOne = #{timeone,jdbcType=TIMESTAMP},
+      timeTwo = #{timetwo,jdbcType=TIMESTAMP},
+      wcTimeTwo = #{wctimetwo,jdbcType=VARCHAR},
+      wcTimeOne = #{wctimeone,jdbcType=VARCHAR},
+      wcTime = #{wctime,jdbcType=VARCHAR},
+      wcTimeEnd = #{wctimeend,jdbcType=VARCHAR},
+      timeAddress = #{timeaddress,jdbcType=VARCHAR},
+      syName = #{syname,jdbcType=VARCHAR},
+      reading = #{reading,jdbcType=VARCHAR},
+      car = #{car,jdbcType=INTEGER},
+      syXiao = #{syxiao,jdbcType=TIMESTAMP},
+      exState = #{exstate,jdbcType=INTEGER},
+      syState = #{systate,jdbcType=INTEGER},
+      timeChai = #{timechai,jdbcType=INTEGER}
+    where sId = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

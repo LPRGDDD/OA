@@ -35,7 +35,7 @@ public class ScheduleController {
 		/*Ò³ÃæÌø×ª*/
 		@RequestMapping("/test.action")
 		public String test1() {
-			return "page/view/lxm/SpringFestival";
+			return "page/view/lxm/GeRenShiWu";
 		}
 		@RequestMapping("/save")
 		@ResponseBody
