@@ -3,7 +3,7 @@
 <mapper namespace="com.lwb.dao.ScreenDao">
 
   <select id="ScreenById" resultType="Map" parameterType="java.lang.Integer">
-      select * from hr_screen s LEFT JOIN hr_talents t on s.hr_talents_id=t.hr_talents_id where hr_screen_id= #{id}
+      select * from hr_screen s LEFT JOIN hr_talents t on s.hr_talents_id=t.hr_talents_id LEFT JOIN hr_plan p on s.hr_plan_id=p.hr_plan_id where hr_screen_id= #{id}
   </select>
   <!-- 查询筛选成功后的计划  -->
   <select id="ptAll" resultType="Map">
@@ -23,7 +23,7 @@
 	</select>
 
   <select id="queryScreen" resultType="Map">
-         select * from hr_screen s LEFT JOIN hr_talents t on s.hr_talents_id=t.hr_talents_id where t.hr_talents_filestatus &gt; 0 and t.hr_talents_filestatus &lt; 4
+         select * from hr_screen s LEFT JOIN hr_talents t on s.hr_talents_id=t.hr_talents_id where t.hr_talents_filestatus &gt; 0 and t.hr_talents_filestatus &lt; 4 and s.id=#{uid}
 	<where>
       <if test="keyWord!='' and keyWord!=null">
           s.hrScreenUsername like '%${keyWord}%'

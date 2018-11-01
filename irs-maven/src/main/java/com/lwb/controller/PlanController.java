@@ -111,10 +111,10 @@ public class PlanController {
 	
 	
 	@RequestMapping("/fianAll0")
-	public @ResponseBody Map fianAll0(String keyWord,Integer page,Integer limit) {
+	public @ResponseBody Map fianAll0(String keyWord,Integer uid,Integer page,Integer limit) {
 		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.fianAll0(keyWord);
+		List<Map> list=ser.fianAll0(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);
@@ -124,10 +124,10 @@ public class PlanController {
 		return map;
 	}
 	@RequestMapping("/fianAll1")
-	public @ResponseBody Map fianAll1(String keyWord,Integer page,Integer limit) {
+	public @ResponseBody Map fianAll1(String keyWord,Integer uid,Integer page,Integer limit) {
 		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.fianAll1(keyWord);
+		List<Map> list=ser.fianAll1(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);
@@ -137,10 +137,10 @@ public class PlanController {
 		return map;
 	}
 	@RequestMapping("/fianAll2")
-	public @ResponseBody Map fianAll2(String keyWord,Integer page,Integer limit) {
+	public @ResponseBody Map fianAll2(String keyWord,Integer uid,Integer page,Integer limit) {
 		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.fianAll2(keyWord);
+		List<Map> list=ser.fianAll2(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);

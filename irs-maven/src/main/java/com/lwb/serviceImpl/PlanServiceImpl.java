@@ -37,21 +37,21 @@ public class PlanServiceImpl implements PlanService {
 
 
 	@Override
-	public List<Map> fianAll0(String keyWord) {
+	public List<Map> fianAll0(String keyWord,Integer uid) {
 		// TODO Auto-generated method stub
-		return dao.fianAll0(keyWord);
+		return dao.fianAll0(keyWord, uid);
 	}
 
 	@Override
-	public List<Map> fianAll1(String keyWord) {
+	public List<Map> fianAll1(String keyWord,Integer uid) {
 		// TODO Auto-generated method stub
-		return dao.fianAll1(keyWord);
+		return dao.fianAll1(keyWord, uid);
 	}
 
 	@Override
-	public List<Map> fianAll2(String keyWord) {
+	public List<Map> fianAll2(String keyWord,Integer uid) {
 		// TODO Auto-generated method stub
-		return dao.fianAll2(keyWord);
+		return dao.fianAll2(keyWord, uid);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class PlanServiceImpl implements PlanService {
 
 	@Override
 	public Map planById(int id) {
-		System.out.println(id+"Services¿œœÁ√«");
+
 		return dao.planById(id);
 	}
 

@@ -84,7 +84,7 @@ public class Talents {
 
     private String hrTalentsUsername;
     
-    private String hr_talents_toemploy;
+    private String hrTalentsToemploy;
 
 	public Integer getHrTalentsId() {
 		return hrTalentsId;
@@ -406,12 +406,12 @@ public class Talents {
 		this.hrTalentsUsername = hrTalentsUsername;
 	}
 
-	public String getHr_talents_toemploy() {
-		return hr_talents_toemploy;
+	public String getHrTalentsToemploy() {
+		return hrTalentsToemploy;
 	}
 
-	public void setHr_talents_toemploy(String hr_talents_toemploy) {
-		this.hr_talents_toemploy = hr_talents_toemploy;
+	public void setHrTalentsToemploy(String hrTalentsToemploy) {
+		this.hrTalentsToemploy = hrTalentsToemploy;
 	}
 
 	public Talents(Integer hrTalentsId, Integer hrPlanId, Plan plan, String hrTalentsName, Date hrTalentsBirth,
@@ -424,7 +424,7 @@ public class Talents {
 			String hrTalentsProjectexperience, String hrTalentsDwell, String hrTalentsNature, String hrTalentsIndustry,
 			String hrTalentsPay, Integer hrTalentsPositiondate, String hrTalentsPicture, String hrTalentsRemark,
 			String hrTalentsAccessory, Integer hrTalentsFilestatus, String hrTalentsUsername,
-			String hr_talents_toemploy) {
+			String hrTalentsToemploy) {
 		super();
 		this.hrTalentsId = hrTalentsId;
 		this.hrPlanId = hrPlanId;
@@ -466,7 +466,7 @@ public class Talents {
 		this.hrTalentsAccessory = hrTalentsAccessory;
 		this.hrTalentsFilestatus = hrTalentsFilestatus;
 		this.hrTalentsUsername = hrTalentsUsername;
-		this.hr_talents_toemploy = hr_talents_toemploy;
+		this.hrTalentsToemploy = hrTalentsToemploy;
 	}
 
 	public Talents() {
@@ -493,8 +493,10 @@ public class Talents {
 				+ ", hrTalentsPay=" + hrTalentsPay + ", hrTalentsPositiondate=" + hrTalentsPositiondate
 				+ ", hrTalentsPicture=" + hrTalentsPicture + ", hrTalentsRemark=" + hrTalentsRemark
 				+ ", hrTalentsAccessory=" + hrTalentsAccessory + ", hrTalentsFilestatus=" + hrTalentsFilestatus
-				+ ", hrTalentsUsername=" + hrTalentsUsername + ", hr_talents_toemploy=" + hr_talents_toemploy + "]";
+				+ ", hrTalentsUsername=" + hrTalentsUsername + ", hrTalentsToemploy=" + hrTalentsToemploy + "]";
 	}
+
+	
 
     
 }

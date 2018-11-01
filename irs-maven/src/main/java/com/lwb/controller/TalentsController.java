@@ -56,8 +56,9 @@ public class TalentsController {
 	public void saverck(Talents t,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		System.out.println(t);
+		System.out.println(t+"111");
 		int id=ser.saverck(t);
+		System.out.println(t+"222");
 		if (id>0) {
 			out.print("Ìí¼Ó³É¹¦");
 		}else{

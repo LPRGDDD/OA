@@ -18,9 +18,9 @@ public class ScreenServiceImpl implements ScreenService {
 	private ScreenDao dao;
 
 	@Override
-	public List<Map> queryScreen(String keyWord) {
+	public List<Map> queryScreen(String keyWord,Integer uid) {
 		// TODO Auto-generated method stub
-		return dao.queryScreen(keyWord);
+		return dao.queryScreen(keyWord,uid);
 	}
     @Transactional
 	@Override

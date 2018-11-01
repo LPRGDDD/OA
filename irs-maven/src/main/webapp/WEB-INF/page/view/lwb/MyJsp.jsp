@@ -19,262 +19,229 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="page/resources/layui/css/layui.css">
-    <script type="text/javascript" src="page/resources/jquery-1.11.3.min.js"></script>
-    <script src="page/resources/layui/layui.js" charset="utf-8"></script>
-    <script src="page/resources/layui/layui.all.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="page/resources/bootstrap/css/bootstrap.min.css">
-	<script src="page/resources/bootstrap/js/bootstrap.min.js"></script>
-	
-	
-	<style type="text/css">
-
-.yan {
-	color: red;
-
-}
+<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/page/resources/layui/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/page/resources/layui/bootstrap/css/bootstrap-theme.min.css">
+<script	src="${pageContext.request.contextPath}/page/resources/layui/bootstrap/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/page/resources/layui/bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+  #mtk{
+     position:absolute;left:800px;top:13px;
+  }
 </style>
   </head>
   
   <body>
-        <br/>
-        <br/>
-       <form class="layui-form" id="selejihua" action="">
-				
-		<div class="layui-form-item">
-		    <div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>计划编号</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanNumber" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>计划名称</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanName" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-	   </div>
-	
-	
-	<div class="layui-form-item">
-	        <div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>招聘渠道</label>
-				<div class="layui-input-inline">
-					<select name="hrPlanDitch">
-					    <option>招聘会</option>
-					    <option>猎头公司</option>
-					    <option>网络招聘</option>
-				     </select>
-				</div>
-			</div>
-			<div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>招聘人数</label>
-				<div class="layui-input-inline">
-					<input name="hrPlanCount" class="layui-input ym" type="text"  placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-	   </div>
-	   
-	   <div class="layui-form-item">
-	        <div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>开始时间</label>
-				<div class="layui-input-inline">
-					<input name="hrPlanStartdate" class="layui-input ym" type="date"  autocomplete="off">
-				</div>
-			</div>
-	        <div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>结束时间</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanDateclosed" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-	   </div>
-	   
-	   <div class="layui-form-item">
-	       <div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>预算费用</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanBudget" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-	        <div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>招聘部门</label>
-				<div class="layui-input-inline">
-					<select name="hrPlanDepartment">
-					    <option>销售部</option>
-					    <option>市场部</option>
-					    <option>品牌部</option>
-					    <option>财务部</option>
-					    <option>行政部</option>
-					    <option>研发部</option>
-				     </select>
-				</div>
-			</div>
-	   </div>
-	   
-	   <div class="layui-form-item">
-	        <div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>招聘岗位</label>
-			    <div class="layui-input-inline">
-					<select name="hrPlanPost">
-					    <option>会计</option>
-					    <option>行政办事员</option>
-					    <option>应用工程师</option>
-					    <option>安全人员</option>
-					    <option>系统操作员</option>
-				     </select>
-				</div>
-			</div>
-	        <div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>用工日期</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanSkilldate" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-	   </div>
-	   <div class="layui-form-item">
-	        <div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>审批人</label>
-				<div class="layui-input-inline">
-					<select name="admin.id" id="sele1">
-				     </select>
-				</div>
-			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>审批日期</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanAuditingdate"  class="layui-input ym" type="date"  autocomplete="off">
-				</div>
-			</div>
-	    </div>
-	<div class="layui-form-item layui-form-text">
-          <label class="layui-form-label">招聘说明</label>
-            <div class="layui-input-block">
-               <textarea name="hrPlanExplain" placeholder="请输入内容" class="layui-textarea"></textarea>
-            </div>
-     </div>
-     
-     <div class="layui-form-item layui-form-text">
-          <label class="layui-form-label">招聘备注</label>
-            <div class="layui-input-block">
-               <textarea name="hrPlanRemark" placeholder="请输入内容" class="layui-textarea"></textarea>
-            </div>
-     </div>
-	
-	   
-	        
-			
-			
+    
+   <div>
+<form method="post"  id="formh">
+<table class="Table" width="60%" align="center">
 
-	   
-	   <div class="layui-form-item">
-	        <div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>创建者用户名</label>
-				<div class="layui-input-inline">
-					<input name="hrPlanUsername" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
-			<div class="layui-inline" style="display:none">
-				<label class="layui-form-label"><span class="yan">*</span>计划状态</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanState" value="0" class="layui-input ym" type="text">
-				</div>
-			</div>
-		</div>			
-					
-     
-     
-   <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button class="layui-btn"  lay-filter="demo1" lay-submit="">立即提交</button>
-      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
-    </div>
-  </div>	
-   </form>
+   <tr>
+      <td nowrap class="col-md-1 control-label" style="width: 10%">计划名称:</td>
+      <td class="TableData" style="width: 20%">
+         <select name="hrPlanId" onchange="queryHire1()" id="seleP" class="form-control"></select>
+      </td>
+      <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
+      <td class="TableData" style="width: 20%">
+        <input type="text" name="hrTalentsName" id="hr_talents_name" class="form-control">
+        <input type="hidden" name="hrTalentsId" id="hr_talents_id"/>
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label" style="width: 20%">应聘岗位:</td>
+      <td class="TableData">
+         <input type="text" name="hrTalentsToemploy" id="hr_talents_toemploy" class="form-control"   >
+      </td>
 
-	
-	<!--form  -->
-	
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-layui.use(['form', 'layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-   layui.use('form', function(){
-        var form = layui.form; 
-        $.ajax({
-				url:"plan/userAll",
-				type:"post",
-				dataType:"json",
-				success:function(data){
-				$("#sele1").html("");
-	        		for(var i=0;i<data.length;i++){
-	        		var obj=data[i];
-					 var tr="<option value='"+obj.id+"'>"+obj.username+"</option>";
-				  	$("#sele1").append(tr);  
-				  	 form.render('select');  			
-	        		}
-				}
-			})
-			
-   });
-  //日期
-  laydate.render({
-    elem: '#date'
-  });
-  laydate.render({
-    elem: '#date1'
-  });
-  
-  //创建一个编辑器
-  var editIndex = layedit.build('LAY_demo_editor');
- 
-  //自定义验证规则
-  form.verify({
-    title: function(value){
-      if(value.length < 5){
-        return '标题至少得5个字符啊';
-      }
-    }
-    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    ,content: function(value){
-      layedit.sync(editIndex);
-    }
-  });
-  
-  //监听指定开关
-  form.on('switch(switchTest)', function(data){
-    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-      offset: '6px'
-    });
-    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-  });
-  
-  //监听提交
-  form.on('submit(demo1)', function(data){
-  var obj=$("#selejihua").serialize();
-				$.ajax({
-		        	     url : "plan/savePlan",
-		        	     type : "post",
-		        	     async : true,
-		        	     data :$("#selejihua").serialize(),
-		       	         dataType : 'text',//返回的数据类型
-		        	     success : function(data) {
-		        		       alert(data);
-		        		      parent.location.reload();
-		        	}
-		 		});
-  
-    return false;
-  });
- 
- 
-  
-  
-});
-</script>
+      <td nowrap class="col-md-2 control-label">发起人:</td>
+      <td class="TableData">
+        <input type="text" name="hrScreenUsername" class="form-control"  >
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label" style="width: 20%">招聘部门:</td>
+      <td class="TableData">
+          <select name="deptId" id="seDept" class="form-control"></select>
+      </td>
+
+      <td nowrap class="col-md-2 control-label">录用日期:</td>
+      <td class="TableData">
+        <input type="date" name="hrHireDate" class="form-control">
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label" style="width: 20%">员工类型:</td>
+      <td class="TableData">
+          <input type="text" type="text" name="hrHireType" class="form-control">
+      </td>
+
+      <td nowrap class="col-md-2 control-label">职务:</td>
+      <td class="TableData">
+        <input type="text" type="date" name="hrHireDuty" class="form-control">
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label">入职时间:</td>
+      <td class="TableData">
+        <input type="date" name="hrHireEntrytime" class="form-control">
+      </td>
+      
+      <td nowrap class="col-md-2 control-label">正式起薪日期:</td>
+      <td class="TableData">
+      <input type="date" name="hrHireStartingsalary" class="form-control" 
+      </td>     
+   </tr>
+   
+   <tr>
+	   <td nowrap class="col-md-2 control-label">备注:</td>
+	      <td class="TableData">
+	      <textarea class="form-control" rows="3" name="hrHireRemark"></textarea>
+	      </td>
+   </tr>
+    <tr align="center" class="TableControl">
+      <td colspan=4 nowrap>
+        <input type="button" class="btn btn-default" value="添加"  onclick="save()">
+      </td>
+    </tr>
+  </table>
+</form>
+</div>
+
+<!-- 按钮触发模态框 -->
+<button  data-toggle="modal" data-target="#myModal" onclick="queryScreen1()" id="mtk">
+	+++
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					应聘人姓名
+				</h4>
+			</div>
+			<div class="modal-body">
+						<table>
+						    <tbody id="tbody"></tbody>
+						 </table>
+			 
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
   </body>
 </html>
+<script>
+                             //查询计划
+  	function queryHire(){
+  	
+  		$.ajax({
+  			url:"hire/hireSePl",
+  			type:"post",
+  			asunc:true,
+  			dataType:'json',
+  			success:function(data){
+  				$("#seleP").html("");
+        		for(var i=0;i<data.length;i++){
+        			var obj=data[i];
+					 var tr="<option value='"+obj.hr_plan_id+"'>"+obj.hr_plan_name+"</option>";
+					  $("#seleP").append(tr);    			
+        		}
+  			}
+  		})
+  	}
+ 
+                        //根据计划查询计划内人员
+   function queryHire1(){
+          var id= $("#seleP").val();
+           alert(id)
+	          $.ajax({
+	             
+	              url : "hire/hireSeTa",
+				  type : "post",
+				  data : {
+					"id" : id,
+				},
+	              dataType : 'json',
+	              success : function(data){
+	                 $("#tbody").html("");
+	                 for(var i=0;i<data.length;i++){
+	                    var obj=data[i];//获取当前对象
+	                    var tr="<tr>";
+	                    tr+="<td><input type='button' id='"+obj.hr_talents_id+"' value='"+obj.hr_talents_name+"' class='zpsx'/></td>";
+	                    tr+="</td>";
+	                    $("#tbody").append(tr);
+	                           			        			
+	                 }
+	              }
+	          })
+	      }
+	  
+	                          //查询计划
+  	function seleDeptt(){
+  		$.ajax({
+  			url:"hire/seleDept",
+  			type:"post",
+  			asunc:true,
+  			dataType:'json',
+  			success:function(data){
+  				$("#seDept").html("");
+        		for(var i=0;i<data.length;i++){
+        			var obj=data[i];
+					 var tr="<option value='"+obj.dept_id+"'>"+obj.dept_name+"</option>";
+					  $("#seDept").append(tr);    			
+        		}
+  			}
+  		})
+  	}
+  $(function(){
+  	    queryHire();
+  	    seleDeptt()
+  	})
+  	                   
+	                 //根据人员查询出数据，并显示在页面上
+  	$(function(){
+        $("#tbody").on("click", ".zpsx", function() {
+			 var id = this.id;
+			alert(id);
+			$.ajax({
+				url : "hire/hTalentId",
+				type : "post",
+				data : {
+					"id" : id,
+				},
+				dataType : 'json',
+				success : function(data) {
+				    $("#hr_talents_id").html("");
+					$("#hr_talents_name").html("");
+					$("#hr_talents_toemploy").html("");
+					var ary = data[0];
+			        $("#hr_talents_id").val(ary.hr_talents_id);
+					$("#hr_talents_name").val(ary.hr_talents_name);
+					$("#hr_talents_toemploy").val(ary.hr_talents_toemploy);
+				}
+			}); 
+		})
+		})
+
+  	                /*添加*/
+		function save(){
+	  		var obj=$("#formh").serialize();
+				alert(obj);
+				$.ajax({
+		        	     url : "hire/saveHire",
+		        	     type : "post",
+		        	     async : true,
+		        	     data :$("#formh").serialize(),
+		       	         dataType : 'text',//返回的数据类型
+		        	     success : function(data) {
+		        	         
+		        		       alert(data);
+		        	}
+		 		});
+	  	}
+	
+</script>

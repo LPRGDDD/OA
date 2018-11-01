@@ -10,7 +10,7 @@ import com.lwb.entity.Screen;
 
 public interface ScreenService {
 	   //分页查询所有
-	   public List<Map> queryScreen(@Param("keyWord") String keyWord);
+	   public List<Map> queryScreen(@Param("keyWord") String keyWord,Integer uid);
 	   //查询计划和用户信息
 	   public List<Map> ptAll();
 	   //查询计划人员

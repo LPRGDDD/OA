@@ -1,4 +1,5 @@
  <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+ <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -58,29 +59,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   table.render({
 				    elem: '#myTab0'
 				    ,height:500
-				    ,url: 'plan/fianAll0' //数据接口
+				    ,url: 'plan/fianAll0?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-			   {field:'hr_plan_id', width:80, title: 'ID'}
-		      ,{field:'hr_plan_number', width:80, title: '计划编号'}
-		      ,{field:'hr_plan_name', width:80, title: '计划名称'}
-		      ,{field:'hr_plan_ditch', width:80, title: '招聘渠道'}
-		      ,{field:'hr_plan_budget', title: '预算费用', width: '10%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-		      ,{field:'hr_plan_startdate', title: '开始日期'}
-		      ,{field:'hr_plan_dateclosed', title: '结束日期'}
-		      ,{field:'hr_plan_department', width:137, title: '招聘部门'}
-		      ,{field:'hr_plan_post', width:137, title: '招聘岗位'}
-		      ,{field:'hr_plan_count', title: '招聘人数'}
-		      ,{field:'hr_plan_skilldate', width:137, title: '用工日期'}
+		       {field:'hr_plan_name', width:100, title: '计划名称'}
+		      ,{field:'hr_plan_ditch', width:100, title: '招聘渠道'}
+		      ,{field:'hr_plan_budget', title: '预算费用', width: 90} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+		      ,{field:'hr_plan_department', width:100, title: '招聘部门'}
+		      ,{field:'hr_plan_count',width: 90, title: '招聘人数'}
+		      ,{field:'hr_plan_startdate',width: 100, title: '开始日期'}
+		      ,{field:'hr_plan_dateclosed',width: 100, title: '结束日期'}
 		      ,{field:'username', width:137, title: '审批人'}
-		      ,{field:'hr_plan_explain', width:137, title: '招聘说明'}
-		      ,{field:'hr_plan_remark', width:137, title: '招聘备注'}
-		      ,{field:'hr_plan_adjunct', width:137, title: '附件'}
 		      ,{field:'hr_plan_state', width:137, title: '计划状态'}
-		      ,{field:'hr_plan_username', width:137, title: '创建者用户名'}
-		      ,{field:'hr_plan_auditingDate', width:137, title: '审批日期'}
+		      ,{field:'hr_plan_username', width:120, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo0'}
 				    ]],
 		done:function(res,page,count){
@@ -168,29 +161,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   table.render({
 				    elem: '#myTab1'
 				    ,height:500
-				    ,url: 'plan/fianAll1' //数据接口
+				    ,url: 'plan/fianAll1?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-			   {field:'hr_plan_id', width:80, title: 'ID'}
-		      ,{field:'hr_plan_number', width:80, title: '计划编号'}
-		      ,{field:'hr_plan_name', width:80, title: '计划名称'}
-		      ,{field:'hr_plan_ditch', width:80, title: '招聘渠道'}
-		      ,{field:'hr_plan_budget', title: '预算费用', width: '10%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-		      ,{field:'hr_plan_startdate', title: '开始日期'}
-		      ,{field:'hr_plan_dateclosed', title: '结束日期'}
-		      ,{field:'hr_plan_department', width:137, title: '招聘部门'}
-		      ,{field:'hr_plan_post', width:137, title: '招聘岗位'}
-		      ,{field:'hr_plan_count', title: '招聘人数'}
-		      ,{field:'hr_plan_skilldate', width:137, title: '用工日期'}
-		      ,{field:'user_name', width:137, title: '审批人'}
-		      ,{field:'hr_plan_explain', width:137, title: '招聘说明'}
-		      ,{field:'hr_plan_remark', width:137, title: '招聘备注'}
-		      ,{field:'hr_plan_adjunct', width:137, title: '附件'}
+			   {field:'hr_plan_name', width:100, title: '计划名称'}
+		      ,{field:'hr_plan_ditch', width:100, title: '招聘渠道'}
+		      ,{field:'hr_plan_budget', title: '预算费用', width: 90} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+		      ,{field:'hr_plan_department', width:100, title: '招聘部门'}
+		      ,{field:'hr_plan_count',width: 90, title: '招聘人数'}
+		      ,{field:'hr_plan_startdate',width: 100, title: '开始日期'}
+		      ,{field:'hr_plan_dateclosed',width: 100, title: '结束日期'}
+		      ,{field:'username', width:137, title: '审批人'}
 		      ,{field:'hr_plan_state', width:137, title: '计划状态'}
-		      ,{field:'hr_plan_username', width:137, title: '创建者用户名'}
-		      ,{field:'hr_plan_auditingDate', width:137, title: '审批日期'}
+		      ,{field:'hr_plan_username', width:120, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo1'}
 				    ]],
 		done:function(res,page,count){
@@ -256,29 +241,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   table.render({
 				    elem: '#myTab2'
 				    ,height:500
-				    ,url: 'plan/fianAll2' //数据接口
+				    ,url: 'plan/fianAll2?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-			   {field:'hr_plan_id', width:80, title: 'ID'}
-		      ,{field:'hr_plan_number', width:80, title: '计划编号'}
-		      ,{field:'hr_plan_name', width:80, title: '计划名称'}
-		      ,{field:'hr_plan_ditch', width:80, title: '招聘渠道'}
-		      ,{field:'hr_plan_budget', title: '预算费用', width: '10%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-		      ,{field:'hr_plan_startdate', title: '开始日期'}
-		      ,{field:'hr_plan_dateclosed', title: '结束日期'}
-		      ,{field:'hr_plan_department', width:137, title: '招聘部门'}
-		      ,{field:'hr_plan_post', width:137, title: '招聘岗位'}
-		      ,{field:'hr_plan_count', title: '招聘人数'}
-		      ,{field:'hr_plan_skilldate', width:137, title: '用工日期'}
-		      ,{field:'user_name', width:137, title: '审批人'}
-		      ,{field:'hr_plan_explain', width:137, title: '招聘说明'}
-		      ,{field:'hr_plan_remark', width:137, title: '招聘备注'}
-		      ,{field:'hr_plan_adjunct', width:137, title: '附件'}
+			   {field:'hr_plan_name', width:100, title: '计划名称'}
+		      ,{field:'hr_plan_ditch', width:100, title: '招聘渠道'}
+		      ,{field:'hr_plan_budget', title: '预算费用', width: 90} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+		      ,{field:'hr_plan_department', width:100, title: '招聘部门'}
+		      ,{field:'hr_plan_count',width: 90, title: '招聘人数'}
+		      ,{field:'hr_plan_startdate',width: 100, title: '开始日期'}
+		      ,{field:'hr_plan_dateclosed',width: 100, title: '结束日期'}
+		      ,{field:'username', width:137, title: '审批人'}
 		      ,{field:'hr_plan_state', width:137, title: '计划状态'}
-		      ,{field:'hr_plan_username', width:137, title: '创建者用户名'}
-		      ,{field:'hr_plan_auditingDate', width:137, title: '审批日期'}
+		      ,{field:'hr_plan_username', width:120, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo2'}
 				    ]],
 		done:function(res,page,count){

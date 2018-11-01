@@ -62,20 +62,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-			   {field:'hr_talents_id', width:80, title: 'ID'}
-			  ,{field:'hr_plan_name', width:80, title: '计划名称'}
-			  ,{field:'hr_talents_name', width:80, title: '应聘人姓名'}
-		      ,{field:'hr_talents_sex', width:80, title: '性别'}
-		      ,{field:'hr_talents_age', width:80, title: '年龄'}
-		      ,{field:'hr_talents_birth', title: '出生日期', width: '10%'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-		      ,{field:'hr_talents_nation', title: '民族'}
-		      ,{field:'hr_talents_native', title: '籍贯'}
-		      ,{field:'hr_talents_place', width:137, title: '现居住地'}
-		      ,{field:'hr_talents_health', width:137, title: '身体状况'}
-		      ,{field:'hr_talents_relation', title: '联系方式'}
-		      ,{field:'hr_talents_mall', width:137, title: 'hr_talents_mall'}
-		      ,{field:'hr_talents_expect', width:137, title: '期望从事职业'}
-		      
+
+			   {field:'hr_plan_name', width:120, title: '计划名称'}
+			  ,{field:'hr_talents_name', width:120, title: '应聘人姓名'}
+		      ,{field:'hr_talents_toemploy', width:157, title: '应聘岗位'}
+		      ,{field:'hr_talents_relation',width:150, title: '联系方式'}
+		      ,{field:'hr_talents_mall', width:190,  title: '邮箱'}
+		      ,{field:'hr_talents_major', width:157, title: '专业'}
+		      ,{field:'hr_talents_username', width:157, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
 				    ]],
 				  });
@@ -112,8 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		layer.open({
             type:2,
             title:"查找用户角色",
-            area: ['50%','70%'],
-            offset: ['100px', '500px'],
+            area: ['80%','90%'],
+            offset: ['20px', '50px'],
             content:"http://localhost:8080/oa/talent/queryByIdrck/"+data.hr_talents_id
         });
 				}
@@ -129,225 +123,393 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 第二块 -->
     <div class="layui-tab-item">
 					
-					<form action="" method="post" id="selerck">
-			<table border="1">
-				<tr>
-					<td>计划</td>
-					<td><select name="plan.hrPlanId" id="sele"> </select></td>
-				</tr>
-				<tr>
-					<td>应聘人姓名</td>
-					<td><input type="text" name="hrTalentsName"/></td>					
-				</tr>
+					<form class="layui-form" id="selerck" action="">
 				
-				<tr>
-					<td>出生日期</td>
-					<td><input type="date" name="hrTalentsBirth"/></td>					
-				</tr>
-				<tr>
-					<td>性别</td>
-					<td><input type="text" name="hrTalentsSex"/></td>					
-				</tr>
-				<tr>
-					<td>年龄</td>
-					<td><input type="text" name="hrTalentsAge"/></td>					
-				</tr>
-				<tr>
-					<td>籍贯</td>
-					<td><input type="text" name="hrTalentsNative"/></td>					
-				</tr>
-				<tr>
-					<td>户口所在地</td>
-					<td><input type="text" name="hrTalentsPlace"/></td>					
-				</tr>
-				<tr>
-					<td>民族</td>
-					<td><input type="text" name="hrTalentsNation"/></td>					
-				</tr>
-				
-				<tr>
-					<td>婚姻状况</td>
-					<td><input type="text" name="hrTalentsState"/></td>
-					<!-- <td><select name="hrTalentsState">
-					
-					     <option>未婚</option>
-					     <option>已婚</option>
-					</select></td> -->
-				</tr>
-				<tr>
-					<td>政治面貌</td>
-					<td><input type="text" name="hrTalentsFace"/></td>
-					<!-- <td><select name="hrTalentsFace">
-					     <option>党员</option>
-					     <option>共青团员</option>
-					     <option>普通</option>
-					</select></td>	 -->			
-				</tr>
+		<div class="layui-form-item">
+		      <div class="layui-inline">
+					<label class="layui-form-label"><span>*</span>计划</label>
+				<div class="layui-input-inline">
+					<select name="plan.hrPlanId" id="sele1">
+				     </select>
+				</div>
+			</div>
 
-				<tr>
-					<td>联系方式</td>
-					<td><input type="text" name="hrTalentsRelation"/></td>					
-				</tr>
-				
-				<tr>
-					<td>e-mall</td>
-					<td><input type="text" name="hrTalentsMall"/></td>					
-				</tr>
-				
-				<tr>
-					<td>参加工作时间</td>
-					<td><input type="date" name="hrTalentsWorkdate"/></td>					
-				</tr>
-				<tr>
-					<td>健康状况</td>
-					<td><input type="text" name="hrTalentsHealth"/></td>					
-				</tr>
-				
-				<tr>
-					<td>学历</td>
-					<td><input type="text" name="hrTalentsBackground"/></td>					
-				</tr>
-				
-				<tr>
-					<td>学位</td>
-					<td><input type="text" name="hrTalentsDegree"/></td>					
-				</tr>
-				<tr>
-					<td>毕业时间</td>
-					<td><input type="date" name="hrTalentsGraduate"/></td>					
-				</tr>
-				<tr>
-					<td>毕业学校</td>
-					<td><input type="text" name="hrTalentsSchool"/></td>					
-				</tr>
-				
-				<tr>
-					<td>专业</td>
-					<td><input type="text" name="hrTalentsMajor"/></td>					
-				</tr>
-				<tr>
-					<td>计算机水平</td>
-					<td><input type="text" name="hrTalentsComputer"/></td>					
-				</tr>
-				<tr>
-					<td>外语语种</td>
-					<td><input type="text" name="hrTalentsForeign"/></td>					
-				</tr>
-				
-				<tr>
-					<td>外语水平</td>
-					<td><input type="text" name="hrTalentsLevel"/></td>					
-				</tr>
-				<tr>
-					<td>特长</td>
-					<td><input type="text" name="hrTalentsStrong"/></td>					
-				</tr>
-				
-				<tr>
-					<td>期望从事职业</td>
-					<td><input type="text" name="hrTalentsExpect"/></td>					
-				</tr>
-				
-				<tr>
-					<td>职业技能</td>
-					<td><input type="text" name="hrTalentsSkill"/></td>					
-				</tr>
-				<tr>
-					<td>工作经验</td>
-					<td><input type="text" name="hrTalentsWorkexperience"/></td>					
-				</tr>
-				<tr>
-					<td>项目经验</td>
-					<td><input type="text" name="hrTalentsProjectexperience"/></td>					
-				</tr>
-				
-				<tr>
-					<td>现居住城市</td>
-					<td><input type="text" name="hrTalentsDwell"/></td>					
-				</tr>
-				<tr>
-					<td>期望工作性质</td>
-					<td><input type="text" name="hrTalentsNature"/></td>					
-				</tr>
-				<tr>
-					<td>期望从事行业</td>
-					<td><input type="text" name="hrTalentsIndustry"/></td>					
-				</tr>
-				
-				<tr>
-					<td>期望薪水</td>
-					<td><input type="text" name="hrTalentsPay"/></td>					
-				</tr>
-				<tr>
-					<td>到岗时间</td>
-					<td><input type="text" name="hrTalentsPositiondate" value="1"/></td>					
-				</tr>
-				<tr>
-					<td>照片</td>
-					<td><input type="text" name="hrTalentsPicture"/></td>					
-				</tr>
-				
-				<tr>
-					<td>备注</td>
-					<td><input type="text" name="hrTalentsRemark"/></td>					
-				</tr>
-				<tr>
-					<td>附件</td>
-					<td><input type="text" name="hrTalentsAccessory"/></td>					
-				</tr>
-				<tr>
-					<td>状态</td>
-					<td><input type="text" name="hrTalentsFilestatus"/></td>					
-				</tr>
-				<tr>
-					<td>创建人</td>
-					<td><input type="text" name="hrTalentsUsername"/></td>					
-				</tr>
-				<tr>
-					<td>登记时间</td>
-					<td><input type="date" name="hrTalentsRegister"/></td>					
-				</tr>
-				
-				
-				<tr>
-					<td>添加</td>
-					<td><input type="button" value="新建计划" onclick="save()"/></td>
-				</tr>
-			</table>
-		</form>
-					
-					
-    </div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>应聘人姓名</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsName" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>出生日期</label>
+				<div class="layui-input-inline">				
+					<input name="hrTalentsBirth" class="layui-input ym" type="date"  autocomplete="off">
+				</div>
+			</div>
+	   </div>
+	
+	
+	
+	<div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>性别</label>
+				<div class="layui-input-inline">	
+					<input name="hrTalentsSex" class="layui-input ym" type="text"  placeholder="请输入" autocomplete="off">			
+				</div>
+			</div>
+			<div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>年龄</label>
+				<div class="layui-input-inline">
+				    <input name="hrTalentsAge" class="layui-input ym" type="text"  placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>籍贯</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsNative" class="layui-input ym" type="text"  autocomplete="off">
+				</div>
+			</div>
+	   </div>
+	   
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>户口所在地</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsPlace" class="layui-input ym" type="text"  autocomplete="off">
+				</div>
+			</div>
+	        <div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>民族</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsNation" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>婚姻状况</label>
+			    <div class="layui-input-inline">
+			        <select name="hrTalentsState">
+			             <option>未婚</option>
+			             <option>已婚</option>
+			        </select>
+				</div>
+			</div>
+	   </div>
+	   
+	   <div class="layui-form-item">
+	       <div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>政治面貌</label>
+			    <div class="layui-input-inline">
+                     <select name="hrTalentsFace">
+			             <option>中共党员</option>
+			             <option>中共预备党员</option>
+			             <option>无党派人士</option>
+			             <option>群众</option>
+			        </select>		    
+				</div>
+			</div>
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>联系方式</label>
+				<div class="layui-input-inline">				
+					<input name="hrTalentsRelation" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>e-mall</label>
+			    <div class="layui-input-inline">
+		             <input name="hrTalentsMall"  class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+	   </div>
+	   
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>参加工作时间</label>
+			    <div class="layui-input-inline">
+                      <input name="hrTalentsWorkdate" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>学历</label>
+			    <div class="layui-input-inline">	
+			          <select name="hrTalentsBackground">
+			             <option>小学</option>
+			             <option>初中</option>
+			             <option>高中</option>
+			             <option>大专</option>
+			             <option>本科</option>
+			             <option>硕士</option>
+			             <option>博士</option>
+			        </select>		    
+				</div>
+			</div>
+	        <div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>健康状况</label>
+			    <div class="layui-input-inline">
+                      <input name="hrTalentsHealth" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+	   </div>
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>学位</label>
+				<div class="layui-input-inline">
+				     <select name="hrTalentsDegree">
+			             <option>无</option>
+			             <option>学士学位</option>
+			             <option>硕士学位</option>
+			             <option>博士学位</option>
+			        </select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>毕业时间</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsGraduate" class="layui-input ym" type="date"  autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>毕业学校</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsSchool" class="layui-input ym" type="text"  autocomplete="off">
+				</div>
+			</div>
+	    </div>
+	    
+	    
+	    
+	    
+	<div class="layui-form-item">
+	   <div class="layui-inline">
+          <label class="layui-form-label">专业</label>
+            <div class="layui-input-inline">	
+                    <select name="hrTalentsMajor">
+			             <option>哲学</option>
+			             <option>经济学</option>
+			             <option>法学</option>
+			             <option>政治学</option>
+			             <option>中国语言文学</option>
+			             <option>教育学</option>
+			             <option>历史学</option>
+			             <option>数学</option>
+			             <option>力学</option>
+			             <option>管理科学与工程</option>
+			        </select>		           
+            </div>
+       </div>
+     
+       <div class="layui-inline">
+          <label class="layui-form-label">计算机水平</label>
+            <div class="layui-input-inline">  
+                       <select name="hrTalentsComputer">
+			             <option>无</option>
+			             <option>二级</option>
+			             <option>四级</option>
+			             <option>六级</option>
+			             <option>八级</option>
+			        </select>	
+            </div>
+       </div>
+       <div class="layui-inline">
+          <label class="layui-form-label">外语语种</label>
+            <div class="layui-input-inline">
+					<input name="hrTalentsForeign" class="layui-input ym" type="text"  autocomplete="off">
+            </div>
+        </div>
   </div>
-</div>
-  </body>
-</html>
+	   
+	   
+	   
+	   
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>外语水平</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsLevel" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>特长</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsStrong" class="layui-input ym" type="text"/>
+				</div>
+			</div>
+			<div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>期望从事职业</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsExpect" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+	 </div>	
+	 
+	  <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>职业技能</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsSkill" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>工作经验</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsWorkexperience" class="layui-input ym" type="text" />
+				</div>
+			</div>
+			<div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>项目经验</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsProjectexperience" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+	 </div>
+	 
+	  <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>现居住城市</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsDwell" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>期望工作性质</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsNature" class="layui-input ym" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>期望从事行业</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsIndustry" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+	 </div>		
+	 
+	 <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>期望薪水</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsPay" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">应聘岗位</label>
+			    <div class="layui-input-inline">
+			       <select name="hrTalentsToemploy">
+			             <option>项目经理</option>
+			             <option>开发人员</option>
+			             <option>销售经理</option>
+			             <option>销售人员</option>
+			         </select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>到岗时间</label>
+			    <div class="layui-input-inline">
+			        <select name="hrTalentsPositiondate">
+			             <option value="0">三天内</option>
+			             <option value="1">一周内</option>
+			             <option value="2">两周内</option>
+			         </select>
+				</div>
+			</div>
+	 </div>	
+	
+	     <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+               <textarea name="hrTalentsRemark"  placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        
+	 <div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>创建人</label>
+				<div class="layui-input-inline">
+					<input name="hrTalentsUsername" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>登记时间</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsRegister" class="layui-input ym" type="date">
+					<input name="hrTalentsFilestatus" value="0"  type="hidden">
+				</div>
+			</div>
+	 </div>	
+					
+     
+     
+   <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn"  lay-filter="demo1" lay-submit="">立即添加</button>
+      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+    </div>
+  </div>	
+   </form>
+
+	
+	<!--form  -->
+	
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
- /* 查询计划 */
-  	function queryPlan(){
-  		$.ajax({
-  			url:"talent/planAll",
-  			type:"post",
-  			asunc:true,
-  			dataType:'json',
-  			success:function(data){
-  				$("#sele").html("");
-        		for(var i=0;i<data.length;i++){
-        			var obj=data[i];
-					 var tr="<option value='"+obj.hr_plan_id+"'>"+obj.hr_plan_name+"</option>";
-					  $("#sele").append(tr);    			
-        		}
-  			}
-  		})
-  	}
-  	$(function(){
-  	    queryPlan();
-  	})
-	/*添加*/
-		function save(){
-	  		var obj=$("#selerck").serialize();
-	  		alert("1111111111")
-				alert(obj);
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+   layui.use('form', function(){
+        var form = layui.form; 
+        $.ajax({
+				url:"talent/planAll",
+				type:"post",
+				dataType:"json",
+				success:function(data){
+				$("#sele1").html("");
+	        		for(var i=0;i<data.length;i++){
+	        		var obj=data[i];
+					  var tr="<option value='"+obj.hr_plan_id+"'>"+obj.hr_plan_name+"</option>";
+				  	$("#sele1").append(tr);  
+				  	 form.render('select');  			
+	        		}
+				}
+			})
+			
+   });
+  //日期
+  laydate.render({
+    elem: '#date'
+  });
+  laydate.render({
+    elem: '#date1'
+  });
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+  //监听指定开关
+  form.on('switch(switchTest)', function(data){
+    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+      offset: '6px'
+    });
+    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+  var obj=$("#selerck").serialize();
 				$.ajax({
 		        	     url : "talent/saverck",
 		        	     type : "post",
@@ -356,7 +518,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		       	         dataType : 'text',//返回的数据类型
 		        	     success : function(data) {
 		        		       alert(data);
+		        		      parent.location.reload();
 		        	}
 		 		});
-	  	}
-  </script>
+
+    return false;
+  });
+ 
+});
+</script>
+					
+					
+    </div>
+  </div>
+</div>
+  </body>
+</html>

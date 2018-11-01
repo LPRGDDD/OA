@@ -44,82 +44,85 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 <!-- 第二块 -->
     <div class="layui-tab-item">
-		 <form method="post" id="formh">
-			<table border="1">
-				<tr>
-					<td>计划名称</td>
-					<td><select name="hrPlanId" onchange="queryHire1()" id="seleP"></select>
-						</td>
-		        </tr>
-		        <tr>
-					<td><input type="hidden" name="hrTalentsId" id="hr_talents_id"/></td>
-					</tr>
-		         <tr>
-					<td>应聘人姓名</td>
-					<td><input type="text" id="hr_talents_name"/></td>
-				 </tr>
-		        <tr>
-					<td>应聘岗位</td>
-					 <td><input type="text" name="hrHireRelation" id="hr_talents_relation"/></td>				
-				</tr>
-				<tr>
-					<td>登陆用户名</td>
-					<td><input type="text" name="hrHireName"/></td>					
-				</tr>
-			
-				<tr>
-					<td>发起人</td>
-					<td><input type="text" name="hrHireUsername"/></td>					
-				</tr>
-				<tr>
-					<td>招聘部门</td>
-					<td>
-					     <select name="deptId" id="seDept"></select>
-					</td>					
-				</tr>
-				
-				<tr>
-					<td>录用日期</td>
-					<td><input type="date" name="hrHireDate"/></td>
-				</tr>
-				<tr>
-					<td>员工类型</td>
-					<td><input type="text" name="hrHireType"/></td>
-				</tr>
-				<tr>
-					<td>职务</td>
-					<td><input type="text" name="hrHireDuty"/></td>
-				</tr>
-				<tr>
-					<td>行政等级</td>
-					<td><input type="text" name="hrHireClassa"/></td>
-				</tr>
-				<tr>
-					<td>入职时间</td>
-					<td><input type="date" name="hrHireEntrytime"/></td>
-				</tr>
-				<tr>
-					<td>正式起薪日期</td>
-					<td><input type="date" name="hrHireStartingsalary"/></td>
-				</tr>
-				<tr>
-					<td>备注</td>
-					<td><input type="text" name="hrHireRemark"/></td>
-				</tr>
-				
-				
-				<tr>
-					<td>添加</td>
-					<td><input type="button" value="确认添加"   onclick="save()"/></td>
-				
-				</tr>
-			</table>
-		</form>
-	
-		
-  <!-- 按钮触发模态框 -->
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="queryHire1()">
-	  开始演示模态框
+		 
+	      <div>
+<form method="post"  id="formh">
+<table class="Table" width="60%" align="center">
+
+   <tr>
+      <td nowrap class="col-md-1 control-label" style="width: 10%">计划名称:</td>
+      <td class="TableData" style="width: 20%">
+         <select name="hrPlanId" onchange="queryHire1()" id="seleP" class="form-control"></select>
+      </td>
+      <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
+      <td class="TableData" style="width: 20%">
+        <input type="text" name="hrTalentsName" id="hr_talents_name" class="form-control">
+        <input type="hidden" name="hrTalentsId" id="hr_talents_id"/>
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label" style="width: 20%">应聘岗位:</td>
+      <td class="TableData">
+         <input type="text" name="hrTalentsToemploy" id="hr_talents_toemploy" class="form-control"   >
+      </td>
+
+      <td nowrap class="col-md-2 control-label">发起人:</td>
+      <td class="TableData">
+        <input type="text" name="hrScreenUsername" class="form-control"  >
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label" style="width: 20%">招聘部门:</td>
+      <td class="TableData">
+          <select name="deptId" id="seDept" class="form-control"></select>
+      </td>
+
+      <td nowrap class="col-md-2 control-label">录用日期:</td>
+      <td class="TableData">
+        <input type="date" name="hrHireDate" class="form-control">
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label" style="width: 20%">员工类型:</td>
+      <td class="TableData">
+          <input type="text" type="text" name="hrHireType" class="form-control">
+      </td>
+
+      <td nowrap class="col-md-2 control-label">职务:</td>
+      <td class="TableData">
+        <input type="text" type="date" name="hrHireDuty" class="form-control">
+      </td>
+   </tr>
+   <tr>
+      <td nowrap class="col-md-2 control-label">入职时间:</td>
+      <td class="TableData">
+        <input type="date" name="hrHireEntrytime" class="form-control">
+      </td>
+      
+      <td nowrap class="col-md-2 control-label">正式起薪日期:</td>
+      <td class="TableData">
+      <input type="date" name="hrHireStartingsalary" class="form-control" 
+      </td>     
+   </tr>
+   
+   <tr>
+	   <td nowrap class="col-md-2 control-label">备注:</td>
+	      <td class="TableData">
+	      <textarea class="form-control" rows="3" name="hrHireRemark"></textarea>
+	      </td>
+   </tr>
+    <tr align="center" class="TableControl">
+      <td colspan=4 nowrap>
+        <input type="button" class="btn btn-default" value="添加"  onclick="save()">
+      </td>
+    </tr>
+  </table>
+</form>
+</div>
+
+<!-- 按钮触发模态框 -->
+<button  data-toggle="modal" data-target="#myModal" onclick="queryScreen1()" id="mtk">
+	+++
 </button>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -142,8 +145,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
-</div>
-    </div>
+		
+
+
+   </div>
   </div>
 </div>
   </body>
@@ -231,11 +236,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				success : function(data) {
 				    $("#hr_talents_id").html("");
 					$("#hr_talents_name").html("");
-					$("#hr_talents_relation").html("");
+					$("#hr_talents_toemploy").html("");
 					var ary = data[0];
 			        $("#hr_talents_id").val(ary.hr_talents_id);
 					$("#hr_talents_name").val(ary.hr_talents_name);
-					$("#hr_talents_relation").val(ary.hr_talents_relation);
+					$("#hr_talents_toemploy").val(ary.hr_talents_toemploy);
 				}
 			}); 
 		})

@@ -12,14 +12,14 @@
   </select>
 	
 	<!-- 计划状态查询  -->
-	<select id="fianAll0" resultType="java.util.Map" parameterType="String">
-        select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=0
+	<select id="fianAll0" resultType="java.util.Map">
+        select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=0 and u.id=#{uid}
   </select>
-  <select id="fianAll1" resultType="java.util.Map" parameterType="String">
-        select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=1
+  <select id="fianAll1" resultType="java.util.Map">
+        select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=1  and u.id=#{uid}
   </select>
-  <select id="fianAll2" resultType="java.util.Map" parameterType="String">
-        select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=2
+  <select id="fianAll2" resultType="java.util.Map">
+        select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=2 and u.id=#{uid}
   </select>
 	
 	

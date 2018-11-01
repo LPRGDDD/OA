@@ -22,11 +22,11 @@ public interface PlanService {
 	   public int deletePlan(int id);
 	   
 	 //根据状态0查询
-	   public List<Map> fianAll0(@Param("keyWord") String keyWord);
+	   public List<Map> fianAll0(@Param("keyWord") String keyWord,Integer uid);
 	   //根据状态1查询
-	   public List<Map> fianAll1(@Param("keyWord") String keyWord);
+	   public List<Map> fianAll1(@Param("keyWord") String keyWord,Integer uid);
 	   //根据状态2查询
-	   public List<Map> fianAll2(@Param("keyWord") String keyWord);
+	   public List<Map> fianAll2(@Param("keyWord") String keyWord,Integer uid);
 	   //修改计划状态批准
 	   public int updatestate1(int id);
 	   //修改计划状态为不批准

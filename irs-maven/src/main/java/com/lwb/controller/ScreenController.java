@@ -35,9 +35,9 @@ public class ScreenController {
 	
 	@RequestMapping("/queryScreen")
 	@ResponseBody
-	public Map queryScreen(Integer page,Integer limit) {
+	public Map queryScreen(String keyWord,Integer uid,Integer page,Integer limit) {
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.queryScreen(null);
+		List<Map> list=ser.queryScreen(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);
