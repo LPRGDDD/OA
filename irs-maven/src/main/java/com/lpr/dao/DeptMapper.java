@@ -55,4 +55,9 @@ public interface DeptMapper {
      * @return
      */
     public List<Map> findUser(@Param("deptId") Integer deptId);
+    /**
+     * 查询所有的员工
+     * @return
+     */
+    public List<Map> findAllUser();
 }

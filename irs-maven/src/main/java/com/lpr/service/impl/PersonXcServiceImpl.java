@@ -58,4 +58,9 @@ private PersonXcMapper dao;
 		// TODO Auto-generated method stub
 		return dao.findPage();
 	}
+	@Override
+	public List<Map> findByUid(Integer uid) {
+		// TODO Auto-generated method stub
+		return dao.findByUid(uid);
+	}
 }

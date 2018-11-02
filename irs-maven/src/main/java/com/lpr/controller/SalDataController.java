@@ -1,10 +1,13 @@
 package com.lpr.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lpr.entity.PersonXc;
+import com.lpr.entity.SalData;
 import com.lpr.service.SalDataService;
 /**
  * 
@@ -49,7 +54,7 @@ public class SalDataController {
 	@ResponseBody
 	public Map findByStatus1(Integer page,Integer limit){
 		PageHelper.startPage(page,limit);
-		List<Map> list=service.findByStatus();
+		List<Map> list=service.findByStatus1();
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
 		map.put("code", 0);
@@ -68,4 +73,19 @@ public class SalDataController {
 		req.setAttribute("salaryflow_id", salaryflow_id);
 		return "page/view/lpr/chayue";
 	}
+	//员工薪酬基数的批量添加
+		@RequestMapping("/insert")
+		@ResponseBody
+		public void insert(SalData s,String userId,HttpServletRequest request,HttpServletResponse response) throws IOException{
+			System.out.println(s);
+			System.out.println(userId);
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out=response.getWriter();
+			int result=service.insert(s, userId);
+			if (result!=0) {
+				out.print("执行成功！");
+			}else{
+				out.print("执行失败！");
+			}
+		}
 }

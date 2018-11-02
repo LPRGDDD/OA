@@ -25,11 +25,25 @@ public class DeptController {
 		List<Map<String, Object>> list=service.findAll();
 		return list;
 	}
+	//根据部门编号传员工
 	@RequestMapping("/findUser")
 	public @ResponseBody Map findUser(Integer page,Integer limit,Integer deptId) {
 		System.out.println(deptId);
 		PageHelper.startPage(page, limit);
 		List<Map> list=service.findUser(deptId);
+		PageInfo<Map> info=new PageInfo<Map>(list);
+		Map map = new HashMap();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("count",info.getTotal());
+        map.put("data", info.getList());
+		return map;
+	}
+	//查询所有员工
+	@RequestMapping("/findAllUser")
+	public @ResponseBody Map findAllUser(Integer page,Integer limit) {
+		PageHelper.startPage(page, limit);
+		List<Map> list=service.findAllUser();
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);

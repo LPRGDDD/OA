@@ -24,4 +24,9 @@ private DeptMapper dao;
 			// TODO Auto-generated method stub
 			return dao.findUser(deptId);
 		}
+	@Override
+	public List<Map> findAllUser() {
+		// TODO Auto-generated method stub
+		return dao.findAllUser();
+	}
 }

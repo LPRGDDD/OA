@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-
 import com.lpr.entity.PersonXc;
 
 public interface PersonXcMapper {
@@ -65,4 +63,10 @@ public interface PersonXcMapper {
      */
     //@Select("select personxc_id from tb_personxc where tb_personxc.id=#{id}")
     public int findById(@Param("id")long id);
+    /**
+     * 根据ID查询一个表的数据
+     * @param uid
+     * @return
+     */
+    public List<Map> findByUid(@Param("uid")int uid);
 }

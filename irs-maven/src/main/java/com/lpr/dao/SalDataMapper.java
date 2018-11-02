@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.lpr.entity.SalData;
 
@@ -21,24 +22,6 @@ public interface SalDataMapper {
      */
     int insert(SalData record);
     /**
-     * 工资流程中的上报数据表添加
-     * @param record
-     * @return
-     */
-    int insertSelective(SalData record);
-    /**
-     * 根据工资上报编号查询
-     * @param salDataId
-     * @return
-     */
-    SalData selectByPrimaryKey(Integer salDataId);
-    /**
-     * 工资流程中的上报数据表修改
-     * @param record
-     * @return
-     */
-    int updateByPrimaryKeySelective(SalData record);
-    /**
      * 工资流程中的上报数据表修改
      * @param record
      * @return
@@ -48,7 +31,10 @@ public interface SalDataMapper {
      * 根据状态（1,0）进行分页查询
      * @param keyWord
      * @param userName
-     * @return
+     * @returnssss
      */
     public List<Map> findByStatus();
+    public List<Map> findByStatus1();
+    public int findById(@Param("id")long id,@Param("pid") Integer pid);
+    public int countxc(@Param("id")int id,@Param("uid")long uid);
 }

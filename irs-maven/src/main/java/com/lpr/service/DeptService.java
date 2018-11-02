@@ -9,6 +9,11 @@ public interface DeptService {
 	 * @return
 	 */
 	public List<Map<String, Object>> findAll();
-	//根据部门编号进行分页查询
-		List<Map> findUser(Integer deptId);
+	/**
+	 * 	根据部门编号进行分页查询
+	 * @param deptId
+	 * @return
+	 */
+	List<Map> findUser(Integer deptId);
+	public List<Map> findAllUser();
 }

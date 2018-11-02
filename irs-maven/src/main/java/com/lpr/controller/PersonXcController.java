@@ -64,4 +64,11 @@ public class PersonXcController {
 			out.print("ÃÌº” ß∞‹£°");
 		}
 	}
+	//ID≤È—Ø±Ì
+	@RequestMapping("/findByUid")
+	@ResponseBody
+	public List<Map> findByUid(Integer uid){
+		List<Map> p=service.findByUid(uid);
+		return p;
+	}
 }

@@ -235,10 +235,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			id : 'myTab', //table的id
 			elem : '#myTab',   //同上
 			//height : 700,  //表格的高度
-			width:1500,
+			width:1300,
 			url : 'salaryflow/findAll?pageNum=' + pagenum + '&limit='+limit+'&keyWord='+keyWord+'&userName='+userName+'',
 			cols : [ [ 
-			{field : 'salaryflow_id',title : '编号',sort : true,}, 
+			{field : 'salaryflow_id',title : '编号',sort : true,width:80}, 
 			{field : 'salaryflow_createtime',title : '创建时间',sort : true},
 			{field : 'salaryflow_creator',title : '创建人',sort : true}, 
 			{field : 'salaryflow_begintime',title : '起始时间',sort : true,edit: 'text'}, 
@@ -247,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			{field : 'salaryflow_month',title : '工资月份',sort : true,edit: 'text'},
 			{field : 'salaryflow_status',title : '状态',sort : true,toolbar: '#lcstatus',},
 			{field : 'salaryflow_mark',title : '备注',sort : true,edit: 'text'},
-			{field : 'right',title:'操作', toolbar: '#barDemo', width:200,height:100} 
+			{field : 'right',title:'操作', toolbar: '#barDemo'} 
                    ] ],
  			//分类显示中文名称(外键id显示成中文名称)
  			done : function(res, page, count) {

@@ -50,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script type="text/html" id="barDemo">
  <a class="layui-btn layui-btn-xs" lay-event="luru">录入</a>
+ <a class="layui-btn layui-btn-xs" lay-event="PLluru">批量录入</a>
 </script>
 <script type="text/html" id="barDemo1">
  <a class="layui-btn layui-btn-xs" lay-event="chayue">查阅</a>
@@ -87,6 +88,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				title : "上报页面",
 				area : [ '90%', '490px' ],
 				offset:['0','50'],
+				content : "http://localhost:8080/oa/saldata/shangbao/" + data.salaryflow_id
+			});
+		}
+		else if (obj.event === 'PLluru') {
+			layer.msg(data.salaryflow_id);
+			layer.open({
+				type : 2,
+				title : "批量上报页面",
+				area : [ '100%', '100%' ],
+				offset:['0','0'],
 				content : "http://localhost:8080/oa/saldata/shangbao/" + data.salaryflow_id
 			});
 		}

@@ -218,4 +218,8 @@
   <select id="findUser" resultType="java.util.Map">
   	  	select *,d.dept_id,d.dept_name from tb_admin a join tb_dept d on a.dept_id=d.dept_id where d.dept_id=#{deptId}
   </select>
+  <!-- 查询所有的员工 -->
+  <select id="findAllUser" resultType="java.util.Map">
+  	  	select *,d.dept_id,d.dept_name from tb_admin a join tb_dept d on a.dept_id=d.dept_id
+  </select>
 </mapper>

@@ -417,7 +417,7 @@
 		on p.id=u.id
 	 <where>
     	<if test="userId!='' and userId!=null">
-    		p.user_id= #{user.userId,jdbcType=INTEGER}
+    		p.id= #{user.id}
     	</if>
     </where>
   </select>
@@ -427,5 +427,8 @@
   </select>
   <select id="findById" resultType="java.lang.Integer">
   	select personxc_id from tb_personxc where tb_personxc.id=#{id}
+  </select>
+  <select id="findByUid" resultType="java.util.Map">
+  	select * from tb_personxc where tb_personxc.id=#{uid}
   </select>
 </mapper>

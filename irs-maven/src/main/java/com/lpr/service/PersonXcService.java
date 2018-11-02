@@ -22,4 +22,6 @@ public interface PersonXcService {
 	 * @return
 	 */
 	public List<Map> findPage();
+	
+	public List<Map> findByUid(Integer uid);
 }
