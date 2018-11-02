@@ -194,6 +194,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
+<script type="text/html" id="toolbarDemo">
+ 	<div class="layui-btn-container">
+    	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+   		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+  	    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+  	</div>
+</script>
 </body>
 </html>
 <script type="text/javascript">
@@ -220,11 +227,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   url : 'dept/findUser?deptId='+deptId+'',
 		   cols : [ [ 
 		   {checkbox:true,fixed:true},
-		   {field : 'id',title : '用户编号',sort : true,width:100}, 
-		   {field : 'fullname',title : '用户名称',sort : true,width:100},
-		   {field : 'phone',title : '联系方式',sort : true,width:170}, 
-		   {field : 'dept_id',title : '部门编号',sort : true,width:170}, 
-		   {field : 'dept_name',title : '部门名称',sort : true,width:170}, 
+		   {field : 'id',title : '用户编号',sort : true,width:100,align:'center'}, 
+		   {field : 'fullname',title : '用户名称',width:100,align:'center'},
+		   {field : 'phone',title : '联系方式',width:170,align:'center'}, 
+		   {field : 'dept_id',title : '部门编号',width:170,align:'center'}, 
+		   {field : 'dept_name',title : '部门名称',width:170,align:'center'}, 
 			       ] ],
 		   page:true
 			       });
@@ -355,40 +362,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   table.render({
 	   elem : '#myTab1',   //同上
 	   url : 'personxc/findPage',
+	   totalRow: true,
+	   toolbar: '#toolbarDemo',
 	   cols : [ [ 
-	   {field : 'personxc_id',title : '编号',sort : true,width:100},//员工薪酬基数编号
-	   {field : 'username',title : '用户名称',sort : true,width:100},//用户名称
-	   {field : 'personxc_s1',title : '薪酬项目1',sort : true,width:170},//薪酬项目1
-	   {field : 'personxc_s2',title : '薪酬项目2',sort : true,width:170},//薪酬项目2 
-	   {field : 'personxc_s3',title : '薪酬项目3',sort : true,width:170},//薪酬项目3
-	   {field : 'personxc_s4',title : '薪酬项目4',sort : true,width:170},//薪酬项目4
-	   {field : 'personxc_s5',title : '薪酬项目5',sort : true,width:170},//薪酬项目5
-	   {field : 'personxc_s6',title : '薪酬项目6',sort : true,width:170},//薪酬项目6
-	   {field : 'personxc_s7',title : '薪酬项目7',sort : true,width:170},//薪酬项目7
-	   {field : 'personxc_s8',title : '薪酬项目8',sort : true,width:170},//薪酬项目8
-	   {field : 'personxc_s9',title : '薪酬项目9',sort : true,width:170},//薪酬项目9
-	   {field : 'personxc_s10',title : '薪酬项目10',sort : true,width:170},//薪酬项目10
-	   {field : 'personxc_insurejs',title : '保险基数',sort : true,width:170},//员工保险基数 
-	   {field : 'personxc_ylinsure',title : '养老保险',sort : true,width:170},//员工养老保险
-	   {field : 'personxc_dwyl',title : '单位养老',sort : true,width:170},//员工单位养老
-	   {field : 'personxc_gryl',title : '个人养老',sort : true,width:170},//员工个人养老
-	   {field : 'personxc_ylbx',title : '医疗保险',sort : true,width:170},//员工医疗保险
-	   {field : 'personxc_dw_medical',title : '单位医疗',sort : true,width:170},//员工单位医疗
-	   {field : 'personxc_grmedical',title : '个人医疗',sort : true,width:170},//员工个人医疗
-	   {field : 'personxc_group',title : '生育保险',sort : true,width:170},//员工生育保险
-	   {field : 'personxc_dwsy',title : '单位生育',sort : true,width:170},//员工单位生育
-	   {field : 'personxc_sybx',title : '失业保险',sort : true,width:170},//员工失业保险
-	   {field : 'personxc_dwshiye',title : '单位失业',sort : true,width:170},//员工单位失业
-	   {field : 'personxc_grsy',title : '个人失业',sort : true,width:170},//员工个人失业
-	   {field : 'personxc_gsbx',title : '工伤保险',sort : true,width:170},//员工工伤保险
-	   {field : 'personxc_dwgs',title : '单位工伤',sort : true,width:170},//员工单位工伤
-	   {field : 'personxc_housingfund',title : '住房公积金',sort : true,width:170},//员工住房公积金
-	   {field : 'personxc_dwzf',title : '单位住房',sort : true,width:170},//员工单位住房
-	   {field : 'personxc_grzf',title : '个人住房',sort : true,width:170},//员工个人住房
-	   {field : 'personxc_expression',title : '表现',sort : true,width:170}//员工表现
+	   {type: 'checkbox', fixed: 'left'},
+	   {field : 'personxc_id',title : '编号',fixed: 'left',sort : true,width:80,align:'center',totalRowText: '合计',unresize: true},//员工薪酬基数编号
+	   {field : 'fullname',title : '员工名称',fixed: 'left',width:100,align:'center'},//用户名称
+	   {field : 'personxc_s1',title : '薪酬项目1',edit: 'text',width:120,align:'center', totalRow: true},//薪酬项目1
+	   {field : 'personxc_s2',title : '薪酬项目2',edit: 'text',width:120,align:'center'},//薪酬项目2 
+	   {field : 'personxc_s3',title : '薪酬项目3',edit: 'text',width:120,align:'center'},//薪酬项目3
+	   {field : 'personxc_s4',title : '薪酬项目4',edit: 'text',width:120,align:'center'},//薪酬项目4
+	   {field : 'personxc_s5',title : '薪酬项目5',edit: 'text',width:120,align:'center'},//薪酬项目5
+	   {field : 'personxc_s6',title : '薪酬项目6',edit: 'text',width:120,align:'center'},//薪酬项目6
+	   {field : 'personxc_s7',title : '薪酬项目7',edit: 'text',width:120,align:'center'},//薪酬项目7
+	   {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:120,align:'center'},//薪酬项目8
+	   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:120,align:'center'},//薪酬项目9
+	   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:120,align:'center'},//薪酬项目10
+	   {field : 'personxc_insurejs',title : '保险基数',edit: 'text',width:120,align:'center', totalRow: true},//员工保险基数 
+	   {field : 'personxc_ylinsure',title : '养老保险',edit: 'text',width:120,align:'center'},//员工养老保险
+	   {field : 'personxc_dwyl',title : '单位养老',edit: 'text',width:120,align:'center'},//员工单位养老
+	   {field : 'personxc_gryl',title : '个人养老',edit: 'text',width:120,align:'center'},//员工个人养老
+	   {field : 'personxc_ylbx',title : '医疗保险',edit: 'text',width:120,align:'center'},//员工医疗保险
+	   {field : 'personxc_dw_medical',title : '单位医疗',edit: 'text',width:120,align:'center'},//员工单位医疗
+	   {field : 'personxc_grmedical',title : '个人医疗',edit: 'text',width:120,align:'center'},//员工个人医疗
+	   {field : 'personxc_group',title : '生育保险',edit: 'text',width:120,align:'center'},//员工生育保险
+	   {field : 'personxc_dwsy',title : '单位生育',edit: 'text',width:120,align:'center'},//员工单位生育
+	   {field : 'personxc_sybx',title : '失业保险',edit: 'text',width:120,align:'center'},//员工失业保险
+	   {field : 'personxc_dwshiye',title : '单位失业',edit: 'text',width:120,align:'center'},//员工单位失业
+	   {field : 'personxc_grsy',title : '个人失业',edit: 'text',width:120,align:'center'},//员工个人失业
+	   {field : 'personxc_gsbx',title : '工伤保险',edit: 'text',width:120,align:'center'},//员工工伤保险
+	   {field : 'personxc_dwgs',title : '单位工伤',edit: 'text',width:120,align:'center'},//员工单位工伤
+	   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:120,align:'center'},//员工住房公积金
+	   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
+	   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
+	   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center',fixed: 'right'}//员工表现
 		       ] ],
 	   page:true
 		       });
+		//工具栏事件
+	  table.on('toolbar(myTab1)', function(obj){
+	    var checkStatus = table.checkStatus(obj.config.id);
+	    switch(obj.event){
+	      case 'getCheckData':
+	        var data = checkStatus.data;
+	        layer.alert(JSON.stringify(data));
+	      break;
+	      case 'getCheckLength':
+	        var data = checkStatus.data;
+	        layer.msg('选中了：'+ data.length + ' 个');
+	      break;
+	      case 'isAll':
+	        layer.msg(checkStatus.isAll ? '全选': '未全选')
+	      break;
+	    };
+	  });
 })
 /* 页面刷新调用查询方法 */
  $(function(){

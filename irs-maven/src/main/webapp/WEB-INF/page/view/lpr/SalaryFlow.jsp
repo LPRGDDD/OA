@@ -229,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			url : 'salaryflow/findAll',
 			page: true,
 			cols : [ [ 
-			{field : 'salaryflow_id',title : '编号',sort : true,width:80,align:'center'}, 
+			{field : 'salaryflow_id',title : '编号',sort : true,width:90,align:'center',fixed: 'left'}, 
 			{field : 'salaryflow_createtime',title : '创建时间',align:'center'},
 			{field : 'salaryflow_creator',title : '创建人',align:'center'}, 
 			{field : 'salaryflow_begintime',title : '起始时间',edit: 'text',align:'center'}, 
@@ -238,7 +238,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			{field : 'salaryflow_month',title : '工资月份',edit: 'text',align:'center'},
 			{field : 'salaryflow_status',title : '状态',toolbar: '#lcstatus',align:'center'},
 			{field : 'salaryflow_mark',title : '备注',edit: 'text',align:'center'},
-			{field : 'right',title:'操作', toolbar: '#barDemo'} 
+			{title:'操作', toolbar: '#barDemo',fixed: 'right'} 
                    ] ],
 		});
 		 //监听状态操作

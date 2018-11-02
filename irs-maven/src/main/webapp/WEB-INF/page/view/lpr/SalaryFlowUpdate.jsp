@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">备注</label>
 			<div class="layui-input-block">
-				<textarea placeholder="请输入内容" class="layui-textarea" value="${sf.salaryflowMark }" name="salaryflowMark"></textarea>
+				<textarea placeholder="请输入内容" class="layui-textarea" name="salaryflowMark">${sf.salaryflowMark }</textarea>
 			</div>
 		</div>
 		<div class="layui-form-item">
