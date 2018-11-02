@@ -63,8 +63,20 @@
 			<div class="layui-tab-item layui-show">
 					<table class="layui-hide" id="test" lay-filter="demo"></table>
 					<script id="barDemo" type="text/html">
-  						<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  						{{#if(d.exState==2){  }}
+			  						<a class="layui-btn layui-btn-xs" style="color:#FFFF00" lay-event="detail">回归</a>
+						{{#}  }}
+  						{{# if(d.exState==1){ }}
+								<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  						{{# } }}
+						{{# if(d.exState==0){ }}
+									<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  						{{# } }}
+						{{# if(d.exState==3){ }}
+									<a class="layui-btn layui-btn-xs" style="color:#00FF00" lay-event="xiang">详情</a>
+  						{{# } }}
 					</script>
 			</div>
 			<div class="layui-tab-item">
@@ -670,20 +682,22 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   //监听提交
   form.on('submit(demo1)', function(data){
     var obj=$("#form1").serialize();
-			  alert(obj);
 			$.ajax({
 				 url:"WaiChu/save",
                  type:'post',
                  data:obj,
                  dataType:'json',
                  success:function (data) {
-                    alert(data);
                     if(data>0){
-                    layer.msg("添加成功");
-                    	location.reload();
+                   		layer.confirm('添加成功', function(index){
+					       location.reload();
+					        layer.close(index);
+					     });
                     }else{
-                    	layer.msg("添加失败");
-                    	location.reload();
+                    	layer.confirm('添加失败', function(index){
+					       location.reload();
+					        layer.close(index);
+					     });
                     }
                 }
 			});
@@ -704,6 +718,15 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 </script>
 <script>
 var num=$("#id").val();
+
+				var today=new Date();
+			    var H=today.getFullYear();
+			    var M=today.getMonth()+1;
+			    var R=today.getDate();
+			    var h=today.getHours();
+			    var mm=today.getMinutes();
+			    var ss=today.getSeconds();
+			  	var xitong=H+"-"+M+"-"+R+" "+h+":"+mm+":"+ss;
 layui.use('table', function(){
   var table = layui.table;
   //监听表格复选框选择
@@ -731,10 +754,12 @@ layui.use('table', function(){
 					    $("[data-field='exState']").children().each(function(){
 							if($(this).text()=='0'){		
 								$(this).text("待审批")		
-							}else if($(this).text()=='1'){	
+							}else if($(this).text()=='2'){	
 								$(this).text("已批准")	
-							}else if($(this).text()=='2'){
+							}else if($(this).text()=='1'){
 								$(this).text("未批准")
+							}else if($(this).text()=='4'){
+								$(this).text("待归来")
 							}else if($(this).text()=='3'){
 								$(this).text("已归来")
 							}
@@ -746,7 +771,26 @@ layui.use('table', function(){
   table.on('tool(demo)', function(obj){
     var data = obj.data;
     if(obj.event === 'detail'){
-      layer.msg('ID：'+ data.id + ' 的查看操作');
+       $.ajax({
+			url : "WaiChu/HuiGui",
+			data : {
+				'sid' : data.sId,
+				'syXiao':xitong
+			},
+			type : "post",
+			dataType : 'Json',
+			success : function(data) {
+				if(data>0){
+					layer.confirm("操作成功",function(index){
+					location.reload();
+					});
+				}else{
+					layer.confirm("操作失败",function(index){
+					location.reload();
+					});
+				}
+			}
+		})
     } else if(obj.event === 'del'){
       layer.confirm('真的删除行么', function(index){
         obj.del();
@@ -773,10 +817,19 @@ layui.use('table', function(){
      layer.open({
             type:2,
             title:"查找外出登记",
-            area: ['90%','90%'],
-            offset: ['10px', '100px'],
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
             content:"http://localhost:8080/oa/WaiChu/WaiSel/"+data.sId+"/"+data.id
         });
+    }else if(obj.event=='xiang'){
+    	  layer.open({
+            type:2,
+            title:"查找外出登记",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/HuiXiang/"+data.sId+"/"+data.id+"/"+data.syState
+        });
+    	
     }
   });
   

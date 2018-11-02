@@ -79,9 +79,8 @@ public class SpringFestivalController {
 	//更改节假日
 	@RequestMapping("/updateAll")
 	@ResponseBody
-	public int updateAll(SpringFestival sf,HttpServletResponse response){
+	public int updateAll(SpringFestival sf){
 		int id=ss.updateSpringFestival(sf);
-		System.out.println(id+"----------------------");
 		return id;
 	}
 	@RequestMapping("/queryById/{sfId}")

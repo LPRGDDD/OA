@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>  
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'WaiUpdate.jsp' starting page</title>
+    <title>My JSP 'updateWai.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -20,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" href="page/resources/layui/css/layui.css"
+<link rel="stylesheet" href="page/resources/layui/css/layui.css"
 	media="all">
 <script src="page/resources/jquery-1.11.3.min.js"></script>
 <script src="page/resources/jquery.form.js"></script>
@@ -49,14 +50,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <div>
-   		<form class="layui-form" id="form1" action="">
+    <form class="layui-form" id="form1" action="">
 					<div class="layui-form-item">
 						<label class="layui-form-label"><span class="yan">*</span>外出原因</label>
 						<div class="layui-input-inline">
 							<!--style="height:35px"  -->
-							<input name="syreason" class="layui-input lxm" type="text"
-								style="height:35px" placeholder="请输入" value="${list.syReason }" autocomplete="off"
+							<input name="syreason" class="layui-input lxm"  value="${list.syReason}" type="text"
+								style="height:35px" placeholder="请输入" autocomplete="off"
 								lay-verify="required" lay-verify="title">
 						</div>
 					</div>
@@ -73,8 +73,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="layui-inline">
 							<label class="layui-form-label"><span class="yan">*</span>开始日期</label>
 							<div class="layui-input-inline">
-								<input class="layui-input lxm" readonly="readonly" value="${list.wcTime}" name="wctime"  style="height:35px" id="test4"
-									type="text" placeholder="HH:mm:ss" lay-verify="kaishi">
+								<input class="layui-input lxm" readonly="readonly" name="wctime" value="${list.wcTime}"  style="height:35px" id="test4"
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="kaishi">
 							</div>
 						</div>
 					</div>
@@ -82,8 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="layui-inline">
 							<label class="layui-form-label"><span class="yan">*</span>结束日期</label>
 							<div class="layui-input-inline">
-								<input class="layui-input lxm" readonly="readonly" value="${list.wcTimeEnd }"  name="wctimeend"  style="height:35px" id="test30"
-									type="text" placeholder="HH:mm:ss" lay-verify="jieshi">
+								<input class="layui-input lxm" readonly="readonly"  name="wctimeend" value="${list.wcTimeEnd }"  style="height:35px" id="test30"
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi">
 							</div>
 						</div>
 					</div>
@@ -91,24 +91,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="layui-inline">
 							<label class="layui-form-label">外出时长</label>
 							<div class="layui-input-inline" style="width:100px;">
-								<input  name="wctimeone" id="wctimeone" value="#{list.wcTimeOne}"   class="layui-input" onfocus="shi()"  style="height:35px"
+								<input  name="wctimeone" id="wctimeone" value="${list.wcTimeOne}" readonly="readonly"   class="layui-input" onfocus="shi()"  style="height:35px"
 									type="text" placeholder="" autocomplete="off">
 							</div>
 							<div class="layui-form-mid">时</div>
 							<div class="layui-input-inline" style="width:100px;height:35px;">
-								<input name="wctimetwo" id="wctimetwo" value="${list.wcTimeTwo}" class="layui-input"   style="height:35px"
+								<input name="wctimetwo" id="wctimetwo" value="${list.wcTimeTwo}" readonly="readonly" class="layui-input"   style="height:35px"
 									type="text" placeholder="" autocomplete="off">
 							</div>
 							<div class="layui-form-mid">分</div>
 						</div>
 					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">是否用车</label>
-						<div class="layui-input-block">
-							<input name="car" title="否" type="radio" checked="checked" value="0">
-							<input name="car" title="是" type="radio" value="1">
-						</div>
-					</div>
+					
 					<div class="layui-form-item">
 						<div class="layui-inline">
 							<label class="layui-form-label">选择审批人</label>
@@ -120,18 +114,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<button class="layui-btn" lay-filter="demo1" lay-submit="">立即提交</button>
+							<button class="layui-btn" lay-filter="demo1" onclick="save()" lay-submit="">立即提交</button>
 							<button class="layui-btn layui-btn-primary" onclick="shuaxin()">关闭</button>
 						</div>
 					</div>
-					<input type="hidden" name="systate" value="1"/>
+					<input type="hidden" name="systate" value="2"/>
 					<input type="hidden" name="exstate" value="0"/>
-					<input type="hidden" name="syshen" id="xitong"/>
-					<input type="hidden" name="sid" value="${list.sId }">
+					<input type="hidden" name="syshen" id="xitong">
+					<input type="hidden" name="sid" value="${list.sId}">
+					<input type="hidden" name="id" id="id" value="<shiro:principal property="id"/>">
 				</form>
-   </div>
-  </body>
-  <script >
+				
+	<script >
 	function shuaxin(){
 		parent.location.reload();
 	}
@@ -148,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	})
 </script>
 <script>
-var id=${list.shenId}
+   var id=${list.shenId}
 layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form
   ,layer = layui.layer
@@ -172,10 +166,10 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 				$("#sele1").html("");
 	        		for(var i=0;i<data.length;i++){
 	        		var obj=data[i];
-				   	
-				    var tr="<option value='"+obj.id+"'>"+obj.username+"</option>";
+					 var tr="<option value='"+obj.id+"'>"+obj.username+"</option>";
 				  	$("#sele1").append(tr);  
-					 $("#sele1 option[value='"+id+"']").attr("selected", true);
+				  	$("#sele1 option[value='"+id+"']").attr("selected", true);
+				  	
 				  	 form.render('select');  			
 	        		}
 				}
@@ -224,21 +218,29 @@ layui.use(['form', 'layedit', 'laydate'], function(){
     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
   });
   
-  //监听提交 WaiChu/updateWai
+  //监听提交
   form.on('submit(demo1)', function(data){
-    var obj1=$("#form1").serialize();
-			  alert(obj1);
+    var obj=$("#form1").serialize();
 			$.ajax({
 				 url:"WaiChu/updateWai",
                  type:'post',
-                 data:obj1,
+                 data:obj,
                  dataType:'json',
                  success:function (data) {
-                	layer.config("更改成功", function(index) {
-                		location.reload();
-                	})
+                    if(data>0){
+                   		layer.confirm('操作成功', function(index){
+					       parent.location.reload();
+					        layer.close(index);
+					     });
+                    }else{
+                    	layer.confirm('操作失败', function(index){
+					       parent.location.reload();
+					        layer.close(index);
+					     });
+                    }
                 }
 			});
+			return false;
   });
  
   //表单初始赋值
@@ -253,6 +255,28 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   })
 });
 </script>
+<!--时间  -->
+	<script>
+		layui.use('laydate', function() {
+			var laydate = layui.laydate;
+			//时间选择器
+			laydate.render({
+				elem : '#test4',
+				type : 'time'
+			});
+			
+			//日期时间选择器
+			laydate.render({
+				elem : '#test5',
+				type : 'datetime'
+			});
+	//日期时间选择器
+			laydate.render({
+				elem : '#test32',
+				type : 'datetime'
+			});
+})
+	</script>
 <script type="text/javascript">
 		
 		
@@ -558,3 +582,5 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 			});
 		});
 </script>
+  </body>
+</html>

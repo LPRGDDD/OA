@@ -103,7 +103,7 @@
 
 				<div class="layui-form-item">
 					<label class="layui-form-label">排班名称</label> <input
-						class="layui-input  lxm" type="text" id="dtname" value="${list.dtname }" name="dtname" />
+						class="layui-input  lxm" type="text" id="dtname" style="height:35px" value="${list.dtname }" name="dtname" />
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">选择部门</label> <input
@@ -145,23 +145,22 @@
 					<input id="userTwo" style="display: none"> <br>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label">是否启用</label>
 					<div class="layui-input-block">
-						<input type="radio" name="dtstate" value="0" id="dtstate"
+						<input type="hidden" name="dtstate" value="0" id="dtstate"
 							checked="checked" style="display: none" />
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">开始日期</label>
 					<div class="layui-input-inline">
-						<input class="layui-input lxm" name="dtDate_start"
+						<input class="layui-input lxm" style="height:35px" name="dtDate_start"
 							id="test-limit1" type="text" value="${list.dtdateStart}" placeholder="${list.dtdateStart}">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">结束日期</label>
 					<div class="layui-input-inline">
-						<input class="layui-input lxm" name="dtDate_end" value="${list.dtdateEnd}" id="test-limit2"
+						<input class="layui-input lxm" style="height:35px" name="dtDate_end" value="${list.dtdateEnd}" id="test-limit2"
 							type="text" >
 					</div>
 				</div>

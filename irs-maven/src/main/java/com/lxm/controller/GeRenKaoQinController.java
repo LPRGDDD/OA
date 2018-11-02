@@ -18,11 +18,27 @@ import com.lxm.service.GeRenKaoQinService;
 public class GeRenKaoQinController {
 	@Autowired
 	private GeRenKaoQinService gs;
-	/*页面跳转*/
+	/*考勤审批页面*/
 	@RequestMapping("/KaoQin.action")
 	public String test() {
 		return "page/view/lxm/ShenPi";
 	}
+	/*请假跳转*/
+	@RequestMapping("/QingJia.action")
+	public String test1() {
+		return "page/view/lxm/QingJia";
+	}
+	/*加班页面跳转*/
+	@RequestMapping("/JiaBan.action")
+	public String test2() {
+		return "page/view/lxm/JiaBan";
+	}
+	//出差页面
+	@RequestMapping("/ChuChai.action")
+	public String test3(){
+		return "page/view/lxm/ChuChai";
+	}
+	
 	@RequestMapping("/One")
 	@ResponseBody
 	public List<TbAdmin> ShenPiRen(int deptId){

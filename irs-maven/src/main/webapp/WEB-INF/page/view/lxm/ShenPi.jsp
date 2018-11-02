@@ -60,48 +60,141 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</ul>
 		<div class="layui-tab-content">
 			<!--待审批  -->
+			
 			<div class="layui-tab-item layui-show">
-					<table class="layui-table" lay-filter="demo"></table> 
+					<input type="hidden" id="id" value="<shiro:principal property="id"/>"/>
+					<table class="layui-hide" lay-filter="demo" id="test"></table> 
 					<script id="barDemo" type="text/html">
-  						<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
- 						<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
- 					    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+ 						<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
+  						<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">通过</a>
+ 					    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">驳回</a>
 					</script>	
 			</div>
+			<!-- 外出查询 -->  
 			<div class="layui-tab-item">
-				2
+					<table class="layui-hide" lay-filter="demo1" id="test1"></table> 
+					<script id="waichu" type="text/html">
+ 						{{#if(d.exState==2){  }}
+			  						<a class="layui-btn layui-btn-xs" lay-event="del">待回归</a>		
+						{{#}  }}
+						<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
+					</script>	
 			</div>
+			<!--请假查询  -->
 			<div class="layui-tab-item">
-				3
+				<table class="layui-hide" lay-filter="demo2" id="test2"></table> 
+				<script id="qingjia" type="text/html">
+ 						{{#if(d.exState==2){  }}
+			  						<a class="layui-btn layui-btn-xs" lay-event="del">待回归</a>		
+						{{#}  }}
+						<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
+					</script>	
 			</div>
+			<!--加班查询 -->
 			<div class="layui-tab-item">
-				4
+				<table class="layui-hide" lay-filter="demo3" id="test3"></table> 
+				<script id="jiaban" type="text/html">
+ 						{{#if(d.exState==2){  }}
+			  						<a class="layui-btn layui-btn-xs" lay-event="del">待完成</a>		
+						{{#}  }}
+						<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
+					</script>	
 			</div>
+			<!--出差查询  -->
 			<div class="layui-tab-item">
-				5
+					<table class="layui-hide" lay-filter="demo4" id="test4"></table> 
+					<script id="chuchai" type="text/html">
+ 						{{#if(d.exState==2){  }}
+			  						<a class="layui-btn layui-btn-xs" lay-event="del">待回归</a>		
+						{{#}  }}
+						<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
+					</script>	
 			</div>
 		</div>
 	</div>
 <!--表格渲染  -->
+<!--  -->
+
 <script>
+var num=$("#id").val();
+
 layui.use('table', function(){
   var table = layui.table;
   //监听表格复选框选择
   table.on('checkbox(demo)', function(obj){
     console.log(obj)
   });
+  table.render({
+    elem: '#test'
+    ,url:'WaiChu/DaiShenPi'
+    ,where:{
+    	id:num
+    }
+     ,cols: [[
+      {field:'syState', width:120, title: '类型'}
+      ,{field:'username', width:120, title: '申请人'}
+      ,{field:'syTime', width:120, title: '外出时间'}
+      ,{field:'wcTime', width:120, title: '开始时间'}
+      ,{field:'wcTimeEnd',width:120, title: '结束时间'}
+      ,{field:'syReason', width:120, title: '摘要'}
+      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
+    ]],done:function(){
+					   //分类显示中文名称	
+					    $("[data-field='syState']").children().each(function(){
+							if($(this).text()=='1'){		
+								$(this).text("外出登记")		
+							}else if($(this).text()=='2'){	
+								$(this).text("请假登记")	
+							}else if($(this).text()=='3'){
+								$(this).text("加班登记")
+							}else if($(this).text()=='4'){
+								$(this).text("出差登记")
+							}
+							})
+					 }
+    ,page:true
+  }); 
+
+  
   //监听工具条
   table.on('tool(demo)', function(obj){
     var data = obj.data;
     if(obj.event === 'detail'){
-      layer.msg('ID：'+ data.id + ' 的查看操作');
+      $.ajax({
+				url:'WaiChu/updateState',
+				data:{
+					sid:data.sId
+				},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data>0){
+					 	alert("已审批")
+					 	location.reload();
+					}else{
+					alert("未审批");
+						location.reload();
+					}
+				}
+			})
     } else if(obj.event === 'del'){
-      layer.confirm('真的删除行么', function(index){
-        obj.del();
-        layer.close(index);
+      
+         layer.open({
+            type:2,
+            title:"驳回原因",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/BoHui/"+data.sId
       });
+        
     } else if(obj.event === 'edit'){
-      layer.alert('编辑行：<br>'+ JSON.stringify(data))
+      layer.open({
+            type:2,
+            title:"查找外出登记",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/Xiang/"+data.sId+"/"+data.id+"/"+data.syState
+      });
     }
   });
   
@@ -129,6 +222,447 @@ layui.use('table', function(){
 });
 </script>
 
+<!--审批后外出查询  -->
+<script>
+var num=$("#id").val();
+var today=new Date();
+ var H=today.getFullYear();
+ var M=today.getMonth()+1;
+ var R=today.getDate();
+ var h=today.getHours();
+ var mm=today.getMinutes();
+ var ss=today.getSeconds();
+var xitong=H+"-"+M+"-"+R+" "+h+":"+mm+":"+ss;
+layui.use('table', function(){
+  var table = layui.table;
+  //监听表格复选框选择
+  table.on('checkbox(demo1)', function(obj){
+    console.log(obj)
+  });
+  table.render({
+    elem: '#test1'
+    ,url:'WaiChu/TongWai'
+    ,where:{
+    	id:num
+    }
+     ,cols: [[
+      {field:'exState', width:120, title: '类型'}
+      ,{field:'username', width:120, title: '申请人'}
+      ,{field:'syTime', width:120, title: '外出时间'}
+      ,{field:'wcTime', width:120, title: '开始时间'}
+      ,{field:'wcTimeEnd',width:120, title: '结束时间'}
+      ,{field:'syReason', width:120, title: '摘要'}
+      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{fixed: 'right', width:178, align:'center', toolbar: '#waichu'}
+    ]],done:function(){
+					   //分类显示中文名称	
+					    $("[data-field='exState']").children().each(function(){
+							if($(this).text()=='2'){		
+								$(this).text("已批准")		
+							}else if($(this).text()=='1'){	
+								$(this).text("未批准")	
+							}else if($(this).text()=='4'){
+								$(this).text("待归来")
+							}else if($(this).text()=='3'){
+								$(this).text("已归来")
+							}
+							})
+							
+					 }
+    ,page:true
+  }); 
+
+  
+  //监听工具条
+  table.on('tool(demo1)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      layer.msg('ID：'+ data.id + ' 的查看操作');
+    } else if(obj.event === 'del'){
+     	$.ajax({
+			url : "WaiChu/HuiGui",
+			data : {
+				'sid' : data.sId,
+				'syXiao':xitong
+			},
+			type : "post",
+			dataType : 'Json',
+			success : function(data) {
+				if(data>0){
+					layer.confirm("操作成功",function(index){
+					location.reload();
+					});
+				}else{
+					layer.confirm("操作失败",function(index){
+					location.reload();
+					});
+				}
+			}
+		})
+     
+    } else if(obj.event === 'edit'){
+      layer.open({
+            type:2,
+            title:"查找外出登记",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/WaiXiang/"+data.sId+"/"+data.id+"/"+data.syState
+      });
+    }
+  });
+  var $ = layui.$, active = {
+    getCheckData: function(){ //获取选中数据
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.alert(JSON.stringify(data));
+    }
+    ,getCheckLength: function(){ //获取选中数目
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.msg('选中了：'+ data.length + ' 个');
+    }
+    ,isAll: function(){ //验证是否全选
+      var checkStatus = table.checkStatus('idTest');
+      layer.msg(checkStatus.isAll ? '全选': '未全选')
+    }
+  };
+  
+  $('.demoTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+</script>
+<!--审批后请假查询  -->
+<script>
+var num=$("#id").val();
+var today=new Date();
+ var H=today.getFullYear();
+ var M=today.getMonth()+1;
+ var R=today.getDate();
+ var h=today.getHours();
+ var mm=today.getMinutes();
+ var ss=today.getSeconds();
+var xitong=H+"-"+M+"-"+R+" "+h+":"+mm+":"+ss;
+layui.use('table', function(){
+  var table = layui.table;
+  //监听表格复选框选择
+  table.on('checkbox(demo2)', function(obj){
+    console.log(obj)
+  });
+  table.render({
+    elem: '#test2'
+    ,url:'WaiChu/TongQing'
+    ,where:{
+    	id:num
+    }
+     ,cols: [[
+      {field:'exState', width:120, title: '类型'}
+      ,{field:'username', width:120, title: '申请人'}
+      ,{field:'wcTime', width:120, title: '开始时间'}
+      ,{field:'wcTimeEnd',width:120, title: '结束时间'}
+      ,{field:'syReason', width:120, title: '摘要'}
+      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{fixed: 'right', width:178, align:'center', toolbar: '#qingjia'}
+    ]],done:function(){
+					   //分类显示中文名称	
+					    $("[data-field='exState']").children().each(function(){
+							if($(this).text()=='2'){		
+								$(this).text("已批准")		
+							}else if($(this).text()=='1'){	
+								$(this).text("未批准")	
+							}else if($(this).text()=='4'){
+								$(this).text("待归来")
+							}else if($(this).text()=='3'){
+								$(this).text("已归来")
+							}
+							})
+							
+					 }
+    ,page:true
+  }); 
+
+  
+  //监听工具条
+  table.on('tool(demo2)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      layer.msg('ID：'+ data.id + ' 的查看操作');
+    } else if(obj.event === 'del'){
+     	$.ajax({
+			url : "WaiChu/HuiGui",
+			data : {
+				'sid' : data.sId,
+				'syXiao':xitong
+			},
+			type : "post",
+			dataType : 'Json',
+			success : function(data) {
+				if(data>0){
+					layer.confirm("操作成功",function(index){
+					location.reload();
+					});
+				}else{
+					layer.confirm("操作失败",function(index){
+					location.reload();
+					});
+				}
+			}
+		})
+     
+    } else if(obj.event === 'edit'){
+      layer.open({
+            type:2,
+            title:"查找外出登记",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/WaiXiang/"+data.sId+"/"+data.id+"/"+data.syState
+      });
+    }
+  });
+  var $ = layui.$, active = {
+    getCheckData: function(){ //获取选中数据
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.alert(JSON.stringify(data));
+    }
+    ,getCheckLength: function(){ //获取选中数目
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.msg('选中了：'+ data.length + ' 个');
+    }
+    ,isAll: function(){ //验证是否全选
+      var checkStatus = table.checkStatus('idTest');
+      layer.msg(checkStatus.isAll ? '全选': '未全选')
+    }
+  };
+  
+  $('.demoTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+</script>
+<!--审批后加班查询  -->
+<script>
+var num=$("#id").val();
+var today=new Date();
+ var H=today.getFullYear();
+ var M=today.getMonth()+1;
+ var R=today.getDate();
+ var h=today.getHours();
+ var mm=today.getMinutes();
+ var ss=today.getSeconds();
+var xitong=H+"-"+M+"-"+R+" "+h+":"+mm+":"+ss;
+layui.use('table', function(){
+  var table = layui.table;
+  //监听表格复选框选择
+  table.on('checkbox(demo3)', function(obj){
+    console.log(obj)
+  });
+  table.render({
+    elem: '#test3'
+    ,url:'WaiChu/TongJia'
+    ,where:{
+    	id:num
+    }
+     ,cols: [[
+      {field:'exState', width:120, title: '类型'}
+      ,{field:'username', width:120, title: '申请人'}
+      ,{field:'wcTime', width:120, title: '开始时间'}
+      ,{field:'wcTimeEnd',width:120, title: '结束时间'}
+      ,{field:'syReason', width:120, title: '摘要'}
+      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{fixed: 'right',title:'操作', width:178, align:'center', toolbar: '#jiaban  '}
+    ]],done:function(){
+					   //分类显示中文名称	
+					    $("[data-field='exState']").children().each(function(){
+							if($(this).text()=='2'){		
+								$(this).text("已批准")		
+							}else if($(this).text()=='1'){	
+								$(this).text("未批准")	
+							}else if($(this).text()=='4'){
+								$(this).text("待归来")
+							}else if($(this).text()=='3'){
+								$(this).text("已归来")
+							}
+							})
+							
+					 }
+    ,page:true
+  }); 
+
+  
+  //监听工具条
+  table.on('tool(demo3)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      layer.msg('ID：'+ data.id + ' 的查看操作');
+    } else if(obj.event === 'del'){
+     	$.ajax({
+			url : "WaiChu/HuiGui",
+			data : {
+				'sid' : data.sId,
+				'syXiao':xitong
+			},
+			type : "post",
+			dataType : 'Json',
+			success : function(data) {
+				if(data>0){
+					layer.confirm("操作成功",function(index){
+					location.reload();
+					});
+				}else{
+					layer.confirm("操作失败",function(index){
+					location.reload();
+					});
+				}
+			}
+		})
+     
+    } else if(obj.event === 'edit'){
+      layer.open({
+            type:2,
+            title:"查找外出登记",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/WaiXiang/"+data.sId+"/"+data.id+"/"+data.syState
+      });
+    }
+  });
+  var $ = layui.$, active = {
+    getCheckData: function(){ //获取选中数据
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.alert(JSON.stringify(data));
+    }
+    ,getCheckLength: function(){ //获取选中数目
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.msg('选中了：'+ data.length + ' 个');
+    }
+    ,isAll: function(){ //验证是否全选
+      var checkStatus = table.checkStatus('idTest');
+      layer.msg(checkStatus.isAll ? '全选': '未全选')
+    }
+  };
+  
+  $('.demoTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+</script>
+<!--审批后出差查询  -->
+<script>
+var num=$("#id").val();
+var today=new Date();
+ var H=today.getFullYear();
+ var M=today.getMonth()+1;
+ var R=today.getDate();
+ var h=today.getHours();
+ var mm=today.getMinutes();
+ var ss=today.getSeconds();
+var xitong=H+"-"+M+"-"+R+" "+h+":"+mm+":"+ss;
+layui.use('table', function(){
+  var table = layui.table;
+  //监听表格复选框选择
+  table.on('checkbox(demo4)', function(obj){
+    console.log(obj)
+  });
+  table.render({
+    elem: '#test4'
+    ,url:'WaiChu/TongChuChai'
+    ,where:{
+    	id:num
+    }
+     ,cols: [[
+      {field:'exState', width:120, title: '类型'}
+      ,{field:'username', width:120, title: '申请人'}
+      ,{field:'wcTime', width:120, title: '开始时间'}
+      ,{field:'wcTimeEnd',width:120, title: '结束时间'}
+      ,{field:'syReason', width:120, title: '摘要'}
+      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{fixed: 'right',title:'操作', width:178, align:'center', toolbar: '#chuchai  '}
+    ]],done:function(){
+					   //分类显示中文名称	
+					    $("[data-field='exState']").children().each(function(){
+							if($(this).text()=='2'){		
+								$(this).text("已批准")		
+							}else if($(this).text()=='1'){	
+								$(this).text("未批准")	
+							}else if($(this).text()=='4'){
+								$(this).text("待归来")
+							}else if($(this).text()=='3'){
+								$(this).text("已归来")
+							}
+							})
+							
+					 }
+    ,page:true
+  }); 
+
+  
+  //监听工具条
+  table.on('tool(demo4)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      layer.msg('ID：'+ data.id + ' 的查看操作');
+    } else if(obj.event === 'del'){
+     	$.ajax({
+			url : "WaiChu/HuiGui",
+			data : {
+				'sid' : data.sId,
+				'syXiao':xitong
+			},
+			type : "post",
+			dataType : 'Json',
+			success : function(data) {
+				if(data>0){
+					layer.confirm("操作成功",function(index){
+					location.reload();
+					});
+				}else{
+					layer.confirm("操作失败",function(index){
+					location.reload();
+					});
+				}
+			}
+		})
+     
+    } else if(obj.event === 'edit'){
+      layer.open({
+            type:2,
+            title:"查找外出登记",
+            area: ['40%','90%'],
+            offset: ['30px', '550px'],
+            content:"http://localhost:8080/oa/WaiChu/WaiXiang/"+data.sId+"/"+data.id+"/"+data.syState
+      });
+    }
+  });
+  var $ = layui.$, active = {
+    getCheckData: function(){ //获取选中数据
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.alert(JSON.stringify(data));
+    }
+    ,getCheckLength: function(){ //获取选中数目
+      var checkStatus = table.checkStatus('idTest')
+      ,data = checkStatus.data;
+      layer.msg('选中了：'+ data.length + ' 个');
+    }
+    ,isAll: function(){ //验证是否全选
+      var checkStatus = table.checkStatus('idTest');
+      layer.msg(checkStatus.isAll ? '全选': '未全选')
+    }
+  };
+  
+  $('.demoTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+</script>
 	<!--动态Tab  -->
 	<script>
 		layui.use('element', function() {

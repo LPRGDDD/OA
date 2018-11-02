@@ -42,6 +42,16 @@
 <script src="page/resources/layui/layui.js"></script>
 <script src="page/resources/layui/layui.all.js" charset="utf-8"></script>
 <script src="page/resources/bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+.lxm {
+	width: 250px;
+}
+
+.yan {
+	color: red;
+	font-size: 20px;
+}
+</style>
 </head>
 
 <body>
@@ -62,78 +72,60 @@
 
 			</div>
 			<div class="layui-tab-item">
-				<form class="layui-form form-horizontal" action="" id="form1"
-					lay-filter="example">
-					<div class="layui-form-item ">
-						<label class="layui-form-label">班次名称</label>
-						<div class="layui-input-block">
-							<div class="control-group">
-								<input name="sname" id="sname" class="layui-input" type="text"
-									placeholder="请输入班次名称" autocomplete="off" lay-verify="title">
-								<i class="fa fa-calendar"></i>
+				<form class="layui-form" id="form1" action="">
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span class="yan">*</span>班次名称</label>
+						<div class="layui-input-inline">
+							<!--style="height:35px"  -->
+							<input name="sname" class="layui-input lxm"  value="${sche.sname}" type="text"
+								style="height:35px" placeholder="请输入" autocomplete="off"
+								lay-verify="required" lay-verify="title">
+						</div>
+					</div>
+					
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label"><span class="yan">*</span>第一次签到</label>
+							<div class="layui-input-inline">
+								<input class="layui-input lxm" readonly="readonly" name="duty_time1" value="${sche.duty_time1}"  style="height:35px" id="test4"
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="kaishi">
 							</div>
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">第一次记录</label>
+						<div class="layui-inline">
+							<label class="layui-form-label"><span class="yan">*</span>第二次签到</label>
+							<div class="layui-input-inline">
+								<input class="layui-input lxm" readonly="readonly"  name="duty_time2" value="${sche.duty_time2 }"  style="height:35px" id="test5"
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label"><span class="yan">*</span>第三次签到</label>
+							<div class="layui-input-inline">
+								<input class="layui-input lxm" readonly="readonly"  name="duty_time3" value="${sche.duty_time3 }"  style="height:35px" id="test6"
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label"><span class="yan">*</span>第四次签到</label>
+							<div class="layui-input-inline">
+								<input class="layui-input lxm" readonly="readonly"  name="duty_time4" value="${sche.duty_time4 }"  style="height:35px" id="test7"
+									type="text" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="jieshi">
+							<input type="hidden" name="scid" value="${sche.scid }">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<div class="input-append date form_time" data-date=""
-								data-date-format="hh:ii" data-link-field="dtp_input3"
-								data-link-format="hh:ii">
-								<input size="16" type="text" name="dutyTime1" id="dutyTime1"
-									value="签到时间" readonly> <span class="add-on"><i
-									class="icon-remove"></i></span> <span class="add-on"><i
-									class="icon-th"></i></span>
-							</div>
-							<input type="hidden" id="dtp_input3" value="" /><br />
-
+							<button class="layui-btn" lay-filter="demo1" onclick="save()" lay-submit="">立即提交</button>
+							<button class="layui-btn layui-btn-primary" onclick="shuaxin()">关闭</button>
 						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">第二次记录</label>
-							<div class="layui-input-block">
-								<div class="input-append date form_time" data-date=""
-									data-date-format="hh:ii" data-link-field="dtp_input3"
-									data-link-format="hh:ii">
-									<input size="16" type="text" name="dutyTime2" id="dutyTime2"
-										value="签到时间" readonly> <span class="add-on"><i
-										class="icon-remove"></i></span> <span class="add-on"><i
-										class="icon-th"></i></span>
-								</div>
-								<input type="hidden" id="dtp_input3" value="" /><br />
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">第三次记录</label>
-							<div style=" position: relative;left:32px;"
-								class="input-append date form_time" data-date=""
-								data-date-format="hh:ii" data-link-field="dtp_input3"
-								data-link-format="hh:ii">
-								<input size="16" type="text" name="dutyTime3" id="dutyTime3"
-									value="签到时间" readonly> <span class="add-on"><i
-									class="icon-remove"></i></span> <span class="add-on"><i
-									class="icon-th"></i></span>
-							</div>
-							<input type="hidden" id="dtp_input3" value="" /><br />
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">第四次记录</label>
-							<div style=" position: relative;left:32px;"
-								class="input-append date form_time" data-date=""
-								data-date-format="hh:ii" data-link-field="dtp_input3"
-								data-link-format="hh:ii">
-								<input size="16" type="text" name="dutyTime4" id="dutyTime4"
-									value="签到时间" readonly> <span class="add-on"><i
-									class="icon-remove"></i></span> <span class="add-on"><i
-									class="icon-th"></i></span>
-							</div>
-							<input type="hidden" id="dtp_input3" value="" /><br />
-						</div>
-						<div class="layui-form-item">
-							<div class="layui-input-block">
-								<button class="layui-btn" lay-filter="demo1" lay-submit=""
-									id="but" onclick="save()">立即提交</button>
-							</div>
-						</div>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -190,7 +182,32 @@
 			$('#calendar').calendar();
 		})
 	</script>
-	<script src="resources/layui/layui.js" charset="utf-8"></script>
+			<script>
+		layui.use('laydate', function() {
+			var laydate = layui.laydate;
+			//时间选择器
+			laydate.render({
+				elem : '#test4',
+				type : 'time'
+			});
+			  //时间选择器
+			  laydate.render({
+			    elem: '#test5'
+			    ,type: 'time'
+			  });
+			//日期时间选择器
+			laydate.render({
+				elem : '#test6',
+				type : 'time'
+			});
+			//日期时间选择器
+			laydate.render({
+				elem : '#test7',
+				type : 'time'
+			});
+})
+	</script>
+	<script src="page/resources/layui/layui.js" charset="utf-8"></script>
 	<script>
 		layui.use('table', function() {
 			var table = layui.table;
@@ -270,8 +287,8 @@
 					layer.open({
             type:2,
             title:"查找班次",
-            area: ['90%','90%'],
-            offset: ['10px', '100px'],
+            area: ['100%','100%'],
+           // offset: ['10px', '100px'],
             content:"http://localhost:8080/oa/schedule/findById/"+data.scid
         });
 	
@@ -304,32 +321,64 @@
 			});
 		});
 	</script>
-	<script>
-		//添加
-		function save() {
-			var obj = $("#form1").serialize();
-			alert(obj);
+		   <script>
+   var id=${list.shenId}
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  layui.use('form', function(data){
+        var form = layui.form; 
+    });
+    
+  
+  
+  //监听指定开关
+  form.on('switch(switchTest)', function(data){
+    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+      offset: '6px'
+    });
+    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    var obj=$("#form1").serialize();
 			$.ajax({
-				url : "schedule/save",
-				type : "post",
-				data : {
-					"sname" : $("#sname").val(),
-					"duty_time1" : $("#dutyTime1").val(),
-					"duty_time2" : $("#dutyTime2").val(),
-					"duty_time3" : $("#dutyTime3").val(),
-					"duty_time4" : $("#dutyTime4").val()
-				},
-				dataType : 'text', //返回的数据类型
-				success : function(data) {
-					if(data>0){
-					alert("添加成功");
-					}else{
-					alert("添加失败");
-					}
-				}
-			})
-		}
-	</script>
+				 url:"schedule/save",
+                 type:'post',
+                 data:obj,
+                 dataType:'json',
+                 success:function (data) {
+                    if(data>0){
+                   		layer.confirm('操作成功', function(index){
+					       location.reload();
+					        layer.close(index);
+					     });
+                    }else{
+                    	layer.confirm('操作失败', function(index){
+					       location.reload();
+					        layer.close(index);
+					     });
+                    }
+                }
+			});
+			return false;
+  });
+ 
+  //表单初始赋值
+  form.val('example', {
+    "syreason": "外出商谈" // "name": "value"
+    ,"password": "123456"
+    ,"interest":1
+    ,"like[write]": true //复选框选中状态
+    ,"close": true //开关状态
+    ,"sex": "女"
+    ,"desc": "我爱 layui"
+  })
+});
+</script>
 	<!--动态Tab  -->
 	<script>
 		layui.use('element', function() {

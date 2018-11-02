@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         data:obj,
                         dataType:'text',
                         success:function (data) {
-                            alert(1111111);
+                            alert("修改成功");
                         }
               }) 
 	}
