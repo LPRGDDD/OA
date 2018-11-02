@@ -63,29 +63,57 @@ public class SalDataController {
 		map.put("data", info.getList());
 		return map;
 	}
+	/*单条上报*/
 	@RequestMapping("/shangbao/{salaryflow_id}")
 	public String shangbao(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){
 		req.setAttribute("salaryflow_id", salaryflow_id);
 		return "page/view/lpr/shangbao";
 	}
+	/*多条上报页面跳转*/
+	@RequestMapping("/PLshangbao/{salaryflow_id}")
+	public String PLshangbao(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){
+		req.setAttribute("salaryflow_id", salaryflow_id);
+		return "page/view/lpr/PLshangbao";
+	}
+	/*查询*/
 	@RequestMapping("/chayue/{salaryflow_id}")
 	public String chayue(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){
 		req.setAttribute("salaryflow_id", salaryflow_id);
 		return "page/view/lpr/chayue";
 	}
 	//员工薪酬基数的批量添加
-		@RequestMapping("/insert")
-		@ResponseBody
-		public void insert(SalData s,String userId,HttpServletRequest request,HttpServletResponse response) throws IOException{
-			System.out.println(s);
-			System.out.println(userId);
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
-			int result=service.insert(s, userId);
-			if (result!=0) {
-				out.print("执行成功！");
-			}else{
-				out.print("执行失败！");
-			}
+	@RequestMapping("/insert")
+	@ResponseBody
+	public void insert(SalData s,String userId,HttpServletRequest request,HttpServletResponse response) throws IOException{
+		System.out.println(s);
+		System.out.println(userId);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		int result=service.insert(s, userId);
+		if (result!=0) {
+			out.print("执行成功！");
+		}else{
+			out.print("执行失败！");
 		}
+	}
+	//跳转查询上报表
+	@RequestMapping("/findSalaryList/{salaryflow_id}")
+	public String findBySalaryFlowId1(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){
+		req.setAttribute("salaryflow_id", salaryflow_id);
+		return "page/view/lpr/findSalaryList";
+	}
+	//根据流程表查询上报数据
+	@RequestMapping("/findBySalaryFlowId")
+	@ResponseBody
+	public Map findBySalaryFlowId(Integer sid,Integer page,Integer limit){
+		PageHelper.startPage(page,limit);
+		List<Map> list=service.findBySalaryFlowId(sid);
+		PageInfo<Map> info=new PageInfo<Map>(list);
+		Map map = new HashMap();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("count",info.getTotal());
+        map.put("data", info.getList());
+		return map;
+	}
 }

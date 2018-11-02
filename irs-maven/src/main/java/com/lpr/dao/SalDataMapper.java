@@ -37,4 +37,10 @@ public interface SalDataMapper {
     public List<Map> findByStatus1();
     public int findById(@Param("id")long id,@Param("pid") Integer pid);
     public int countxc(@Param("id")int id,@Param("uid")long uid);
+    /**
+     * 根据流程表id查询
+     * @param sid
+     * @return
+     */
+    public List<Map> findBySalaryFlowId(@Param("sid") int sid);
 }

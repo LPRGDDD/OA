@@ -55,5 +55,10 @@ private SalDataMapper dao;
 		}
 		return 0;//返回错误的结果，返回0
 	}
+	@Override
+	public List<Map> findBySalaryFlowId(int sid) {
+		// TODO Auto-generated method stub
+		return dao.findBySalaryFlowId(sid);
+	}
 
 }

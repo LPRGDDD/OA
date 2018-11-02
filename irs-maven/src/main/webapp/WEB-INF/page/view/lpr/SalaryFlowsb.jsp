@@ -51,9 +51,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/html" id="barDemo">
  <a class="layui-btn layui-btn-xs" lay-event="luru">录入</a>
  <a class="layui-btn layui-btn-xs" lay-event="PLluru">批量录入</a>
+ <a class="layui-btn layui-btn-xs" lay-event="chayue0">查阅</a>
 </script>
 <script type="text/html" id="barDemo1">
- <a class="layui-btn layui-btn-xs" lay-event="chayue">查阅</a>
+ <a class="layui-btn layui-btn-xs" lay-event="chayue1">查阅</a>
 </script>
 </body>
 <script>
@@ -64,16 +65,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			id : 'myTab', //table的id
 			elem : '#myTab',   //同上
 			//height : 700,  //表格的高度
-			width:890,
+			width:880,
 			url : 'saldata/findByStatus',
 			cols : [ [ 
-			{field : 'salaryflow_creator',title : '流程创建人',sort : true}, 
-			{field : 'salaryflow_begintime',title : '流程起始时间',sort : true,edit: 'text'}, 
-			{field : 'salaryflow_endtime',title : '流程截止时间',sort : true,edit: 'text'},
-			{field : 'salaryflow_year',title : '工资年份',sort : true,edit: 'text'}, 
-			{field : 'salaryflow_month',title : '工资月份',sort : true,edit: 'text'},
-			{field : 'salaryflow_mark',title : '备注',sort : true,edit: 'text'},
-			{field : 'right',title:'操作', toolbar: '#barDemo', width:150} 
+			{field : 'salaryflow_creator',title : '流程创建人',sort : true,align:'center'}, 
+			{field : 'salaryflow_begintime',title : '流程起始时间',sort : true,edit: 'text',align:'center'}, 
+			{field : 'salaryflow_endtime',title : '流程截止时间',sort : true,edit: 'text',align:'center'},
+			{field : 'salaryflow_year',title : '工资年份',sort : true,edit: 'text',align:'center'}, 
+			{field : 'salaryflow_month',title : '工资月份',sort : true,edit: 'text',align:'center'},
+			{field : 'salaryflow_mark',title : '备注',sort : true,edit: 'text',align:'center'},
+			{field : 'right',title:'操作', toolbar: '#barDemo', width:205,align:'center'} 
 		                 ] ],
 		           page:true,
 		           })
@@ -98,7 +99,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				title : "批量上报页面",
 				area : [ '100%', '100%' ],
 				offset:['0','0'],
-				content : "http://localhost:8080/oa/saldata/shangbao/" + data.salaryflow_id
+				content : "http://localhost:8080/oa/saldata/PLshangbao/" + data.salaryflow_id
+			});
+		}
+		else if (obj.event === 'chayue0') {
+			layer.msg(data.salaryflow_id);
+			layer.open({
+				type : 2,
+				title : "查阅页面",
+				area : [ '100%', '100%' ],
+				offset:['0','0'],
+				content : "http://localhost:8080/oa/saldata/findSalaryList/" + data.salaryflow_id
 			});
 		}
 	})

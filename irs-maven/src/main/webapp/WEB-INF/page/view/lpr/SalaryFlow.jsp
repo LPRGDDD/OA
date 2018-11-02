@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
@@ -42,8 +43,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	         <td>
 	           <div class="layui-input-inline">
 	             <input type="hidden" name="salaryflowCreatetime" value="2017-05-04" id="salaryflowCreatetime"/><!-- 流程创建时间 -->
-	             <input type="hidden" name="salaryflowCreator" value="王哈哈" id="salaryflowCreator"/><!-- 创建人 -->
-	             <input type="hidden" name="salaryflowStatus" value="1" id="salaryflowStatus"/><!-- 状态 -->
+	             <input type="hidden" name="salaryflowCreator" value="<shiro:principal property="fullname"/>" id="salaryflowCreator"/><!-- 创建人 -->
+	             <input type="hidden" name="salaryflowStatus" value="0" id="salaryflowStatus"/><!-- 状态 -->
 				 <input type="date" name="salaryflowBegintime" id="salaryflowBegintime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" type="text">
 			   </div>
 	         </td>
@@ -204,10 +205,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
           <!-- 工资流程管理 -->
           <div class="layui-tab-item layui-show">
-          <!-- 分页查询 -->
-               <div id="serch">
-					<input type="text" id="ipt" placeholder="请输入内容" onkeyup="serch()"/>
-			   </div>
 			   <table class="layui-hide" id="myTab" lay-filter="myTab"></table>
 			   <div id="fenye"></div>
           </div>
@@ -221,49 +218,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	var form = layui.form;
 	/*页面加载时查询数据  并且分页*/
 	$(function() {
-		fenye("",1,5,"系统管理员");  //调用layui表格
-		tool();          // 使用分页
+		fenye();  //调用layui表格
 	});
-	var num=0;
-	/*layui表格    传入三个参数   
-	keyWord 模糊查询关键字
-	pagenum 当前页
-	limit   每页显示的条数
-	*/
-	function fenye(keyWord,pagenum,limit,userName) {
+	function fenye() {
 		table.render({
 			id : 'myTab', //table的id
 			elem : '#myTab',   //同上
 			//height : 700,  //表格的高度
 			width:1300,
-			url : 'salaryflow/findAll?pageNum=' + pagenum + '&limit='+limit+'&keyWord='+keyWord+'&userName='+userName+'',
+			url : 'salaryflow/findAll',
+			page: true,
 			cols : [ [ 
-			{field : 'salaryflow_id',title : '编号',sort : true,width:80}, 
-			{field : 'salaryflow_createtime',title : '创建时间',sort : true},
-			{field : 'salaryflow_creator',title : '创建人',sort : true}, 
-			{field : 'salaryflow_begintime',title : '起始时间',sort : true,edit: 'text'}, 
-			{field : 'salaryflow_endtime',title : '截止时间',sort : true,edit: 'text'},
-			{field : 'salaryflow_year',title : '工资年份',sort : true,edit: 'text'}, 
-			{field : 'salaryflow_month',title : '工资月份',sort : true,edit: 'text'},
-			{field : 'salaryflow_status',title : '状态',sort : true,toolbar: '#lcstatus',},
-			{field : 'salaryflow_mark',title : '备注',sort : true,edit: 'text'},
+			{field : 'salaryflow_id',title : '编号',sort : true,width:80,align:'center'}, 
+			{field : 'salaryflow_createtime',title : '创建时间',align:'center'},
+			{field : 'salaryflow_creator',title : '创建人',align:'center'}, 
+			{field : 'salaryflow_begintime',title : '起始时间',edit: 'text',align:'center'}, 
+			{field : 'salaryflow_endtime',title : '截止时间',edit: 'text',align:'center',templet: '<div>{{ formatTime(d.salaryflow_endtime,"yyyy-MM-dd")}}</div>'},
+			{field : 'salaryflow_year',title : '工资年份',edit: 'text',align:'center'}, 
+			{field : 'salaryflow_month',title : '工资月份',edit: 'text',align:'center'},
+			{field : 'salaryflow_status',title : '状态',toolbar: '#lcstatus',align:'center'},
+			{field : 'salaryflow_mark',title : '备注',edit: 'text',align:'center'},
 			{field : 'right',title:'操作', toolbar: '#barDemo'} 
                    ] ],
- 			//分类显示中文名称(外键id显示成中文名称)
- 			done : function(res, page, count) {
- 				$("[data-field='salaryflow_status']").children().each(function() {
- 					/* if ($(this).text() == '0') {
- 						$(this).text("已终止")
- 					} else if ($(this).text() == '1') {
- 						$(this).text("执行中")
- 					} */
- 					//回调函数 在表格渲染完成后 执行 用num判断  让它只在页面加载时执行一次   点击上一页下一页不执行
- 					if (num == 0) {
- 						tool($("#ipt").val(), res.count); //调用tool()函数   启用分页条  并传总数据数  res.count 
- 						num += 1;
- 					}
- 				})
-             }
 		});
 		 //监听状态操作
         form.on('switch(switchstatas)', function(obj){
@@ -283,9 +259,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  							'salaryflowId' : data.salaryflow_id
  						},
  						type : "post",
- 						dataType : "json",
+ 						dataType : "text",
  						success : function(data) {
- 							if (data > 0) {
+ 							if (data !=null) {
  								layer.msg("删除成功！");
  							} else {
  								layer.msg("删除失败！");
@@ -305,31 +281,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			}
  		})
  
- 	}
- 	/*渲染分页工具条
- 	  同样传入两个参数   关键字   总数据
- 	*/
- 	function tool(keyWord, count) {
- 		laypage.render({
- 			elem : 'fenye', //分页条的作用域   页面中di'v的id
- 			count : count, //总数据数
- 			limit : 5, //每页显示的条数
- 			layout : [ 'prev', 'page', 'next', 'limit', 'skip' ],
- 			jump : function(obj, first) {
- 				/*判断如果不是第一页执行里面的方法*/
- 				if (!first) {
- 					/*重新调用分页方法*/
- 					fenye($("#ipt").val(), obj.curr, obj.limit);
- 				}
- 			}
- 		});
- 	}
- 
- 	//绑定input enter事件  在input输入完成   按下回车  调用
- 	function serch() { //网页内按下回车触发
- 		if (event.keyCode == 13) {
- 			fenye($("#sel").val(), $("#ipt").val(), 1, 10);
- 		}
  	}
  	function setXcStatus(obj,id,checked) {
 	 	 var isJob=checked ? 0 : 1;
@@ -436,4 +387,31 @@ layui.use('element',function(){
        //opener.location.reload()刷新父窗口对象（用于单开窗口）
        //top.location.reload()刷新最顶端对象（用于多开窗口）
    }
+   //格式化时间
+function formatTime(datetime,fmt){
+	if (parseInt(datetime)==datetime) {
+	    if (datetime.length==10) {
+	      datetime=parseInt(datetime)*1000;
+	    } else if(datetime.length==13) {
+	      datetime=parseInt(datetime);
+	    }
+	  }
+	  datetime=new Date(datetime);
+	  var o = {
+	  "M+" : datetime.getMonth()+1,                 //月份   
+	  "d+" : datetime.getDate(),                    //日   
+	  "h+" : datetime.getHours(),                   //小时   
+	  "m+" : datetime.getMinutes(),                 //分   
+	  "s+" : datetime.getSeconds(),                 //秒   
+	  "q+" : Math.floor((datetime.getMonth()+3)/3), //季度   
+	  "S"  : datetime.getMilliseconds()             //毫秒   
+	  };   
+	  if(/(y+)/.test(fmt))   
+	  fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));   
+	  for(var k in o)   
+	  if(new RegExp("("+ k +")").test(fmt))   
+	  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+	  return fmt;
+}
+   
 </script>

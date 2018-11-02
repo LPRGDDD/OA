@@ -51,9 +51,9 @@ public class SalaryFlowController {
 	}
 	//工资流程表的查询方法
 	@RequestMapping("findAll")
-	public @ResponseBody Map findAll(String keyWord,Integer pageNum,Integer limit,String userName) {
-		PageHelper.startPage(pageNum,limit);
-		List<Map> list=service.findAll(keyWord, "系统管理员");
+	public @ResponseBody Map findAll(Integer page,Integer limit) {
+		PageHelper.startPage(page,limit);
+		List<Map> list=service.findAll(null, null);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);
