@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.PersonXcMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.PersonXc" >
+    <id column="personxc_id" property="personxcId" jdbcType="INTEGER" />
+    <result column="personxc_s1" property="personxcS1" jdbcType="DOUBLE" />
+    <result column="personxc_s2" property="personxcS2" jdbcType="DOUBLE" />
+    <result column="personxc_s3" property="personxcS3" jdbcType="DOUBLE" />
+    <result column="personxc_s4" property="personxcS4" jdbcType="DOUBLE" />
+    <result column="personxc_s5" property="personxcS5" jdbcType="DOUBLE" />
+    <result column="personxc_s6" property="personxcS6" jdbcType="DOUBLE" />
+    <result column="personxc_s7" property="personxcS7" jdbcType="DOUBLE" />
+    <result column="personxc_s8" property="personxcS8" jdbcType="DOUBLE" />
+    <result column="personxc_s9" property="personxcS9" jdbcType="DOUBLE" />
+    <result column="personxc_s10" property="personxcS10" jdbcType="DOUBLE" />
+    <result column="personxc_insurejs" property="personxcInsurejs" jdbcType="DOUBLE" />
+    <result column="personxc_ylinsure" property="personxcYlinsure" jdbcType="DOUBLE" />
+    <result column="personxc_dwyl" property="personxcDwyl" jdbcType="DOUBLE" />
+    <result column="personxc_gryl" property="personxcGryl" jdbcType="DOUBLE" />
+    <result column="personxc_ylbx" property="personxcYlbx" jdbcType="DOUBLE" />
+    <result column="personxc_dw_medical" property="personxcDwMedical" jdbcType="DOUBLE" />
+    <result column="personxc_grmedical" property="personxcGrmedical" jdbcType="DOUBLE" />
+    <result column="personxc_group" property="personxcGroup" jdbcType="DOUBLE" />
+    <result column="personxc_dwsy" property="personxcDwsy" jdbcType="DOUBLE" />
+    <result column="personxc_sybx" property="personxcSybx" jdbcType="DOUBLE" />
+    <result column="personxc_dwshiye" property="personxcDwshiye" jdbcType="DOUBLE" />
+    <result column="personxc_grsy" property="personxcGrsy" jdbcType="DOUBLE" />
+    <result column="personxc_gsbx" property="personxcGsbx" jdbcType="DOUBLE" />
+    <result column="personxc_dwgs" property="personxcDwgs" jdbcType="DOUBLE" />
+    <result column="personxc_housingfund" property="personxcHousingfund" jdbcType="DOUBLE" />
+    <result column="personxc_dwzf" property="personxcDwzf" jdbcType="DOUBLE" />
+    <result column="personxc_grzf" property="personxcGrzf" jdbcType="DOUBLE" />
+    <result column="personxc_expression" property="personxcExpression" jdbcType="VARCHAR" />
+    <result column="person_dept_status" property="personDeptStatus" jdbcType="INTEGER" />
+    <result column="person_cw_status" property="personCwStatus" jdbcType="INTEGER" />
+    <association property="user" column="id" javaType="com.irs.pojo.TbAdmin" autoMapping="true"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    personxc_id, user_id, personxc_s1, personxc_s2, personxc_s3, personxc_s4, personxc_s5, 
+    personxc_s6, personxc_s7, personxc_s8, personxc_s9, personxc_s10, personxc_insurejs, 
+    personxc_ylinsure, personxc_dwyl, personxc_gryl, personxc_ylbx, personxc_dw_medical, 
+    personxc_grmedical, personxc_group, personxc_dwsy, personxc_sybx, personxc_dwshiye, 
+    personxc_grsy, personxc_gsbx, personxc_dwgs, personxc_housingfund, personxc_dwzf, 
+    personxc_grzf, personxc_expression, person_dept_status, person_cw_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_personxc
+    where personxc_id = #{personxcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_personxc
+    where personxc_id = #{personxcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.PersonXc" >
+    insert into tb_personxc (personxc_id, id, personxc_s1, 
+      personxc_s2, personxc_s3, personxc_s4, 
+      personxc_s5, personxc_s6, personxc_s7, 
+      personxc_s8, personxc_s9, personxc_s10, 
+      personxc_insurejs, personxc_ylinsure, personxc_dwyl, 
+      personxc_gryl, personxc_ylbx, personxc_dw_medical, 
+      personxc_grmedical, personxc_group, personxc_dwsy, 
+      personxc_sybx, personxc_dwshiye, personxc_grsy, 
+      personxc_gsbx, personxc_dwgs, personxc_housingfund, 
+      personxc_dwzf, personxc_grzf, personxc_expression, 
+      person_dept_status, person_cw_status)
+    values (#{personxcId,jdbcType=INTEGER}, #{user.id}, #{personxcS1,jdbcType=DOUBLE}, 
+      #{personxcS2,jdbcType=DOUBLE}, #{personxcS3,jdbcType=DOUBLE}, #{personxcS4,jdbcType=DOUBLE}, 
+      #{personxcS5,jdbcType=DOUBLE}, #{personxcS6,jdbcType=DOUBLE}, #{personxcS7,jdbcType=DOUBLE}, 
+      #{personxcS8,jdbcType=DOUBLE}, #{personxcS9,jdbcType=DOUBLE}, #{personxcS10,jdbcType=DOUBLE}, 
+      #{personxcInsurejs,jdbcType=DOUBLE}, #{personxcYlinsure,jdbcType=DOUBLE}, #{personxcDwyl,jdbcType=DOUBLE}, 
+      #{personxcGryl,jdbcType=DOUBLE}, #{personxcYlbx,jdbcType=DOUBLE}, #{personxcDwMedical,jdbcType=DOUBLE}, 
+      #{personxcGrmedical,jdbcType=DOUBLE}, #{personxcGroup,jdbcType=DOUBLE}, #{personxcDwsy,jdbcType=DOUBLE}, 
+      #{personxcSybx,jdbcType=DOUBLE}, #{personxcDwshiye,jdbcType=DOUBLE}, #{personxcGrsy,jdbcType=DOUBLE}, 
+      #{personxcGsbx,jdbcType=DOUBLE}, #{personxcDwgs,jdbcType=DOUBLE}, #{personxcHousingfund,jdbcType=DOUBLE}, 
+      #{personxcDwzf,jdbcType=DOUBLE}, #{personxcGrzf,jdbcType=DOUBLE}, #{personxcExpression,jdbcType=VARCHAR}, 
+      #{personDeptStatus,jdbcType=INTEGER}, #{personCwStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.PersonXc" >
+    insert into tb_personxc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="personxcId != null" >
+        personxc_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="personxcS1 != null" >
+        personxc_s1,
+      </if>
+      <if test="personxcS2 != null" >
+        personxc_s2,
+      </if>
+      <if test="personxcS3 != null" >
+        personxc_s3,
+      </if>
+      <if test="personxcS4 != null" >
+        personxc_s4,
+      </if>
+      <if test="personxcS5 != null" >
+        personxc_s5,
+      </if>
+      <if test="personxcS6 != null" >
+        personxc_s6,
+      </if>
+      <if test="personxcS7 != null" >
+        personxc_s7,
+      </if>
+      <if test="personxcS8 != null" >
+        personxc_s8,
+      </if>
+      <if test="personxcS9 != null" >
+        personxc_s9,
+      </if>
+      <if test="personxcS10 != null" >
+        personxc_s10,
+      </if>
+      <if test="personxcInsurejs != null" >
+        personxc_insurejs,
+      </if>
+      <if test="personxcYlinsure != null" >
+        personxc_ylinsure,
+      </if>
+      <if test="personxcDwyl != null" >
+        personxc_dwyl,
+      </if>
+      <if test="personxcGryl != null" >
+        personxc_gryl,
+      </if>
+      <if test="personxcYlbx != null" >
+        personxc_ylbx,
+      </if>
+      <if test="personxcDwMedical != null" >
+        personxc_dw_medical,
+      </if>
+      <if test="personxcGrmedical != null" >
+        personxc_grmedical,
+      </if>
+      <if test="personxcGroup != null" >
+        personxc_group,
+      </if>
+      <if test="personxcDwsy != null" >
+        personxc_dwsy,
+      </if>
+      <if test="personxcSybx != null" >
+        personxc_sybx,
+      </if>
+      <if test="personxcDwshiye != null" >
+        personxc_dwshiye,
+      </if>
+      <if test="personxcGrsy != null" >
+        personxc_grsy,
+      </if>
+      <if test="personxcGsbx != null" >
+        personxc_gsbx,
+      </if>
+      <if test="personxcDwgs != null" >
+        personxc_dwgs,
+      </if>
+      <if test="personxcHousingfund != null" >
+        personxc_housingfund,
+      </if>
+      <if test="personxcDwzf != null" >
+        personxc_dwzf,
+      </if>
+      <if test="personxcGrzf != null" >
+        personxc_grzf,
+      </if>
+      <if test="personxcExpression != null" >
+        personxc_expression,
+      </if>
+      <if test="personDeptStatus != null" >
+        person_dept_status,
+      </if>
+      <if test="personCwStatus != null" >
+        person_cw_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="personxcId != null" >
+        #{personxcId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="personxcS1 != null" >
+        #{personxcS1,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS2 != null" >
+        #{personxcS2,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS3 != null" >
+        #{personxcS3,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS4 != null" >
+        #{personxcS4,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS5 != null" >
+        #{personxcS5,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS6 != null" >
+        #{personxcS6,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS7 != null" >
+        #{personxcS7,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS8 != null" >
+        #{personxcS8,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS9 != null" >
+        #{personxcS9,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS10 != null" >
+        #{personxcS10,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcInsurejs != null" >
+        #{personxcInsurejs,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcYlinsure != null" >
+        #{personxcYlinsure,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwyl != null" >
+        #{personxcDwyl,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGryl != null" >
+        #{personxcGryl,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcYlbx != null" >
+        #{personxcYlbx,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwMedical != null" >
+        #{personxcDwMedical,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGrmedical != null" >
+        #{personxcGrmedical,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGroup != null" >
+        #{personxcGroup,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwsy != null" >
+        #{personxcDwsy,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcSybx != null" >
+        #{personxcSybx,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwshiye != null" >
+        #{personxcDwshiye,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGrsy != null" >
+        #{personxcGrsy,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGsbx != null" >
+        #{personxcGsbx,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwgs != null" >
+        #{personxcDwgs,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcHousingfund != null" >
+        #{personxcHousingfund,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwzf != null" >
+        #{personxcDwzf,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGrzf != null" >
+        #{personxcGrzf,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcExpression != null" >
+        #{personxcExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="personDeptStatus != null" >
+        #{personDeptStatus,jdbcType=INTEGER},
+      </if>
+      <if test="personCwStatus != null" >
+        #{personCwStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.PersonXc" >
+    update tb_personxc
+    <set >
+      <if test="id!= null" >
+        id = #{user.id,jdbcType=INTEGER},
+      </if>
+      <if test="personxcS1 != null" >
+        personxc_s1 = #{personxcS1,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS2 != null" >
+        personxc_s2 = #{personxcS2,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS3 != null" >
+        personxc_s3 = #{personxcS3,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS4 != null" >
+        personxc_s4 = #{personxcS4,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS5 != null" >
+        personxc_s5 = #{personxcS5,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS6 != null" >
+        personxc_s6 = #{personxcS6,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS7 != null" >
+        personxc_s7 = #{personxcS7,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS8 != null" >
+        personxc_s8 = #{personxcS8,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS9 != null" >
+        personxc_s9 = #{personxcS9,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcS10 != null" >
+        personxc_s10 = #{personxcS10,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcInsurejs != null" >
+        personxc_insurejs = #{personxcInsurejs,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcYlinsure != null" >
+        personxc_ylinsure = #{personxcYlinsure,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwyl != null" >
+        personxc_dwyl = #{personxcDwyl,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGryl != null" >
+        personxc_gryl = #{personxcGryl,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcYlbx != null" >
+        personxc_ylbx = #{personxcYlbx,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwMedical != null" >
+        personxc_dw_medical = #{personxcDwMedical,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGrmedical != null" >
+        personxc_grmedical = #{personxcGrmedical,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGroup != null" >
+        personxc_group = #{personxcGroup,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwsy != null" >
+        personxc_dwsy = #{personxcDwsy,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcSybx != null" >
+        personxc_sybx = #{personxcSybx,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwshiye != null" >
+        personxc_dwshiye = #{personxcDwshiye,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGrsy != null" >
+        personxc_grsy = #{personxcGrsy,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGsbx != null" >
+        personxc_gsbx = #{personxcGsbx,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwgs != null" >
+        personxc_dwgs = #{personxcDwgs,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcHousingfund != null" >
+        personxc_housingfund = #{personxcHousingfund,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcDwzf != null" >
+        personxc_dwzf = #{personxcDwzf,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcGrzf != null" >
+        personxc_grzf = #{personxcGrzf,jdbcType=DOUBLE},
+      </if>
+      <if test="personxcExpression != null" >
+        personxc_expression = #{personxcExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="personDeptStatus != null" >
+        person_dept_status = #{personDeptStatus,jdbcType=INTEGER},
+      </if>
+      <if test="personCwStatus != null" >
+        person_cw_status = #{personCwStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where personxc_id = #{personxcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.PersonXc" >
+    update tb_personxc
+    set id = #{user.id},
+      personxc_s1 = #{personxcS1,jdbcType=DOUBLE},
+      personxc_s2 = #{personxcS2,jdbcType=DOUBLE},
+      personxc_s3 = #{personxcS3,jdbcType=DOUBLE},
+      personxc_s4 = #{personxcS4,jdbcType=DOUBLE},
+      personxc_s5 = #{personxcS5,jdbcType=DOUBLE},
+      personxc_s6 = #{personxcS6,jdbcType=DOUBLE},
+      personxc_s7 = #{personxcS7,jdbcType=DOUBLE},
+      personxc_s8 = #{personxcS8,jdbcType=DOUBLE},
+      personxc_s9 = #{personxcS9,jdbcType=DOUBLE},
+      personxc_s10 = #{personxcS10,jdbcType=DOUBLE},
+      personxc_insurejs = #{personxcInsurejs,jdbcType=DOUBLE},
+      personxc_ylinsure = #{personxcYlinsure,jdbcType=DOUBLE},
+      personxc_dwyl = #{personxcDwyl,jdbcType=DOUBLE},
+      personxc_gryl = #{personxcGryl,jdbcType=DOUBLE},
+      personxc_ylbx = #{personxcYlbx,jdbcType=DOUBLE},
+      personxc_dw_medical = #{personxcDwMedical,jdbcType=DOUBLE},
+      personxc_grmedical = #{personxcGrmedical,jdbcType=DOUBLE},
+      personxc_group = #{personxcGroup,jdbcType=DOUBLE},
+      personxc_dwsy = #{personxcDwsy,jdbcType=DOUBLE},
+      personxc_sybx = #{personxcSybx,jdbcType=DOUBLE},
+      personxc_dwshiye = #{personxcDwshiye,jdbcType=DOUBLE},
+      personxc_grsy = #{personxcGrsy,jdbcType=DOUBLE},
+      personxc_gsbx = #{personxcGsbx,jdbcType=DOUBLE},
+      personxc_dwgs = #{personxcDwgs,jdbcType=DOUBLE},
+      personxc_housingfund = #{personxcHousingfund,jdbcType=DOUBLE},
+      personxc_dwzf = #{personxcDwzf,jdbcType=DOUBLE},
+      personxc_grzf = #{personxcGrzf,jdbcType=DOUBLE},
+      personxc_expression = #{personxcExpression,jdbcType=VARCHAR},
+      person_dept_status = #{personDeptStatus,jdbcType=INTEGER},
+      person_cw_status = #{personCwStatus,jdbcType=INTEGER}
+    where personxc_id = #{personxcId,jdbcType=INTEGER}
+  </update>
+  <!-- 根据用户ID查询当前用户薪酬基数-->
+  <select id="findAll" resultType="java.util.Map">
+   select *
+    from tb_personxc p left JOIN tb_admin a
+		on p.id=u.id
+	 <where>
+    	<if test="userId!='' and userId!=null">
+    		p.id= #{user.id}
+    	</if>
+    </where>
+  </select>
+  <!-- 分页查询的方法 -->
+  <select id="findPage" resultType="java.util.Map">
+    select * from tb_personxc p left join tb_admin a on p.id=a.id
+  </select>
+  <select id="findById" resultType="java.lang.Integer">
+  	select personxc_id from tb_personxc where tb_personxc.id=#{id}
+  </select>
+  <select id="findByUid" resultType="java.util.Map">
+  	select * from tb_personxc where tb_personxc.id=#{uid}
+  </select>
+</mapper>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.DwinFormationMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.DwinFormation" >
+    <id column="dwinformation_id" property="dwinformationId" jdbcType="INTEGER" />
+    <result column="dwinformation_name" property="dwinformationName" jdbcType="VARCHAR" />
+    <result column="dwinformation_phone" property="dwinformationPhone" jdbcType="VARCHAR" />
+    <result column="dwinformation_fax" property="dwinformationFax" jdbcType="VARCHAR" />
+    <result column="dwinformation_postal_code" property="dwinformationPostalCode" jdbcType="VARCHAR" />
+    <result column="dwinformation_address" property="dwinformationAddress" jdbcType="VARCHAR" />
+    <result column="dwinformation_website" property="dwinformationWebsite" jdbcType="VARCHAR" />
+    <result column="dwinformation_email" property="dwinformationEmail" jdbcType="VARCHAR" />
+    <result column="dwinformation_bankname" property="dwinformationBankname" jdbcType="VARCHAR" />
+    <result column="dwinformation_account_number" property="dwinformationAccountNumber" jdbcType="VARCHAR" />
+    <result column="dwinformation_introduce" property="dwinformationIntroduce" jdbcType="VARCHAR" />
+    <result column="dwinformation_banknumber" property="dwinformationBanknumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dwinformation_id, dwinformation_name, dwinformation_phone, dwinformation_fax, dwinformation_postal_code, 
+    dwinformation_address, dwinformation_website, dwinformation_email, dwinformation_bankname, 
+    dwinformation_account_number, dwinformation_introduce, dwinformation_banknumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dwinformation
+    where dwinformation_id = #{dwinformationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_dwinformation
+    where dwinformation_id = #{dwinformationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.DwinFormation" >
+    insert into tb_dwinformation (dwinformation_id, dwinformation_name, 
+      dwinformation_phone, dwinformation_fax, dwinformation_postal_code, 
+      dwinformation_address, dwinformation_website, 
+      dwinformation_email, dwinformation_bankname, 
+      dwinformation_account_number, dwinformation_introduce, 
+      dwinformation_banknumber)
+    values (#{dwinformationId,jdbcType=INTEGER}, #{dwinformationName,jdbcType=VARCHAR}, 
+      #{dwinformationPhone,jdbcType=VARCHAR}, #{dwinformationFax,jdbcType=VARCHAR}, #{dwinformationPostalCode,jdbcType=VARCHAR}, 
+      #{dwinformationAddress,jdbcType=VARCHAR}, #{dwinformationWebsite,jdbcType=VARCHAR}, 
+      #{dwinformationEmail,jdbcType=VARCHAR}, #{dwinformationBankname,jdbcType=VARCHAR}, 
+      #{dwinformationAccountNumber,jdbcType=VARCHAR}, #{dwinformationIntroduce,jdbcType=VARCHAR}, 
+      #{dwinformationBanknumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.DwinFormation" >
+    insert into tb_dwinformation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dwinformationId != null" >
+        dwinformation_id,
+      </if>
+      <if test="dwinformationName != null" >
+        dwinformation_name,
+      </if>
+      <if test="dwinformationPhone != null" >
+        dwinformation_phone,
+      </if>
+      <if test="dwinformationFax != null" >
+        dwinformation_fax,
+      </if>
+      <if test="dwinformationPostalCode != null" >
+        dwinformation_postal_code,
+      </if>
+      <if test="dwinformationAddress != null" >
+        dwinformation_address,
+      </if>
+      <if test="dwinformationWebsite != null" >
+        dwinformation_website,
+      </if>
+      <if test="dwinformationEmail != null" >
+        dwinformation_email,
+      </if>
+      <if test="dwinformationBankname != null" >
+        dwinformation_bankname,
+      </if>
+      <if test="dwinformationAccountNumber != null" >
+        dwinformation_account_number,
+      </if>
+      <if test="dwinformationIntroduce != null" >
+        dwinformation_introduce,
+      </if>
+      <if test="dwinformationBanknumber != null" >
+        dwinformation_banknumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dwinformationId != null" >
+        #{dwinformationId,jdbcType=INTEGER},
+      </if>
+      <if test="dwinformationName != null" >
+        #{dwinformationName,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationPhone != null" >
+        #{dwinformationPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationFax != null" >
+        #{dwinformationFax,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationPostalCode != null" >
+        #{dwinformationPostalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationAddress != null" >
+        #{dwinformationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationWebsite != null" >
+        #{dwinformationWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationEmail != null" >
+        #{dwinformationEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationBankname != null" >
+        #{dwinformationBankname,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationAccountNumber != null" >
+        #{dwinformationAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationIntroduce != null" >
+        #{dwinformationIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationBanknumber != null" >
+        #{dwinformationBanknumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.DwinFormation" >
+    update tb_dwinformation
+    <set >
+      <if test="dwinformationName != null" >
+        dwinformation_name = #{dwinformationName,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationPhone != null" >
+        dwinformation_phone = #{dwinformationPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationFax != null" >
+        dwinformation_fax = #{dwinformationFax,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationPostalCode != null" >
+        dwinformation_postal_code = #{dwinformationPostalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationAddress != null" >
+        dwinformation_address = #{dwinformationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationWebsite != null" >
+        dwinformation_website = #{dwinformationWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationEmail != null" >
+        dwinformation_email = #{dwinformationEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationBankname != null" >
+        dwinformation_bankname = #{dwinformationBankname,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationAccountNumber != null" >
+        dwinformation_account_number = #{dwinformationAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationIntroduce != null" >
+        dwinformation_introduce = #{dwinformationIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="dwinformationBanknumber != null" >
+        dwinformation_banknumber = #{dwinformationBanknumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dwinformation_id = #{dwinformationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.DwinFormation" >
+    update tb_dwinformation
+    set dwinformation_name = #{dwinformationName,jdbcType=VARCHAR},
+      dwinformation_phone = #{dwinformationPhone,jdbcType=VARCHAR},
+      dwinformation_fax = #{dwinformationFax,jdbcType=VARCHAR},
+      dwinformation_postal_code = #{dwinformationPostalCode,jdbcType=VARCHAR},
+      dwinformation_address = #{dwinformationAddress,jdbcType=VARCHAR},
+      dwinformation_website = #{dwinformationWebsite,jdbcType=VARCHAR},
+      dwinformation_email = #{dwinformationEmail,jdbcType=VARCHAR},
+      dwinformation_bankname = #{dwinformationBankname,jdbcType=VARCHAR},
+      dwinformation_account_number = #{dwinformationAccountNumber,jdbcType=VARCHAR},
+      dwinformation_introduce = #{dwinformationIntroduce,jdbcType=VARCHAR},
+      dwinformation_banknumber = #{dwinformationBanknumber,jdbcType=VARCHAR}
+    where dwinformation_id = #{dwinformationId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询所有的方法 -->
+  <select id="findAll" resultMap="BaseResultMap">
+  	select * from tb_dwinformation
+  </select>
+</mapper>

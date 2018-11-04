@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.SafeFactorMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.SafeFactor" >
+    <id column="safefactor_id" property="safefactorId" jdbcType="INTEGER" />
+    <result column="safefactor_name" property="safefactorName" jdbcType="VARCHAR" />
+    <result column="grpayment" property="grpayment" jdbcType="VARCHAR" />
+    <result column="dwpayment" property="dwpayment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    safefactor_id, safefactor_name, grpayment, dwpayment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_safefactor
+    where safefactor_id = #{safefactorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_safefactor
+    where safefactor_id = #{safefactorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.SafeFactor" >
+    insert into tb_safefactor (safefactor_id, safefactor_name, grpayment, 
+      dwpayment)
+    values (#{safefactorId,jdbcType=INTEGER}, #{safefactorName,jdbcType=VARCHAR}, #{grpayment,jdbcType=VARCHAR}, 
+      #{dwpayment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.SafeFactor" >
+    insert into tb_safefactor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="safefactorId != null" >
+        safefactor_id,
+      </if>
+      <if test="safefactorName != null" >
+        safefactor_name,
+      </if>
+      <if test="grpayment != null" >
+        grpayment,
+      </if>
+      <if test="dwpayment != null" >
+        dwpayment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="safefactorId != null" >
+        #{safefactorId,jdbcType=INTEGER},
+      </if>
+      <if test="safefactorName != null" >
+        #{safefactorName,jdbcType=VARCHAR},
+      </if>
+      <if test="grpayment != null" >
+        #{grpayment,jdbcType=VARCHAR},
+      </if>
+      <if test="dwpayment != null" >
+        #{dwpayment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.SafeFactor" >
+    update tb_safefactor
+    <set >
+      <if test="safefactorName != null" >
+        safefactor_name = #{safefactorName,jdbcType=VARCHAR},
+      </if>
+      <if test="grpayment != null" >
+        grpayment = #{grpayment,jdbcType=VARCHAR},
+      </if>
+      <if test="dwpayment != null" >
+        dwpayment = #{dwpayment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where safefactor_id = #{safefactorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.SafeFactor" >
+    update tb_safefactor
+    set safefactor_name = #{safefactorName,jdbcType=VARCHAR},
+      grpayment = #{grpayment,jdbcType=VARCHAR},
+      dwpayment = #{dwpayment,jdbcType=VARCHAR}
+    where safefactor_id = #{safefactorId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询所有的方法 -->
+  <select id="findAll" resultType="Map">
+	select s.safefactor_name,s.dwpayment,s.grpayment from tb_safefactor s
+  </select>
+</mapper>
