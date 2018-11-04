@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>用户列表</title>
+<title>批量上报页面</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -45,11 +45,11 @@
 					<div class="layui-inline">
 					<input type="text" id="createTimeStart"
 						class="layui-input userName" name="createTimeStart"
-						placeholder="注册时间(开始)" value="">
+						placeholder="输入工资(开始)" value="">
 					</div>
 					<div class="layui-inline">
 						<input type="text" id="createTimeEnd" class="layui-input userName"
-							name="createTimeEnd" placeholder="注册时间(结束)" value="">
+							name="createTimeEnd" placeholder="输入工资(结束)" value="">
 					</div>
 					<a class="layui-btn search_btn" lay-submit="" data-type="search"
 						lay-filter="search">查询</a>
@@ -176,17 +176,30 @@
 							   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:120,align:'center'},//员工住房公积金
 							   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
 							   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
-							   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center'}//员工表现
+							   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center'},//员工表现
+							   {field : 'sal_SSalary',title : '实发工资', totalRow: true,edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
+       							 return d.personxc_s1+d.personxc_s2+d.personxc_s3+d.personxc_s4+d.personxc_s5+d.personxc_s6+d.personxc_s7-d.personxc_gryl-d.personxc_grmedical-d.personxc_grsy-d.personxc_grzf
+     							 }}
   							 ] ],
 							page : true,
 						});
-					 //工具栏事件
+					 //工具栏事件:左侧全选
 					  table.on('toolbar(userList)', function(obj){
 					    var checkStatus = table.checkStatus(obj.config.id);
 					    switch(obj.event){
 					      case 'getCheckData':
 					        var data = checkStatus.data;
 					        layer.alert(JSON.stringify(data));
+					        $.ajax({
+								url : "http://localhost:8080/oa/saldata/PLInsert",
+								type : 'post',
+								contentType:"application/json;charset=utf-8",
+								data:JSON.stringify(data),
+								dataType : 'json',
+								success : function(data) {
+									alert(data);
+								}
+							})
 					      break;
 					      case 'getCheckLength':
 					        var data = checkStatus.data;
