@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwb.dao.DeptDao" >
+<resultMap id="BaseResultMap" type="com.lwb.entity.Dept" >
+    <id column="dept_id" property="deptId"/>
+    <result column="dept_name" property="deptName"/>
+    <result column="dept_number" property="deptNumber"/>
+    <result column="dept_address" property="deptAddress"/>
+    <result column="dept_zhuguan" property="deptZhuguan"/>
+    <result column="dept_aid" property="deptAid"/>
+    <result column="dept_manager" property="deptManager"/>
+    <result column="dept_status" property="deptStatus"/>
+    <result column="dept_branchlead" property="deptBranchlead"/>
+    <result column="dept_phone" property="deptPhone"/>
+    <result column="dept_fax" property="deptFax"/>
+    <result column="dept_function" property="deptFunction"/>
+    <result column="dept_role" property="deptRole"/>
+    <result column="dept_sequence" property="deptSequence"/>
+       <collection property="record" ofType="com.lwb.entity.Record" autoMapping="true" >
+           <id column="hr_record_id" property="hrRecordId"/>
+           <result column="hr_record_name" property="hrRecordName"/>
+       </collection>
+  </resultMap>
+  
+   <!-- 查询部门  -->
+  <select id="queryDept" resultMap="BaseResultMap">
+        select d.dept_id,d.dept_name,r.hr_record_id,hr_record_name from tb_dept d left join hr_record r on d.dept_id=r.hr_record_id
+   </select>
+</mapper>

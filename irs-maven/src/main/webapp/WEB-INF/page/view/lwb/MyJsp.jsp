@@ -19,229 +19,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/page/resources/layui/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/page/resources/layui/bootstrap/css/bootstrap-theme.min.css">
-<script	src="${pageContext.request.contextPath}/page/resources/layui/bootstrap/jquery-1.11.3.min.js"></script>
-<script src="${pageContext.request.contextPath}/page/resources/layui/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="page/resources/layui/esayui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="page/resources/layui/esayui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="page/resources/layui/esayui/demo/demo.css">
+<script type="text/javascript" src="page/resources/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="page/resources/layui/esayui/jquery.easyui.min.js"></script>
 <style type="text/css">
-  #mtk{
-     position:absolute;left:800px;top:13px;
-  }
+#form3 {
+	border-bottom: 1px solid #000;
+	width: 300px;
+	height: 300px;
+	position: relative;
+	left: 300px;
+	top: -300px;
+}
 </style>
   </head>
   
   <body>
-    
-   <div>
-<form method="post"  id="formh">
-<table class="Table" width="60%" align="center">
+         <div class="easyui-panel" style="padding:5px;width: 200px;height:500px;">
+		     <ul id="tt" class="easyui-tree"></ul>
+	     </div>
+	<div id="form3">
+		<div style="padding:3px 2px;border-bottom:1px solid #ccc">添加</div>
+		<form id="ff" action="form1_proc.php" method="post">
+			<table class="form-group">
+				<thead>
 
-   <tr>
-      <td nowrap class="col-md-1 control-label" style="width: 10%">计划名称:</td>
-      <td class="TableData" style="width: 20%">
-         <select name="hrPlanId" onchange="queryHire1()" id="seleP" class="form-control"></select>
-      </td>
-      <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
-      <td class="TableData" style="width: 20%">
-        <input type="text" name="hrTalentsName" id="hr_talents_name" class="form-control">
-        <input type="hidden" name="hrTalentsId" id="hr_talents_id"/>
-      </td>
-   </tr>
-   <tr>
-      <td nowrap class="col-md-2 control-label" style="width: 20%">应聘岗位:</td>
-      <td class="TableData">
-         <input type="text" name="hrTalentsToemploy" id="hr_talents_toemploy" class="form-control"   >
-      </td>
+				</thead>
+				<tbody>
+					<tr>
+						<td>编号</td>
+						<td><input type="text" name="cId"
+							id="cId"></td>
+					</tr>
+					<tr>
+						<td>编号</td>
+						<td><input type="text" name="sId"
+							id="sId"></td>
+					</tr>
+					<tr>
+						<td>名称</td>
+						<td><input  type="text" name="sName"
+							id="sName"></td>
+					</tr>
+					<tr>
+						<td>类型</td>
+						<td><input  type="text" name="sType"
+							id="sType"></td>
+					</tr>
+					<tr>
+						<td>供应</td>
+						<td><input  type="text" name="sGong"
+							id="sGong"></td>
+					</tr>
 
-      <td nowrap class="col-md-2 control-label">发起人:</td>
-      <td class="TableData">
-        <input type="text" name="hrScreenUsername" class="form-control"  >
-      </td>
-   </tr>
-   <tr>
-      <td nowrap class="col-md-2 control-label" style="width: 20%">招聘部门:</td>
-      <td class="TableData">
-          <select name="deptId" id="seDept" class="form-control"></select>
-      </td>
-
-      <td nowrap class="col-md-2 control-label">录用日期:</td>
-      <td class="TableData">
-        <input type="date" name="hrHireDate" class="form-control">
-      </td>
-   </tr>
-   <tr>
-      <td nowrap class="col-md-2 control-label" style="width: 20%">员工类型:</td>
-      <td class="TableData">
-          <input type="text" type="text" name="hrHireType" class="form-control">
-      </td>
-
-      <td nowrap class="col-md-2 control-label">职务:</td>
-      <td class="TableData">
-        <input type="text" type="date" name="hrHireDuty" class="form-control">
-      </td>
-   </tr>
-   <tr>
-      <td nowrap class="col-md-2 control-label">入职时间:</td>
-      <td class="TableData">
-        <input type="date" name="hrHireEntrytime" class="form-control">
-      </td>
-      
-      <td nowrap class="col-md-2 control-label">正式起薪日期:</td>
-      <td class="TableData">
-      <input type="date" name="hrHireStartingsalary" class="form-control" 
-      </td>     
-   </tr>
-   
-   <tr>
-	   <td nowrap class="col-md-2 control-label">备注:</td>
-	      <td class="TableData">
-	      <textarea class="form-control" rows="3" name="hrHireRemark"></textarea>
-	      </td>
-   </tr>
-    <tr align="center" class="TableControl">
-      <td colspan=4 nowrap>
-        <input type="button" class="btn btn-default" value="添加"  onclick="save()">
-      </td>
-    </tr>
-  </table>
-</form>
-</div>
-
-<!-- 按钮触发模态框 -->
-<button  data-toggle="modal" data-target="#myModal" onclick="queryScreen1()" id="mtk">
-	+++
-</button>
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					&times;
-				</button>
-				<h4 class="modal-title" id="myModalLabel">
-					应聘人姓名
-				</h4>
-			</div>
-			<div class="modal-body">
-						<table>
-						    <tbody id="tbody"></tbody>
-						 </table>
-			 
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-</div>
-  </body>
+				</tbody>
+			</table>
+		</form>
+	</div>
+ </body>
 </html>
-<script>
-                             //查询计划
-  	function queryHire(){
-  	
-  		$.ajax({
-  			url:"hire/hireSePl",
-  			type:"post",
-  			asunc:true,
-  			dataType:'json',
-  			success:function(data){
-  				$("#seleP").html("");
-        		for(var i=0;i<data.length;i++){
-        			var obj=data[i];
-					 var tr="<option value='"+obj.hr_plan_id+"'>"+obj.hr_plan_name+"</option>";
-					  $("#seleP").append(tr);    			
-        		}
-  			}
-  		})
-  	}
+<script type="text/javascript">
  
-                        //根据计划查询计划内人员
-   function queryHire1(){
-          var id= $("#seleP").val();
-           alert(id)
-	          $.ajax({
-	             
-	              url : "hire/hireSeTa",
-				  type : "post",
-				  data : {
-					"id" : id,
-				},
-	              dataType : 'json',
-	              success : function(data){
-	                 $("#tbody").html("");
-	                 for(var i=0;i<data.length;i++){
-	                    var obj=data[i];//获取当前对象
-	                    var tr="<tr>";
-	                    tr+="<td><input type='button' id='"+obj.hr_talents_id+"' value='"+obj.hr_talents_name+"' class='zpsx'/></td>";
-	                    tr+="</td>";
-	                    $("#tbody").append(tr);
-	                           			        			
-	                 }
-	              }
-	          })
-	      }
-	  
-	                          //查询计划
-  	function seleDeptt(){
-  		$.ajax({
-  			url:"hire/seleDept",
-  			type:"post",
-  			asunc:true,
-  			dataType:'json',
-  			success:function(data){
-  				$("#seDept").html("");
-        		for(var i=0;i<data.length;i++){
-        			var obj=data[i];
-					 var tr="<option value='"+obj.dept_id+"'>"+obj.dept_name+"</option>";
-					  $("#seDept").append(tr);    			
-        		}
-  			}
-  		})
-  	}
-  $(function(){
-  	    queryHire();
-  	    seleDeptt()
-  	})
-  	                   
-	                 //根据人员查询出数据，并显示在页面上
-  	$(function(){
-        $("#tbody").on("click", ".zpsx", function() {
-			 var id = this.id;
-			alert(id);
-			$.ajax({
-				url : "hire/hTalentId",
-				type : "post",
-				data : {
-					"id" : id,
-				},
-				dataType : 'json',
-				success : function(data) {
-				    $("#hr_talents_id").html("");
-					$("#hr_talents_name").html("");
-					$("#hr_talents_toemploy").html("");
-					var ary = data[0];
-			        $("#hr_talents_id").val(ary.hr_talents_id);
-					$("#hr_talents_name").val(ary.hr_talents_name);
-					$("#hr_talents_toemploy").val(ary.hr_talents_toemploy);
-				}
-			}); 
-		})
-		})
+  $("#tt").tree({
+    url:'dept/queryDept',
+ }); 
 
-  	                /*添加*/
-		function save(){
-	  		var obj=$("#formh").serialize();
-				alert(obj);
-				$.ajax({
-		        	     url : "hire/saveHire",
-		        	     type : "post",
-		        	     async : true,
-		        	     data :$("#formh").serialize(),
-		       	         dataType : 'text',//返回的数据类型
-		        	     success : function(data) {
-		        	         
-		        		       alert(data);
-		        	}
-		 		});
-	  	}
-	
 </script>

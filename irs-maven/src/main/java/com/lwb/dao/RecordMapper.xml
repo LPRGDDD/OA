@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwb.dao.RecordDao" >
+
+  <!-- <select id="" resultMap="scr">
+    select * from hr_record  where hr_record_id = #{hrRecordId}
+  </select> -->
+  
+  <!-- <insert id="insert" parameterType="com.lwb.entity.Record" >
+    insert into hr_record (hr_talents_id, role_id, dept_id, 
+      hr_record_name, hr_record_oaname, hr_record_serial, 
+      hr_record_jobNumber, hr_record_createtime, hr_record_englishName, 
+      hr_record_identity, hr_record_dateOfBirth, hr_record_sex, 
+      hr_record_age, hr_record_nation, hr_record_relation, 
+      hr_record_email, hr_record_marriage, hr_record_face, 
+      hr_record_nativePlace, hr_record_health, hr_record_family, 
+      hr_record_address, hr_record_employeetype, 
+      hr_record_post, hr_record_entrytime, hr_record_startingtime, 
+      hr_record_school, hr_record_graduate, 
+      hr_record_degree, hr_record_major, hr_record_unusual, 
+      hr_record_state, hr_record_remark, 
+      hr_record_username, hr_record_currenttime)
+    values (#{hrTalentsId}, #{roleId}, #{deptId}, 
+      #{hrRecordName}, #{hrRecordOaname}, #{hrRecordSerial}, 
+      #{hrRecordJobnumber}, #{hrRecordCreatetime}, #{hrRecordEnglishname}, 
+      #{hrRecordIdentity}, #{hrRecordDateofbirth}, #{hrRecordSex}, 
+      #{hrRecordAge}, #{hrRecordNation}, #{hrRecordRelation}, 
+      #{hrRecordEmail}, #{hrRecordMarriage}, #{hrRecordFace}, 
+      #{hrRecordNativeplace}, #{hrRecordHealth}, #{hrRecordFamily}, 
+      #{hrRecordAddress}, #{hrRecordEmployeetype}, 
+      #{hrRecordPost}, #{hrRecordEntrytime}, #{hrRecordStartingtime}, 
+      #{hrRecordSchool}, #{hrRecordGraduate}, 
+      #{hrRecordDegree}, #{hrRecordMajor}, #{hrRecordUnusual}, 
+      #{hrRecordState}, #{hrRecordRemark},
+      #{hrRecordUsername}, #{hrRecordCurrenttime})
+  </insert>
+ 
+  
+  <update id="updateByPrimaryKey" parameterType="com.lwb.entity.Record" >
+    update hr_record
+    set user_role_id = #{userRoleId},
+      dept_id = #{deptId},
+      hr_record_name = #{hrRecordName},
+      hr_record_oaname = #{hrRecordOaname},
+      hr_record_serial = #{hrRecordSerial},
+      hr_record_jobNumber = #{hrRecordJobnumber},
+      hr_record_createtime = #{hrRecordCreatetime},
+      hr_record_englishName = #{hrRecordEnglishname},
+      hr_record_identity = #{hrRecordIdentity},
+      hr_record_dateOfBirth = #{hrRecordDateofbirth},
+      hr_record_sex = #{hrRecordSex},
+      hr_record_age = #{hrRecordAge},
+      hr_record_nation = #{hrRecordNation},
+      hr_record_relation = #{hrRecordRelation},
+      hr_record_email = #{hrRecordEmail},
+      hr_record_marriage = #{hrRecordMarriage},
+      hr_record_face = #{hrRecordFace},
+      hr_record_nativePlace = #{hrRecordNativeplace},
+      hr_record_health = #{hrRecordHealth},
+      hr_record_family = #{hrRecordFamily},
+      hr_record_address = #{hrRecordAddress},
+      hr_record_employeetype = #{hrRecordEmployeetype},
+      hr_record_post = #{hrRecordPost},
+      hr_record_entrytime = #{hrRecordEntrytime},
+      hr_record_startingtime = #{hrRecordStartingtime},
+      hr_record_photograph = #{hrRecordPhotograph},
+      hr_record_school = #{hrRecordSchool},
+      hr_record_graduate = #{hrRecordGraduate},
+      hr_record_degree = #{hrRecordDegree},
+      hr_record_major = #{hrRecordMajor},
+      hr_record_unusual = #{hrRecordUnusual},
+      hr_record_state = #{hrRecordState},
+      hr_record_remark = #{hrRecordRemark},
+      hr_record_accessory = #{hrRecordAccessory},
+      hr_record_username = #{hrRecordUsername},
+      hr_record_currenttime = #{hrRecordCurrenttime}
+    where hr_record_id = #{hrRecordId}
+  </update>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hr_record  where hr_record_id = #{hrRecordId}
+  </delete> -->
+</mapper>

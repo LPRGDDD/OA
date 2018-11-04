@@ -1,5 +1,7 @@
 package com.lwb.entity;
 
+import java.util.List;
+
 public class Dept {
     private Integer deptId;
 
@@ -30,8 +32,20 @@ public class Dept {
     private String deptRole;
 
     private String deptSequence;
+    
+    private List<Record> record;
+    
+    
 
-    public Integer getDeptId() {
+    public List<Record> getRecord() {
+		return record;
+	}
+
+	public void setRecord(List<Record> record) {
+		this.record = record;
+	}
+
+	public Integer getDeptId() {
         return deptId;
     }
 
@@ -150,4 +164,44 @@ public class Dept {
     public void setDeptSequence(String deptSequence) {
         this.deptSequence = deptSequence == null ? null : deptSequence.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Dept [deptId=" + deptId + ", dwinformationId=" + dwinformationId + ", deptName=" + deptName
+				+ ", deptNumber=" + deptNumber + ", deptAddress=" + deptAddress + ", deptZhuguan=" + deptZhuguan
+				+ ", deptAid=" + deptAid + ", deptManager=" + deptManager + ", deptStatus=" + deptStatus
+				+ ", deptBranchlead=" + deptBranchlead + ", deptPhone=" + deptPhone + ", deptFax=" + deptFax
+				+ ", deptFunction=" + deptFunction + ", deptRole=" + deptRole + ", deptSequence=" + deptSequence
+				+ ", record=" + record + "]";
+	}
+
+	public Dept(Integer deptId, Integer dwinformationId, String deptName, Integer deptNumber, String deptAddress,
+			String deptZhuguan, String deptAid, String deptManager, Integer deptStatus, String deptBranchlead,
+			String deptPhone, String deptFax, String deptFunction, String deptRole, String deptSequence,
+			List<Record> record) {
+		super();
+		this.deptId = deptId;
+		this.dwinformationId = dwinformationId;
+		this.deptName = deptName;
+		this.deptNumber = deptNumber;
+		this.deptAddress = deptAddress;
+		this.deptZhuguan = deptZhuguan;
+		this.deptAid = deptAid;
+		this.deptManager = deptManager;
+		this.deptStatus = deptStatus;
+		this.deptBranchlead = deptBranchlead;
+		this.deptPhone = deptPhone;
+		this.deptFax = deptFax;
+		this.deptFunction = deptFunction;
+		this.deptRole = deptRole;
+		this.deptSequence = deptSequence;
+		this.record = record;
+	}
+
+	public Dept() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+    
 }
