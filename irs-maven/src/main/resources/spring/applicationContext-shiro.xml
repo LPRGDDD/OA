@@ -46,7 +46,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 				/json/**=anon
 				/images/**=anon
 				/loginOut=logout
-				/**=authc
+				<!-- /**=authc -->
 			</value>
 		</property>
 	</bean>

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="/WEB-INF/page/include/taglib.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>登录--后台管理</title>
     <link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="${ctx }/css/login.css" media="all" />
-    <script>  
+       <script>  
         var ctx = "${ctx}";  
     </script>
     <script type="text/javascript">
@@ -18,8 +18,6 @@
     </script>
 </head>
 <body>
-
-
 <div class="video_mask"></div>
 <div class="login">
     <h1>管理员登录</h1>
