@@ -275,9 +275,14 @@ public class SynthesisController {
 	//通过审批后  查询外出  已回归
 	@RequestMapping("/TongWai")
 	@ResponseBody
-	public Map<String,Object> WaiSelect(int page,int limit,int id,int name){
+	public Map<String,Object> WaiSelect(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
-		List<Map<String,Object>> list=ss.ShenWaiChu(id);
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		System.out.println(id+"号码");
+		map1.put("id", id);
+		map1.put("username", username);
+		List<Map<String,Object>> list=ss.ShenWaiChu(map1);
+		//List<Map<String,Object>> list=ss.ShenWaiChu(id);
 		PageInfo<Map<String, Object>> info=new PageInfo<Map<String, Object>>(list);
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("code",0);

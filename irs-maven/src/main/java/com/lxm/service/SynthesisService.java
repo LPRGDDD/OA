@@ -64,7 +64,13 @@ public interface SynthesisService {
 	    * @param id
 	    * @return
 	    */
-	   public List<Map<String,Object>> ShenWaiChu(int id);
+	 //  public List<Map<String,Object>> ShenWaiChu(int id);
+	   /**
+	    * 审批后的外出 查询
+	    * @param id
+	    * @return
+	    */
+	   public List<Map<String,Object>> ShenWaiChu(Map<String,Object> map);
 	   /**
 	    * 审批后的外出  时间过后 回归
 	    * @param sid 

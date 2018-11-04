@@ -75,10 +75,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="demoTable">
 					  搜索ID：
 					  <div class="layui-inline">
-					    <input name="id" class="layui-input" id="demoReload" autocomplete="off">
+					    <input name="username" class="layui-input" id="demoReload" autocomplete="off">
 					  </div>
 					  <button class="layui-btn" data-type="reload">搜索</button>
 					</div>
+					
 					<table class="layui-hide" lay-filter="demo1" id="test1"></table> 
 					<script id="waichu" type="text/html">
  						{{#if(d.exState==2){  }}
@@ -279,10 +280,9 @@ layui.use('table', function(){
     ,page:true
     ,id: 'testReload'
   }); 
-	  var $ = layui.$, active = {
+	var $ = layui.$, active = {
     reload: function(){
       var demoReload = $('#demoReload');
-      
       //执行重载
       table.reload('testReload', {
         page: {
@@ -290,13 +290,13 @@ layui.use('table', function(){
         }
         ,where: {
           key: {
-            name: demoReload.val()
+            username:demoReload.val()
           }
         }
       });
     }
   };
-  
+
   //监听工具条
   table.on('tool(demo1)', function(obj){
     var data = obj.data;

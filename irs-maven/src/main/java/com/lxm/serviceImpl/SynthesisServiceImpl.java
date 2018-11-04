@@ -54,12 +54,11 @@ public class SynthesisServiceImpl implements SynthesisService {
 	public int updateState(int sid) {
 		return sm.updateState(sid);
 	}
-	@Override
+/*	@Override
 	@Transactional
 	public List<Map<String, Object>> ShenWaiChu(int id) {
 		return sm.ShenWaiChu(id);
-	}
-	@Override
+	}*/
 	@Transactional
 	public int WaiChuHuiGui(Map<String,Object> map) {
 		return sm.WaiChuHuiGui(map);
@@ -128,6 +127,11 @@ public class SynthesisServiceImpl implements SynthesisService {
 	@Override
 	public List<Map<String, Object>> ShenChuChai(int id) {
 		return sm.ShenChuChai(id);
+	}
+	@Override
+	public List<Map<String, Object>> ShenWaiChu(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sm.ShenWaiChu(map);
 	}
 	
 	

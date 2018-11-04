@@ -114,10 +114,14 @@
   		update synthesis set syName=#{syName},exState=1 where sId=#{sid}
   </update>
   <!--外出  已批准 已回归  -->
-  <select id="ShenWaiChu" resultType="Map" parameterType="Integer"> 
+  <select id="ShenWaiChu" resultType="Map" parameterType="Map"> 
   		select  *,
       (select a.username from tb_admin a where a.id=s.shenId) shenname
-      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=1 and  s.shenId=#{id} and s.exState BETWEEN 2 and 3
+      from synthesis s LEFT JOIN tb_admin t on s.id=t.id  where s.syState=1 and
+      	<if test="username != null">
+      		t.username LIKE concat(concat('%',#{username}),'%') and
+      	</if> 
+         s.shenId=#{id} and s.exState BETWEEN 2 and 3
   </select>
   <!--请假  已批准 已回归  -->
   <select id="ShenQing" resultType="Map" parameterType="Integer"> 
