@@ -2,6 +2,7 @@ package com.lwb.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lwb.entity.Hire;
 
 import com.lwb.service.HireService;
@@ -27,6 +30,19 @@ public class HireController {
 	@RequestMapping("/findhire.action")
 	public String find(){
 		return "page/view/lwb/hr_hire";
+	}
+	@RequestMapping("/queryHire")
+	@ResponseBody
+	public Map queryHire(Integer page,Integer limit) {
+		PageHelper.startPage(page,limit);
+		List<Map> list=ser.queryHire();
+		PageInfo<Map> info=new PageInfo<Map>(list);
+		Map map = new HashMap();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("count",info.getTotal());
+        map.put("data", info.getList());
+		return map;
 	}
 	
     //查询计划
@@ -50,7 +66,7 @@ public class HireController {
 		List<Map> list=ser.hTalentId(id);
 		return list;
 	}
-	//根据部门
+	   //查询部门
 		@RequestMapping("/seleDept")
 		@ResponseBody
 		public List<Map> seleDept(){
@@ -64,6 +80,8 @@ public class HireController {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out=response.getWriter();
 			int sid=ser.saveHire(h);
+			System.out.println(h);
+			System.out.println(h.getHrHireUsername());
 			ser.updateStats4(h.getHrTalentsId());
 			if (sid>0) {
 				out.print("添加成功");

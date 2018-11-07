@@ -26,14 +26,12 @@
   <update id="updateStats4" parameterType="java.lang.Integer">
        UPDATE hr_talents set hr_talents_filestatus=4 where hr_talents_id=#{id}
   </update>
-   
-  <!-- <delete id="hTalentId" parameterType="java.lang.Integer" >
-    delete from hr_hire
-    where hr_hire_id = #{hrHireId,jdbcType=INTEGER}
-  </delete>
+
+   <select id="queryHire" resultType="Map">
+         select * FROM hr_hire h left join hr_talents t on h.hr_talents_id=t.hr_talents_id LEFT JOIN hr_plan p on h.hr_plan_id=p.hr_plan_id
+  </select>
   
-  
-  <update id="updateByPrimaryKey" parameterType="com.lwb.entity.Hire" >
+  <!--<update id="updateByPrimaryKey" parameterType="com.lwb.entity.Hire" >
     update hr_hire
     set hr_plan_id = #{hrPlanId,jdbcType=INTEGER},
       tb__user_id = #{tbUserId,jdbcType=INTEGER},

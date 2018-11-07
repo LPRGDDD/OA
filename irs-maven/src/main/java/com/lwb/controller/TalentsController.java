@@ -70,6 +70,9 @@ public class TalentsController {
 	public String queryByIdrck(HttpServletRequest req,@PathVariable("hr_talents_id")int hr_talents_id){
 		System.out.println(hr_talents_id);
 		Map list=ser.queryByIdrck(hr_talents_id);
+		System.out.println(hr_talents_id);
+		System.out.println(list);
+		System.out.println(req);
 		req.setAttribute("rck", list);
 		return "page/view/lwb/rckUpdate";
 	}

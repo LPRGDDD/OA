@@ -11,6 +11,8 @@ public class Talents {
     private Plan plan;
     
     private String hrTalentsName;
+    private String hrTalentsIdentity;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrTalentsBirth;
 
@@ -414,22 +416,31 @@ public class Talents {
 		this.hrTalentsToemploy = hrTalentsToemploy;
 	}
 
-	public Talents(Integer hrTalentsId, Integer hrPlanId, Plan plan, String hrTalentsName, Date hrTalentsBirth,
-			String hrTalentsSex, Integer hrTalentsAge, String hrTalentsNative, String hrTalentsPlace,
-			String hrTalentsNation, String hrTalentsState, String hrTalentsFace, String hrTalentsRelation,
-			String hrTalentsMall, Date hrTalentsWorkdate, String hrTalentsHealth, String hrTalentsBackground,
-			String hrTalentsDegree, Date hrTalentsGraduate, String hrTalentsSchool, String hrTalentsMajor,
-			String hrTalentsComputer, String hrTalentsForeign, String hrTalentsLevel, String hrTalentsStrong,
-			Date hrTalentsRegister, String hrTalentsExpect, String hrTalentsSkill, String hrTalentsWorkexperience,
-			String hrTalentsProjectexperience, String hrTalentsDwell, String hrTalentsNature, String hrTalentsIndustry,
-			String hrTalentsPay, Integer hrTalentsPositiondate, String hrTalentsPicture, String hrTalentsRemark,
-			String hrTalentsAccessory, Integer hrTalentsFilestatus, String hrTalentsUsername,
-			String hrTalentsToemploy) {
+	public String getHrTalentsIdentity() {
+		return hrTalentsIdentity;
+	}
+
+	public void setHrTalentsIdentity(String hrTalentsIdentity) {
+		this.hrTalentsIdentity = hrTalentsIdentity;
+	}
+
+	public Talents(Integer hrTalentsId, Integer hrPlanId, Plan plan, String hrTalentsName, String hrTalentsIdentity,
+			Date hrTalentsBirth, String hrTalentsSex, Integer hrTalentsAge, String hrTalentsNative,
+			String hrTalentsPlace, String hrTalentsNation, String hrTalentsState, String hrTalentsFace,
+			String hrTalentsRelation, String hrTalentsMall, Date hrTalentsWorkdate, String hrTalentsHealth,
+			String hrTalentsBackground, String hrTalentsDegree, Date hrTalentsGraduate, String hrTalentsSchool,
+			String hrTalentsMajor, String hrTalentsComputer, String hrTalentsForeign, String hrTalentsLevel,
+			String hrTalentsStrong, Date hrTalentsRegister, String hrTalentsExpect, String hrTalentsSkill,
+			String hrTalentsWorkexperience, String hrTalentsProjectexperience, String hrTalentsDwell,
+			String hrTalentsNature, String hrTalentsIndustry, String hrTalentsPay, Integer hrTalentsPositiondate,
+			String hrTalentsPicture, String hrTalentsRemark, String hrTalentsAccessory, Integer hrTalentsFilestatus,
+			String hrTalentsUsername, String hrTalentsToemploy) {
 		super();
 		this.hrTalentsId = hrTalentsId;
 		this.hrPlanId = hrPlanId;
 		this.plan = plan;
 		this.hrTalentsName = hrTalentsName;
+		this.hrTalentsIdentity = hrTalentsIdentity;
 		this.hrTalentsBirth = hrTalentsBirth;
 		this.hrTalentsSex = hrTalentsSex;
 		this.hrTalentsAge = hrTalentsAge;
@@ -477,26 +488,24 @@ public class Talents {
 	@Override
 	public String toString() {
 		return "Talents [hrTalentsId=" + hrTalentsId + ", hrPlanId=" + hrPlanId + ", plan=" + plan + ", hrTalentsName="
-				+ hrTalentsName + ", hrTalentsBirth=" + hrTalentsBirth + ", hrTalentsSex=" + hrTalentsSex
-				+ ", hrTalentsAge=" + hrTalentsAge + ", hrTalentsNative=" + hrTalentsNative + ", hrTalentsPlace="
-				+ hrTalentsPlace + ", hrTalentsNation=" + hrTalentsNation + ", hrTalentsState=" + hrTalentsState
-				+ ", hrTalentsFace=" + hrTalentsFace + ", hrTalentsRelation=" + hrTalentsRelation + ", hrTalentsMall="
-				+ hrTalentsMall + ", hrTalentsWorkdate=" + hrTalentsWorkdate + ", hrTalentsHealth=" + hrTalentsHealth
-				+ ", hrTalentsBackground=" + hrTalentsBackground + ", hrTalentsDegree=" + hrTalentsDegree
-				+ ", hrTalentsGraduate=" + hrTalentsGraduate + ", hrTalentsSchool=" + hrTalentsSchool
-				+ ", hrTalentsMajor=" + hrTalentsMajor + ", hrTalentsComputer=" + hrTalentsComputer
-				+ ", hrTalentsForeign=" + hrTalentsForeign + ", hrTalentsLevel=" + hrTalentsLevel + ", hrTalentsStrong="
-				+ hrTalentsStrong + ", hrTalentsRegister=" + hrTalentsRegister + ", hrTalentsExpect=" + hrTalentsExpect
-				+ ", hrTalentsSkill=" + hrTalentsSkill + ", hrTalentsWorkexperience=" + hrTalentsWorkexperience
-				+ ", hrTalentsProjectexperience=" + hrTalentsProjectexperience + ", hrTalentsDwell=" + hrTalentsDwell
-				+ ", hrTalentsNature=" + hrTalentsNature + ", hrTalentsIndustry=" + hrTalentsIndustry
-				+ ", hrTalentsPay=" + hrTalentsPay + ", hrTalentsPositiondate=" + hrTalentsPositiondate
-				+ ", hrTalentsPicture=" + hrTalentsPicture + ", hrTalentsRemark=" + hrTalentsRemark
-				+ ", hrTalentsAccessory=" + hrTalentsAccessory + ", hrTalentsFilestatus=" + hrTalentsFilestatus
-				+ ", hrTalentsUsername=" + hrTalentsUsername + ", hrTalentsToemploy=" + hrTalentsToemploy + "]";
+				+ hrTalentsName + ", hrTalentsIdentity=" + hrTalentsIdentity + ", hrTalentsBirth=" + hrTalentsBirth
+				+ ", hrTalentsSex=" + hrTalentsSex + ", hrTalentsAge=" + hrTalentsAge + ", hrTalentsNative="
+				+ hrTalentsNative + ", hrTalentsPlace=" + hrTalentsPlace + ", hrTalentsNation=" + hrTalentsNation
+				+ ", hrTalentsState=" + hrTalentsState + ", hrTalentsFace=" + hrTalentsFace + ", hrTalentsRelation="
+				+ hrTalentsRelation + ", hrTalentsMall=" + hrTalentsMall + ", hrTalentsWorkdate=" + hrTalentsWorkdate
+				+ ", hrTalentsHealth=" + hrTalentsHealth + ", hrTalentsBackground=" + hrTalentsBackground
+				+ ", hrTalentsDegree=" + hrTalentsDegree + ", hrTalentsGraduate=" + hrTalentsGraduate
+				+ ", hrTalentsSchool=" + hrTalentsSchool + ", hrTalentsMajor=" + hrTalentsMajor + ", hrTalentsComputer="
+				+ hrTalentsComputer + ", hrTalentsForeign=" + hrTalentsForeign + ", hrTalentsLevel=" + hrTalentsLevel
+				+ ", hrTalentsStrong=" + hrTalentsStrong + ", hrTalentsRegister=" + hrTalentsRegister
+				+ ", hrTalentsExpect=" + hrTalentsExpect + ", hrTalentsSkill=" + hrTalentsSkill
+				+ ", hrTalentsWorkexperience=" + hrTalentsWorkexperience + ", hrTalentsProjectexperience="
+				+ hrTalentsProjectexperience + ", hrTalentsDwell=" + hrTalentsDwell + ", hrTalentsNature="
+				+ hrTalentsNature + ", hrTalentsIndustry=" + hrTalentsIndustry + ", hrTalentsPay=" + hrTalentsPay
+				+ ", hrTalentsPositiondate=" + hrTalentsPositiondate + ", hrTalentsPicture=" + hrTalentsPicture
+				+ ", hrTalentsRemark=" + hrTalentsRemark + ", hrTalentsAccessory=" + hrTalentsAccessory
+				+ ", hrTalentsFilestatus=" + hrTalentsFilestatus + ", hrTalentsUsername=" + hrTalentsUsername
+				+ ", hrTalentsToemploy=" + hrTalentsToemploy + "]";
 	}
-
-	
-
-    
+ 
 }

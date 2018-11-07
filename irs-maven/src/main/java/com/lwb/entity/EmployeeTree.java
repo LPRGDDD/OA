@@ -6,6 +6,7 @@ public class EmployeeTree {
    private Integer id;
    private Integer pid;
    private String text;
+   private String state;
    private List children;
 public Integer getId() {
 	return id;
@@ -30,6 +31,12 @@ public List getChildren() {
 }
 public void setChildren(List children) {
 	this.children = children;
+}
+public String getState() {
+	return state;
+}
+public void setState(String state) {
+	this.state = state;
 }
    
    

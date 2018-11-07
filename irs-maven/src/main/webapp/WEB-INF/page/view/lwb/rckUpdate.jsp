@@ -47,9 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>出生日期</label>
+					<label class="layui-form-label"><span class="yan">*</span>身份证号</label>
 				<div class="layui-input-inline">				
-					<input name="hrTalentsBirth" value="${rck.hr_talents_birth}" class="layui-input ym" type="date"  autocomplete="off">
+					<input name="hrTalentsIdentity" value="${rck.hr_talents_identity}" class="layui-input ym" type="text"  autocomplete="off">
 				</div>
 			</div>
 	   </div>
@@ -57,6 +57,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	
 	<div class="layui-form-item">
+	        <div class="layui-inline">
+					<label class="layui-form-label"><span class="yan">*</span>出生日期</label>
+				<div class="layui-input-inline">				
+					<input name="hrTalentsBirth" value="${rck.hr_talents_birth}" class="layui-input ym" type="date"  autocomplete="off">
+				</div>
+			</div>
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>性别</label>
 				<div class="layui-input-inline">				
@@ -69,15 +75,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    <input name="hrTalentsAge" value="${rck.hr_talents_age}" class="layui-input ym" type="text"  placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-			<div class="layui-inline">
+	   </div>
+	   
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>籍贯</label>
 				<div class="layui-input-inline">
 					<input name="hrTalentsNative" value="${rck.hr_talents_native}" class="layui-input ym" type="text"  autocomplete="off">
 				</div>
 			</div>
-	   </div>
-	   
-	   <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>户口所在地</label>
 				<div class="layui-input-inline">
@@ -90,15 +96,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsNation" value="${rck.hr_talents_nation}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-			<div class="layui-inline">
+	   </div>
+	   
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>婚姻状况</label>
 			    <div class="layui-input-inline">
 					<input name="hrTalentsState" value="${rck.hr_talents_state}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	   </div>
-	   
-	   <div class="layui-form-item">
 	       <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>政治面貌</label>
 			    <div class="layui-input-inline">			    
@@ -111,15 +117,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsRelation" value="${rck.hr_talents_relation}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-			<div class="layui-inline">
+	   </div>
+	   
+	   <div class="layui-form-item">
+	        <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>e-mall</label>
 			    <div class="layui-input-inline">
 		             <input name="hrTalentsMall"  value="${rck.hr_talents_mall}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	   </div>
-	   
-	   <div class="layui-form-item">
 	        <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>参加工作时间</label>
 			    <div class="layui-input-inline">
@@ -132,14 +138,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <input name="hrTalentsBackground"  value="${rck.hr_talents_background}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	        <div class="layui-inline">
+	   </div>
+	   <div class="layui-form-item">
+	         <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>健康状况</label>
 			    <div class="layui-input-inline">
                       <input name="hrTalentsHealth"  value="${rck.hr_talents_health}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	   </div>
-	   <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>学位</label>
 				<div class="layui-input-inline">
@@ -152,18 +158,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsGraduate"  value="${rck.hr_talents_graduate}" class="layui-input ym" type="date"  autocomplete="off">
 				</div>
 			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>毕业学校</label>
-			    <div class="layui-input-inline">
-					<input name="hrTalentsSchool"  value="${rck.hr_talents_school}" class="layui-input ym" type="text"  autocomplete="off">
-				</div>
-			</div>
 	    </div>
 	    
 	    
 	    
 	    
 	<div class="layui-form-item">
+	    <div class="layui-inline">
+				<label class="layui-form-label"><span class="yan">*</span>毕业学校</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsSchool"  value="${rck.hr_talents_school}" class="layui-input ym" type="text"  autocomplete="off">
+				</div>
+			</div>
 	   <div class="layui-inline">
           <label class="layui-form-label">专业</label>
             <div class="layui-input-inline">			           
@@ -177,18 +183,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsComputer"  value="${rck.hr_talents_computer}" class="layui-input ym" type="text"  autocomplete="off">
             </div>
        </div>
-       <div class="layui-inline">
-          <label class="layui-form-label">外语语种</label>
-            <div class="layui-input-inline">
-					<input name="hrTalentsForeign"  value="${rck.hr_talents_foreign}" class="layui-input ym" type="text"  autocomplete="off">
-            </div>
-        </div>
   </div>
 	   
 	   
 	   
 	   
 	   <div class="layui-form-item">
+	         <div class="layui-inline">
+		          <label class="layui-form-label">外语语种</label>
+		            <div class="layui-input-inline">
+							<input name="hrTalentsForeign"  value="${rck.hr_talents_foreign}" class="layui-input ym" type="text"  autocomplete="off">
+		            </div>
+             </div>
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>外语水平</label>
 				<div class="layui-input-inline">
@@ -201,15 +207,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsStrong"  value="${rck.hr_talents_strong}" class="layui-input ym" type="text"/>
 				</div>
 			</div>
-			<div class="layui-inline">
+	 </div>	
+	 
+	  <div class="layui-form-item">
+	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>期望从事职业</label>
 				<div class="layui-input-inline">
 					<input name="hrTalentsExpect"  value="${rck.hr_talents_expect}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	 </div>	
-	 
-	  <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>职业技能</label>
 				<div class="layui-input-inline">
@@ -222,15 +228,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsWorkexperience"  value="${rck.hr_talents_workExperience}" class="layui-input ym" type="text" />
 				</div>
 			</div>
-			<div class="layui-inline">
+	 </div>
+	 
+	  <div class="layui-form-item">
+	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>项目经验</label>
 				<div class="layui-input-inline">
 					<input name="hrTalentsProjectexperience"  value="${rck.hr_talents_projectExperience}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	 </div>
-	 
-	  <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>现居住城市</label>
 				<div class="layui-input-inline">
@@ -243,15 +249,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsNature"  value="${rck.hr_talents_nature}" class="layui-input ym" type="text">
 				</div>
 			</div>
-			<div class="layui-inline">
+	 </div>		
+	 
+	 <div class="layui-form-item">
+	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>期望从事行业</label>
 				<div class="layui-input-inline">
 					<input name="hrTalentsIndustry"  value="${rck.hr_talents_industry}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	 </div>		
-	 
-	 <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>期望薪水</label>
 				<div class="layui-input-inline">
@@ -264,14 +270,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsToemploy"  value="${rck.hr_talents_toemploy}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>到岗时间</label>
-			    <div class="layui-input-inline">
-					<input name="hrTalentsPositiondate"  value="${rck.hr_talents_positiondate}" class="layui-input ym" type="text"/>
-				</div>
-			</div>
 	 </div>	
-	
+
 	     <div class="layui-form-item layui-form-text">
           <label class="layui-form-label">备注</label>
             <div class="layui-input-block">
@@ -314,7 +314,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   ,layer = layui.layer
   ,layedit = layui.layedit
   ,laydate = layui.laydate;
-  
+
   //日期
   laydate.render({
     elem: '#date'

@@ -22,8 +22,12 @@
        </collection>
   </resultMap>
   
-   <!-- 查询部门  -->
-  <select id="queryDept" resultMap="BaseResultMap">
-        select d.dept_id,d.dept_name,r.hr_record_id,hr_record_name from tb_dept d left join hr_record r on d.dept_id=r.hr_record_id
+   <!-- 树形菜单（在职）  -->
+  <select id="queryDept0" resultMap="BaseResultMap">
+        select d.dept_id,d.dept_name,r.hr_record_id,hr_record_name from tb_dept d left join hr_record r on d.dept_id=r.dept_id where r.hr_record_state=0
+   </select>
+   <!-- 树形菜单（离职）  -->
+  <select id="queryDept4" resultMap="BaseResultMap">
+        select d.dept_id,d.dept_name,r.hr_record_id,hr_record_name from tb_dept d left join hr_record r on d.dept_id=r.dept_id where r.hr_record_state=4
    </select>
 </mapper>

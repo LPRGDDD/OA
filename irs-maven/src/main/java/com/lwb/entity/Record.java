@@ -2,6 +2,8 @@ package com.lwb.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.irs.pojo.TbRoles;
 
 public class Record {
@@ -9,6 +11,7 @@ public class Record {
 
     private Integer roleId;
     private TbRoles roles;
+    private Integer hrTalentsId;
     private Talents talents;
     
     private Integer deptId;
@@ -20,13 +23,13 @@ public class Record {
     private Integer hrRecordSerial;
 
     private Integer hrRecordJobnumber;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrRecordCreatetime;
 
     private String hrRecordEnglishname;
 
     private String hrRecordIdentity;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrRecordDateofbirth;
 
     private String hrRecordSex;
@@ -51,18 +54,18 @@ public class Record {
 
     private String hrRecordAddress;
 
-    private Integer hrRecordEmployeetype;
+    private String hrRecordEmployeetype;
 
     private String hrRecordPost;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrRecordEntrytime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrRecordStartingtime;
 
     private String hrRecordPhotograph;
 
     private String hrRecordSchool;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrRecordGraduate;
 
     private String hrRecordDegree;
@@ -78,11 +81,19 @@ public class Record {
     private String hrRecordAccessory;
 
     private String hrRecordUsername;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hrRecordCurrenttime;
     
     private Dept dept;
     
+	public Integer getHrTalentsId() {
+		return hrTalentsId;
+	}
+
+	public void setHrTalentsId(Integer hrTalentsId) {
+		this.hrTalentsId = hrTalentsId;
+	}
+
 	public Integer getHrRecordId() {
 		return hrRecordId;
 	}
@@ -283,11 +294,11 @@ public class Record {
 		this.hrRecordAddress = hrRecordAddress;
 	}
 
-	public Integer getHrRecordEmployeetype() {
+	public String getHrRecordEmployeetype() {
 		return hrRecordEmployeetype;
 	}
 
-	public void setHrRecordEmployeetype(Integer hrRecordEmployeetype) {
+	public void setHrRecordEmployeetype(String hrRecordEmployeetype) {
 		this.hrRecordEmployeetype = hrRecordEmployeetype;
 	}
 
@@ -403,23 +414,23 @@ public class Record {
 		this.hrRecordCurrenttime = hrRecordCurrenttime;
 	}
 
-	public Record(Integer hrRecordId, Integer roleId, TbRoles roles, Talents talents, Integer deptId, Dept dept,
-			String hrRecordName, String hrRecordOaname, Integer hrRecordSerial, Integer hrRecordJobnumber,
-			Date hrRecordCreatetime, String hrRecordEnglishname, String hrRecordIdentity, Date hrRecordDateofbirth,
-			String hrRecordSex, Integer hrRecordAge, String hrRecordNation, String hrRecordRelation,
-			String hrRecordEmail, String hrRecordMarriage, String hrRecordFace, String hrRecordNativeplace,
-			String hrRecordHealth, String hrRecordFamily, String hrRecordAddress, Integer hrRecordEmployeetype,
-			String hrRecordPost, Date hrRecordEntrytime, Date hrRecordStartingtime, String hrRecordPhotograph,
-			String hrRecordSchool, Date hrRecordGraduate, String hrRecordDegree, String hrRecordMajor,
-			String hrRecordUnusual, Integer hrRecordState, String hrRecordRemark, String hrRecordAccessory,
-			String hrRecordUsername, Date hrRecordCurrenttime) {
+	public Record(Integer hrRecordId, Integer roleId, TbRoles roles, Integer hrTalentsId, Talents talents,
+			Integer deptId, String hrRecordName, String hrRecordOaname, Integer hrRecordSerial,
+			Integer hrRecordJobnumber, Date hrRecordCreatetime, String hrRecordEnglishname, String hrRecordIdentity,
+			Date hrRecordDateofbirth, String hrRecordSex, Integer hrRecordAge, String hrRecordNation,
+			String hrRecordRelation, String hrRecordEmail, String hrRecordMarriage, String hrRecordFace,
+			String hrRecordNativeplace, String hrRecordHealth, String hrRecordFamily, String hrRecordAddress,
+			String hrRecordEmployeetype, String hrRecordPost, Date hrRecordEntrytime, Date hrRecordStartingtime,
+			String hrRecordPhotograph, String hrRecordSchool, Date hrRecordGraduate, String hrRecordDegree,
+			String hrRecordMajor, String hrRecordUnusual, Integer hrRecordState, String hrRecordRemark,
+			String hrRecordAccessory, String hrRecordUsername, Date hrRecordCurrenttime, Dept dept) {
 		super();
 		this.hrRecordId = hrRecordId;
 		this.roleId = roleId;
 		this.roles = roles;
+		this.hrTalentsId = hrTalentsId;
 		this.talents = talents;
 		this.deptId = deptId;
-		this.dept = dept;
 		this.hrRecordName = hrRecordName;
 		this.hrRecordOaname = hrRecordOaname;
 		this.hrRecordSerial = hrRecordSerial;
@@ -454,26 +465,7 @@ public class Record {
 		this.hrRecordAccessory = hrRecordAccessory;
 		this.hrRecordUsername = hrRecordUsername;
 		this.hrRecordCurrenttime = hrRecordCurrenttime;
-	}
-
-	@Override
-	public String toString() {
-		return "Record [hrRecordId=" + hrRecordId + ", roleId=" + roleId + ", roles=" + roles + ", talents=" + talents
-				+ ", deptId=" + deptId + ", dept=" + dept + ", hrRecordName=" + hrRecordName + ", hrRecordOaname="
-				+ hrRecordOaname + ", hrRecordSerial=" + hrRecordSerial + ", hrRecordJobnumber=" + hrRecordJobnumber
-				+ ", hrRecordCreatetime=" + hrRecordCreatetime + ", hrRecordEnglishname=" + hrRecordEnglishname
-				+ ", hrRecordIdentity=" + hrRecordIdentity + ", hrRecordDateofbirth=" + hrRecordDateofbirth
-				+ ", hrRecordSex=" + hrRecordSex + ", hrRecordAge=" + hrRecordAge + ", hrRecordNation=" + hrRecordNation
-				+ ", hrRecordRelation=" + hrRecordRelation + ", hrRecordEmail=" + hrRecordEmail + ", hrRecordMarriage="
-				+ hrRecordMarriage + ", hrRecordFace=" + hrRecordFace + ", hrRecordNativeplace=" + hrRecordNativeplace
-				+ ", hrRecordHealth=" + hrRecordHealth + ", hrRecordFamily=" + hrRecordFamily + ", hrRecordAddress="
-				+ hrRecordAddress + ", hrRecordEmployeetype=" + hrRecordEmployeetype + ", hrRecordPost=" + hrRecordPost
-				+ ", hrRecordEntrytime=" + hrRecordEntrytime + ", hrRecordStartingtime=" + hrRecordStartingtime
-				+ ", hrRecordPhotograph=" + hrRecordPhotograph + ", hrRecordSchool=" + hrRecordSchool
-				+ ", hrRecordGraduate=" + hrRecordGraduate + ", hrRecordDegree=" + hrRecordDegree + ", hrRecordMajor="
-				+ hrRecordMajor + ", hrRecordUnusual=" + hrRecordUnusual + ", hrRecordState=" + hrRecordState
-				+ ", hrRecordRemark=" + hrRecordRemark + ", hrRecordAccessory=" + hrRecordAccessory
-				+ ", hrRecordUsername=" + hrRecordUsername + ", hrRecordCurrenttime=" + hrRecordCurrenttime + "]";
+		this.dept = dept;
 	}
 
 	public Record() {
@@ -481,5 +473,30 @@ public class Record {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "Record [hrRecordId=" + hrRecordId + ", roleId=" + roleId + ", roles=" + roles + ", hrTalentsId="
+				+ hrTalentsId + ", talents=" + talents + ", deptId=" + deptId + ", hrRecordName=" + hrRecordName
+				+ ", hrRecordOaname=" + hrRecordOaname + ", hrRecordSerial=" + hrRecordSerial + ", hrRecordJobnumber="
+				+ hrRecordJobnumber + ", hrRecordCreatetime=" + hrRecordCreatetime + ", hrRecordEnglishname="
+				+ hrRecordEnglishname + ", hrRecordIdentity=" + hrRecordIdentity + ", hrRecordDateofbirth="
+				+ hrRecordDateofbirth + ", hrRecordSex=" + hrRecordSex + ", hrRecordAge=" + hrRecordAge
+				+ ", hrRecordNation=" + hrRecordNation + ", hrRecordRelation=" + hrRecordRelation + ", hrRecordEmail="
+				+ hrRecordEmail + ", hrRecordMarriage=" + hrRecordMarriage + ", hrRecordFace=" + hrRecordFace
+				+ ", hrRecordNativeplace=" + hrRecordNativeplace + ", hrRecordHealth=" + hrRecordHealth
+				+ ", hrRecordFamily=" + hrRecordFamily + ", hrRecordAddress=" + hrRecordAddress
+				+ ", hrRecordEmployeetype=" + hrRecordEmployeetype + ", hrRecordPost=" + hrRecordPost
+				+ ", hrRecordEntrytime=" + hrRecordEntrytime + ", hrRecordStartingtime=" + hrRecordStartingtime
+				+ ", hrRecordPhotograph=" + hrRecordPhotograph + ", hrRecordSchool=" + hrRecordSchool
+				+ ", hrRecordGraduate=" + hrRecordGraduate + ", hrRecordDegree=" + hrRecordDegree + ", hrRecordMajor="
+				+ hrRecordMajor + ", hrRecordUnusual=" + hrRecordUnusual + ", hrRecordState=" + hrRecordState
+				+ ", hrRecordRemark=" + hrRecordRemark + ", hrRecordAccessory=" + hrRecordAccessory
+				+ ", hrRecordUsername=" + hrRecordUsername + ", hrRecordCurrenttime=" + hrRecordCurrenttime + ", dept="
+				+ dept + "]";
+	}
+
+
+
+	
     
 }
