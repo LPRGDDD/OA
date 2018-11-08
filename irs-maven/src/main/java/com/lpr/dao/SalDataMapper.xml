@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.SalDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.SalData" >
+    <id column="sal_data_id" property="salDataId" jdbcType="INTEGER" />
+    <result column="personxc_id" property="personxcId" jdbcType="INTEGER" />
+    <result column="salaryflow_id" property="salaryflowId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sal_SSalary" property="salSsalary" jdbcType="DOUBLE" />
+    <result column="sal_expression" property="salExpression" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sal_data_id, personxc_id, salaryflow_id, user_id, sal_SSalary, sal_expression
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sal_data
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_sal_data
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.SalData" >
+     insert into tb_sal_data (sal_data_id, personxc_id, salaryflow_id, 
+      id, sal_SSalary, sal_expression, 
+      personxc_s1, personxc_s2, personxc_s3, 
+      personxc_s4, personxc_s5, personxc_s6, 
+      personxc_s7, personxc_s8, personxc_s9, 
+      personxc_s10, personxc_insurejs, personxc_ylinsure, 
+      personxc_dwyl, personxc_gryl, personxc_ylbx, 
+      personxc_dw_medical, personxc_grmedical, personxc_group, 
+      personxc_dwsy, personxc_sybx, personxc_dwshiye, 
+      personxc_grsy, personxc_gsbx, personxc_dwgs, 
+      personxc_housingfund, personxc_dwzf, personxc_grzf, 
+      personxc_expression)
+    values (#{salDataId,jdbcType=INTEGER}, #{personxc.personxcId,jdbcType=INTEGER}, #{salaryflow.salaryflowId,jdbcType=INTEGER}, 
+      #{user.id}, #{salSsalary,jdbcType=DOUBLE}, #{salExpression,jdbcType=VARCHAR}, 
+      #{personxcS1,jdbcType=DOUBLE}, #{personxcS2,jdbcType=DOUBLE}, #{personxcS3,jdbcType=DOUBLE}, 
+      #{personxcS4,jdbcType=DOUBLE}, #{personxcS5,jdbcType=DOUBLE}, #{personxcS6,jdbcType=DOUBLE}, 
+      #{personxcS7,jdbcType=DOUBLE}, #{personxcS8,jdbcType=DOUBLE}, #{personxcS9,jdbcType=DOUBLE}, 
+      #{personxcS10,jdbcType=DOUBLE}, #{personxcInsurejs,jdbcType=DOUBLE}, #{personxcYlinsure,jdbcType=DOUBLE}, 
+      #{personxcDwyl,jdbcType=DOUBLE}, #{personxcGryl,jdbcType=DOUBLE}, #{personxcYlbx,jdbcType=DOUBLE}, 
+      #{personxcDwMedical,jdbcType=DOUBLE}, #{personxcGrmedical,jdbcType=DOUBLE}, #{personxcGroup,jdbcType=DOUBLE}, 
+      #{personxcDwsy,jdbcType=DOUBLE}, #{personxcSybx,jdbcType=DOUBLE}, #{personxcDwshiye,jdbcType=DOUBLE}, 
+      #{personxcGrsy,jdbcType=DOUBLE}, #{personxcGsbx,jdbcType=DOUBLE}, #{personxcDwgs,jdbcType=DOUBLE}, 
+      #{personxcHousingfund,jdbcType=DOUBLE}, #{personxcDwzf,jdbcType=DOUBLE}, #{personxcGrzf,jdbcType=DOUBLE}, 
+      #{personxcExpression,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.SalData" >
+    update tb_sal_data
+    set
+      salaryflow_id = #{salaryflow.salaryflowId,jdbcType=INTEGER},
+      id = #{user.id},
+      sal_SSalary = #{salSsalary,jdbcType=DOUBLE},
+      sal_expression = #{salExpression,jdbcType=VARCHAR},
+      personxc_s1 = #{personxcS1,jdbcType=DOUBLE},
+      personxc_s2 = #{personxcS2,jdbcType=DOUBLE},
+      personxc_s3 = #{personxcS3,jdbcType=DOUBLE},
+      personxc_s4 = #{personxcS4,jdbcType=DOUBLE},
+      personxc_s5 = #{personxcS5,jdbcType=DOUBLE},
+      personxc_s6 = #{personxcS6,jdbcType=DOUBLE},
+      personxc_s7 = #{personxcS7,jdbcType=DOUBLE},
+      personxc_s8 = #{personxcS8,jdbcType=DOUBLE},
+      personxc_s9 = #{personxcS9,jdbcType=DOUBLE},
+      personxc_s10 = #{personxcS10,jdbcType=DOUBLE},
+      personxc_insurejs = #{personxcInsurejs,jdbcType=DOUBLE},
+      personxc_ylinsure = #{personxcYlinsure,jdbcType=DOUBLE},
+      personxc_dwyl = #{personxcDwyl,jdbcType=DOUBLE},
+      personxc_gryl = #{personxcGryl,jdbcType=DOUBLE},
+      personxc_ylbx = #{personxcYlbx,jdbcType=DOUBLE},
+      personxc_dw_medical = #{personxcDwMedical,jdbcType=DOUBLE},
+      personxc_grmedical = #{personxcGrmedical,jdbcType=DOUBLE},
+      personxc_group = #{personxcGroup,jdbcType=DOUBLE},
+      personxc_dwsy = #{personxcDwsy,jdbcType=DOUBLE},
+      personxc_sybx = #{personxcSybx,jdbcType=DOUBLE},
+      personxc_dwshiye = #{personxcDwshiye,jdbcType=DOUBLE},
+      personxc_grsy = #{personxcGrsy,jdbcType=DOUBLE},
+      personxc_gsbx = #{personxcGsbx,jdbcType=DOUBLE},
+      personxc_dwgs = #{personxcDwgs,jdbcType=DOUBLE},
+      personxc_housingfund = #{personxcHousingfund,jdbcType=DOUBLE},
+      personxc_dwzf = #{personxcDwzf,jdbcType=DOUBLE},
+      personxc_grzf = #{personxcGrzf,jdbcType=DOUBLE},
+      personxc_expression = #{personxcExpression,jdbcType=VARCHAR}
+    where sal_data_id = #{salDataId,jdbcType=INTEGER}
+  </update>
+  <!-- 根据状态（1,0）进行分页查询 -->
+ <select id="findByStatus" resultType="java.util.Map">
+    select 
+    *
+    from tb_salaryflow where tb_salaryflow.salaryflow_status=0 
+  </select>
+ <select id="findByStatus1" resultType="java.util.Map">
+    select 
+    *
+    from tb_salaryflow where tb_salaryflow.salaryflow_status=1 
+  </select>
+   <select id="findById" resultType="java.lang.Integer">
+  	select sal_data_id from tb_sal_data where tb_sal_data.id=#{id} and tb_sal_data.salaryflow_id=#{pid}
+  </select>
+  <select id="countxc" resultType="java.lang.Integer">
+  	select COUNT(*) from tb_sal_data where tb_sal_data.id=#{uid} and tb_sal_data.salaryflow_id=#{id}
+  </select>
+  <!-- 根据流程表id查询 -->
+  <select id="findBySalaryFlowId" resultType="java.util.Map">
+  	select * from tb_sal_data s LEFT JOIN tb_admin a ON s.id=a.id where salaryflow_id=#{sid}
+  </select>
+</mapper>

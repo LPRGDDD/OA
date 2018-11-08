@@ -24,8 +24,28 @@ public class TbAdmin {
     private Long roleId;
     
     private String roleName;
+    
+    private Integer deptId;
 
-    public Long getId() {
+    private String deptName;
+    
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -125,7 +145,9 @@ public class TbAdmin {
 	public String toString() {
 		return "TbAdmin [id=" + id + ", username=" + username + ", password=" + password + ", salt=" + salt
 				+ ", fullname=" + fullname + ", eMail=" + eMail + ", sex=" + sex + ", birthday=" + birthday
-				+ ", address=" + address + ", phone=" + phone + ", roleId=" + roleId + ", roleName=" + roleName + "]";
+				+ ", address=" + address + ", phone=" + phone + ", roleId=" + roleId + ", roleName=" + roleName
+				+ ", deptId=" + deptId + ", deptName=" + deptName + "]";
 	}
-    
+
+	    
 }

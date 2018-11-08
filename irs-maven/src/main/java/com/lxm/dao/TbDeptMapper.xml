@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.TbDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.lxm.entity.TbDept" >
+    <id column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="dwinformation_id" property="dwinformationId" jdbcType="INTEGER" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="dept_number" property="deptNumber" jdbcType="INTEGER" />
+    <result column="dept_address" property="deptAddress" jdbcType="VARCHAR" />
+    <result column="dept_zhuguan" property="deptZhuguan" jdbcType="VARCHAR" />
+    <result column="dept_aid" property="deptAid" jdbcType="VARCHAR" />
+    <result column="dept_manager" property="deptManager" jdbcType="VARCHAR" />
+    <result column="dept_status" property="deptStatus" jdbcType="INTEGER" />
+    <result column="dept_branchlead" property="deptBranchlead" jdbcType="VARCHAR" />
+    <result column="dept_phone" property="deptPhone" jdbcType="VARCHAR" />
+    <result column="dept_fax" property="deptFax" jdbcType="VARCHAR" />
+    <result column="dept_function" property="deptFunction" jdbcType="VARCHAR" />
+    <result column="dept_role" property="deptRole" jdbcType="VARCHAR" />
+    <result column="dept_sequence" property="deptSequence" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dept_id, dwinformation_id, dept_name, dept_number, dept_address, dept_zhuguan, dept_aid, 
+    dept_manager, dept_status, dept_branchlead, dept_phone, dept_fax, dept_function, 
+    dept_role, dept_sequence
+  </sql>
+  <select id="selectByPrimaryKey" resultType="map">
+  select dept_id,dept_name from tb_dept 
+  </select>
+</mapper>

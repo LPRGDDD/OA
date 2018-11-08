@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.lxm.entity.Schedule" >
+    <id column="scid" property="scid" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="duty_time1" property="dutyTime1" jdbcType="DATE" />
+    <result column="duty_time2" property="dutyTime2" jdbcType="DATE" />
+    <result column="duty_time3" property="dutyTime3" jdbcType="DATE" />
+    <result column="duty_time4" property="dutyTime4" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scid, sname, duty_time1, duty_time2, duty_time3, duty_time4
+  </sql>
+  <select id="insertSelective" resultType="map">
+    select 
+    <include refid="Base_Column_List" />
+    from schedule <!-- limit #{pageSize},#{pageCount}; -->
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from schedule
+    where scid = #{scid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lxm.entity.Schedule" >
+    insert into schedule (scid, sname, duty_time1, 
+      duty_time2, duty_time3, duty_time4
+      )
+    values (#{scid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{duty_time1,jdbcType=DATE}, 
+      #{duty_time2,jdbcType=DATE}, #{duty_time3,jdbcType=DATE}, #{duty_time4,jdbcType=DATE}
+      )
+  </insert>
+  <update id="updateByPrimaryKey">
+    update schedule
+    set sname = #{sname,jdbcType=VARCHAR},
+      duty_time1 = #{duty_time1},
+      duty_time2 = #{duty_time2},
+      duty_time3 = #{duty_time3},
+      duty_time4 = #{duty_time4}
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+  <select id="findBy" parameterType="Integer" resultType="Map">
+  	 select 
+    <include refid="Base_Column_List" />
+    from schedule where scid=#{id}
+  </select>
+  <!--修改前查询  -->
+  <select id="findById" resultType="Schedule" parameterType="Integer">
+  	select * from schedule where scid=#{#scid}
+  </select>
+</mapper>

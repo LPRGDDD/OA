@@ -114,6 +114,17 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
+			<label class="layui-form-label">分配部门</label>
+			<div class="layui-input-block">
+				<select name="deptId">
+					<option value="">请选择</option>
+					<c:forEach items="${d}" var="d">
+						<option value="${d.deptId }">${d.deptName }</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="updAdmin">立即保存</button>
 			</div>

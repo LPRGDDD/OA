@@ -304,56 +304,33 @@
 							})
 
 							//批量删除
-							$(".batchDel")
-									.click(
-											function() {
-												var checkStatus = table
-														.checkStatus('userList'), data = checkStatus.data, userStr = '';
-												if (data.length > 0) {
-													$.each(data, function(n,
-															value) {
-														userStr += value.uid
-																+ ',';
-													});
-													userStr = userStr
-															.substring(
-																	0,
-																	userStr.length - 1);
-													layer
-															.confirm(
-																	'确定删除<strong>'
-																			+ data.length
-																			+ '</strong>条数据吗？',
-																	function(
-																			index) {
-																		//调用删除接口
-																		$
-																				.ajax({
-																					url : ctx
-																							+ '/user/delUsers/'
-																							+ userStr,//接口地址
-																					type : "get",
-																					success : function(
-																							d) {
-																						if (d.code == 0) {
-																							//删除成功，刷新父页面
-																							parent.location
-																									.reload();
-																						} else {
-																							layer
-																									.msg(
-																											"权限不足，联系超管！",
-																											{
-																												icon : 5
-																											});
-																						}
-																					}
-																				})
-																	});
-												} else {
-													layer.msg("请选择需要删除的用户");
+							$(".batchDel").click(
+								function() {
+									var checkStatus = table.checkStatus('userList'), data = checkStatus.data, userStr = '';
+									if (data.length > 0) {
+										$.each(data, function(n,value) {
+											userStr += value.uid+ ',';
+										});
+										userStr = userStr.substring(0,userStr.length - 1);
+										layer.confirm('确定删除<strong>'+ data.length+ '</strong>条数据吗？',function(index) {
+											//调用删除接口
+											$.ajax({
+												url : ctx+ '/user/delUsers/'+ userStr,//接口地址
+												type : "get",
+												success : function(d) {
+													if (d.code == 0) {
+														//删除成功，刷新父页面
+														parent.location.reload();
+													} else {
+														layer.msg("权限不足，联系超管！",{icon : 5});
+													}
 												}
 											})
+										});
+									} else {
+										layer.msg("请选择需要删除的用户");
+									}
+								})
 
 						})
 
