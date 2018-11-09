@@ -19,4 +19,10 @@ public interface GeRenKaoQinDao {
    * @return
    */
   public List<TbAdmin> findAdminName(int[] array);
+  /**
+   * 添加 判断是否为个人审批
+   * @param id
+   * @return
+   */
+  public int selePanDuan(int id);
 }

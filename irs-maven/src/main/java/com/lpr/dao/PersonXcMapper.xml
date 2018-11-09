@@ -431,4 +431,7 @@
   <select id="findByUid" resultType="java.util.Map">
   	select * from tb_personxc where tb_personxc.id=#{uid}
   </select>
+  <select id="countxc" resultType="java.lang.Integer">
+  	select count(*) from tb_personxc where tb_personxc.id=#{id}
+  </select>
 </mapper>

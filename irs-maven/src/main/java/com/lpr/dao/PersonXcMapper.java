@@ -57,7 +57,7 @@ public interface PersonXcMapper {
      */
     public List<Map> findPage();
     /**
-     * 根据员工编号查询员工工资是否存在
+     * 根据员工编号查询员工工资id
      * @param id
      * @return
      */
@@ -69,4 +69,10 @@ public interface PersonXcMapper {
      * @return
      */
     public List<Map> findByUid(@Param("uid")int uid);
+    /**
+     * 根据员工编号查询员工工资是否存在
+     * @param id
+     * @return
+     */
+    public int countxc(@Param("id")long id);
 }

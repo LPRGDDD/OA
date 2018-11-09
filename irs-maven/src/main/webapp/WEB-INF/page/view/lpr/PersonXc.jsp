@@ -38,15 +38,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- 员工薪酬基数设置 -->
   <div class="layui-tab-content" style="height:100px;">
           <div class="layui-tab-item layui-show">
-          <!-- 部门查询 -->
-                   部门:<select name="dept" id="dept2">
-          </select>
-           <span>人员选择</span>
-          <!-- 查询员工 -->
-           <div class="layui-input-inline">
-                 <button type="button" onclick="selectUser()" class="layui-btn layui-btn-primary layui-btn-radius">查询员工</button> <!-- selectUser()是自定义的 -->    
-           </div>
-           <!-- 员工薪酬基数设置-->
+	           <div class="layui-form-item" style="margin-bottom:1px;margin-top:1px;" align="center">
+			          <label class="layui-form-label">部门:</label>
+			          <div class="layui-input-inline">
+			         	<select name="dept" id="dept2" class="layui-input"></select>
+			          </div>
+			          <label class="layui-form-label">人员选择</label>
+			          <div class="layui-input-inline">
+	                 <button type="button" onclick="selectUser()" class="layui-btn layui-btn-primary layui-btn-radius">查询员工</button> <!-- selectUser()是自定义的 -->    
+	          		  </div>
+			    </div>
+           		<!-- 员工薪酬基数设置-->
                <form method="post" id="form1" class="layui-form layui-form-pane">
                <!--  查询员工ID、人员名称 -->
                   <div class="layui-form-item" style="margin-bottom:1px;margin-top:1px;" align="center">
@@ -61,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			       <hr><!-- hr:分割线 -->
 			    <!-- 保险项 -->
 			       <div class="layui-form-item" style="margin-bottom:1px;margin-top:1px;" align="center">
-			         <label class="layui-form-label">保险基数</label>
+			         <label class="layui-form-label">保险基数(8%)</label>
 			          <div class="layui-input-inline">
 			            <input name="personxcInsurejs" id="zong"  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input" type="text"/>
 			         	<input type="button" class="BigButton" onclick="jisuan()" value="计算"/>
@@ -196,9 +198,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script type="text/html" id="toolbarDemo">
  	<div class="layui-btn-container">
-    	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-   		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-  	    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">1</button>
+   		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">2</button>
+  	    <button class="layui-btn layui-btn-sm" lay-event="isAll">3</button>
   	</div>
 </script>
 </body>
@@ -212,11 +214,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    layer.open({
 	 type:1,
 	 title:"查找员工",
+	 shadeClose: false, //点击遮罩关闭层
 	 area:['80%','80%'],
 	 content:$("#kuang"),
-	 offset:['100px','100px']
-   });   
-}
+	 offset:['100px','100px' ],
+		btn : '关闭',
+		btnAlign : 'c', //按钮居中
+		shade : 0, //不显示遮罩
+		yes : function() {
+			layer.closeAll();
+		},
+	});
+	}
 /* 查询的数据 */
 		 function onselect(deptId){
 		   layui.use('table',function(){
@@ -308,6 +317,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		})
 	}
+	$("#zong").focus(function(){
+	  $("#zong").css("background-color","#FFFFCC");
+	  $("#zong").val($("#si").children().find("div").eq(0).children().val()*0.08);
+	});
 	/* 计算 */
 	function jisuan(){
  	var gr0=$("#gr0").val()
@@ -322,7 +335,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	var dw3=$("#dw3").val()
  	var dw4=$("#dw4").val()
  	var dw5=$("#dw5").val()
- 	layer.msg(gr0);
+ 	//layer.alert($("#si").children().find("div").eq(0).children().val());
     var zong=$("#zong").val();//保险基数
 	$("#ylgr").val(gr0*0.01*zong);//个人养老
 	$("#yldw").val(dw0*0.01*zong);//单位养老
@@ -345,15 +358,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function personxcInsert() {
 		alert($("#form1").serialize());
 		$.ajax({
-			url : "personxc/insert?userId=" + $("#e").val() + "",
+			url : "personxc/insert?userId=" + $("#personxcId").val() + "",
 			type : 'post',
 			async : true,
-			data : $("#form1").serialize(),
+			data:$("#form1").serialize(),
 			dataType : 'text',
 			success : function(data) {
 				alert(data);
 			},
-			error : function(data) {}
+			error : function(data) {
+			alert(data)}
 		})
 	}
 	/* 薪酬基数设置的分页查询 */
@@ -368,13 +382,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   {type: 'checkbox', fixed: 'left'},
 	   {field : 'personxc_id',title : '编号',fixed: 'left',sort : true,width:80,align:'center',totalRowText: '合计',unresize: true},//员工薪酬基数编号
 	   {field : 'fullname',title : '员工名称',fixed: 'left',width:100,align:'center'},//用户名称
-	   {field : 'personxc_s1',title : '1',width:100},//薪酬项目1
-	   {field : 'personxc_s2',title : '薪酬项目2',edit: 'text',width:100,align:'center'},//薪酬项目2 
-	   {field : 'personxc_s3',title : '薪酬项目3',edit: 'text',width:100,align:'center'},//薪酬项目3
-	   {field : 'personxc_s4',title : '薪酬项目4',edit: 'text',width:100,align:'center'},//薪酬项目4
-	   {field : 'personxc_s5',title : '薪酬项目5',edit: 'text',width:100,align:'center'},//薪酬项目5
-	   {field : 'personxc_s6',title : '薪酬项目6',edit: 'text',width:100,align:'center'},//薪酬项目6
-	   {field : 'personxc_s7',title : '薪酬项目7',edit: 'text',width:100,align:'center'},//薪酬项目7
+	   {field : 'personxc_s1',title : '基本工资',width:100},//薪酬项目1
+	   {field : 'personxc_s2',title : '劳务费',edit: 'text',width:100,align:'center'},//薪酬项目2 
+	   {field : 'personxc_s3',title : '奖金',edit: 'text',width:100,align:'center'},//薪酬项目3
+	   {field : 'personxc_s4',title : '房帖',edit: 'text',width:100,align:'center'},//薪酬项目4
+	   {field : 'personxc_s5',title : '资金',edit: 'text',width:100,align:'center'},//薪酬项目5
+	   {field : 'personxc_s6',title : '高温费',edit: 'text',width:100,align:'center'},//薪酬项目6
+	   {field : 'personxc_s7',title : '迟到扣款',edit: 'text',width:100,align:'center'},//薪酬项目7
 	   {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:100,align:'center'},//薪酬项目8
 	   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:100,align:'center'},//薪酬项目9
 	   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:100,align:'center'},//薪酬项目10
@@ -405,14 +419,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
                 //数据的回调用，可不写 15 16 17 18 19
                 //alert(j[0]);
-                $("[data-field='personxc_s1']").children().each(function () {
+               /*  $("[data-field='personxc_s1']").children().each(function () {
                     if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
                         $(".layui-table-box").find("[data-field='personxc_s1']").css("display","none");
                     }else {
                         $('th').eq(3).text(j[0]);
                         $('th').eq(3).css('width','100');
                     }
-                });
+                }); */
                 /*  $("[data-field='personxc_s2']").children().each(function () {
                     if ($(this).text() == 0 || $(this).text() == "" || j[0] == null) {
                         $(".layui-table-box").find("[data-field='personxc_s2']").css("display","none");
@@ -505,6 +519,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    };
 	  });
 })
+
 /* 页面刷新调用查询方法 */
  $(function(){
     salitemFind();//薪酬项目定义查询

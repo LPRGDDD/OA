@@ -76,106 +76,106 @@ private SalDataMapper dao;
 			intArr[i]=Integer.parseInt(valArr[i]);//循环把String数组转换int数组
 		}
 		//根据员工ID和流程ID查询表是否存在
-		SalData sal=new SalData();
 		TbAdmin user=new TbAdmin();
 		SalaryFlow salaryFlow=new SalaryFlow();
 		List<SalData> slist=new ArrayList<SalData>();
 		//从表SalaDataAndAdmin向SalData循环赋值
 		if (salaryflowId!=0) {
 			for (SalaDataAndAdmin salaDataAndAdmin : list) {
+				SalData sal1=new SalData();
 				if (salaDataAndAdmin.getPersonxc_s1()!=null) {
-					sal.setPersonxcS1(salaDataAndAdmin.getPersonxc_s1());
+					sal1.setPersonxcS1(salaDataAndAdmin.getPersonxc_s1());
 				}
 				if (salaDataAndAdmin.getPersonxc_s2()!=null) {
-					sal.setPersonxcS2(salaDataAndAdmin.getPersonxc_s2());
+					sal1.setPersonxcS2(salaDataAndAdmin.getPersonxc_s2());
 				}
 				if (salaDataAndAdmin.getPersonxc_s3()!=null) {
-					sal.setPersonxcS3(salaDataAndAdmin.getPersonxc_s3());
+					sal1.setPersonxcS3(salaDataAndAdmin.getPersonxc_s3());
 				}
 				if (salaDataAndAdmin.getPersonxc_s4()!=null) {
-					sal.setPersonxcS4(salaDataAndAdmin.getPersonxc_s4());
+					sal1.setPersonxcS4(salaDataAndAdmin.getPersonxc_s4());
 				}
 				if (salaDataAndAdmin.getPersonxc_s5()!=null) {
-					sal.setPersonxcS5(salaDataAndAdmin.getPersonxc_s5());
+					sal1.setPersonxcS5(salaDataAndAdmin.getPersonxc_s5());
 				}
 				if (salaDataAndAdmin.getPersonxc_s6()!=null) {
-					sal.setPersonxcS6(salaDataAndAdmin.getPersonxc_s6());
+					sal1.setPersonxcS6(salaDataAndAdmin.getPersonxc_s6());
 				}
 				if (salaDataAndAdmin.getPersonxc_s7()!=null) {
-					sal.setPersonxcS7(salaDataAndAdmin.getPersonxc_s7());
+					sal1.setPersonxcS7(salaDataAndAdmin.getPersonxc_s7());
 				}
 				if (salaDataAndAdmin.getPersonxc_s8()!=null) {
-					sal.setPersonxcS8(salaDataAndAdmin.getPersonxc_s8());
+					sal1.setPersonxcS8(salaDataAndAdmin.getPersonxc_s8());
 				}
 				if (salaDataAndAdmin.getPersonxc_s9()!=null) {
-					sal.setPersonxcS9(salaDataAndAdmin.getPersonxc_s9());
+					sal1.setPersonxcS9(salaDataAndAdmin.getPersonxc_s9());
 				}
 				if (salaDataAndAdmin.getPersonxc_s10()!=null) {
-					sal.setPersonxcS10(salaDataAndAdmin.getPersonxc_s10());
+					sal1.setPersonxcS10(salaDataAndAdmin.getPersonxc_s10());
 				}
 				if (salaDataAndAdmin.getPersonxc_insurejs()!=null) {
-					sal.setPersonxcInsurejs(salaDataAndAdmin.getPersonxc_insurejs());
+					sal1.setPersonxcInsurejs(salaDataAndAdmin.getPersonxc_insurejs());
 				}
 				if (salaDataAndAdmin.getPersonxc_ylinsure()!=null) {
-					sal.setPersonxcYlinsure(salaDataAndAdmin.getPersonxc_ylinsure());
+					sal1.setPersonxcYlinsure(salaDataAndAdmin.getPersonxc_ylinsure());
 				}
 				if (salaDataAndAdmin.getPersonxc_dwyl()!=null) {
-					sal.setPersonxcDwyl(salaDataAndAdmin.getPersonxc_dwyl());
+					sal1.setPersonxcDwyl(salaDataAndAdmin.getPersonxc_dwyl());
 				}
 				if (salaDataAndAdmin.getPersonxc_gryl()!=null) {
-					sal.setPersonxcGryl(salaDataAndAdmin.getPersonxc_gryl());
+					sal1.setPersonxcGryl(salaDataAndAdmin.getPersonxc_gryl());
 				}
 				if (salaDataAndAdmin.getPersonxc_ylbx()!=null) {
-					sal.setPersonxcYlbx(salaDataAndAdmin.getPersonxc_ylbx());
+					sal1.setPersonxcYlbx(salaDataAndAdmin.getPersonxc_ylbx());
 				}
 				if (salaDataAndAdmin.getPersonxc_dw_medical()!=null) {
-					sal.setPersonxcDwMedical(salaDataAndAdmin.getPersonxc_dw_medical());
+					sal1.setPersonxcDwMedical(salaDataAndAdmin.getPersonxc_dw_medical());
 				}
 				if (salaDataAndAdmin.getPersonxc_grmedical()!=null) {
-					sal.setPersonxcGrmedical(salaDataAndAdmin.getPersonxc_grmedical());
+					sal1.setPersonxcGrmedical(salaDataAndAdmin.getPersonxc_grmedical());
 				}
 				if (salaDataAndAdmin.getPersonxc_group()!=null) {
-					sal.setPersonxcGroup(salaDataAndAdmin.getPersonxc_group());
+					sal1.setPersonxcGroup(salaDataAndAdmin.getPersonxc_group());
 				}
 				if (salaDataAndAdmin.getPersonxc_dwsy()!=null) {
-					sal.setPersonxcDwsy(salaDataAndAdmin.getPersonxc_dwsy());
+					sal1.setPersonxcDwsy(salaDataAndAdmin.getPersonxc_dwsy());
 				}
 				if (salaDataAndAdmin.getPersonxc_sybx()!=null) {
-					sal.setPersonxcSybx(salaDataAndAdmin.getPersonxc_sybx());
+					sal1.setPersonxcSybx(salaDataAndAdmin.getPersonxc_sybx());
 				}
 				if (salaDataAndAdmin.getPersonxc_dwshiye()!=null) {
-					sal.setPersonxcDwshiye(salaDataAndAdmin.getPersonxc_dwshiye());
+					sal1.setPersonxcDwshiye(salaDataAndAdmin.getPersonxc_dwshiye());
 				}
 				if (salaDataAndAdmin.getPersonxc_grsy()!=null) {
-					sal.setPersonxcGrsy(salaDataAndAdmin.getPersonxc_grsy());
+					sal1.setPersonxcGrsy(salaDataAndAdmin.getPersonxc_grsy());
 				}
 				if (salaDataAndAdmin.getPersonxc_gsbx()!=null) {
-					sal.setPersonxcGsbx(salaDataAndAdmin.getPersonxc_gsbx());
+					sal1.setPersonxcGsbx(salaDataAndAdmin.getPersonxc_gsbx());
 				}
 				if (salaDataAndAdmin.getPersonxc_dwgs()!=null) {
-					sal.setPersonxcDwgs(salaDataAndAdmin.getPersonxc_dwgs());
+					sal1.setPersonxcDwgs(salaDataAndAdmin.getPersonxc_dwgs());
 				}
 				if (salaDataAndAdmin.getPersonxc_housingfund()!=null) {
-					sal.setPersonxcHousingfund(salaDataAndAdmin.getPersonxc_housingfund());
+					sal1.setPersonxcHousingfund(salaDataAndAdmin.getPersonxc_housingfund());
 				}
 				if (salaDataAndAdmin.getPersonxc_dwzf()!=null) {
-					sal.setPersonxcDwzf(salaDataAndAdmin.getPersonxc_dwzf());
+					sal1.setPersonxcDwzf(salaDataAndAdmin.getPersonxc_dwzf());
 				}
 				if (salaDataAndAdmin.getPersonxc_grzf()!=null) {
-					sal.setPersonxcGrzf(salaDataAndAdmin.getPersonxc_grzf());
+					sal1.setPersonxcGrzf(salaDataAndAdmin.getPersonxc_grzf());
 				}
 				if (salaDataAndAdmin.getPersonxc_expression()!=null) {
-					sal.setPersonxcExpression(salaDataAndAdmin.getPersonxc_expression());
+					sal1.setPersonxcExpression(salaDataAndAdmin.getPersonxc_expression());
 				}
 				if (salaDataAndAdmin.getSalSsalary()!=null) {
-					sal.setSalSsalary(salaDataAndAdmin.getSalSsalary());
+					sal1.setSalSsalary(salaDataAndAdmin.getSalSsalary());
 				}
 				//流程ID
 				if (salaryflowIdStr!=null) {
 					salaryFlow.setSalaryflowId(salaryflowId);
-					sal.setSalaryflow(salaryFlow);
+					sal1.setSalaryflow(salaryFlow);
 				}
-				slist.add(sal);
+				slist.add(sal1);
 			}
 			for (int i = 0; i < intArr.length; i++) {//循环取出人员ID
 				long a=intArr[i];
@@ -184,17 +184,16 @@ private SalDataMapper dao;
 						int count=dao.countxc(salaryflowId, a);
 						if (count==0) {//当没有数据时
 							user.setId(a);
-							sal.setUser(user);
-							sal.setSalDataId(null);//把saldataId置空
-							slist.set(j, sal);//放进slist里
+							slist.get(j).setUser(user);
+							slist.get(j).setSalDataId(null);//把saldataId置空
+							slist.set(j, slist.get(j));//放进slist里
 							dao.insert(slist.get(j));
 						}else{
 							int b=dao.findById(a,salaryflowId);
 							user.setId(a);
-							sal.setUser(user);
-							sal.setSalDataId(b);
-							sal.setSalDataId(null);
-							slist.set(j, sal);
+							slist.get(j).setUser(user);
+							slist.get(j).setSalDataId(b);
+							slist.set(j, slist.get(j));
 							dao.updateByPrimaryKey(slist.get(j));
 						}
 					}

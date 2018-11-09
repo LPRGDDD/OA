@@ -5,8 +5,18 @@ public class DutyRoster {
     private Integer drid;
 
     private Integer scid;
+    
+    private Integer id;//自己添加的字段  数据库中没有
+    
+    public Integer getId() {
+		return id;
+	}
 
-    private String drname1;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	private String drname1;
     
     private String drnameId;
     

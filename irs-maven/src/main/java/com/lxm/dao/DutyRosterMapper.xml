@@ -27,6 +27,19 @@
     *
     from dutyroster
   </select>
+  <!--查询考勤记录  -->
+  <select id="selectLxm" resultType="Pbjl" parameterType="Map">
+  	select * from pbjl  where
+  <if test="date!=null">
+  	 pDate LIKE concat(concat('%',#{date}),'%') and
+ </if> 	 
+  id=#{id}
+  </select>
+
+  <!--查询班次排班  -->
+  <select id="qeruyAll" resultType="Map">
+  select * from dutyroster d LEFT  JOIN schedule s on d.scid=s.scid  where dtstate=1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer"  >
     delete from dutyroster
     where drId = #{drid,jdbcType=INTEGER}
@@ -39,7 +52,28 @@
   <select id="selectById" resultType="DutyRoster" parameterType="Integer">
   	select * from dutyroster where drId=#{id}
   </select>
-  
+  <select id="KaoQinTongJi" parameterType="Map" resultType="Map">
+  	select (select count(*) from pbjl where  id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime} ) yingchu
+				,((select count(*) from pbjl where  id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})-(select count(*) from pbjl where timeState3='缺勤' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime}))  shichu
+				,(select count(*) from pbjl where timeState1='休息' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime} ) xiutian
+				,(select count(*) from pbjl where timeState3='缺勤' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime}) quetian
+				,(select a.username from pbjl p left join tb_admin a on p.id=a.id where a.id=#{id} GROUP BY p.id) username
+				, SUM((select count(*) from pbjl where timeState1='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime} )
+	+(select count(*) from pbjl where timeState2='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState3='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState4='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	) chici
+	, SUM(
+	(select count(*) from pbjl where timeState1='早退' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState2='早退' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState3='早退' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState4='早退' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime})
+) zaoci
+,(select count(*) FROM synthesis where  wcTime LIKE concat(concat('%',#{conter}),'%') and id=#{id} and  syState=2) qingci
+,(select count(*) FROM synthesis where  wcTime like concat(concat('%',#{conter}),'%') and id=#{id} and  syState=3) jiaci
+,(select count(*) FROM synthesis where wcTime like concat(concat('%',#{conter}),'%') and id=#{id} and  syState=4)chuci
+,(select count(*) FROM synthesis where syTime like concat(concat('%',#{conter}),'%') and id=#{id} and  syState=1) waici
+  </select>
   <insert id="insert" parameterType="com.lxm.entity.DutyRoster" >
     insert into dutyroster (drId, scid, drName1,drNameId,drnameId2,drName2,dtname,dtDate_start,dtDate_end,dtstate)
     values (#{drid,jdbcType=INTEGER}, #{scid,jdbcType=INTEGER}, #{drname1,jdbcType=VARCHAR},#{drnameId},#{drnameId2}, 
@@ -47,175 +81,7 @@
       #{dtDate_End}, #{dtstate,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lxm.entity.DutyRoster" >
-    insert into dutyroster
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="drid != null" >
-        drId,
-      </if>
-      <if test="scid != null" >
-        scid,
-      </if>
-      <if test="drname1 != null" >
-        drName1,
-      </if>
-      <if test="drname2 != null" >
-        drName2,
-      </if>
-      <if test="dtname != null" >
-        dtname,
-      </if>
-      <if test="dtDate_Start != null" >
-        dtDate_start,
-      </if>
-      <if test="dtDate_End != null" >
-        dtDate_end,
-      </if>
-      <if test="dtstate != null" >
-        dtstate,
-      </if>
-      <if test="monday != null" >
-        monday,
-      </if>
-      <if test="tuesday != null" >
-        tuesday,
-      </if>
-      <if test="wednesday != null" >
-        wednesday,
-      </if>
-      <if test="thursday != null" >
-        thursday,
-      </if>
-      <if test="friday != null" >
-        friday,
-      </if>
-      <if test="saturday != null" >
-        saturday,
-      </if>
-      <if test="sunday != null" >
-        sunday,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="drid != null" >
-        #{drid,jdbcType=INTEGER},
-      </if>
-      <if test="scid != null" >
-        #{scid,jdbcType=INTEGER},
-      </if>
-      <if test="drname1 != null" >
-        #{drname1,jdbcType=VARCHAR},
-      </if>
-      <if test="drname2 != null" >
-        #{drname2,jdbcType=VARCHAR},
-      </if>
-      <if test="dtname != null" >
-        #{dtname,jdbcType=VARCHAR},
-      </if>
-      <if test="dtDate_Start != null" >
-        #{dtDate_Start},
-      </if>
-      <if test="dtDate_End != null" >
-        #{dtdateEnd,jdbcType=DATE},
-      </if>
-      <if test="dtstate != null" >
-        #{dtstate,jdbcType=INTEGER},
-      </if>
-      <if test="monday != null" >
-        #{monday,jdbcType=INTEGER},
-      </if>
-      <if test="tuesday != null" >
-        #{tuesday,jdbcType=INTEGER},
-      </if>
-      <if test="wednesday != null" >
-        #{wednesday,jdbcType=INTEGER},
-      </if>
-      <if test="thursday != null" >
-        #{thursday,jdbcType=INTEGER},
-      </if>
-      <if test="friday != null" >
-        #{friday,jdbcType=INTEGER},
-      </if>
-      <if test="saturday != null" >
-        #{saturday,jdbcType=INTEGER},
-      </if>
-      <if test="sunday != null" >
-        #{sunday,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateRoter" parameterType="com.lxm.entity.DutyRoster" >
-    update dutyroster
-    <set >
-      <if test="scid != null" >
-        scid = #{scid,jdbcType=INTEGER},
-      </if>
-      <if test="drname1 != null" >
-        drName1 = #{drname1,jdbcType=VARCHAR},
-      </if>
-      <if test="drnameId != null" >
-        drNameId = #{drnameId,jdbcType=VARCHAR},
-      </if>
-      <if test="drnameId2 != null" >
-        drnameId2 = #{drnameId2,jdbcType=VARCHAR},
-      </if>
-      <if test="drname2 != null" >
-        drName2 = #{drname2,jdbcType=VARCHAR},
-      </if>
-      <if test="dtname != null" >
-        dtname = #{dtname,jdbcType=VARCHAR},
-      </if>
-      <if test="dtDate_Start != null" >
-        dtDate_start = #{dtDate_Start},
-      </if>
-      <if test="dtDate_End != null" >
-        dtDate_end = #{dtDate_End},
-      </if>
-      <if test="dtstate != null" >
-        dtstate = #{dtstate,jdbcType=INTEGER},
-      </if>
-      <if test="monday != null" >
-        monday = #{monday,jdbcType=INTEGER},
-      </if>
-      <if test="tuesday != null" >
-        tuesday = #{tuesday,jdbcType=INTEGER},
-      </if>
-      <if test="wednesday != null" >
-        wednesday = #{wednesday,jdbcType=INTEGER},
-      </if>
-      <if test="thursday != null" >
-        thursday = #{thursday,jdbcType=INTEGER},
-      </if>
-      <if test="friday != null" >
-        friday = #{friday,jdbcType=INTEGER},
-      </if>
-      <if test="saturday != null" >
-        saturday = #{saturday,jdbcType=INTEGER},
-      </if>
-      <if test="sunday != null" >
-        sunday = #{sunday,jdbcType=INTEGER},
-      </if>
-    </set>
-    where drId = #{drid,jdbcType=INTEGER}
-  </update>
-  <update id="updateDuty" parameterType="com.lxm.entity.DutyRoster" >
-    update dutyroster
-    set scid = #{scid,jdbcType=INTEGER},
-      drName1 = #{drname1,jdbcType=VARCHAR},
-      drName2 = #{drname2,jdbcType=VARCHAR},
-      dtname = #{dtname,jdbcType=VARCHAR},
-      drNameId=#{drnameId},
-      drnameId2=#{drnameId2},
-      dtDate_start = #{dtDate_Start},
-      dtDate_end = #{dtDate_End},
-      dtstate = #{dtstate,jdbcType=INTEGER},
-      monday = #{monday,jdbcType=INTEGER},
-      tuesday = #{tuesday,jdbcType=INTEGER},
-      wednesday = #{wednesday,jdbcType=INTEGER},
-      thursday = #{thursday,jdbcType=INTEGER},
-      friday = #{friday,jdbcType=INTEGER},
-      saturday = #{saturday,jdbcType=INTEGER},
-      sunday = #{sunday,jdbcType=INTEGER}
-    where drId = #{drid,jdbcType=INTEGER}
-  </update>
+<select id="selectTongji" resultType="Map">
+	select * from tongji 
+</select>
 </mapper>

@@ -104,7 +104,6 @@ public class SynthesisController {
 	//修改外出登记 iD查询
 	@RequestMapping("/WaiSel/{sId}/{id}")
 	public String updateSel(HttpServletRequest req,@PathVariable("sId")int sId,@PathVariable("id")int id){
-		System.out.println("进来"+sId+"----"+id);
 		Map<String,Object> list=ss.selectUpdate(id,sId);
 		req.setAttribute("list",list); 
 		return "page/view/lxm/updateWai";
@@ -258,7 +257,6 @@ public class SynthesisController {
 	//驳回
 	@RequestMapping("/BoHui/{sId}")
 	public String Bohui(HttpServletRequest req,@PathVariable("sId")int sid){
-		System.out.println(sid+"获取到");
 		req.setAttribute("sid", sid);
 		return "page/view/lxm/BoHui";
 	}
@@ -278,7 +276,6 @@ public class SynthesisController {
 	public Map<String,Object> WaiSelect(int page,int limit,int id,String username){
 		PageHelper.startPage(page,limit);
 		Map<String, Object> map1 = new HashMap<String, Object>();
-		System.out.println(id+"号码"+username+"名字");
 		map1.put("id", id);
 		map1.put("username", username);
 		List<Map<String,Object>> list=ss.ShenWaiChu(map1);

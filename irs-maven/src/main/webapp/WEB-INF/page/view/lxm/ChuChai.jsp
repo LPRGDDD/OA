@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="hidden" name="exstate" value="0"/>
 					<input type="hidden" name="syshen" id="xitong">
 					<input type="hidden" name="id" id="id" value="<shiro:principal property="id"/>">
-					<input type="text" id="deptId" value="<shiro:principal property="deptId"/>">
+					<input type="hidden" id="deptId" value="<shiro:principal property="deptId"/>">
 				</form>
 			</div>
 		</div>
