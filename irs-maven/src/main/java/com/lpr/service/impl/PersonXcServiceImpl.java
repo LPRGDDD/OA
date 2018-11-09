@@ -35,12 +35,13 @@ private PersonXcMapper dao;
 		if (userId!=""&&intArr!=null&&p!=null) {
 			for (int i = 0; i < intArr.length; i++) {//已经生成的那个int数组，根据它的长度循环往表里面添加数据
 				long a=intArr[i];
-				int b=dao.findById(a);//
-				if (b==0) {//当没有数据时
+				int count=dao.countxc(a);
+				if (count==0) {//当没有数据时
 					u.setId(a);
 					p.setUser(u);
 					dao.insert(p);
 				}else{
+					int b=dao.findById(a);//查询ID
 					u.setId(a);
 					p.setUser(u);
 					p.setPersonxcId(b);

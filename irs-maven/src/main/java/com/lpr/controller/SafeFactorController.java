@@ -21,6 +21,5 @@ public class SafeFactorController {
 	public @ResponseBody List<Map<String, Object>> findAll() {
 		List<Map<String, Object>> list=service.findAll();
 		return list;
-		
 	}
 }

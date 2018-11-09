@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   table.render({
 				    elem: '#myTab'
 				    ,height:500
-				    ,url: 'screen/queryScreen?uid='+<shiro:principal property="id"/>+'' //数据接口
+				    ,url: 'screen/queryScreen?uid='+<shiro:principal property='id'/>+'' //数据接口
 				    ,page: true //开启分页
 				    ,cols: [[ //表头
 				       //全选

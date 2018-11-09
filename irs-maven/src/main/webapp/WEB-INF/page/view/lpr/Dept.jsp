@@ -69,15 +69,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   for(var i=0;i<ary.length;i++){
                      var obj=ary[i];//获取当前对象
                      var tr="<tr>";
-                     tr+="<td>"+obj.deptName+"</td>";
-                     tr+="<td>"+obj.deptAddress+"</td>";
-                     tr+="<td>"+obj.deptZhuguan+"</td>";
-                     tr+="<td>"+obj.deptAid+"</td>";
-                     tr+="<td>"+obj.deptManager+"</td>";
-                     tr+="<td>"+obj.deptBranchlead+"</td>";
-                     tr+="<td>"+obj.deptPhone+"</td>";
-                     tr+="<td>"+obj.deptFax+"</td>";
-                     tr+="<td>"+obj.deptFunction+"</td>";
+                     tr+="<td>"+obj.dept_name+"</td>";
+                     tr+="<td>"+obj.dept_address+"</td>";
+                     tr+="<td>"+obj.dept_zhuguan+"</td>";
+                     tr+="<td>"+obj.dept_aid+"</td>";
+                     tr+="<td>"+obj.dept_manager+"</td>";
+                     tr+="<td>"+obj.dept_branchlead+"</td>";
+                     tr+="<td>"+obj.dept_phone+"</td>";
+                     tr+="<td>"+obj.dept_fax+"</td>";
+                     tr+="<td>"+obj.dept_function+"</td>";
                      tr+="</tr>";
                      $("#d").append(tr);//追加行
                   }

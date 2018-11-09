@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			               <div class="layui-inline">
 	               			 <label class="layui-form-label">薪酬项目编号：</label> 
 	               			 <div class="layui-input-inline">
-	               			      <input name="itemId" autocomplete="off" id="itemId" class="layui-input" type="text"/><br/>
+	               			      <input name="itemId" autocomplete="off" id="itemId" class="layui-input" type="text" readonly="readonly"/><br/>
 	               			 </div>
 	               		   </div>	 
 	               			 <div class="layui-inline">
@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
           <div class="layui-tab-item">
                 <h3 align="left">保险系数设置查询</h3>
-               <form action="">
+               <form action="" id="bxForm">
                <table align="center">
 			      <thead> 
 			         <tr>
@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			       </thead>
 		           <tbody id="sft"></tbody>
 		        </table>
-		        <button class="layui-btn" onclick="sddds()">保存</button>
+		        <button class="layui-btn" onclick="bxUpdate()">保存</button>
 		        </form>
           </div>
           </div>
@@ -127,8 +127,8 @@ layui.use('element',function(){
                       tr+="<td>"+obj.Item_id+"</td>"; 
                      tr+="<td>"+obj.Item_name+"</td>";
                      tr+="<td>"+obj.Itemtype_name+"</td>";
-                     tr+="<td><input type='button' value='编辑' id="+obj.Item_id+" class='get'/></td>";
-                     tr+="<td><input type='button' value='删除' id="+obj.Item_id+" class='delete'/></td>";
+                     tr+="<td><input type='button' value='编辑' id="+obj.Item_id+" class='get layui-btn' /></td>";
+                     tr+="<td><input type='button' value='删除' id="+obj.Item_id+" class='delete layui-btn'/></td>";
                      tr+="</tr>";
                      $("#si").append(tr);//追加行
                   }
@@ -246,7 +246,7 @@ layui.use('element',function(){
                   for(var i=0;i<ary.length;i++){
                      var obj=ary[i];//获取当前对象
                      var tr="<tr>";
-                     tr+="<td><input type='text' value='"+obj.safefactor_name+"'/><br/>";
+                     tr+="<td><input type='text' value='"+obj.safefactor_name+"' readonly='readonly'/><br/>";
                      tr+="<td><input type='text' value='"+obj.grpayment+"'/>%<br/>";
                      tr+="<td><input type='text' value='"+obj.dwpayment+"'/>%<br/>";
                      tr+="</tr>";
@@ -255,6 +255,24 @@ layui.use('element',function(){
                 }
              })
         }
+         /*保险系数修改*/
+        function bxUpdate(){
+             $.ajax({
+                url:"salitem/insert",
+                type:'post',
+                async:true,//异步，true是异步开启
+                data:$("#form1").serialize(),//表单序列化
+                dataType:"text",//后台返回的数据类型
+                success:function(data){
+                    alert(data);
+                    refresh();
+                },
+                error:function(data){
+                    alert(data);
+                    refresh();
+                }
+             })
+      }
     /* 页面刷新调用查询方法 */
    $(function(){
      itemtypeFind();//项目类型查询 

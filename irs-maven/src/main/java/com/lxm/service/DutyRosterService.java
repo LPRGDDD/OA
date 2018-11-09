@@ -47,4 +47,15 @@ public interface DutyRosterService {
 	 * @return
 	 */
 	public int updateRoter(DutyRoster dr);
+	/**
+	 * 查询排班班次信息
+	 * @return id 人员iD
+	 */
+	public List<Map<String,Object>> qeruyAll(int id);
+	/**
+	 * 考勤统计
+	 * @param map
+	 * @return
+	 */
+	public List<Map<String,Object>> KaoQinTongJi(Map<String,Object> map);
 }

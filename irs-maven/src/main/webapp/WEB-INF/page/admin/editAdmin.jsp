@@ -119,7 +119,13 @@
 				<select name="deptId">
 					<option value="">请选择</option>
 					<c:forEach items="${d}" var="d">
-						<option value="${d.deptId }">${d.deptName }</option>
+						<c:if test="${ad.deptId==d.deptId }">
+							<option value="${d.deptId }" selected>${d.deptName }</option>
+						</c:if>
+						<c:if test="${ad.deptId!=d.deptId }">
+							<option value="${d.deptId }">${d.deptName }</option>
+						</c:if>
+						<%-- <option value="${d.deptId }">${d.deptName }</option> --%>
 					</c:forEach>
 				</select>
 			</div>

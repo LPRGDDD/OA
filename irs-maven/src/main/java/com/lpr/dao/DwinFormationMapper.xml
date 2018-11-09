@@ -178,7 +178,7 @@
     where dwinformation_id = #{dwinformationId,jdbcType=INTEGER}
   </update>
   <!-- 查询所有的方法 -->
-  <select id="findAll" resultMap="BaseResultMap">
+  <select id="findAll" resultType="Map">
   	select * from tb_dwinformation
   </select>
 </mapper>

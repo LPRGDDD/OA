@@ -158,6 +158,7 @@
 					<input type="hidden" name="exstate" value="0"/>
 					<input type="hidden" name="syshen" id="xitong">
 					<input type="hidden" name="id" id="id" value="<shiro:principal property="id"/>">
+					<input type="hidden" id="deptId" value="<shiro:principal property="deptId"/>">
 				</form>
 
 
@@ -622,7 +623,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 				url:"GeRen/One",
 				type:"post",
 				data:{
-					'deptId':1
+					'deptId':$("#deptId").val()
 				},
 				dataType:"json",
 				success:function(data){
