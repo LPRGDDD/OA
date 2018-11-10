@@ -53,7 +53,7 @@ public class MainController {
 	@ResponseBody
 	public Map<String, Object> dataAccessGender() {
 	    Map<String, Object> j=new HashMap<>();
-	    String[] categories = {"ÄĞ", "Å®", "±£ÃÜ"};
+	    String[] categories = {"ç”·", "å¥³", "ä¿å¯†"};
 	    j.put("categories", categories);
 	    Map<String, Object> json=null;
 	    List<Map<String, Object>> list=new ArrayList<>();
