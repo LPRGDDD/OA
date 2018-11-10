@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <tr>
       <td nowrap class="col-md-1 control-label" style="width: 10%">计划名称:</td>
       <td class="TableData" style="width: 20%">
-         <select name="hrPlanId" onchange="queryScreen1()" id="sele"></select>
+         <select name="hrPlanId" onchange="queryScreen1()" id="sele" class="form-control"></select>
       </td>
       <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
       <td class="TableData" style="width: 20%">

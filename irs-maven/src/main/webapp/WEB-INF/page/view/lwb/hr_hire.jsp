@@ -261,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          })
 	      }
 	  
-	                          //查询计划
+	                          //查询部门
   	function seleDeptt(){
   		$.ajax({
   			url:"hire/seleDept",

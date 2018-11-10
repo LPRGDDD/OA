@@ -79,7 +79,7 @@ public class RecordController {
 		List<Map> list=ser.seleDept();
 		return list;
 	}
-	//查询部门
+	//查询角色
 	@RequestMapping("/seleroles")
 	@ResponseBody
 	public List<Map> seleroles(){
@@ -92,8 +92,6 @@ public class RecordController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out =response.getWriter();
 		int result=ser.updateRecord(r);
-		System.out.println(r);
-		System.out.println(result);
 		if (result!=0) {
 			out.print("修改成功");
 		}else {

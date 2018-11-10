@@ -41,9 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
            <div class="layui-tab">
   <ul class="layui-tab-title">
-    <li class="layui-this">网站设置</li>
-    <li>用户管理</li>
-    <li>权限分配</li>
+    <li class="layui-this">人事档案(在职)</li>
+    <li>人事档案(离职)</li>
+    <li>未建人事档案人员查询</li>
   </ul>
   <div class="layui-tab-content">
   <!-- ------------------------------第一块----------------------------------------- -->
@@ -277,7 +277,6 @@ url:"recoed/seleroles",
             data:obj,
             dataType:"text",
            success:function(data){
-           alert(data)
               parent.location.reload();
            } 
       })

@@ -35,14 +35,9 @@ public class PlanController {
 	public String find0(){
 		return "page/view/lwb/hr_jhsp";
 	}
-	/*跳转页面*/
-	@RequestMapping("/findhire1.action")
-	public String find1(){
-		return "page/view/lwb/MyJsp";
-	}
+
 	@RequestMapping("/queryPlan")
 	public @ResponseBody Map queryPlan(String keyWord,Integer page,Integer limit) {
-		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
 		List<Map> list=ser.queryPlan(keyWord);
 		PageInfo<Map> info=new PageInfo<Map>(list);
@@ -64,9 +59,7 @@ public class PlanController {
 	public void savePlan(Plan p,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		System.out.println("11111111111");
 		int id=ser.savePlan(p);
-		System.out.println(p);
 		if (id>0) {
 			out.print("添加成功");
 		}else{
@@ -76,7 +69,6 @@ public class PlanController {
 	
 	@RequestMapping("/planById/{hr_plan_id}")
 	public String planById(HttpServletRequest req,@PathVariable("hr_plan_id") int hr_plan_id){
-		System.out.println(hr_plan_id);
 		Map<String,Object> p=ser.planById(hr_plan_id);
 		req.setAttribute("p", p); 
 		return "page/view/lwb/planUpdate";
@@ -87,7 +79,6 @@ public class PlanController {
 	public void updatePlan(Plan p,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out =response.getWriter();
-		System.out.println(p);
 		int result=ser.updatePlan(p);
 		if (result!=0) {
 			out.print("修改成功");
@@ -112,7 +103,6 @@ public class PlanController {
 	
 	@RequestMapping("/fianAll0")
 	public @ResponseBody Map fianAll0(String keyWord,Integer uid,Integer page,Integer limit) {
-		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
 		List<Map> list=ser.fianAll0(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
@@ -125,7 +115,6 @@ public class PlanController {
 	}
 	@RequestMapping("/fianAll1")
 	public @ResponseBody Map fianAll1(String keyWord,Integer uid,Integer page,Integer limit) {
-		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
 		List<Map> list=ser.fianAll1(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
@@ -138,7 +127,6 @@ public class PlanController {
 	}
 	@RequestMapping("/fianAll2")
 	public @ResponseBody Map fianAll2(String keyWord,Integer uid,Integer page,Integer limit) {
-		System.out.println(keyWord);
 		PageHelper.startPage(page,limit);
 		List<Map> list=ser.fianAll2(keyWord, uid);
 		PageInfo<Map> info=new PageInfo<Map>(list);
@@ -157,7 +145,6 @@ public class PlanController {
 	public void updatestate1(int id,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out =response.getWriter();
-		System.out.println(id);
 		int result=ser.updatestate1(id);
 		if (result!=0) {
 			out.print("修改成功");
@@ -170,7 +157,6 @@ public class PlanController {
 	public void updatestate2(int id,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out =response.getWriter();
-		System.out.println(id);
 		int result=ser.updatestate2(id);
 		if (result!=0) {
 			out.print("修改成功");

@@ -19,12 +19,6 @@ public class DeptController {
 
 	@Autowired
 	private DeptDao dao;
-
-	/*Ìø×ªÒ³Ãæ*/
-	@RequestMapping("/finddept.action")
-	public String find(){
-		return "page/view/lwb/cheshi";
-	}
 	
 	@RequestMapping("/queryDept0")
 	@ResponseBody

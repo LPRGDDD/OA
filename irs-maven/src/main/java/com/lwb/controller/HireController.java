@@ -52,7 +52,7 @@ public class HireController {
 		List<Map> list=ser.hireSePl();
 		return list;
 	}
-  //根据计划查询计划内人员
+    //根据计划查询计划内人员
 	@RequestMapping("/hireSeTa")
 	@ResponseBody
 	public List<Map> hireSeTa(int id){
@@ -80,8 +80,6 @@ public class HireController {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out=response.getWriter();
 			int sid=ser.saveHire(h);
-			System.out.println(h);
-			System.out.println(h.getHrHireUsername());
 			ser.updateStats4(h.getHrTalentsId());
 			if (sid>0) {
 				out.print("添加成功");
