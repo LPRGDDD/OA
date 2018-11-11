@@ -16,9 +16,9 @@ public class HireServiceImpl implements HireService {
 	private HireDao dao;
 	
 	@Override
-	public List<Map> queryHire(String keyWord) {
+	public List<Map> queryHire() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.queryHire();
 	}
 
 
@@ -33,19 +33,6 @@ public class HireServiceImpl implements HireService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public int deleteHire(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
-	
-	
-	
-	
-	
 	
 	
 	

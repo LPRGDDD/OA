@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lwb.dao.RecordDao" >
-
-   <select id="queryRecord" resultType="map" parameterType="Integer">
+<!-- 根据ID查询档案信息 -->
+   <select id="queryRecord" resultType="Map" parameterType="Integer">
     select * from hr_record where hr_record_id=#{id}
   </select>
+<!--根据人才库状态查询已录用未建档人员 -->
+  <select id="RecordqueryAllrck" resultType="Map">
+    select * FROM hr_talents t left join  hr_hire h on t.hr_talents_id=h.hr_talents_id where hr_talents_filestatus=4
+  </select>
+  <!-- 根据ID查询人才库信息并赋值 -->
+  <select id="recordById" resultType="Map" parameterType="Integer">
+    select * FROM hr_talents where hr_talents_id=#{id}
+  </select>
   
-  <!-- <insert id="insert" parameterType="com.lwb.entity.Record" >
-    insert into hr_record (hr_talents_id, role_id, dept_id, 
+   <insert id="saveRecord" parameterType="com.lwb.entity.Record">
+    insert into hr_record (role_id, dept_id, 
       hr_record_name, hr_record_oaname, hr_record_serial, 
       hr_record_jobNumber, hr_record_createtime, hr_record_englishName, 
       hr_record_identity, hr_record_dateOfBirth, hr_record_sex, 
@@ -20,7 +28,7 @@
       hr_record_degree, hr_record_major, hr_record_unusual, 
       hr_record_state, hr_record_remark, 
       hr_record_username, hr_record_currenttime)
-    values (#{hrTalentsId}, #{roleId}, #{deptId}, 
+    values (#{roleId}, #{deptId}, 
       #{hrRecordName}, #{hrRecordOaname}, #{hrRecordSerial}, 
       #{hrRecordJobnumber}, #{hrRecordCreatetime}, #{hrRecordEnglishname}, 
       #{hrRecordIdentity}, #{hrRecordDateofbirth}, #{hrRecordSex}, 
@@ -34,11 +42,21 @@
       #{hrRecordState}, #{hrRecordRemark},
       #{hrRecordUsername}, #{hrRecordCurrenttime})
   </insert>
- 
-  
-  <update id="updateByPrimaryKey" parameterType="com.lwb.entity.Record" >
+ <!-- 根据Id修改状态 -->
+  <update id="updateStats5" parameterType="java.lang.Integer">
+       UPDATE hr_talents set hr_talents_filestatus=5 where hr_talents_id=#{id}
+  </update>
+  <!-- 查询部门  -->
+  <select id="seleDept" resultType="Map">
+        select * from tb_dept
+   </select>
+   <!-- 查询角色  -->
+  <select id="seleroles" resultType="Map">
+        select * from tb_roles
+   </select>
+  <update id="updateRecord" parameterType="com.lwb.entity.Record" >
     update hr_record
-    set user_role_id = #{userRoleId},
+    set role_id = #{roleId},
       dept_id = #{deptId},
       hr_record_name = #{hrRecordName},
       hr_record_oaname = #{hrRecordOaname},
@@ -69,16 +87,10 @@
       hr_record_degree = #{hrRecordDegree},
       hr_record_major = #{hrRecordMajor},
       hr_record_unusual = #{hrRecordUnusual},
-      hr_record_state = #{hrRecordState},
       hr_record_remark = #{hrRecordRemark},
-      hr_record_accessory = #{hrRecordAccessory},
       hr_record_username = #{hrRecordUsername},
       hr_record_currenttime = #{hrRecordCurrenttime}
     where hr_record_id = #{hrRecordId}
   </update>
   
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from hr_record  where hr_record_id = #{hrRecordId}
-  </delete> -->
 </mapper>

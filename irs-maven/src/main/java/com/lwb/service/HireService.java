@@ -3,19 +3,17 @@ package com.lwb.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 
 import com.lwb.entity.Hire;
 
 public interface HireService {
 	//分页查询所有
-	   public List<Map> queryHire(@Param("keyWord") String keyWord);
+	   public List<Map> queryHire();
 	   //根据ID查询
 	   public Map planById(int id);
 	   //修改
 	   public int updateHire(Hire h);
-	   //删除
-	   public int deleteHire(int id);
+	   
 	   
 	   
 	   //添加商品

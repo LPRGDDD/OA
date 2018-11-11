@@ -20,10 +20,10 @@ public class Dept1Controller {
 	@Autowired
 	private Dept1Dao dao1;
 
-	@RequestMapping("/queryDept")
+	@RequestMapping("/queryDept0")
 	@ResponseBody
 	public List<EmployeeTree> queryDept(){
-		List<Dept1> list=dao1.queryDept();
+		List<Dept1> list=dao1.queryDept0();
 		System.out.println(list);
 		//创建deptlist集合接受dept中的数据
 		List<EmployeeTree> deptlist=new ArrayList<EmployeeTree>();
@@ -32,11 +32,12 @@ public class Dept1Controller {
 			//赋值
 			tree.setId(dept.getDeptId());
 			tree.setText(dept.getDeptName());
+			tree.setState("closed");
 			List<Record> d=dept.getRecord();
 			List<EmployeeTree> ployeetree=new ArrayList<EmployeeTree>();
 			for (Record rec:d) {
 				EmployeeTree ployee=new EmployeeTree();
-				ployee.setId(rec.getRoleId());
+				ployee.setId(rec.getHrRecordId());
 				ployee.setText(rec.getHrRecordName());
 				ployeetree.add(ployee);
 			}
@@ -48,4 +49,34 @@ public class Dept1Controller {
 		
 		}
 	
+	
+	
+	@RequestMapping("/queryDept4")
+	@ResponseBody
+	public List<EmployeeTree> queryDept4(){
+		List<Dept1> list=dao1.queryDept4();
+		System.out.println(list);
+		//创建deptlist集合接受dept中的数据
+		List<EmployeeTree> deptlist=new ArrayList<EmployeeTree>();
+		for (Dept1 dept:list) {//遍历list
+			EmployeeTree tree=new EmployeeTree();
+			//赋值
+			tree.setId(dept.getDeptId());
+			tree.setText(dept.getDeptName());
+			tree.setState("closed");
+			List<Record> d=dept.getRecord();
+			List<EmployeeTree> ployeetree=new ArrayList<EmployeeTree>();
+			for (Record rec:d) {
+				EmployeeTree ployee=new EmployeeTree();
+				ployee.setId(rec.getHrRecordId());
+				ployee.setText(rec.getHrRecordName());
+				ployeetree.add(ployee);
+			}
+			tree.setChildren(ployeetree);
+			deptlist.add(tree);
+			System.out.println(deptlist);
+		}
+		return deptlist;
+		
+		}
 }

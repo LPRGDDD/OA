@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwb.dao.TransferDao">
+    <select id="recoById" resultType="Map" parameterType="java.lang.Integer">
+        select * FROM tb_dept d LEFT JOIN hr_record r on d.dept_id=r.dept_id where r.dept_id=#{id}
+    </select>
+    <!-- 根据ID查询人员信息并把数据赋予页面 -->
+    <select id="recordFZ" resultType="Map" parameterType="java.lang.Integer">
+        select * FROM tb_dept d LEFT JOIN hr_record r on r.dept_id=d.dept_id where r.hr_record_id=#{id}
+   </select>
+   <!-- 查询所有 -->
+   <select id="queryTransfer" resultType="Map">
+         select * from hr_transfer t left join hr_record r on t.hr_record_id=r.hr_record_id
+  </select>
+  <select id="queryrecord" resultType="Map">
+        select * from hr_record
+   </select>
+  <!-- 添加时修改人员部门外键 -->
+  <update id="updateDept" parameterType="java.lang.Integer">
+        UPDATE hr_record set dept_id=#{bm} where hr_record_id=#{id}
+  </update>
+   <insert id="transferSave" parameterType="com.lwb.entity.Transfer">
+    insert into hr_transfer (role_id, dept_id, 
+      hr_record_id, hr_transfer_transfertype, hr_transfer_date, 
+      hr_transfer_effectivedate, hr_transfer_beforetheunit, 
+      hr_transfer_aftertheunit, hr_transfer_formerposition, 
+      hr_transfer_afterthejob, hr_transfer_cause, 
+      hr_transfer_remark, hr_transfer_modification, 
+      hr_transfer_username, hr_transfer_currenttime,
+      hr_transfer_before,hr_transfer_after)
+    values (#{RoleId}, #{deptId}, 
+      #{hrRecordId}, #{hrTransferTransfertype}, #{hrTransferDate}, 
+      #{hrTransferEffectivedate}, #{hrTransferBeforetheunit}, 
+      #{hrTransferAftertheunit}, #{hrTransferFormerposition}, 
+      #{hrTransferAfterthejob}, #{hrTransferCause}, 
+      #{hrTransferRemark}, #{hrTransferModification}, 
+      #{hrTransferUsername}, #{hrTransferCurrenttime},
+      #{hrTransferBefore},#{hrTransferAfter})
+  </insert>
+  <select id="transferById" resultType="Map" parameterType="Integer">
+        select * from hr_transfer where hr_transfer_id=#{id}
+   </select>
+  <update id="updateTransfer" parameterType="com.lwb.entity.Transfer" >
+    update hr_transfer
+    set role_id = #{RoleId},
+      dept_id = #{deptId},
+      hr_record_id = #{hrRecordId},
+      hr_transfer_transfertype = #{hrTransferTransfertype},
+      hr_transfer_date = #{hrTransferDate},
+      hr_transfer_effectivedate = #{hrTransferEffectivedate},
+      hr_transfer_beforetheunit = #{hrTransferBeforetheunit},
+      hr_transfer_aftertheunit = #{hrTransferAftertheunit},
+      hr_transfer_formerposition = #{hrTransferFormerposition},
+      hr_transfer_afterthejob = #{hrTransferAfterthejob},
+      hr_transfer_cause = #{hrTransferCause},
+      hr_transfer_remark = #{hrTransferRemark},
+      hr_transfer_modification = #{hrTransferModification}
+    where hr_transfer_id = #{hrTransferId}
+  </update>
+</mapper>

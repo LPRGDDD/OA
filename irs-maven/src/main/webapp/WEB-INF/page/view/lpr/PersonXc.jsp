@@ -475,14 +475,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('th').eq(9).css("width","100");
                     }
                 });*/
-                 $("[data-field='personxc_s8']").children().each(function () {
+                /*  $("[data-field='personxc_s8']").children().each(function () {
                     if ($(this).text() == 0 || $(this).text() == "" || j[10] == null) {
                         $(".layui-table-box").find("[data-field='personxc_s8']").css("display","none");
                     }else {
                         $('th').eq(11).text(j[10]);
                         $('th').eq(11).css("width","100");
                     }
-                });
+                }); */
                  $("[data-field='personxc_s9']").children().each(function () {
                     if ($(this).text() == 0 || $(this).text() == "" || j[11] == null) {
                         $(".layui-table-box").find("[data-field='personxc_s9']").css("display","none");

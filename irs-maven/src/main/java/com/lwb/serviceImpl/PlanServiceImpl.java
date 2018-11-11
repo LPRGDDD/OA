@@ -18,7 +18,7 @@ public class PlanServiceImpl implements PlanService {
 
 
 	@Override
-	public List<Map> userAll() {
+	public List<Map<String, Object>> userAll() {
 		// TODO Auto-generated method stub
 		return dao.userAll();
 	}

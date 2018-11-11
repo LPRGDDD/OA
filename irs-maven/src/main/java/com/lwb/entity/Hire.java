@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.irs.pojo.TbAdmin;
-import com.lpr.entity.Dept;
 
 public class Hire {
     private Integer hrHireId;
@@ -20,7 +19,7 @@ public class Hire {
     private Talents talents;
     
     private Integer deptId;
-    private Dept dept;
+    private Dept1 dept;
     
     private String hrHireName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -108,11 +107,11 @@ public class Hire {
 		this.deptId = deptId;
 	}
 
-	public Dept getDept() {
+	public Dept1 getDept() {
 		return dept;
 	}
 
-	public void setDept(Dept dept) {
+	public void setDept(Dept1 dept) {
 		this.dept = dept;
 	}
 
@@ -205,7 +204,7 @@ public class Hire {
 	}
 
 	public Hire(Integer hrHireId, Integer hrPlanId, Plan paln, Integer id, TbAdmin admin, Integer hrTalentsId,
-			Talents talents, Integer deptId, Dept dept, String hrHireName, Date hrHireDate, String hrHireType,
+			Talents talents, Integer deptId, Dept1 dept, String hrHireName, Date hrHireDate, String hrHireType,
 			String hrHireClassa, String hrHireDuty, Date hrHireEntrytime, Date hrHireStartingsalary,
 			String hrHireRemark, String hrHireUsername, Date hrHireCurrenttime, String hrHireRelation) {
 		super();

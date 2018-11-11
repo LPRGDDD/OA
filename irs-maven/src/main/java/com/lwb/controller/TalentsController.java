@@ -56,9 +56,7 @@ public class TalentsController {
 	public void saverck(Talents t,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		System.out.println(t+"111");
 		int id=ser.saverck(t);
-		System.out.println(t+"222");
 		if (id>0) {
 			out.print("添加成功");
 		}else{
@@ -68,7 +66,6 @@ public class TalentsController {
 	
 	@RequestMapping("/queryByIdrck/{hr_talents_id}")
 	public String queryByIdrck(HttpServletRequest req,@PathVariable("hr_talents_id")int hr_talents_id){
-		System.out.println(hr_talents_id);
 		Map list=ser.queryByIdrck(hr_talents_id);
 		req.setAttribute("rck", list);
 		return "page/view/lwb/rckUpdate";
@@ -79,9 +76,7 @@ public class TalentsController {
 	public void updaterck(Talents t,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out =response.getWriter();
-		System.out.println(t);
 		int result=ser.updaterck(t);
-		System.out.println(result+"1111");
 		if (result!=0) {
 			out.print("修改成功");
 		}else {
@@ -95,9 +90,7 @@ public class TalentsController {
 	public void deleterck(int id,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out =response.getWriter();
-		System.out.println(id+"a");
 		int result=ser.deleterck(id);
-		System.out.println(id+"b");
 		if (result!=0) {
 			out.print("删除成功");
 		}else {
