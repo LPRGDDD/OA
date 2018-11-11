@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="page/resources/layui/layui.all.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css"href="page/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"href="page/resources/bootstrap/css/bootstrap-theme.min.css">
+<script	src="page/resources/bootstrap/jquery-1.11.3.min.js"></script>
 <script src="page/resources/bootstrap/js/bootstrap.min.js"></script>
  
  <style type="text/css">
@@ -68,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   table.render({
 				    elem: '#myTab'
 				    ,height:500
-				    ,url: 'screen/queryScreen?uid='+<shiro:principal property='id'/>+'' //数据接口
+				    ,url: 'screen/queryScreen?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
 				    ,cols: [[ //表头
 				       //全选
@@ -128,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <tr>
       <td nowrap class="col-md-1 control-label" style="width: 10%">计划名称:</td>
       <td class="TableData" style="width: 20%">
-         <select name="hrPlanId" onchange="queryScreen1()" id="sele"></select>
+         <select name="hrPlanId" onchange="queryScreen1()" id="sele" class="form-control"></select>
       </td>
       <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
       <td class="TableData" style="width: 20%">
@@ -299,7 +300,7 @@ function queryScreen2(){
   				$("#seleUse").html("");
         		for(var i=0;i<data.length;i++){
         			var obj=data[i];
-					 var tr="<option value='"+obj.id+"'>"+obj.username+"</option>";
+					 var tr="<option value='"+obj.id+"'>"+obj.fullname+"</option>";
 					  $("#seleUse").append(tr);    			
         		}
   			}

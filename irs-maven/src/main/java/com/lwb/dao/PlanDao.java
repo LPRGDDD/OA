@@ -14,13 +14,14 @@ public interface PlanDao {
 	   //添加商品
 	   public int savePlan(Plan p);
 	   //查询user中数据
-	   public List<Map> userAll();
+	   public List<Map<String, Object>> userAll();
 	    //根据ID查询
 	   public Map planById(int id);
 	   //修改
 	   public int updatePlan(Plan p);
 	   //删除
 	   public int deletePlan(int id);
+	   
 	   //根据状态0查询
 	   public List<Map> fianAll0(@Param("keyWord") String keyWord,@Param("uid")Integer uid);
 	   //根据状态1查询

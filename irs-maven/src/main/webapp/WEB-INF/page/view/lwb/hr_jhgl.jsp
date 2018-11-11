@@ -278,7 +278,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>创建者用户名</label>
 				<div class="layui-input-inline">
-					<input name="hrPlanUsername" value="<shiro:principal property="fullname"/>" class="layui-input ym" type="text" readonly="readonly" placeholder="请输入" autocomplete="off">
+					<input value="<shiro:principal property='fullname'/>" name="hrPlanUsername" class="layui-input ym" type="text" readonly="readonly"  autocomplete="off">
 				</div>
 			</div>
 			<div class="layui-inline">

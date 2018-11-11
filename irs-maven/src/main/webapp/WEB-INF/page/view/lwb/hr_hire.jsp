@@ -26,18 +26,79 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="page/resources/layui/layui.all.js" charset="utf-8"></script>
     <link rel="stylesheet" href="page/resources/bootstrap/css/bootstrap.min.css">
 	<script src="page/resources/bootstrap/js/bootstrap.min.js"></script>
+  
+   <style type="text/css">
+  #mtk{
+     position:absolute;left:800px;top:80px;
+  }
+</style>
   </head>
   
   <body>
     <div class="layui-tab">
   <ul class="layui-tab-title">
-    <li class="layui-this">计划管理</li>
-    <li>新增计划</li>
+    <li class="layui-this">录用管理</li>
+    <li>新增录用</li>
   </ul>
   <div class="layui-tab-content">
   <!-- 第一块 -->
     <div class="layui-tab-item layui-show">
-          111111111111111111111
+    
+    
+          <table class="layui-hide" id="myTab" lay-filter="demo"></table>
+	<div id="fenye"></div>
+	
+<script id="barDemo" type="text/html">
+
+</script>
+<script>
+		layui.use('table', function() {
+			var table = layui.table;
+			//监听表格复选框选择
+			table.on('checkbox(demo)', function(obj) {
+				console.log(obj)
+			});
+			layui.use('table', function(){
+				  var table = layui.table;
+				  //监听单元格编辑
+				   table.render({
+				    elem: '#myTab'
+				    ,height:500
+				    ,url: 'hire/queryHire' //数据接口
+				    ,page: true //开启分页
+				    ,cols: [[ //表头
+				       //全选
+				       //edit: 'text'为开启单元格编辑，sort:true开启排序
+			   {field:'hr_plan_name', width:220, title: '计划名称', align:'center'}
+		      ,{field:'hr_talents_name', width:220, title: '应聘者姓名', align:'center'}
+		      ,{field:'hr_talents_major', width:220, title: '应聘岗位', align:'center'}
+		      ,{field:'hr_talents_relation', width:220, title: '联系电话', align:'center'}
+		      ,{field:'hr_hire_username', width:220, title: '录用负责人', align:'center'}
+		      ,{field:'hr_hire_date', title: '录用时间', width: 220, align:'center'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+		      /* ,{fixed: 'right', width:220, align:'center', toolbar: '#barDemo'} */
+				    ]],
+				  });             
+				});
+			//监听工具条
+			table.on('tool(demo)', function(obj) {
+				var data = obj.data;
+				if (obj.event === 'detail') {
+					layer.msg('ID：' + data.hr_screen_id + ' 的查看操作');
+				} else if (obj.event === 'check') {
+					layer.msg(data.hr_screen_id);
+	//打开一个面试窗口
+		layer.open({
+            type:2,
+            title:"查找用户角色",
+            area: ['80%','90%'],
+            offset: ['20px', '50px'],
+            content:"http://localhost:8080/oa/screen/ScreenById/"+data.hr_screen_id
+        });
+				}
+			});
+	
+		});
+	</script>
             
     </div>
     
@@ -67,9 +128,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <input type="text" name="hrTalentsToemploy" id="hr_talents_toemploy" class="form-control"   >
       </td>
 
-      <td nowrap class="col-md-2 control-label">发起人:</td>
+      <td nowrap class="col-md-2 control-label">录用负责人:</td>
       <td class="TableData">
-        <input type="text" name="hrScreenUsername" class="form-control" value="<shiro:principal property="fullname"/>" >
+        <input type="text" name="hrHireUsername" value="<shiro:principal property="fullname"/>" readonly="readonly" class="form-control">
       </td>
    </tr>
    <tr>
@@ -80,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
       <td nowrap class="col-md-2 control-label">录用日期:</td>
       <td class="TableData">
-        <input type="date" name="hrHireDate" class="form-control">
+        <input type="text" name="hrHireDate" readonly="readonly" id="xx" class="form-control">
       </td>
    </tr>
    <tr>
@@ -200,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          })
 	      }
 	  
-	                          //查询计划
+	                          //查询部门
   	function seleDeptt(){
   		$.ajax({
   			url:"hire/seleDept",
@@ -219,8 +280,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	}
   $(function(){
   	    queryHire();
-  	    seleDeptt()
-  	})
+  	    seleDeptt();
+  var today=new Date();
+    var H=today.getFullYear();
+    var M=today.getMonth()+1;
+    var R=today.getDate();
+    var h=today.getHours();
+    var mm=today.getMinutes();
+    var ss=today.getSeconds();
+  	var xitong=H+"-"+M+"-"+R+" "+h+":"+mm+":"+ss;
+  	$("#xx").val(xitong);
+})
+  
   	                   
 	                 //根据人员查询出数据，并显示在页面上
   	$(function(){

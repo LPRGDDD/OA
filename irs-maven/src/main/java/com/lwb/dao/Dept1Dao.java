@@ -4,8 +4,13 @@ import java.util.List;
 
 import com.lwb.entity.Dept1;
 
-
-
 public interface Dept1Dao {
-	public List<Dept1> queryDept();
+	/*
+	 * 根据ID查询在职人员
+	 * */
+	public List<Dept1> queryDept0();
+	/*
+	 * 根据ID查询离职人员
+	 * */
+	public List<Dept1> queryDept4();
 }

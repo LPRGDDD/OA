@@ -3,7 +3,6 @@ package com.lwb.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 
 import com.lwb.entity.Hire;
 
@@ -11,15 +10,14 @@ import com.lwb.entity.Hire;
 
 public interface HireDao {
 	   //分页查询所有
-	   public List<Map> queryHire(@Param("keyWord") String keyWord);
+	   public List<Map> queryHire();
 	   //添加商品
 	   public int saveHire(Hire h);
 	   //根据ID查询
 	   public Map planById(int id);
 	   //修改
 	   public int updateHire(Hire h);
-	   //删除
-	   public int deleteHire(int id);
+
 	   
 	   
 	   //查询筛选成功的计划

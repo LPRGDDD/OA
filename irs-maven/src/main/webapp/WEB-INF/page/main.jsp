@@ -71,25 +71,6 @@
 	<div id="info" style="width: 600px; height: 400px;"></div>
 
 	<!-- 事件线 -->
-	<div>
-		<fieldset class="layui-elem-field layui-field-title"
-			style="margin-top: 30px;">
-			<legend>更新历史纪录</legend>
-		</fieldset>
-		<ul class="layui-timeline">
-			<li class="layui-timeline-item"><i
-				class="layui-icon layui-timeline-axis"></i>
-				<div class="layui-timeline-content layui-text">
-					<h3 class="layui-timeline-title">2018年07月29日</h3>
-					<p>
-						1.新增：菜单排序(tb_menus新增字段sorting)、时间线、菜单排序列单元格单击可快速修改排序值。 <br>
-						2.修改：菜单管理页面默认折叠(自行替换treeGrid.js，TbMenus新增字段isOpen是否折叠)、菜单树默认折叠（新增，修改角色）、SQL文件
-						<i class="layui-icon"></i>
-					</p>
-				</div></li>
-		</ul>
-	</div>
-
 	<div class="sysNotice col">
 		<blockquote class="layui-elem-quote title">系统基本参数</blockquote>
 		<table class="layui-table">

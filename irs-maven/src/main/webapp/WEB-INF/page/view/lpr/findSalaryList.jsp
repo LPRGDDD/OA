@@ -149,16 +149,16 @@
 						 	   {type: 'checkbox', fixed: 'left'},
 							   {field : 'sal_data_id',title : '编号',fixed: 'left',sort : true,width:80,align:'center',totalRowText: '合计',unresize: true},//员工薪酬基数编号
 							   {field : 'fullname',title : '员工名称',fixed: 'left',width:100,align:'center'},//用户名称
-							   {field : 'personxc_s1',title : '薪酬项目1',edit: 'text',width:120,align:'center', totalRow: true},//薪酬项目1
-							   {field : 'personxc_s2',title : '薪酬项目2',edit: 'text',width:120,align:'center'},//薪酬项目2 
-							   {field : 'personxc_s3',title : '薪酬项目3',edit: 'text',width:120,align:'center'},//薪酬项目3
-							   {field : 'personxc_s4',title : '薪酬项目4',edit: 'text',width:120,align:'center'},//薪酬项目4
-							   {field : 'personxc_s5',title : '薪酬项目5',edit: 'text',width:120,align:'center'},//薪酬项目5
-							   {field : 'personxc_s6',title : '薪酬项目6',edit: 'text',width:120,align:'center'},//薪酬项目6
-							   {field : 'personxc_s7',title : '薪酬项目7',edit: 'text',width:120,align:'center'},//薪酬项目7
-							   {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:120,align:'center'},//薪酬项目8
-							   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:120,align:'center'},//薪酬项目9
-							   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:120,align:'center'},//薪酬项目10
+							   {field : 'personxc_s1',title : '基本工资',width:100},//薪酬项目1
+							   {field : 'personxc_s2',title : '劳务费',edit: 'text',width:100,align:'center'},//薪酬项目2 
+							   {field : 'personxc_s3',title : '奖金',edit: 'text',width:100,align:'center'},//薪酬项目3
+							   {field : 'personxc_s4',title : '房帖',edit: 'text',width:100,align:'center'},//薪酬项目4
+							   {field : 'personxc_s5',title : '资金',edit: 'text',width:100,align:'center'},//薪酬项目5
+							   {field : 'personxc_s6',title : '高温费',edit: 'text',width:100,align:'center'},//薪酬项目6
+							   {field : 'personxc_s7',title : '迟到扣款',edit: 'text',width:100,align:'center'},//薪酬项目7
+							  /*  {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:100,align:'center'},
+							   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:100,align:'center'},
+							   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:100,align:'center'}, */
 							   {field : 'personxc_insurejs',title : '保险基数',edit: 'text',width:120,align:'center', totalRow: true},//员工保险基数 
 							   {field : 'personxc_ylinsure',title : '养老保险',edit: 'text',width:120,align:'center'},//员工养老保险
 							   {field : 'personxc_dwyl',title : '单位养老',edit: 'text',width:120,align:'center'},//员工单位养老
@@ -177,7 +177,7 @@
 							   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
 							   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
 							   {field : 'sal_Ssalary',title : '实发工资', totalRow: true,edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
-       							 return d.personxc_s1+d.personxc_s2+d.personxc_s3+d.personxc_s4+d.personxc_s5+d.personxc_s6+d.personxc_s7-d.personxc_gryl-d.personxc_grmedical-d.personxc_grsy-d.personxc_grzf
+       							 return d.personxc_s1+d.personxc_s2+d.personxc_s3+d.personxc_s4+d.personxc_s5+d.personxc_s6-d.personxc_s7-d.personxc_gryl-d.personxc_grmedical-d.personxc_grsy-d.personxc_grzf
      							 }},
 							   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center',fixed: 'right'}//员工表现
   							 ] ],

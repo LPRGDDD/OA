@@ -89,7 +89,6 @@ public class ScreenController {
 	
 	@RequestMapping("/ScreenById/{hr_screen_id}")
 	public String ScreenById(HttpServletRequest req,@PathVariable("hr_screen_id")int hr_screen_id){
-		System.out.println(hr_screen_id);
 		Map list=ser.ScreenById(hr_screen_id);
 		req.setAttribute("zpsx", list);
 		return "page/view/lwb/zpsxUpdate";
