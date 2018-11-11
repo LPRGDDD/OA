@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.applyMapper">
+   <!--  <resultMap type="apply" id="findByState" autoMapping="true">
+        <id column="apId" property="apId"/>
+        <collection property="court" ofType="court" autoMapping="true">
+            <id column="cId" property="cId"/>
+        </collection>
+   </resultMap>  -->
+	<!-- 分页查询 -->
+	<select id="getAll" resultType="Map" parameterType="java.lang.Integer">
+		  SELECT a.ApId,s.sName,ta.username,a.ApFlag,a.ApNum,a.ApDate,ApBei,ApState from
+		apply a LEFT JOIN shop s on a.sId=s.sId LEFT JOIN tb_admin ta ON a.id=ta.id
+	</select>
+	<select id="findAll" resultType="Map">
+		SELECT a.ApId,s.sName,a.borrow,a.ApFlag,a.ApNum,a.ApDate,ApBei,ApState from
+		apply a LEFT JOIN shop s on a.sId=s.sId
+	</select>
+	<select id="findById" resultType="Map" parameterType="java.lang.Integer">
+		select * from apply a LEFT JOIN shop s ON a.sId=s.sId LEFT JOIN tb_admin ta on a.id=ta.id where ApId=#{ApId}
+	</select>
+	<select id="findById2" resultType="Map" parameterType="java.lang.Integer">
+	   select * from apply a LEFT JOIN shop s ON a.sId=s.sId LEFT JOIN tb_admin ta on a.id=ta.id where ta.id=#{id}
+	</select>
+	<select id="findById3" resultType="Map" parameterType="java.lang.Integer">
+		select * from apply a LEFT JOIN shop s ON a.sId=s.sId LEFT JOIN tb_admin ta on a.id=ta.id where ApId=#{ApId}
+	</select>
+	<!-- 已申请未审批 -->
+	<select id="findByState" resultType="Map" parameterType="java.lang.Integer">
+		select * from apply a LEFT JOIN court c ON a.cId=c.cId LEFT JOIN tb_admin ta on a.id=ta.id LEFT JOIN shop s ON a.sId=s.sId where ta.id=#{id} and a.ApState=0
+	</select>
+	<select id="findByState3" resultType="Map" parameterType="java.lang.Integer">
+	     select * from apply a LEFT JOIN shop s on a.sId=s.sId LEFT JOIN court c on c.cId=a.cId where a.ApId=#{ApId} 
+	</select>
+	<select id="findByState2" resultType="Map">
+	   select * from apply a LEFT JOIN court c ON a.cId=c.cId LEFT JOIN tb_admin ta on a.id=ta.id LEFT JOIN shop s ON a.sId=s.sId where a.ApState=2
+	</select>
+	<!-- 修改状态 -->
+	<update id="updateState" parameterType="java.lang.Integer">
+	     update apply set apState=2 where ApId=#{ApId}
+	</update>
+	<!-- 修改状态2 -->
+	<update id="updateState1" parameterType="java.lang.Integer">
+	     update apply set apState=3 where ApId=#{ApId}
+	</update>
+	<!-- 修改数量 -->
+	 <update id="updateNum" parameterType="shop">
+	   update shop set sNow=#{sNow} where sId=#{sId}
+	</update> 
+	<!-- 状态详情 -->
+	<select id="findBydetail" parameterType="java.lang.Integer" resultType="Map">
+	     select * from apply a LEFT JOIN court c ON a.cId=c.cId LEFT JOIN tb_admin ta on a.id=ta.id LEFT JOIN shop s ON a.sId=s.sId where a.ApId=#{ApId}
+	</select>
+	<!-- 删除 -->
+	<delete id="deleteapp" parameterType="java.lang.Integer">
+		delete from apply where ApId=#{ApId}
+	</delete>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from apply
+		where ApId = #{apId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.zx.entity.apply">
+		insert into apply(cId,sId,
+		id, ApFlag, sPrice,
+		ApNum,ApDate, ApBei,ApState,ApOperator)
+		values (#{cId,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER},
+		#{id,jdbcType=INTEGER}, #{apFlag,jdbcType=INTEGER},
+		#{sPrice,jdbcType=INTEGER},
+		#{apNum,jdbcType=INTEGER},#{apDate,jdbcType=VARCHAR},
+		#{apBei,jdbcType=VARCHAR}, #{apState,jdbcType=INTEGER}, #{id,jdbcType=INTEGER})
+	</insert>
+	<!-- 多条件查询 -->
+	<select id="findBycondition" resultType="Map" parameterType="Map">
+	           select * from apply
+	           <where>
+	              <if test="cId!='' and cId!=null">
+	                  cId like '%${cId}%' 
+	              </if>
+	           </where>
+	</select>
+<!-- 录入不批准理由 -->
+	<update id="insapp" parameterType="apply">
+	    update apply set apReson=#{apReson},apState=1 where apId=#{apId}
+	</update> 
+</mapper>

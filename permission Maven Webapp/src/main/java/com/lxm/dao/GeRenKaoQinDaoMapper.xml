@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.GeRenKaoQinDao" >
+	<!--查询人员id  -->
+	<select id="ShePiUser" parameterType="Int" resultType="GeRenEntity" statementType="CALLABLE">
+		call ShenPi(#{deptId,mode=IN})<!--调用储存过程  -->
+	</select>
+	<!--根据人员id 查询人员名字  -->
+	<select id="findAdminName" resultType="TbAdmin" parameterType="java.util.ArrayList">
+		SELECT id,username FROM tb_admin  WHERE id in
+	<foreach collection="array" item="item" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	</select>
+	
+</mapper> 

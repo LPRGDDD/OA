@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chl.dao.AddressDao" >
+    <!--查询通讯录-->
+    <select id="getAddressBook" resultType="java.util.Map">
+        select * from address_book ab join tb_txgroup tt on ab.group_id=tt.group_id
+        <where>
+            <if test="userId!='' and  userId!=null">
+                ab.userId=#{userId}
+            </if>
+            <if test="keyWord !=null and keyWord!=''">
+                and ab.psn_name like '%${keyWord}%' or tt.group_name  like '%${keyWord}%'
+            </if>
+        </where>
+    </select>
+    <!--查询分组-->
+    <select id="getGroup" parameterType="String" resultType="java.util.Map">
+        select * from tb_txgroup
+        <where>
+            id=#{userId}
+            <if test="keyWord !=null and keyWord!=''">
+                group_name like '%${keyWord}%'
+            </if>
+        </where>
+    </select>
+    <!--添加分组-->
+    <insert id="addGroup" >
+        insert into tb_txgroup(group_name,id) values(#{group_name},#{userId})
+    </insert>
+     <!--添加联系人-->
+    <insert id="addUser" parameterType="java.util.Map">
+        insert into address_book(userId,group_id,psn_name,sex,nick_name,birthday,ministration,dept_name,add_dept,post_no_dept,tel_no_dept,fax_no_dept,add_home,post_no_home,tel_no_home,moble_no,email,oicq_noqq)
+        values(#{userId},#{group_id},#{psn_name},#{sex},#{nick_name},#{birthday},#{ministration},#{dept_name},#{add_dept},#{post_no_dept},#{tel_no_dept},#{fax_no_dept},#{add_home},#{post_no_home},#{tel_no_home},#{moble_no},#{email},#{oicq_noqq})
+    </insert>
+    <!--编辑联系人-->
+    <update id="updateUser" parameterType="java.util.Map">
+        update address_book set userId=#{userId},group_id=#{group_id},psn_name=#{psn_name},sex=#{sex},nick_name=#{nick_name},birthday=#{birthday},ministration=#{ministration},dept_name=#{dept_name},add_dept=#{add_dept},post_no_dept=#{post_no_dept},tel_no_dept=#{tel_no_dept},fax_no_dept=#{fax_no_dept},add_home=#{add_home},post_no_home=#{post_no_home},tel_no_home=#{tel_no_home},moble_no=#{moble_no},email=#{email},oicq_noqq=#{oicq_noqq} where add_id=#{addId}
+    </update>
+    <!--删除联系人-->
+    <delete id="delUser" parameterType="Integer">
+        delete  from address_book where add_id=#{addId}
+    </delete> 
+    <!--根据ID查询  -->
+    <select id="selectById" resultType="Map" parameterType="Integer">
+       select * from address_book where add_id=#{add_id}
+    </select>
+   </mapper>

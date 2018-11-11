@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.Staff" >
+    <id column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="staff_name" property="staffName" jdbcType="VARCHAR" />
+    <result column="staff_onlinetime" property="staffOnlinetime" jdbcType="DATE" />
+    <result column="staff_sex" property="staffSex" jdbcType="VARCHAR" />
+    <result column="staff_phone" property="staffPhone" jdbcType="VARCHAR" />
+    <result column="staff_workphone" property="staffWorkphone" jdbcType="VARCHAR" />
+    <result column="staff_email" property="staffEmail" jdbcType="VARCHAR" />
+    <result column="staff_dept" property="staffDept" jdbcType="VARCHAR" />
+    <result column="staff_role" property="staffRole" jdbcType="VARCHAR" />
+    <result column="staff_user" property="staffUser" jdbcType="VARCHAR" />
+    <result column="staff_remark" property="staffRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    staff_id, staff_name, staff_onlinetime, staff_sex, staff_phone, staff_workphone, 
+    staff_email, staff_dept, staff_role, staff_user, staff_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_staff
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_staff
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lpr.entity.Staff" >
+    insert into tb_staff (staff_id, staff_name, staff_onlinetime, 
+      staff_sex, staff_phone, staff_workphone, 
+      staff_email, staff_dept, staff_role, 
+      staff_user, staff_remark)
+    values (#{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR}, #{staffOnlinetime,jdbcType=DATE}, 
+      #{staffSex,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, #{staffWorkphone,jdbcType=VARCHAR}, 
+      #{staffEmail,jdbcType=VARCHAR}, #{staffDept,jdbcType=VARCHAR}, #{staffRole,jdbcType=VARCHAR}, 
+      #{staffUser,jdbcType=VARCHAR}, #{staffRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.Staff" >
+    insert into tb_staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="staffName != null" >
+        staff_name,
+      </if>
+      <if test="staffOnlinetime != null" >
+        staff_onlinetime,
+      </if>
+      <if test="staffSex != null" >
+        staff_sex,
+      </if>
+      <if test="staffPhone != null" >
+        staff_phone,
+      </if>
+      <if test="staffWorkphone != null" >
+        staff_workphone,
+      </if>
+      <if test="staffEmail != null" >
+        staff_email,
+      </if>
+      <if test="staffDept != null" >
+        staff_dept,
+      </if>
+      <if test="staffRole != null" >
+        staff_role,
+      </if>
+      <if test="staffUser != null" >
+        staff_user,
+      </if>
+      <if test="staffRemark != null" >
+        staff_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffOnlinetime != null" >
+        #{staffOnlinetime,jdbcType=DATE},
+      </if>
+      <if test="staffSex != null" >
+        #{staffSex,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null" >
+        #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffWorkphone != null" >
+        #{staffWorkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null" >
+        #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDept != null" >
+        #{staffDept,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRole != null" >
+        #{staffRole,jdbcType=VARCHAR},
+      </if>
+      <if test="staffUser != null" >
+        #{staffUser,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRemark != null" >
+        #{staffRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.Staff" >
+    update tb_staff
+    <set >
+      <if test="staffName != null" >
+        staff_name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffOnlinetime != null" >
+        staff_onlinetime = #{staffOnlinetime,jdbcType=DATE},
+      </if>
+      <if test="staffSex != null" >
+        staff_sex = #{staffSex,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null" >
+        staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffWorkphone != null" >
+        staff_workphone = #{staffWorkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null" >
+        staff_email = #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDept != null" >
+        staff_dept = #{staffDept,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRole != null" >
+        staff_role = #{staffRole,jdbcType=VARCHAR},
+      </if>
+      <if test="staffUser != null" >
+        staff_user = #{staffUser,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRemark != null" >
+        staff_remark = #{staffRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.Staff" >
+    update tb_staff
+    set staff_name = #{staffName,jdbcType=VARCHAR},
+      staff_onlinetime = #{staffOnlinetime,jdbcType=DATE},
+      staff_sex = #{staffSex,jdbcType=VARCHAR},
+      staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      staff_workphone = #{staffWorkphone,jdbcType=VARCHAR},
+      staff_email = #{staffEmail,jdbcType=VARCHAR},
+      staff_dept = #{staffDept,jdbcType=VARCHAR},
+      staff_role = #{staffRole,jdbcType=VARCHAR},
+      staff_user = #{staffUser,jdbcType=VARCHAR},
+      staff_remark = #{staffRemark,jdbcType=VARCHAR}
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </update>
+</mapper>

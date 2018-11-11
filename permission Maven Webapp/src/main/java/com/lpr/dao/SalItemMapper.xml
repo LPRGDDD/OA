@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.SalItemMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.SalItem" >
+    <id column="Item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="Item_name" property="itemName" jdbcType="VARCHAR" />
+    <!-- 外键 -->
+    <association property="itemtype" column="itemtypeId" javaType="com.lpr.entity.ItemType" autoMapping="true"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Item_id, Itemtype_id, Item_name
+  </sql>
+  <!-- 薪酬项目定义表编辑之前的查询 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select i.Item_id,i.Item_name,it.Itemtype_name from tb_sal_item i LEFT JOIN tb_itemtype it on i.Itemtype_id=it.Itemtype_id
+    where i.Item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_sal_item
+    where Item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <!-- 薪酬项目定义表的添加 -->
+  <insert id="insert" parameterType="com.lpr.entity.SalItem" >
+    insert into tb_sal_item (Itemtype_id, Item_name
+      )
+    values (#{itemtype.itemtypeId,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.SalItem" >
+    insert into tb_sal_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        Item_id,
+      </if>
+      <if test="itemtypeId != null" >
+        Itemtype_id,
+      </if>
+      <if test="itemName != null" >
+        Item_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="itemtypeId != null" >
+        #{itemtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.SalItem" >
+    update tb_sal_item
+    <set >
+      <if test="itemtypeId != null" >
+        Itemtype_id = #{itemtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null" >
+        Item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.SalItem" >
+    update tb_sal_item
+    set Itemtype_id = #{itemtypeId,jdbcType=INTEGER},
+      Item_name = #{itemName,jdbcType=VARCHAR}
+    where Item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询所有的方法 -->
+  <select id="findAll" resultType="java.util.Map">
+  		select i.Item_id,i.Item_name,it.Itemtype_name from tb_sal_item i LEFT JOIN tb_itemtype it on i.Itemtype_id=it.Itemtype_id
+  		<where>
+			<if test="itemName!=null and itemName!=''">
+				and itemName like concat('%',#{itemName},'%')
+			</if>
+		</where>
+  </select>
+  <!-- 薪酬项目定义表的编辑 -->
+   <update id="update" parameterType="com.lpr.entity.SalItem" >
+    update tb_sal_item
+    set Itemtype_id = #{itemtype.itemtypeId,jdbcType=INTEGER},
+      Item_name = #{itemName,jdbcType=VARCHAR}
+    where Item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+    
+  <!-- 薪酬项目定义表的删除 -->
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from tb_sal_item
+    where Item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+</mapper>

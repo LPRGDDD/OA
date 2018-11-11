@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwb.dao.DimissionDao">
+  <!-- 查询所有 -->
+  <select id="queryDimission" resultType="Map">
+    select * from hr_dimission d left join hr_record r on d.hr_record_id=r.hr_record_id left join tb_dept tb on d.dept_id=tb.dept_id
+  </select>
+  <!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hr_dimission
+    where hr_dimission_id = #{hrDimissionId,jdbcType=INTEGER}
+  </delete> -->
+  <insert id="dimissionSave" parameterType="com.lwb.entity.Dimission">
+    insert into hr_dimission (dept_id, hr_record_id,
+      hr_dimission_duty, hr_dimission_leavetype,
+      hr_dimission_applicationdate, hr_dimission_departuredate,
+      hr_dimission_cutoffdate,
+      hr_dimission_procedure, hr_dimission_why, hr_dimission_remark,
+      hr_dimission_username, hr_dimission_currenttime
+      )
+    values (#{deptId}, #{hrRecordId}, 
+      #{hrDimissionDuty}, #{hrDimissionLeavetype}, 
+      #{hrDimissionApplicationdate}, #{hrDimissionDeparturedate},
+      #{hrDimissionCutoffdate},
+      #{hrDimissionProcedure}, #{hrDimissionWhy}, #{hrDimissionRemark}, 
+      #{hrDimissionUsername}, #{hrDimissionCurrenttime}
+      )
+  </insert>
+  <!-- 根据ID查询 -->
+   <select id="dimissionById" resultType="Map" parameterType="Integer">
+    select * from hr_dimission where hr_dimission_id=#{id}
+  </select>
+  <update id="updateDimission" parameterType="com.lwb.entity.Dimission" >
+    update hr_dimission
+    set dept_id = #{deptId},
+      hr_record_id = #{hrRecordId},
+      hr_dimission_duty = #{hrDimissionDuty},
+      hr_dimission_leavetype = #{hrDimissionLeavetype},
+      hr_dimission_applicationdate = #{hrDimissionApplicationdate},
+      hr_dimission_departuredate = #{hrDimissionDeparturedate},
+      hr_dimission_cutoffdate = #{hrDimissionCutoffdate},
+      hr_dimission_procedure = #{hrDimissionProcedure},
+      hr_dimission_why = #{hrDimissionWhy},
+      hr_dimission_remark = #{hrDimissionRemark}
+    where hr_dimission_id = #{hrDimissionId}
+  </update>
+  <!-- 添加时根据Id修改状态 -->
+  <update id="updaterecordStats4" parameterType="java.lang.Integer">
+       UPDATE hr_record set hr_record_state=4 where hr_record_id=#{id}
+  </update>
+</mapper>

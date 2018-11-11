@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.shopMapper">
+	<insert id="addshop" parameterType="shop">
+		insert into shop (cId, sName,
+		sFu, sType,
+		sBian, sPrice, sGong,
+		sUpAlert, sLowAlert, sNow,
+		sCount,sCreator,sDate
+		)
+		values (#{cId,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR},
+		#{sFu,jdbcType=VARCHAR}, #{sType,jdbcType=VARCHAR},
+		#{sBian,jdbcType=VARCHAR}, #{sPrice,jdbcType=VARCHAR},
+		#{sGong,jdbcType=VARCHAR},
+		#{sUpalert,jdbcType=VARCHAR}, #{sLowalert,jdbcType=VARCHAR}, #{sNow,jdbcType=VARCHAR},
+		#{sCount,jdbcType=VARCHAR}, #{sCreator,jdbcType=VARCHAR},
+		#{sDate,jdbcType=DATE}
+		)
+	</insert>
+	<select id="findById" resultType="shop" parameterType="java.lang.Integer">
+		select * from shop where sId=#{sId}
+	</select>
+	<select id="findAll" resultType="shop">
+		select * from shop
+	</select>
+	<!-- 根据goiD查询商品 -->
+	<select id="findshop" parameterType="java.lang.Integer"
+		resultType="shop">
+		select sId,sName from shop where goId=#{goId}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from shop
+		where sId = #{sId,jdbcType=INTEGER}
+	</delete>
+	<update id="updateshop" parameterType="shop">
+		update shop set sName=#{sName},sFu=#{sFu},sType=#{sType},sBian=#{sBian},
+		sPrice=#{sPrice},sGong=#{sGong},sUpalert=#{sUpalert},sLowalert=#{sLowalert},sNow=#{sNow},
+		sCount=#{sCount} where sId=#{sId}
+	</update>
+	<insert id="insert" parameterType="com.zx.entity.shop">
+		insert into shop (sId, cId, sName,
+		sSize, sFu, sType,
+		sBian, sPrice, sGong,
+		sUpAlert, sLowAlert, sNow,
+		sCount, sDesc, sDept,
+		s_manger, s_creator, s_auditer,
+		s_order, s_allocation, s_date
+		)
+		values (#{sId,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER},
+		#{sName,jdbcType=VARCHAR},
+		#{sSize,jdbcType=VARCHAR}, #{sFu,jdbcType=VARCHAR}, #{sType,jdbcType=VARCHAR},
+		#{sBian,jdbcType=VARCHAR}, #{sPrice,jdbcType=VARCHAR},
+		#{sGong,jdbcType=VARCHAR},
+		#{sUpalert,jdbcType=VARCHAR}, #{sLowalert,jdbcType=VARCHAR}, #{sNow,jdbcType=VARCHAR},
+		#{sCount,jdbcType=VARCHAR}, #{sDesc,jdbcType=VARCHAR},
+		#{sDept,jdbcType=VARCHAR},
+		#{sManger,jdbcType=VARCHAR}, #{sCreator,jdbcType=VARCHAR}, #{sAuditer,jdbcType=VARCHAR},
+		#{sOrder,jdbcType=INTEGER}, #{sAllocation,jdbcType=INTEGER},
+		#{sDate,jdbcType=DATE}
+		)
+	</insert>
+  <select id="findvag" parameterType="Map" resultType="Map">
+        select s.sId,s.sName,gt.goName,s.sGong,s.sUpAlert,s.sNow,s.sCreator from shop s LEFT JOIN goodtype gt on s.goId=gt.goId LEFT JOIN court c ON gt.cId=c.cId
+   <where>
+      <if test="cId!=0">
+          c.cId like '%${cId}%' 
+      </if>
+      <if test="goId!=0">
+        and gt.goId like '%${goId}%'
+      </if>
+      <if test="sId!=0">
+         and s.sId like '%${sId}%'
+      </if>
+    </where>
+  </select>
+</mapper>

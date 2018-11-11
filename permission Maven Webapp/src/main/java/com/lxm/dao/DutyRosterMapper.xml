@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lxm.dao.DutyRosterMapper" >
+  <resultMap id="BaseResultMap" type="com.lxm.entity.DutyRoster" >
+    <id column="drId" property="drid" jdbcType="INTEGER" />
+    <result column="scid" property="scid" jdbcType="INTEGER" />
+    <result column="drName1" property="drname1" jdbcType="VARCHAR" />
+    <result column="drName2" property="drname2" jdbcType="VARCHAR" />
+    <result column="dtname" property="dtname" jdbcType="VARCHAR" />
+    <result column="dtDate_start" property="dtDate_Start"/>
+    <result column="dtDate_end" property="dtDate_End"/>
+    <result column="dtstate" property="dtstate" jdbcType="INTEGER" />
+    <result column="monday" property="monday" jdbcType="INTEGER" />
+    <result column="tuesday" property="tuesday" jdbcType="INTEGER" />
+    <result column="wednesday" property="wednesday" jdbcType="INTEGER" />
+    <result column="thursday" property="thursday" jdbcType="INTEGER" />
+    <result column="friday" property="friday" jdbcType="INTEGER" />
+    <result column="saturday" property="saturday" jdbcType="INTEGER" />
+    <result column="sunday" property="sunday" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drId, scid, drName1, drName2, dtname, dtDate_start, dtDate_end, dtstate, monday, 
+    tuesday, wednesday, thursday, friday, saturday, sunday
+  </sql>
+  <select id="selectByPrimaryKey" resultType="Map">
+    select 
+    *
+    from dutyroster
+  </select>
+  <!--查询考勤记录  -->
+  <select id="selectLxm" resultType="Pbjl" parameterType="Map">
+  	select * from pbjl  where
+  <if test="date!=null">
+  	 pDate LIKE concat(concat('%',#{date}),'%') and
+ </if> 	 
+  id=#{id}
+  </select>
+
+  <!--查询班次排班  -->
+  <select id="qeruyAll" resultType="Map">
+  select * from dutyroster d LEFT  JOIN schedule s on d.scid=s.scid  where dtstate=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer"  >
+    delete from dutyroster
+    where drId = #{drid,jdbcType=INTEGER}
+  </delete>
+  <!--修改 是否启用 的状态 -->
+  <update id="updateState" parameterType="Map">
+  	update dutyroster set dtstate=#{state} where drid=#{id}
+  </update>
+  <!--修改 查询排班  -->
+  <select id="selectById" resultType="DutyRoster" parameterType="Integer">
+  	select * from dutyroster where drId=#{id}
+  </select>
+  <select id="KaoQinTongJi" parameterType="Map" resultType="Map">
+  	select (select count(*) from pbjl where  id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime} ) yingchu
+				,((select count(*) from pbjl where  id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})-(select count(*) from pbjl where timeState3='缺勤' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime}))  shichu
+				,(select count(*) from pbjl where timeState1='休息' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime} ) xiutian
+				,(select count(*) from pbjl where timeState3='缺勤' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime}) quetian
+				,(select a.username from pbjl p left join tb_admin a on p.id=a.id where a.id=#{id} GROUP BY p.id) username
+				, SUM((select count(*) from pbjl where timeState1='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime} )
+	+(select count(*) from pbjl where timeState2='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState3='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState4='迟到' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	) chici
+	, SUM(
+	(select count(*) from pbjl where timeState1='早退' and id=#{id}  AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState2='早退' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState3='早退' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime})
+	+(select count(*) from pbjl where timeState4='早退' and id=#{id} AND pDate BETWEEN #{stratTime} AND #{endTime})
+) zaoci
+,(select count(*) FROM synthesis where  wcTime LIKE concat(concat('%',#{conter}),'%') and id=#{id} and  syState=2) qingci
+,(select count(*) FROM synthesis where  wcTime like concat(concat('%',#{conter}),'%') and id=#{id} and  syState=3) jiaci
+,(select count(*) FROM synthesis where wcTime like concat(concat('%',#{conter}),'%') and id=#{id} and  syState=4)chuci
+,(select count(*) FROM synthesis where syTime like concat(concat('%',#{conter}),'%') and id=#{id} and  syState=1) waici
+  </select>
+  <insert id="insert" parameterType="com.lxm.entity.DutyRoster" >
+    insert into dutyroster (drId, scid, drName1,drNameId,drnameId2,drName2,dtname,dtDate_start,dtDate_end,dtstate)
+    values (#{drid,jdbcType=INTEGER}, #{scid,jdbcType=INTEGER}, #{drname1,jdbcType=VARCHAR},#{drnameId},#{drnameId2}, 
+      #{drname2,jdbcType=VARCHAR}, #{dtname,jdbcType=VARCHAR}, #{dtDate_Start}, 
+      #{dtDate_End}, #{dtstate,jdbcType=INTEGER}
+      )
+  </insert>
+<select id="selectTongji" resultType="Map">
+	select * from tongji 
+</select>
+</mapper>

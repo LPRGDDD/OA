@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.ItemTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.ItemType" >
+    <id column="Itemtype_id" property="itemtypeId" jdbcType="INTEGER" />
+    <result column="Itemtype_name" property="itemtypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Itemtype_id, Itemtype_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_itemtype
+    where Itemtype_id = #{itemtypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_itemtype
+    where Itemtype_id = #{itemtypeId,jdbcType=INTEGER}
+  </delete>
+  <!-- 薪酬项目类型表的添加 -->
+  <insert id="insert" parameterType="com.lpr.entity.ItemType" >
+    insert into tb_itemtype (Itemtype_id, Itemtype_name)
+    values (#{itemtypeId,jdbcType=INTEGER}, #{itemtypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lpr.entity.ItemType" >
+    insert into tb_itemtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemtypeId != null" >
+        Itemtype_id,
+      </if>
+      <if test="itemtypeName != null" >
+        Itemtype_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemtypeId != null" >
+        #{itemtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="itemtypeName != null" >
+        #{itemtypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.ItemType" >
+    update tb_itemtype
+    <set >
+      <if test="itemtypeName != null" >
+        Itemtype_name = #{itemtypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Itemtype_id = #{itemtypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.ItemType" >
+    update tb_itemtype
+    set Itemtype_name = #{itemtypeName,jdbcType=VARCHAR}
+    where Itemtype_id = #{itemtypeId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询所有的方法 -->
+  <select id="findAll" resultType="Map">
+  	select * from tb_itemtype
+  </select>
+</mapper>

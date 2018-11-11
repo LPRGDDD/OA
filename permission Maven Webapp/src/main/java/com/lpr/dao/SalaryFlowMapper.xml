@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lpr.dao.SalaryFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.lpr.entity.SalaryFlow" >
+    <id column="salaryflow_id" property="salaryflowId" jdbcType="INTEGER" />
+    <result column="salaryflow_createtime" property="salaryflowCreatetime" jdbcType="DATE" />
+    <result column="salaryflow_creator" property="salaryflowCreator" jdbcType="VARCHAR" />
+    <result column="salaryflow_begintime" property="salaryflowBegintime" jdbcType="DATE" />
+    <result column="salaryflow_endtime" property="salaryflowEndtime" jdbcType="DATE" />
+    <result column="salaryflow_year" property="salaryflowYear" jdbcType="DATE" />
+    <result column="salaryflow_month" property="salaryflowMonth" jdbcType="DATE" />
+    <result column="salaryflow_status" property="salaryflowStatus" jdbcType="INTEGER" />
+    <result column="salaryflow_mark" property="salaryflowMark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    salaryflow_id, salaryflow_createtime, salaryflow_creator, salaryflow_begintime, salaryflow_endtime, 
+    salaryflow_year, salaryflow_month, salaryflow_status, salaryflow_mark
+  </sql>
+  <!-- 工资流程表编辑之前的查询 -->
+  <select id="selectByPrimaryKey" resultType="com.lpr.entity.SalaryFlow">
+    select 
+    *
+    from tb_salaryflow
+    where salaryflow_id = #{salaryflowId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_salaryflow
+    where salaryflow_id = #{salaryflowId,jdbcType=INTEGER}
+  </delete>
+  <!-- 新建工资流程（工资流程管理的添加） -->
+  <insert id="insert" parameterType="com.lpr.entity.SalaryFlow" >
+    insert into tb_salaryflow (salaryflow_createtime, 
+      salaryflow_creator, salaryflow_begintime, salaryflow_endtime, 
+      salaryflow_year, salaryflow_month, salaryflow_status, 
+      salaryflow_mark)
+    values (#{salaryflowCreatetime}, 
+      #{salaryflowCreator}, #{salaryflowBegintime}, #{salaryflowEndtime}, 
+      #{salaryflowYear}, #{salaryflowMonth}, #{salaryflowStatus}, 
+      #{salaryflowMark})
+  </insert>
+  <!-- 工资流程的添加 -->
+  <insert id="insertSelective" parameterType="com.lpr.entity.SalaryFlow" >
+    insert into tb_salaryflow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salaryflowId != null" >
+        salaryflow_id,
+      </if>
+      <if test="salaryflowCreatetime != null" >
+        salaryflow_createtime,
+      </if>
+      <if test="salaryflowCreator != null" >
+        salaryflow_creator,
+      </if>
+      <if test="salaryflowBegintime != null" >
+        salaryflow_begintime,
+      </if>
+      <if test="salaryflowEndtime != null" >
+        salaryflow_endtime,
+      </if>
+      <if test="salaryflowYear != null" >
+        salaryflow_year,
+      </if>
+      <if test="salaryflowMonth != null" >
+        salaryflow_month,
+      </if>
+      <if test="salaryflowStatus != null" >
+        salaryflow_status,
+      </if>
+      <if test="salaryflowMark != null" >
+        salaryflow_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salaryflowId != null" >
+        #{salaryflowId,jdbcType=INTEGER},
+      </if>
+      <if test="salaryflowCreatetime != null" >
+        #{salaryflowCreatetime,jdbcType=DATE},
+      </if>
+      <if test="salaryflowCreator != null" >
+        #{salaryflowCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryflowBegintime != null" >
+        #{salaryflowBegintime,jdbcType=DATE},
+      </if>
+      <if test="salaryflowEndtime != null" >
+        #{salaryflowEndtime,jdbcType=DATE},
+      </if>
+      <if test="salaryflowYear != null" >
+        #{salaryflowYear,jdbcType=DATE},
+      </if>
+      <if test="salaryflowMonth != null" >
+        #{salaryflowMonth,jdbcType=DATE},
+      </if>
+      <if test="salaryflowStatus != null" >
+        #{salaryflowStatus,jdbcType=INTEGER},
+      </if>
+      <if test="salaryflowMark != null" >
+        #{salaryflowMark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 工资流程表的修改 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.lpr.entity.SalaryFlow" >
+    update tb_salaryflow
+    <set >
+      <if test="salaryflowCreatetime != null" >
+        salaryflow_createtime = #{salaryflowCreatetime,jdbcType=DATE},
+      </if>
+      <if test="salaryflowCreator != null" >
+        salaryflow_creator = #{salaryflowCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryflowBegintime != null" >
+        salaryflow_begintime = #{salaryflowBegintime,jdbcType=DATE},
+      </if>
+      <if test="salaryflowEndtime != null" >
+        salaryflow_endtime = #{salaryflowEndtime,jdbcType=DATE},
+      </if>
+      <if test="salaryflowYear != null" >
+        salaryflow_year = #{salaryflowYear,jdbcType=DATE},
+      </if>
+      <if test="salaryflowMonth != null" >
+        salaryflow_month = #{salaryflowMonth,jdbcType=DATE},
+      </if>
+      <if test="salaryflowStatus != null" >
+        salaryflow_status = #{salaryflowStatus,jdbcType=INTEGER},
+      </if>
+      <if test="salaryflowMark != null" >
+        salaryflow_mark = #{salaryflowMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where salaryflow_id = #{salaryflowId,jdbcType=INTEGER}
+  </update>
+  <!-- 工资流程表的修改 -->
+  <update id="updateByPrimaryKey" parameterType="com.lpr.entity.SalaryFlow" >
+    update tb_salaryflow
+    set salaryflow_createtime = #{salaryflowCreatetime,jdbcType=DATE},
+      salaryflow_creator = #{salaryflowCreator,jdbcType=VARCHAR},
+      salaryflow_begintime = #{salaryflowBegintime,jdbcType=DATE},
+      salaryflow_endtime = #{salaryflowEndtime,jdbcType=DATE},
+      salaryflow_year = #{salaryflowYear,jdbcType=DATE},
+      salaryflow_month = #{salaryflowMonth,jdbcType=DATE},
+      salaryflow_status = #{salaryflowStatus,jdbcType=INTEGER},
+      salaryflow_mark = #{salaryflowMark,jdbcType=VARCHAR}
+    where salaryflow_id = #{salaryflowId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询所有的方法 -->
+  <select id="findAll" resultType="java.util.Map">
+    select 
+    *
+    from tb_salaryflow 
+    <where>
+    	<if test="userName!='' and userName!=null">
+    		salaryflow_creator = #{userName,jdbcType=INTEGER}
+    	</if>
+      <!-- <if test="keyWord!='' and keyWord!=null">
+          e.sex like '%${keyWord}%'
+      </if> -->
+    </where>
+  </select>
+  <!-- 工资流程表的编辑 -->
+   <update id="update" parameterType="com.lpr.entity.SalaryFlow" >
+    update tb_salaryflow
+    set 
+      salaryflow_begintime = #{salaryflowBegintime},
+      salaryflow_endtime = #{salaryflowEndtime},
+      salaryflow_year = #{salaryflowYear},
+      salaryflow_month = #{salaryflowMonth},
+      salaryflow_mark = #{salaryflowMark}
+    where salaryflow_id = #{salaryflowId}
+  </update>
+  <!-- 工资流程表的删除 -->
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from tb_salaryflow
+    where salaryflow_id = #{salaryflowId,jdbcType=INTEGER}
+  </delete>
+  <!-- 根据ID查询工资流程表 -->
+  <select id="findById" resultType="com.lpr.entity.SalaryFlow">
+  	select salaryflow_id as salaryflowId,salaryflow_begintime as salaryflowBegintime,salaryflow_endtime as salaryflowEndtime,salaryflow_year as salaryflowYear,salaryflow_month as salaryflowMonth,salaryflow_mark as salaryflowMark from tb_salaryflow where salaryflow_id = #{id}
+  </select>
+  <!-- 修改状态 -->
+  <update id="setXcStatus0" parameterType="com.lpr.entity.SalaryFlow">
+  	 update tb_salaryflow
+    set 
+      salaryflow_status =0
+    where salaryflow_id = #{salaryflowId}
+  </update>
+  <update id="setXcStatus1" parameterType="com.lpr.entity.SalaryFlow">
+  	 update tb_salaryflow
+    set 
+      salaryflow_status =1
+    where salaryflow_id = #{salaryflowId}
+  </update>
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.ratisetMapper" >
+  <resultMap id="BaseResultMap" type="com.zx.entity.ratiset" >
+    <id column="rs_id" property="rsId" jdbcType="INTEGER" />
+    <result column="Ra_id" property="raId" jdbcType="INTEGER" />
+    <result column="rs_ku" property="rsKu" jdbcType="VARCHAR" />
+    <result column="rs_shop" property="rsShop" jdbcType="VARCHAR" />
+    <result column="rs_deng" property="rsDeng" jdbcType="VARCHAR" />
+    <result column="rs_worker" property="rsWorker" jdbcType="VARCHAR" />
+    <result column="rs_sum" property="rsSum" jdbcType="INTEGER" />
+    <result column="rs_Date" property="rsDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rs_id, Ra_id, rs_ku, rs_shop, rs_deng, rs_worker, rs_sum, rs_Date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ratiset
+    where rs_id = #{rsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ratiset
+    where rs_id = #{rsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zx.entity.ratiset" >
+    insert into ratiset (rs_id, Ra_id, rs_ku, 
+      rs_shop, rs_deng, rs_worker, 
+      rs_sum, rs_Date)
+    values (#{rsId,jdbcType=INTEGER}, #{raId,jdbcType=INTEGER}, #{rsKu,jdbcType=VARCHAR}, 
+      #{rsShop,jdbcType=VARCHAR}, #{rsDeng,jdbcType=VARCHAR}, #{rsWorker,jdbcType=VARCHAR}, 
+      #{rsSum,jdbcType=INTEGER}, #{rsDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zx.entity.ratiset" >
+    insert into ratiset
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rsId != null" >
+        rs_id,
+      </if>
+      <if test="raId != null" >
+        Ra_id,
+      </if>
+      <if test="rsKu != null" >
+        rs_ku,
+      </if>
+      <if test="rsShop != null" >
+        rs_shop,
+      </if>
+      <if test="rsDeng != null" >
+        rs_deng,
+      </if>
+      <if test="rsWorker != null" >
+        rs_worker,
+      </if>
+      <if test="rsSum != null" >
+        rs_sum,
+      </if>
+      <if test="rsDate != null" >
+        rs_Date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rsId != null" >
+        #{rsId,jdbcType=INTEGER},
+      </if>
+      <if test="raId != null" >
+        #{raId,jdbcType=INTEGER},
+      </if>
+      <if test="rsKu != null" >
+        #{rsKu,jdbcType=VARCHAR},
+      </if>
+      <if test="rsShop != null" >
+        #{rsShop,jdbcType=VARCHAR},
+      </if>
+      <if test="rsDeng != null" >
+        #{rsDeng,jdbcType=VARCHAR},
+      </if>
+      <if test="rsWorker != null" >
+        #{rsWorker,jdbcType=VARCHAR},
+      </if>
+      <if test="rsSum != null" >
+        #{rsSum,jdbcType=INTEGER},
+      </if>
+      <if test="rsDate != null" >
+        #{rsDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zx.entity.ratiset" >
+    update ratiset
+    <set >
+      <if test="raId != null" >
+        Ra_id = #{raId,jdbcType=INTEGER},
+      </if>
+      <if test="rsKu != null" >
+        rs_ku = #{rsKu,jdbcType=VARCHAR},
+      </if>
+      <if test="rsShop != null" >
+        rs_shop = #{rsShop,jdbcType=VARCHAR},
+      </if>
+      <if test="rsDeng != null" >
+        rs_deng = #{rsDeng,jdbcType=VARCHAR},
+      </if>
+      <if test="rsWorker != null" >
+        rs_worker = #{rsWorker,jdbcType=VARCHAR},
+      </if>
+      <if test="rsSum != null" >
+        rs_sum = #{rsSum,jdbcType=INTEGER},
+      </if>
+      <if test="rsDate != null" >
+        rs_Date = #{rsDate,jdbcType=DATE},
+      </if>
+    </set>
+    where rs_id = #{rsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zx.entity.ratiset" >
+    update ratiset
+    set Ra_id = #{raId,jdbcType=INTEGER},
+      rs_ku = #{rsKu,jdbcType=VARCHAR},
+      rs_shop = #{rsShop,jdbcType=VARCHAR},
+      rs_deng = #{rsDeng,jdbcType=VARCHAR},
+      rs_worker = #{rsWorker,jdbcType=VARCHAR},
+      rs_sum = #{rsSum,jdbcType=INTEGER},
+      rs_Date = #{rsDate,jdbcType=DATE}
+    where rs_id = #{rsId,jdbcType=INTEGER}
+  </update>
+</mapper>
