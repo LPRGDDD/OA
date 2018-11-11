@@ -59,7 +59,7 @@
 			elem : '#tableDemo',
 			toolbar : '#toolbarDemo',
 			height : 500,
-			url : 'apply/query',
+			url : 'apply/query?id='+id+'',
 			page : true, //开启分页
 			cols : [ [ //表头
 				//全选
@@ -397,6 +397,7 @@
 	       if(status>=2)
 	       return '已过审';
 	    }
+	   
 	    $("#tbod4").on("click", ".delet", function() {
 	        var id=this.id;
 	        alert(id);

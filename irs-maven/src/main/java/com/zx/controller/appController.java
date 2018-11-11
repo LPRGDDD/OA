@@ -43,7 +43,16 @@ public class appController {
 		return "page/view/zx/report";
 		
 	}
-	
+	@RequestMapping("find4.action")
+	public String find4(){
+		return "page/view/zx/rati";
+		
+	}
+	@RequestMapping("find5.action")
+	public String find5(){
+		return "page/view/zx/shenpi";
+		
+	}
 	  @ResponseBody
 	  @RequestMapping("/findapp")
 		public List<Map> recivJson1(Map map) throws IOException{
@@ -65,10 +74,10 @@ public class appController {
 		}
 		@ResponseBody
 		@RequestMapping("/query")
-		public Map getAll(int page,int limit) {
+		public Map getAll(int page,int limit,@RequestParam int id) {
 			System.out.println(page+limit);
 			PageHelper.startPage(page,limit);
-			List<Map> list=app.getAll();
+			List<Map> list=app.getAll(id);
 			PageInfo<Map> info=new PageInfo<Map>(list);
 			Map map = new HashMap();
 	        map.put("code", 0);
@@ -109,8 +118,8 @@ public class appController {
 		}
 		@ResponseBody
 		  @RequestMapping("/findByState")
-			public List<Map> recivJson4(Map map,@RequestParam int id) throws IOException{
-				List<Map> list=app.findByState(id);
+			public List<Map> recivJson4(Map map) throws IOException{
+				List<Map> list=app.findByState();
 				return list;
 			}
 		@ResponseBody
@@ -130,6 +139,12 @@ public class appController {
 		@RequestMapping("/findByState3")
 		public List<Map> finddetail(@RequestParam int ApId) throws IOException{
 			  List<Map> list=app.findByState3(ApId);
+			return list;
+		}
+		@ResponseBody
+		@RequestMapping("/findByState4")
+		public List<Map> finddetail4(int id) throws IOException{
+			  List<Map> list=app.findByState4(id);
 			return list;
 		}
 		@ResponseBody
@@ -165,5 +180,30 @@ public class appController {
 			map1.put("sId", sId);
 			List<Map<String, Object>> map=app.findBycondition(map1);
 			return map;
+		}
+		@ResponseBody
+		@RequestMapping("/updateState4")
+		public int update4(@RequestParam int ApId) throws IOException{
+	  		int num=app.updateByState4(ApId);
+	  		System.out.println(ApId);
+			return num;
+		}
+		@ResponseBody
+		@RequestMapping("/findByState5")
+		public List<Map> finddetail5(int id) throws IOException{
+			  List<Map> list=app.findByState5(id);
+			return list;
+		}
+		@ResponseBody
+		@RequestMapping("/updateState5")
+		public int update5(@RequestParam int ApId) throws IOException{
+	  		int num=app.updateByState5(ApId);
+	  		System.out.println(ApId);
+			return num;
+		}	
+		@ResponseBody
+		@RequestMapping("/insappl")
+		public void finddetai8(apply a) throws IOException{
+			   app.insappl(a);
 		}
 } 

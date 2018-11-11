@@ -14,7 +14,7 @@ public interface appService {
    //录入
    public int insert(apply ap);
    //查询分页的
-   public List<Map> getAll();
+   public List<Map> getAll(int id);
    //删除
    public int deleteone(int ApId);
    //详情查询
@@ -24,7 +24,7 @@ public interface appService {
 // 根据Id查询2
  public List<Map> findById3(int ApId);
 //   已申请未审批
-   public List<Map> findByState(int id);
+   public List<Map> findByState();
 //   状态查询2
    public List<Map> findByState2();
    
@@ -41,4 +41,14 @@ public interface appService {
    public int insapp(apply a);
 //   多条件查询
    public List<Map<String,Object>> findBycondition(Map<String,Object> map);
+//   归还
+   public List<Map> findByState4(int id);
+//	查询 所有id下为归还商品
+	public List<Map> findByState5(int id);
+//	修改物品状态为4
+	public int updateByState4(int ApId);
+//	修改状态为5
+	public int updateByState5(int ApId);
+//	录入拒绝批准理由
+	public int insappl(apply a);
 }
