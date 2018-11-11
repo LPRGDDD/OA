@@ -56,28 +56,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:forEach items="${list}" var="c">
 	     <table id="dive">
 	         <tr>
-	            <td>编号</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApId }" class="layui-input"></td>
+	            <td>编号</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApId }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>申借人</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.username }" class="layui-input"></td>
+	            <td>申借人</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.username }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>申借状态</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApFlag }" class="layui-input"></td>
+	            <td>申借状态</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApFlag }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>申借物</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApName }" class="layui-input"></td>
+	            <td>申借物</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.sName }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>单价</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApPrice }" class="layui-input"></td>
+	            <td>单价</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.sPrice }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>数量</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApNum }" class="layui-input"></td>
+	            <td>数量</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApNum }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>备注</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApBei }" class="layui-input"></td>
+	            <td>备注</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApBei }" class="layui-input" readonly="readonly"></td>
 	         </tr>
 	         <tr>
-	            <td>时间</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApDate }" class="layui-input"></td>
+	            <td>时间</td><td><input type="text" lay-verify="title" autocomplete="off" value="${c.ApDate }" class="layui-input" readonly="readonly"	></td>
 	         </tr>
 	     </table>
 		</c:forEach>

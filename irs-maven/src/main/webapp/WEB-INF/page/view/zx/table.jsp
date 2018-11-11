@@ -42,9 +42,6 @@
 	var id=$("#id").val();
 		$.ajax({
 			url : "findByState",
-			data:{
-			   "id":id
-			},
 			type : "post",
 			dataType : 'JSON', //返回的数据类型
 			async : true,

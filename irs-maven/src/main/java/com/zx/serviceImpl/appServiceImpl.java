@@ -26,9 +26,9 @@ private applyMapper dao;
 		return dao.insert(ap);
 	}
 	@Override
-	public List<Map> getAll() {
+	public List<Map> getAll(int id) {
 		// TODO Auto-generated method stub
-		return dao.getAll();
+		return dao.getAll(id);
 	}
 	@Override
 	public int deleteone(int ApId) {
@@ -41,9 +41,9 @@ private applyMapper dao;
 		return dao.findById(ApId);
 	}
 	@Override
-	public List<Map> findByState(int id) {
+	public List<Map> findByState() {
 		// TODO Auto-generated method stub
-		return dao.findByState(id);
+		return dao.findByState();
 	}
 	@Transactional
 	public int updateState(int ApId) {
@@ -96,4 +96,30 @@ private applyMapper dao;
 		// TODO Auto-generated method stub
 		return dao.findBycondition(map);
 	}
+	@Override
+	public List<Map> findByState4(int id) {
+		// TODO Auto-generated method stub
+		return dao.findByState4(id);
+	}
+	@Override
+	public int updateByState4(int ApId) {
+		// TODO Auto-generated method stub
+		return dao.updateByState4(ApId);
+	}
+	@Override
+	public List<Map> findByState5(int id) {
+		// TODO Auto-generated method stub
+		return dao.findByState5(id);
+	}
+	@Override
+	public int updateByState5(int ApId) {
+		// TODO Auto-generated method stub
+		return dao.updateByState5(ApId);
+	}
+	@Override
+	public int insappl(apply a) {
+		// TODO Auto-generated method stub
+		return dao.insappl(a);
+	}
+	
 }
