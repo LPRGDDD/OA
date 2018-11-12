@@ -102,4 +102,11 @@
 	<update id="insappl" parameterType="apply">
 	    update apply set returnReason=#{returnReason},apState=6,returnStatus=1 where apId=#{apId}
 	</update> 
+	<!-- 批量删除 -->
+	<delete id="deleteMany">
+	    delete from apply where ApId in
+	    <foreach item="ApId" collection="array" open="(" separator="," close=")">
+	        #{ApId}
+	    </foreach>
+    </delete>
 </mapper>

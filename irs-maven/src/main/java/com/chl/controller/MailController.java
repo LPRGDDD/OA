@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,10 +24,8 @@ import com.github.pagehelper.PageInfo;
 public class MailController {
 @Autowired
    private MailService ser;
-
-
 @RequestMapping("/find.action")
-public String find11(){
+public String find(){
 	return "page/view/chl/transform";
 }
 @RequestMapping("/login")
@@ -90,7 +89,7 @@ public @ResponseBody String sendEmail(BasePojo list,String theme, Integer user_i
       return "success";
     }
 
-//根据userId 查询自己的未读邮件
+//根据用户Id 查询自己的未读邮件收件箱
 @RequestMapping("/getMail")
 public @ResponseBody Map getEmail(String keyWord,Integer limit,Integer pageNum,Integer userId){
     PageHelper.startPage(pageNum,limit);
@@ -103,7 +102,40 @@ public @ResponseBody Map getEmail(String keyWord,Integer limit,Integer pageNum,I
     map.put("data", info.getList());
     return map;
 }
-//查询所有未读邮件
+//根据用户 查询自己的已发送
+@RequestMapping("/selectyMail")
+public @ResponseBody Map selectyMail(String keyWord,Integer limit,Integer pageNum,Integer id){
+  PageHelper.startPage(pageNum,limit);
+  List<Map> list=ser.getMail(keyWord,id);
+  PageInfo<Map> info=new PageInfo<Map>(list);
+  Map map = new HashMap();
+  map.put("code", 0);
+  map.put("msg", "");
+  map.put("count",info.getTotal());
+  map.put("data", info.getList());
+  return map;
+}
+
+
+
+
+
+
+//根据userId 查询收件箱已读邮件
+/*@RequestMapping("/selectsMail")
+public @ResponseBody Map selectsEmail(String keyWord,Integer limit,Integer pageNum,Integer userId){
+    PageHelper.startPage(pageNum,limit);
+    List<Map> list=ser.getMail(keyWord,userId);
+    PageInfo<Map> info=new PageInfo<Map>(list);
+    Map map = new HashMap();
+    map.put("code", 0);
+    map.put("msg", "");
+    map.put("count",info.getTotal());
+    map.put("data", info.getList());
+    return map;
+}*/
+
+
 //查询未发送邮件 草稿箱
 @RequestMapping("/selectWMail")
 public @ResponseBody Map selectWMail(String keyWord,Integer limit,Integer pageNum,Integer userId){
@@ -121,8 +153,8 @@ public @ResponseBody Map selectWMail(String keyWord,Integer limit,Integer pageNu
 //查询收件箱详情
 @RequestMapping("/selectXMail")
 public @ResponseBody List selectXMail(Integer emailId){
-	System.out.println("12345");
-	 return ser.selectXMail(emailId);
+	System.out.println("已发送");
+	return ser.selectXMail(emailId);
 	
 }
 //    删除已收邮件
@@ -135,16 +167,30 @@ String delMail(Integer emailId) {
 }
 //根据ID查询
 
-@RequestMapping("/selectById")
+/*@RequestMapping("/selectById")
 public  @ResponseBody
 Map selectById(HttpServletRequest request, Integer emailId){
       return ser.selectById(emailId);   
+}*/
+
+
+@RequestMapping("/selectById/{emailId}")
+public String selectById(HttpServletRequest req,@PathVariable("emailId")int id){
+	Map map=ser.selectById(id);
+	req.setAttribute("map", map);
+	return "page/view/chl/update";
 }
+
+
+
+
+
+
 
 //修改草稿箱
 @RequestMapping("/updateMail")
 public @ResponseBody
-String updateUser(BasePojo map) {
+String updateUser(BasePojo map,String subject,String content ) {
   System.out.println(map.getMap());
   ser.updateMail(map.getMap());
   return "success";

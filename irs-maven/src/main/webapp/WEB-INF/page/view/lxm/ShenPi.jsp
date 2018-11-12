@@ -162,7 +162,7 @@ layui.use('table', function(){
      ,cols: [[
       {field:'syState', width:120, title: '类型'}
       ,{field:'username', width:120, title: '申请人'}
-      ,{field:'syTime', width:120, title: '外出时间'}
+      ,{field:'syTime', width:120, title: '外出时间',templet: '<div>{{ formatTime(d.syTime,"yyyy-MM-dd")}}</div>'}
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
@@ -277,11 +277,11 @@ layui.use('table', function(){
      ,cols: [[
       {field:'exState', width:120, title: '类型'}
       ,{field:'username', width:120, title: '申请人'}
-      ,{field:'syTime', width:120, title: '外出时间'}
+      ,{field:'syTime', width:120, title: '外出时间',templet: '<div>{{ formatTime(d.syTime,"yyyy-MM-dd")}}</div>'}
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>'}
       ,{fixed: 'right', width:178, align:'center', toolbar: '#waichu'}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -398,7 +398,7 @@ layui.use('table', function(){
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>'}
       ,{fixed: 'right', width:178, align:'center', toolbar: '#qingjia'}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -516,7 +516,7 @@ layui.use('table', function(){
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>'}
       ,{fixed: 'right',title:'操作', width:178, align:'center', toolbar: '#jiaban  '}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -634,7 +634,7 @@ layui.use('table', function(){
       ,{field:'wcTime', width:120, title: '开始时间'}
       ,{field:'wcTimeEnd',width:120, title: '结束时间'}
       ,{field:'syReason', width:120, title: '摘要'}
-      ,{field:'syXiao', width:120, title: '回归时间'}
+      ,{field:'syXiao', width:120, title: '回归时间',templet: '<div>{{ formatTime(d.syXiao,"yyyy-MM-dd")}}</div>'}
       ,{fixed: 'right',title:'操作', width:178, align:'center', toolbar: '#chuchai  '}
     ]],done:function(){
 					   //分类显示中文名称	
@@ -768,6 +768,33 @@ layui.use('table', function(){
 			});
 	
 		});
+		//格式化时间
+function formatTime(datetime,fmt){
+	if (parseInt(datetime)==datetime) {
+	    if (datetime.length==10) {
+	      datetime=parseInt(datetime)*1000;
+	    } else if(datetime.length==13) {
+	      datetime=parseInt(datetime);
+	    }
+	  }
+	  datetime=new Date(datetime);
+	  var o = {
+	  "M+" : datetime.getMonth()+1,                 //月份   
+	  "d+" : datetime.getDate(),                    //日   
+	  "h+" : datetime.getHours(),                   //小时   
+	  "m+" : datetime.getMinutes(),                 //分   
+	  "s+" : datetime.getSeconds(),                 //秒   
+	  "q+" : Math.floor((datetime.getMonth()+3)/3), //季度   
+	  "S"  : datetime.getMilliseconds()             //毫秒   
+	  };   
+	  if(/(y+)/.test(fmt))   
+	  fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));   
+	  for(var k in o)   
+	  if(new RegExp("("+ k +")").test(fmt))   
+	  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+	  return fmt;
+}
+			
 	</script>
   </body>
 </html>

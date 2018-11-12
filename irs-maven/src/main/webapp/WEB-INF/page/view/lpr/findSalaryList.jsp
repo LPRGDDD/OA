@@ -96,11 +96,11 @@
 										},
 										where : {
 											//key: {
-											nickname : nickname.val(),
+											nickname : nickname.val()/* ,
 											sex : sex.val(),
 											status : status.val(),
 											createTimeStart : createTimeStart.val(),
-											createTimeEnd : createTimeEnd.val()
+											createTimeEnd : createTimeEnd.val() */
 										//}
 										}
 									});

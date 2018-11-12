@@ -121,5 +121,9 @@ private applyMapper dao;
 		// TODO Auto-generated method stub
 		return dao.insappl(a);
 	}
-	
+	@Override
+	public int deleteMany(int[] id_arr) {
+		// TODO Auto-generated method stub
+		return dao.deleteMany(id_arr);
+	}
 }

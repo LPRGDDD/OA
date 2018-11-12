@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chl.dao.MailDao;
 import com.chl.entity.Mail;
@@ -41,8 +42,9 @@ public class MailServiceImpl implements MailService{
 		return dao.selectWMail(keyWord, userId);
 	}
 	@Override
+	@Transactional
 	public List selectXMail(Integer emailId) {
-		// TODO Auto-generated method stub
+		dao.updatesMail(emailId);
 		return dao.selectXMail(emailId);
 	}
 	@Override
@@ -65,6 +67,16 @@ public class MailServiceImpl implements MailService{
 		// TODO Auto-generated method stub
 		return dao.selectById(emailId);
 	}
-	
+	/*@Override
+	public List<Map> selectsMail(String keyWord, Integer userId) {
+		// TODO Auto-generated method stub
+		return dao.selectsMail(keyWord, userId);
+	}
+	*/
+	@Override
+	public List<Map> selectyMail(Integer id) {
+		// TODO Auto-generated method stub
+		return dao.selectyMail(id);
+	}
 
 }
