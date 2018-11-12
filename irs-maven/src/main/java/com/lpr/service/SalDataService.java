@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.lpr.entity.SalData;
 import com.lpr.entity.SalaDataAndAdmin;
+import com.lpr.entity.SalaDataSearch;
 
 public interface SalDataService {
 	/**
@@ -21,7 +22,7 @@ public interface SalDataService {
 	 * @param sid
 	 * @return
 	 */
-	public List<Map> findBySalaryFlowId(int sid);
+	public List<Map> findBySalaryFlowId(int sid,String nickname,Integer deptId);
 	/**
 	 * ÅúÁ¿Â¼Èë
 	 * @param userStr

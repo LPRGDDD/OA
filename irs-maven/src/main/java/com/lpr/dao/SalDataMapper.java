@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.lpr.entity.SalData;
+import com.lpr.entity.SalaDataSearch;
 
 public interface SalDataMapper {
 	/**
@@ -48,5 +49,5 @@ public interface SalDataMapper {
      * @param sid
      * @return
      */
-    public List<Map> findBySalaryFlowId(@Param("sid") int sid);
+    public List<Map> findBySalaryFlowId(@Param("sid") int sid,@Param("nickname") String nickname,@Param("deptId") Integer deptId);
 }

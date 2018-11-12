@@ -12,6 +12,7 @@ import com.irs.pojo.TbAdmin;
 import com.lpr.dao.SalDataMapper;
 import com.lpr.entity.SalData;
 import com.lpr.entity.SalaDataAndAdmin;
+import com.lpr.entity.SalaDataSearch;
 import com.lpr.entity.SalaryFlow;
 import com.lpr.service.SalDataService;
 @Service
@@ -60,9 +61,9 @@ private SalDataMapper dao;
 		return 0;//返回错误的结果，返回0
 	}
 	@Override
-	public List<Map> findBySalaryFlowId(int sid) {
+	public List<Map> findBySalaryFlowId(int sid,String nickname,Integer deptId) {
 		// TODO Auto-generated method stub
-		return dao.findBySalaryFlowId(sid);
+		return dao.findBySalaryFlowId(sid,nickname,deptId);
 	}
 	@Transactional
 	@Override
