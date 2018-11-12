@@ -24,5 +24,18 @@ public List<Map> getGroup(@Param("keyWord")String keyWord,@Param("userId") Integ
   public List<Map> getAllUsers(@Param("keyWord")String keyWord);
 */
 	
+//查询所有部门
+public List<Map> getAllDept(@Param("keyWord")String keyWord);
+//查询所有公告类型
+public List<Map> getAllNotifyType();
+//添加公告
+public int addNotify(Map map);
+//根据userId查部门
+public int getDeptByUserId(Integer userId);
+//根据当前登陆人的部门编号查询公告
+public List<Map> getNotify(@Param("keyWord")String keyWord,@Param("deptId")Integer deptId);
+//    公告管理 查询所有公告
+public List<Map> getAllNotify(@Param("keyWord")String keyWord); 
+  
 	
 }

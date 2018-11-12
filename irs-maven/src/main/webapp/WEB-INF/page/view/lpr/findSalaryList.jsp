@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ include file="/WEB-INF/page/include/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,8 +18,7 @@
 <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="${ctx }/css/font_eolqem241z66flxr.css"
-	media="all" />
+<link rel="stylesheet" href="${ctx }/css/font_eolqem241z66flxr.css" media="all" />
 <link rel="stylesheet" href="${ctx }/css/list.css" media="all" />
 <script>
 	var ctx = "${ctx}";
@@ -36,10 +35,10 @@
 					</div>
 					<div class="layui-input-inline layui-form">
 						<select name="sex" class="" id="sex">
-							<option value="-1">请选择性别</option>
-							<option value="1">男</option>
-							<option value="0">女</option>
-							<option value="2">保密</option>
+							<option value="-1">请选择部门</option>
+							<c:forEach items="${d}" var="d">
+									<option value="${d.deptId }" selected>${d.deptName }</option>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="layui-inline">
@@ -97,10 +96,10 @@
 										where : {
 											//key: {
 											nickname : nickname.val(),
-											sex : sex.val(),
-											status : status.val(),
+											deptId : sex.val(),
+											/* status : status.val(),
 											createTimeStart : createTimeStart.val(),
-											createTimeEnd : createTimeEnd.val()
+											createTimeEnd : createTimeEnd.val() */
 										//}
 										}
 									});
@@ -149,36 +148,36 @@
 						 	   {type: 'checkbox', fixed: 'left'},
 							   {field : 'sal_data_id',title : '编号',fixed: 'left',sort : true,width:80,align:'center',totalRowText: '合计',unresize: true},//员工薪酬基数编号
 							   {field : 'fullname',title : '员工名称',fixed: 'left',width:100,align:'center'},//用户名称
-							   {field : 'personxc_s1',title : '基本工资',width:100},//薪酬项目1
-							   {field : 'personxc_s2',title : '劳务费',edit: 'text',width:100,align:'center'},//薪酬项目2 
-							   {field : 'personxc_s3',title : '奖金',edit: 'text',width:100,align:'center'},//薪酬项目3
-							   {field : 'personxc_s4',title : '房帖',edit: 'text',width:100,align:'center'},//薪酬项目4
-							   {field : 'personxc_s5',title : '资金',edit: 'text',width:100,align:'center'},//薪酬项目5
-							   {field : 'personxc_s6',title : '高温费',edit: 'text',width:100,align:'center'},//薪酬项目6
-							   {field : 'personxc_s7',title : '迟到扣款',edit: 'text',width:100,align:'center'},//薪酬项目7
+							   {field : 'personxc_s1',title : '基本工资',width:100, totalRow: true},//薪酬项目1
+							   {field : 'personxc_s2',title : '劳务费',edit: 'text',width:100,align:'center', totalRow: true},//薪酬项目2 
+							   {field : 'personxc_s3',title : '奖金',edit: 'text',width:100,align:'center', totalRow: true},//薪酬项目3
+							   {field : 'personxc_s4',title : '房帖',edit: 'text',width:100,align:'center', totalRow: true},//薪酬项目4
+							   {field : 'personxc_s5',title : '资金',edit: 'text',width:100,align:'center', totalRow: true},//薪酬项目5
+							   {field : 'personxc_s6',title : '高温费',edit: 'text',width:100,align:'center', totalRow: true},//薪酬项目6
+							   {field : 'personxc_s7',title : '迟到扣款',edit: 'text',width:100,align:'center', totalRow: true},//薪酬项目7
 							  /*  {field : 'personxc_s8',title : '薪酬项目8',edit: 'text',width:100,align:'center'},
 							   {field : 'personxc_s9',title : '薪酬项目9',edit: 'text',width:100,align:'center'},
 							   {field : 'personxc_s10',title : '薪酬项目10',edit: 'text',width:100,align:'center'}, */
 							   {field : 'personxc_insurejs',title : '保险基数',edit: 'text',width:120,align:'center', totalRow: true},//员工保险基数 
-							   {field : 'personxc_ylinsure',title : '养老保险',edit: 'text',width:120,align:'center'},//员工养老保险
-							   {field : 'personxc_dwyl',title : '单位养老',edit: 'text',width:120,align:'center'},//员工单位养老
-							   {field : 'personxc_gryl',title : '个人养老',edit: 'text',width:120,align:'center'},//员工个人养老
-							   {field : 'personxc_ylbx',title : '医疗保险',edit: 'text',width:120,align:'center'},//员工医疗保险
-							   {field : 'personxc_dw_medical',title : '单位医疗',edit: 'text',width:120,align:'center'},//员工单位医疗
-							   {field : 'personxc_grmedical',title : '个人医疗',edit: 'text',width:120,align:'center'},//员工个人医疗
-							   {field : 'personxc_group',title : '生育保险',edit: 'text',width:120,align:'center'},//员工生育保险
-							   {field : 'personxc_dwsy',title : '单位生育',edit: 'text',width:120,align:'center'},//员工单位生育
-							   {field : 'personxc_sybx',title : '失业保险',edit: 'text',width:120,align:'center'},//员工失业保险
-							   {field : 'personxc_dwshiye',title : '单位失业',edit: 'text',width:120,align:'center'},//员工单位失业
-							   {field : 'personxc_grsy',title : '个人失业',edit: 'text',width:120,align:'center'},//员工个人失业
-							   {field : 'personxc_gsbx',title : '工伤保险',edit: 'text',width:120,align:'center'},//员工工伤保险
-							   {field : 'personxc_dwgs',title : '单位工伤',edit: 'text',width:120,align:'center'},//员工单位工伤
-							   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:120,align:'center'},//员工住房公积金
-							   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center'},//员工单位住房
-							   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center'},//员工个人住房
-							   {field : 'sal_Ssalary',title : '实发工资', totalRow: true,edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
+							   {field : 'personxc_ylinsure',title : '养老保险',edit: 'text',width:120,align:'center', totalRow: true},//员工养老保险
+							   {field : 'personxc_dwyl',title : '单位养老',edit: 'text',width:120,align:'center', totalRow: true},//员工单位养老
+							   {field : 'personxc_gryl',title : '个人养老',edit: 'text',width:120,align:'center', totalRow: true},//员工个人养老
+							   {field : 'personxc_ylbx',title : '医疗保险',edit: 'text',width:120,align:'center', totalRow: true},//员工医疗保险
+							   {field : 'personxc_dw_medical',title : '单位医疗',edit: 'text',width:120,align:'center', totalRow: true},//员工单位医疗
+							   {field : 'personxc_grmedical',title : '个人医疗',edit: 'text',width:120,align:'center', totalRow: true},//员工个人医疗
+							   {field : 'personxc_group',title : '生育保险',edit: 'text',width:120,align:'center', totalRow: true},//员工生育保险
+							   {field : 'personxc_dwsy',title : '单位生育',edit: 'text',width:120,align:'center', totalRow: true},//员工单位生育
+							   {field : 'personxc_sybx',title : '失业保险',edit: 'text',width:120,align:'center', totalRow: true},//员工失业保险
+							   {field : 'personxc_dwshiye',title : '单位失业',edit: 'text',width:120,align:'center', totalRow: true},//员工单位失业
+							   {field : 'personxc_grsy',title : '个人失业',edit: 'text',width:120,align:'center', totalRow: true},//员工个人失业
+							   {field : 'personxc_gsbx',title : '工伤保险',edit: 'text',width:120,align:'center', totalRow: true},//员工工伤保险
+							   {field : 'personxc_dwgs',title : '单位工伤',edit: 'text',width:120,align:'center', totalRow: true},//员工单位工伤
+							   {field : 'personxc_housingfund',title : '住房公积金',edit: 'text',width:120,align:'center', totalRow: true},//员工住房公积金
+							   {field : 'personxc_dwzf',title : '单位住房',edit: 'text',width:120,align:'center', totalRow: true},//员工单位住房
+							   {field : 'personxc_grzf',title : '个人住房',edit: 'text',width:120,align:'center', totalRow: true},//员工个人住房
+							   {field : 'sal_Ssalary',title : '实发工资',edit: 'text',width:120,align:'center',fixed: 'right',templet: function(d){
        							 return d.personxc_s1+d.personxc_s2+d.personxc_s3+d.personxc_s4+d.personxc_s5+d.personxc_s6-d.personxc_s7-d.personxc_gryl-d.personxc_grmedical-d.personxc_grsy-d.personxc_grzf
-     							 }},
+     							 }, totalRow: true},
 							   {field : 'personxc_expression',title : '表现',edit: 'text',width:120,align:'center',fixed: 'right'}//员工表现
   							 ] ],
 							page : true,

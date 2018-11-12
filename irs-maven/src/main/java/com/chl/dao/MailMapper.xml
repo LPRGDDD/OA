@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chl.dao.MailDao" >
+<!--查询所有用户  -->
          <select id="getAllUsers" parameterType="String" resultType="java.util.Map">
         select * from tb_admin a join tb_dept d on a.dept_id=d.dept_id
         <where>
@@ -9,29 +10,48 @@
             </if>
         </where>
     </select>
- <!--添加email-->
+ <!--发送邮件添加email-->
     <insert id="addMail" parameterType="java.util.Map">
         insert into tb_mail(from_id,to_id2,subject,content,sendtime,send_flag)
         values(#{user_id},#{to_id2},#{theme},#{content},NOW(),1)
     </insert>
-    <!--添加草稿箱email-->
+    <!--保存草稿箱email-->
      <insert id="saveMail" parameterType="java.util.Map">
         insert into tb_mail(from_id,to_id2,subject,content,sendtime,send_flag)
         values(#{user_id},#{to_id2},#{theme},#{content},NOW(),0)
     </insert>
-     <!--查询未读邮件-->
+     <!--查询收件箱未读邮件-->
     <select id="getMail" resultType="java.util.Map">
         select * from tb_mail m join tb_admin a on m.from_id=a.id
         <where>
             <if test="userId!='' and  userId!=null">
-               send_flag=1 and m.to_id2=#{userId}
+                m.to_id2=#{userId} and m.send_flag between 1 and  2
+            </if>
+            <if test="keyWord !=null and keyWord!=''">
+               and a.username like '%${keyWord}%'
+            </if>
+         </where> 
+    </select>
+    <!--修改 收件箱邮件状态 -->
+    <update id="updatesMail" parameterType="Integer">
+       update tb_mail set send_flag=2  where emailId=#{emailId}
+    </update>
+    
+    <!--   
+    <select id="selectsMail" resultType="java.util.Map">
+       select * from tb_mail m join tb_admin a on m.from_id=a.id
+        <where>
+            <if test="userId!='' and  userId!=null">
+               send_flag=2 and m.to_id2=#{userId}
             </if>
             <if test="keyWord !=null and keyWord!=''">
                and a.username like '%${keyWord}%'
             </if>
         </where>
-    </select>
-    <!-- 查询未发送邮件 -->
+    
+    
+    </select> -->
+    <!-- 查询草稿箱未发送邮件 -->
      <select id="selectWMail" resultType="java.util.Map">
         select * from tb_mail m join tb_admin a on m.from_id=a.id
         <where>
@@ -48,18 +68,18 @@
     <select id="selectMail" resultType="int">
     select count(*) from tb_mail where send_flag=1
     </select>
+    
+    
     <!--查询收件箱详情  -->
     <select id="selectXMail" resultType="java.util.Map">
       <!--  select * from tb_mail where emailId=#{emailId} -->
        select m.emailId, m.subject,m.sendtime,m.content,a.username from tb_mail m join tb_admin a on m.id=a.id
-        <!-- <where>
-            <if test="userId!='' and  userId!=null">
-               send_flag=1 and m.to_id2=#{userId}
+        <where>
+            
+            <if test="emailId !=null and emailId!=''">
+                m.emailId=#{emailId}
             </if>
-            <if test="keyWord !=null and keyWord!=''">
-               and u.user_name like '%${keyWord}%'
-            </if>
-        </where> -->
+        </where> 
     </select>
     <!--删除已收邮件-->
     <delete id="delMail" parameterType="Integer">
@@ -69,4 +89,20 @@
      <update id="updateMail" parameterType="java.util.Map">
         update tb_mail set subject=#{subject},content=#{content}  where emailId=#{emailId}
     </update>
-   </mapper>
+    <!-- 根据ID查询 -->
+    <select id="selectById" resultType="Map" parameterType="Integer">
+    select *from tb_mail where emailId=#{emailId}
+    </select>
+    <!--查询已发送邮件  -->
+     <select id="selectyMail" resultType="java.util.Map">
+        select * from tb_mail m join tb_admin a on m.from_id=a.id
+        <where>
+            <if test="userId!='' and  userId!=null">
+                m.from_id=#{id} and m.send_flag =1 or send_flag=2
+            </if>
+            <if test="keyWord !=null and keyWord!=''">
+               and a.username like '%${keyWord}%'
+            </if>
+         </where> 
+    </select>
+ </mapper>

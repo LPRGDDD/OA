@@ -14,4 +14,5 @@ public interface ratiMapper {
     int updateByPrimaryKeySelective(rati record);
 
     int updateByPrimaryKey(rati record);
+
 }

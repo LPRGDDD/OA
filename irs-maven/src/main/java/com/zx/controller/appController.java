@@ -206,4 +206,9 @@ public class appController {
 		public void finddetai8(apply a) throws IOException{
 			   app.insappl(a);
 		}
+		@RequestMapping("deletemany")
+		 public int deleteMany(int[] chk_value) {
+			int a=app.deleteMany(chk_value);
+			return a;
+		 }
 } 

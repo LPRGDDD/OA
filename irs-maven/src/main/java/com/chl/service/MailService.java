@@ -24,6 +24,16 @@ public interface MailService {
 	  * @return
 	  */
 	public List<Map> getMail(@Param("keyWord")String keyWord,@Param("userId") Integer userId);
+ /*//查询登陆用户的已读邮件、 收件箱
+	*//**
+	 * 
+	 * 
+	 * @param keyWord
+	 * @param userId
+	 * @return
+	 *//*
+	public List<Map> selectsMail(@Param("keyWord")String keyWord,@Param("userId") Integer userId);*/
+	
 //查询未读邮件条数
 	public List<Map> selectMail(@Param("userId")Integer userId );
 	//查询未发送邮件、草稿箱
@@ -44,5 +54,7 @@ public interface MailService {
 	  * @return
 	  */
   public List<Map> getAllUsers(@Param("keyWord")String keyWord);
+//查 询已发送邮件
+public  List<Map> selectyMail(@Param("id")Integer id);
 }
 

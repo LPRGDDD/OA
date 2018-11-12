@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lpr.entity.Dept;
 import com.lpr.entity.PersonXc;
 import com.lpr.entity.SalData;
 import com.lpr.entity.SalaDataAndAdmin;
+import com.lpr.entity.SalaDataSearch;
+import com.lpr.service.DeptService;
 import com.lpr.service.SalDataService;
 /**
  * 部门上报
@@ -33,6 +36,8 @@ public class SalDataController {
    /*自动注入*/
 	@Autowired
 	private SalDataService service;
+	@Autowired
+	private DeptService deptSer;
 	//页面跳转
 	@RequestMapping("/find.action")
 	public String find(){
@@ -113,15 +118,17 @@ public class SalDataController {
 	//跳转查询上报表
 	@RequestMapping("/findSalaryList/{salaryflow_id}")
 	public String findBySalaryFlowId1(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){
+		List<Dept> d=deptSer.findDept();
+		req.setAttribute("d", d);
 		req.setAttribute("salaryflow_id", salaryflow_id);
-		return "page/view/lpr/findSalaryList";
+		 	return "page/view/lpr/findSalaryList";
 	}
 	//根据流程表查询上报数据
 	@RequestMapping("/findBySalaryFlowId")
 	@ResponseBody
-	public Map findBySalaryFlowId(Integer sid,Integer page,Integer limit){
+	public Map findBySalaryFlowId(Integer sid,Integer page,Integer limit,String nickname,Integer deptId){
 		PageHelper.startPage(page,limit);
-		List<Map> list=service.findBySalaryFlowId(sid);
+		List<Map> list=service.findBySalaryFlowId(sid,nickname,deptId);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);

@@ -44,4 +44,49 @@
     <select id="selectById" resultType="Map" parameterType="Integer">
        select * from address_book where add_id=#{add_id}
     </select>
-   </mapper>
+    
+    
+   <!--查询所有部门-->
+    <select id="getAllDept" parameterType="String" resultType="java.util.Map">
+        select * from tb_dept where dwinformation_id!=1
+        <where>
+            <if test="keyWord !=null and keyWord!=''">
+                dname like '%${keyWord}%' or deptno like '%${keyWord}%'
+            </if>
+        </where>
+    </select>
+    <!--查询所有公告类型-->
+    <select id="getAllNotifyType" resultType="java.util.Map">
+         select * from tb_notifytype;
+    </select>
+    <!--添加公告-->
+    <insert id="addNotify" parameterType="java.util.Map">
+        insert into notify(dept_id,type_id,id,subject,content,send_time,no_status) values (#{deptno},#{type_id},#{userId},#{theme},#{content},now(),'生效')
+    </insert>
+    <!--根据userid查询部门-->
+    <select id="getDeptByUserId" parameterType="Integer" resultType="int">
+     select dept_id from tb_admin where id=#{userId}
+    </select>
+    <!--根据当前登陆人的部门编号查询公告-->
+    <select id="getNotify" resultType="java.util.Map">
+        select * from notify nt join tb_dept d on nt.dept_id=d.dept_id join tb_admin a on nt.id=a.id join tb_notifytype nf on nt.type_id=nf.type_id
+        <where>
+            nt.no_status='生效'
+            <if test="deptId !=null and deptId!=''">
+               and nt.dept_id=#{deptId}
+            </if>
+            <if test="keyWord !=null and keyWord!=''">
+               and nt.subject like '%${keyWord}%'
+            </if>
+        </where>
+    </select>
+    <!--    公告管理 查询所有公告-->
+    <select id="getAllNotify" parameterType="String" resultType="java.util.Map">
+        select * from notify nt join tb_dept d on nt.dept_id=d.dept_id join tb_admin a on nt.id=a.id join tb_notifytype nf on nt.type_id=nf.type_id
+        <where>
+            <if test="keyWord !=null and keyWord!=''">
+                nt.subject like '%${keyWord}%'
+            </if>
+        </where>
+    </select> 
+ </mapper>

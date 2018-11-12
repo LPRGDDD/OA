@@ -51,4 +51,6 @@ public interface appService {
 	public int updateByState5(int ApId);
 //	录入拒绝批准理由
 	public int insappl(apply a);
+	//批量删除
+    public int deleteMany(int[] id_arr);
 }

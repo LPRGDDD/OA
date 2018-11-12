@@ -56,6 +56,42 @@ private AddressDao dao;
 		return dao.selectById(add_id);
 	}
 
+	@Override
+	public List<Map> getAllDept(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.getAllDept(keyWord);
+	}
+
+	@Override
+	public List<Map> getAllNotifyType() {
+		// TODO Auto-generated method stub
+		return dao.getAllNotifyType();
+	}
+
+	@Override
+	public int addNotify(Map map) {
+		// TODO Auto-generated method stub
+		return dao.addNotify(map);
+	}
+
+	@Override
+	public int getDeptByUserId(Integer userId) {
+		// TODO Auto-generated method stub
+		return dao.getDeptByUserId(userId);
+	}
+
+	@Override
+	public List<Map> getNotify(String keyWord, Integer deptId) {
+		// TODO Auto-generated method stub
+		return dao.getNotify(keyWord, deptId);
+	}
+
+	@Override
+	public List<Map> getAllNotify(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.getAllNotify(keyWord);
+	}
+
 	/*@Override
 	public List<Map> getAllUsers(String keyWord) {
 		// TODO Auto-generated method stub

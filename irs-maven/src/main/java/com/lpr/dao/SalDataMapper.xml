@@ -104,6 +104,17 @@
   </select>
   <!-- 根据流程表id查询 -->
   <select id="findBySalaryFlowId" resultType="java.util.Map">
-  	select * from tb_sal_data s LEFT JOIN tb_admin a ON s.id=a.id where salaryflow_id=#{sid}
+  	select * from tb_sal_data s LEFT JOIN tb_admin a ON s.id=a.id
+  	<where>
+	  	<if test="sid!=null and sid!=''">
+			and salaryflow_id=#{sid}
+		</if>
+	  	<if test="nickname!=null and nickname!=''">
+			and a.fullname like concat('%',#{nickname},'%')
+		</if>
+	  	<if test="deptId!=-1">
+			and a.dept_id=#{deptId}
+		</if>
+	</where>
   </select>
 </mapper>

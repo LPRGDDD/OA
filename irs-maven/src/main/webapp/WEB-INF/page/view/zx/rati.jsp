@@ -45,9 +45,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       sortName: 'id', // 要排序的字段
       sortOrder: 'desc', // 排序规则
       columns: [
-          {
-              checkbox: true, // 显示一个勾选框
-              align: 'center' // 居中显示
+          {    
+             field: 'ApState',
+              align: 'center',
+              valign: 'middle',
+               formatter: function (value, row, index){ // 单元格格式化函数
+                  if (value == 1) {
+                      return '<input type="checkbox" display="true" name="checkid" id="checkid"  value="'+row.ApId+'">';
+                  } if (value == 6) {
+                      return  '<input type="checkbox" display="true" name="checkid" id="checkid" value="'+row.ApId+'">';
+                  } 
+              }
           },
            {
               field: 'sName', // 返回json数据中的name
@@ -91,22 +99,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               align: 'center',
               valign: 'middle',
                formatter: function (value, row, index){ // 单元格格式化函数
-                  var text = '-';
                   if (value == 3) {
-                      text = "审批通过";
+                      return '<span  style="color:green">审批通过<span>'
                   } if (value == 2) {
-                      text = "等待仓库审批";
+                    return '<span  style="color:green">等待审批通过<span>'
                   } if (value == 4) {
-                      text = "等待归还审批";
+                     return '<span  style="color:green">等待归还审批 <span>'
                   } 
                   if (value == 1) {
-                      text = "申请已驳回";
+                      return '<span  style="color:red">申请被驳回<span>'
                   } if (value == 5) {
-                      text = "申请通过";
+                     return '<span  style="color:green">申请通过<span>'
+                  }  if (value == 6) {
+                     return '<span  style="color:red">归还申请已被驳回<span>'
                   } 
-                  return text;
               }
-
           },
           {   field: 'ApState',
               title: "操作",
@@ -125,6 +132,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   return '<a class="btnn btn-primary btn-sm" id="'+row.ApId+'" data-toggle="modal" data-target="#myModal">详情</a>';
               }if(value==5){
                   return '<a class="btnn btn-primary btn-sm" id="'+row.ApId+'" data-toggle="modal" data-target="#myModal">详情</a><span>已归还</span>';
+              }if(value==6){
+                  return '<a class="btnn btn-primary btn-sm" id="'+row.ApId+'" data-toggle="modal" data-target="#myModal">详情</a><a class="delete btn-primary btn-sm" id="'+row.ApId+'">删除</a>';
               }
               }
           }
@@ -209,7 +218,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 	    })
 	    })
- })
+	    })
+</script>
+<script type="text/javascript">
+	$(function(){/* 全选 */
+	$("#checkAll").click(function(){
+$("input[name='checkid']").each(function(){
+this.checked = true;
+});
+	})
+	/* 全不选 */
+	$("#unCheckAll").click(function(){
+$("input[name='checkid']").each(function(){
+this.checked = false;
+});
+});
+	})
+	
+function todelete() {
+        var msg = "确认删除选";
+        if(confirm(msg)==true){
+            var chk_value = [];//定义一个数组
+            //利用将name等于ids的多选按钮得到
+            $("#table1").find(":input[id='checkid']:checked").each(function(){
+                    //获取id值，因为id单元格在复选框单元格的下一个元素
+                    var val = $(this).val();
+                    //将id值添加到数组
+                    chk_value.push(val);
+                    alert(val)
+                });
+            if (chk_value.length == 0) {
+                alert("你还没有选择任何内容！");
+            }
+            if (chk_value.length > 0) {
+                //在浏览器控制台打印信息
+                console.log(chk_value);
+                location.href = "apply/deletemany?chk_value=" + chk_value;
+            }
+        }
+
+    }
 </script>
 <style type="text/css">
   #table2 td{
@@ -224,10 +272,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<table id="table1" >
 				<thead></thead>
 				<tbody></tbody>
-
 			</table>
+			<a href="javascrip:void(0)" id="checkAll">全选</a><a href="javascrip:void(0)" id="unCheckAll">反选</a>
 			<input type="hidden" name="id" id="id"
 				value="<shiro:principal property="id"/>">
+				<input type="button" value="批量" onclick="todelete()">
 		</form>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
