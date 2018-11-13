@@ -19,11 +19,18 @@ import com.github.pagehelper.PageInfo;
 import com.lpr.entity.PersonXc;
 import com.lpr.service.PersonXcService;
 import com.lpr.service.SalItemService;
+/**
+ * 员工薪酬基数设置表
+ * @author 刘培然
+ *
+ */
 @Controller
 @RequestMapping("/personxc")
 public class PersonXcController {
+	/*自动注入*/
 	@Autowired
 	private PersonXcService service;
+	/*自动注入*/
 	@Autowired
 	private SalItemService salSer;
 	/*薪酬基数的跳转*/
@@ -41,12 +48,13 @@ public class PersonXcController {
 	//薪酬基数设置表的分页查询
 	@ResponseBody
 	@RequestMapping("findPage")
-	public Map findPage(Integer page,Integer limit){
-		PageHelper.startPage(page,limit);
-		List<Map> list=service.findPage();
+	public Map findPage(Integer page,Integer limit){//page是当前页，limit是每页显示的页数
+		PageHelper.startPage(page,limit);//分页插件
+		List<Map> list=service.findPage();//插件里面的一个方法pageInfo,用来处理list
 		List<Map<String, Object>> slist= salSer.findAll();
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
+		//往前台传map
         map.put("code", 0);
         map.put("msg", "");
         map.put("count",info.getTotal());
@@ -60,8 +68,8 @@ public class PersonXcController {
 	public void insert(PersonXc xc,String userId,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		System.out.println(xc);
 		System.out.println(userId);
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
+		response.setContentType("text/html;charset=utf-8");//解决中文乱码
+		PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 		int result=service.PLinsert(xc, userId);
 		if (result!=0) {
 			out.print("添加成功！");

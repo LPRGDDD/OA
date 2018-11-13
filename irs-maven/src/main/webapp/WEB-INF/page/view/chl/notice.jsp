@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </fieldset>
 <div id="title">
     <br>
-    <span>发布人：</span><input value="${userName}" style="height: 30px;width: 345px;background-color:white" readonly="readonly"><input value="${userID}" style="display: none" id="userId"><br><br>
+    <span>发布人：</span><input value="<shiro:principal property="username"/>" style="height: 30px;width: 345px;background-color:white" readonly="readonly"><input value="<shiro:principal property="id"/>" style="display: none" id="userId"><br><br>
     <span>部 &nbsp;&nbsp;&nbsp;门：</span><input style="height: 30px;width: 300px;background-color:white " readonly="readonly" id="showDept"><button class="layui-btn" style="height: 30px" data-toggle="modal" data-target="#myModal" onclick="getUsers()">+</button><input id="deptTwo" style="display: none">
     <br><br>
     <span>标 &nbsp;&nbsp;&nbsp;题：</span><input style="height: 30px;width: 345px;" id="theme"><br><br>
@@ -126,12 +126,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            $("#showDept").val(depts)
            $("#myModal").css("display","none")
            $(".modal-backdrop").css("display","none")
+           $('#myModal').modal('hide')
+           
        })
 //    在模糊检索员工时 重载表格
        $("#getUserByKey").click(function(){
            tableins.reload({
-               url: 'address/getAllDept'
-               ,where: { //设定异步数据接口的额外参数，任意设
+               url: 'address/getAllDept',
+               type:'post',
+               where: { //设定异步数据接口的额外参数，任意设
                    "keyWord":$("#keyWord").val()
                }
            });
@@ -140,6 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    $(function(){
        $.ajax({
            url:"address/getAllNotifyType",
+           type:'post',
            success:function (data) {
            alert(data)
                var sel=""
@@ -149,13 +153,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                $("#sel").append(sel);
            }
        })
-       $.ajax({
+       /* $.ajax({
            url:"address/login",
            success:function (data) {
                alert(data)
            }
-       })
-   })
+       })*/
+   }) 
     /*富文本框*/
     layui.use('layedit', function(){
         var layedit = layui.layedit
@@ -185,6 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     alert(list)
                    $.ajax({
                         url:"address/sendNotce",
+                        type:'post',
                         data:{
                             list:list,
                             userId:userId,
@@ -194,6 +199,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         },
                         success:function (data) {
                             alert(data)
+                       if(data=="success"){
+                       		alert("成功！");
+                       		parent.location.reload();
+                       }
                         }
                     })
                 }

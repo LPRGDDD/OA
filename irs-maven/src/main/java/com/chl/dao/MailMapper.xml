@@ -75,8 +75,7 @@
       <!--  select * from tb_mail where emailId=#{emailId} -->
        select m.emailId, m.subject,m.sendtime,m.content,a.username from tb_mail m join tb_admin a on m.id=a.id
         <where>
-            
-            <if test="emailId !=null and emailId!=''">
+             <if test="emailId !=null and emailId!=''">
                 m.emailId=#{emailId}
             </if>
         </where> 
@@ -84,7 +83,12 @@
     <!--删除已收邮件-->
     <delete id="delMail" parameterType="Integer">
         delete  from tb_mail where emailId=#{emailId}
-    </delete> 
+    </delete>
+    <!-- 删除到垃圾箱 -->
+    <update id="deljMail" parameterType="Integer">
+           update tb_mail set send_flag=3  where emailId=#{emailId}
+     </update>
+     
     <!-- 修改草稿箱 -->
      <update id="updateMail" parameterType="java.util.Map">
         update tb_mail set subject=#{subject},content=#{content}  where emailId=#{emailId}
@@ -97,12 +101,32 @@
      <select id="selectyMail" resultType="java.util.Map">
         select * from tb_mail m join tb_admin a on m.from_id=a.id
         <where>
-            <if test="userId!='' and  userId!=null">
-                m.from_id=#{id} and m.send_flag =1 or send_flag=2
+            <if test="id!='' and  id!=null">
+                m.from_id=#{id} and m.send_flag BETWEEN 1 and 2
             </if>
             <if test="keyWord !=null and keyWord!=''">
                and a.username like '%${keyWord}%'
             </if>
          </where> 
     </select>
+    <!--查询垃圾箱  -->
+    <select id="selectlMail" resultType="java.util.Map">
+     select * from tb_mail m join tb_admin a on m.from_id=a.id
+        <where>
+            <if test="userId!='' and  userId!=null">
+               send_flag=3 and m.from_id=#{userId}
+            </if>
+            <if test="keyWord !=null and keyWord!=''">
+               and a.fullname like '%${keyWord}%'
+            </if>
+        </where>
+  </select>
+  <!--恢复邮件  -->
+  <update id="updateLMail" parameterType="Integer">
+           update tb_mail set send_flag=0  where emailId=#{emailId}
+     </update>
+  
+  
+  
+  
  </mapper>

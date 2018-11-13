@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.lpr.entity.DwinFormation;
-
+/**
+ * 单位信息表
+ * @author 刘培然
+ *
+ */
 public interface DwinFormationMapper {
 	/**
 	 * 根据单位信息编号删除

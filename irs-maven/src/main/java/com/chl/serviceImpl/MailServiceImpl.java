@@ -78,5 +78,20 @@ public class MailServiceImpl implements MailService{
 		// TODO Auto-generated method stub
 		return dao.selectyMail(id);
 	}
+	@Override
+	public int deljMail(Integer emailId) {
+		// TODO Auto-generated method stub
+		return dao.deljMail(emailId);
+	}
+	@Override
+	public List<Map> selectlMail(String keyWord, Integer userId) {
+		// TODO Auto-generated method stub
+		return dao.selectlMail(keyWord, userId);
+	}
+	@Override
+	public int updateLMail(Integer emailId) {
+		// TODO Auto-generated method stub
+		return dao.updateLMail(emailId);
+	}
 
 }

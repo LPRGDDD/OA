@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.lpr.dao.SafeFactorMapper;
 import com.lpr.service.SafeFactorService;
+/**
+ * 保险系数表
+ * @author 刘培然
+ *
+ */
 @Service
 public class SafeFactorServiceImpl implements SafeFactorService{
 @Autowired

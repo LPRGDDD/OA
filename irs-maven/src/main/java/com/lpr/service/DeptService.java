@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.lpr.entity.Dept;
-
+/**
+ * 部门表
+ * @author 刘培然
+ *
+ */
 public interface DeptService {
 	/**
 	 * 部门表的查询

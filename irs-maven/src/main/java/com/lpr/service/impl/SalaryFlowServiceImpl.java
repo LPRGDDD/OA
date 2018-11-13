@@ -5,16 +5,23 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lpr.dao.SalaryFlowMapper;
 import com.lpr.entity.SalaryFlow;
 import com.lpr.service.SalaryFlowService;
+/**
+ * 薪酬管理中的工资流程表
+ * @author 刘培然
+ *
+ */
 @Service
 public class SalaryFlowServiceImpl implements SalaryFlowService{
 @Autowired
 private SalaryFlowMapper dao;
-	@Override
 	//工资流程表的添加方法（新建工资流程）
+	@Transactional
+	@Override
 	public int insert(SalaryFlow sa) {
 		// TODO Auto-generated method stub
 		return dao.insert(sa);
@@ -26,14 +33,14 @@ private SalaryFlowMapper dao;
 		return dao.findAll(keyWord, userName);
 		
 	}
-
+	@Transactional
 	@Override
 	//工资流程表的编辑
 	public int update(SalaryFlow salaryflow) {
 		// TODO Auto-generated method stub
 		return dao.update(salaryflow);
 	}
-
+	@Transactional
 	@Override
 	//工作流程表的删除
 	public int delete(int salaryflowId) {

@@ -7,7 +7,11 @@ import org.apache.ibatis.annotations.Param;
 
 import com.lpr.entity.SalItem;
 import com.lpr.entity.SalaryFlow;
-
+/**
+ * 薪酬管理中的工资流程表
+ * @author 刘培然
+ *
+ */
 public interface SalaryFlowService {
 	/**
 	 * 新建工资流程（工资流程表的添加）

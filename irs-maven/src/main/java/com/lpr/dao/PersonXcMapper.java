@@ -5,7 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import com.lpr.entity.PersonXc;
-
+/**
+ * 员工薪酬基数设置表
+ * @author 刘培然
+ *
+ */
 public interface PersonXcMapper {
 	/**
 	 * 根据员工薪酬基数编号 删除 

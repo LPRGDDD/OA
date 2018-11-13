@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.lpr.entity.ItemType;
-
+/**
+ * 薪酬项目类型表
+ * @author 刘培然
+ *
+ */
 public interface ItemTypeMapper {
 	/**
 	 * 根据薪酬项目类型编号删除

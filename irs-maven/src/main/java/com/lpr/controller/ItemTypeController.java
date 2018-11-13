@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lpr.entity.ItemType;
 import com.lpr.entity.SalItem;
 import com.lpr.service.ItemTypeService;
-
+/**
+ * 薪酬项目类型表
+ * @author 刘培然
+ *
+ */
 @Controller
 @RequestMapping("/itemtype")
 public class ItemTypeController {
-	@Autowired
 	//自动注入
+	@Autowired
 	private ItemTypeService service;
 	//薪酬项目类型表的查询
 		@RequestMapping("findAll")
@@ -35,8 +39,8 @@ public class ItemTypeController {
 		@ResponseBody
 		public void insert(ItemType itemtype,HttpServletRequest request,HttpServletResponse response) throws IOException {
 			System.out.println(itemtype);
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
+			response.setContentType("text/html;charset=utf-8");//解决中文乱码
+			PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 			int result=service.insert(itemtype);
 			if (result!=0) {
 				System.out.println("添加成功！");

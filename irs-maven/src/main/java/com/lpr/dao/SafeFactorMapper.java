@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.lpr.entity.SafeFactor;
-
+/**
+ * 保险系数表
+ * @author 刘培然
+ *
+ */
 public interface SafeFactorMapper {
 	/**
 	 * 根据保险系数编号删除

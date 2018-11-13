@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.lpr.dao.DwinFormationMapper;
 import com.lpr.service.DwinFormationService;
+/**
+ * 单位信息表
+ * @author 刘培然
+ *
+ */
 @Service
 public class DwinFormationServiceImpl implements DwinFormationService{
 @Autowired

@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lpr.service.DwinFormationService;
+/**
+ * 单位信息表
+ * @author 刘培然
+ *
+ */
 @Controller
 @RequestMapping("/dwinformation")
 public class DwinFormationController {
+	//自动注入
 	@Autowired
-	/*自动注入*/
 	private DwinFormationService service;
 	@RequestMapping("/find.action")
 	public String find(){

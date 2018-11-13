@@ -1,5 +1,9 @@
 package com.lpr.entity;
-
+/**
+ * 存放人员，工资数据
+ * @author 刘培然
+ *
+ */
 public class SalaDataAndAdmin {
 	private Long id;
 

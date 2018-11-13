@@ -35,22 +35,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <title>Title</title>
     </head>
 <body>
-<input value="${userID}" id="userId" style="display: none">
+<input value="<shiro:principal property="id"/>" id="userId" style="display: none">
 <div id="serch">
     <input type="text" id="ipt" placeholder="请输入内容" onkeyup="serch()">
 </div>
-<%--<div id="dateBox">
-    <button class="layui-btn" id="addButton" data-toggle="modal" data-target="#myModal">+ 添加联系人</button>
-    <button class="layui-btn layui-btn-warm" id="addFroup" data-toggle="modal" data-target="#myModalTwo">添加分组</button>
-    <button class="layui-btn layui-btn-normal" id="myGroup" data-toggle="modal" data-target="#myModalThree">我的分组
-    </button>
-</div>--%>
 <table class="layui-hide" id="myTab"></table>
 <div id="fenye"></div>
+
+                  <!-- 模态框（Modal）修改公告-->
+				<div class="modal fade" id="myModalFour" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">修改公告</h4>
+							</div>
+							<form method="post" id="bbb">
+							发送范围：<select name="map['dept_id']" style="width:200px;height:40px" id="fbfw"></select><br><br>
+							公告类型：<select name="map['type_id']" style="width:200px;height:40px" id="gglx"></select><br><br>
+							标题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="map['subject']"style="width:200px;height:40px" id="bt"><br><br>
+							内容&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="map['content']"style="width:400px;height:150px" id="nr"><br><br>
+															<br>
+							</form>
+					 <table class="layui-hide" id="test"></table>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">关闭</button>
+				 <button type="button" class="btn btn-primary" id="sureFour">
+                                                                  确认更改
+                </button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+					</div>
+    
+         
 <script type="text/html" id="barDemo">
     <button onclick="cli(this)" class="layui-btn" data-toggle="modal" data-target="#myModalFour">修改</button>
-    <button onclick="cli(this)" class="layui-btn" data-toggle="modal" data-target="#myModalFour">失效</button>
-    <button onclick="cli(this)" class="layui-btn" data-toggle="modal" data-target="#myModalFour">生效</button>
+    <button onclick="shi(this)" class="layui-btn" data-toggle="modal" data-target="#myModalFour1">失效</button>
+    <button onclick="sheng(this)" class="layui-btn" data-toggle="modal" data-target="#myModalFour2">生效</button>
 </script>
 </body>
 </html>
@@ -70,19 +97,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             elem: '#myTab',   //同上
             height: 610,  //表格的高度
             url: 'address/getAllNotify',
+            type:'post',
             where: {
                 pageNum: pagenum,
                 limit: limit,
                 keyWord: keyWord,
             },
             cols: [[
-                {field: 'notify_id', title: '公告编码', sort: true,},
-                {field: 'dept_name', title: '发送范围', sort: true,},
-                {field: 'username', title: '发布人', sort: true},
-                {field: 'type', title: '公告类型', sort: true,},
-                {field: 'subject', title: '标题', sort: true,},
-                {field: 'send_time', title: '发布时间', sort: true,},
-                {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
+                {field: 'notify_id', title: '公告编码', sort: true,width:110},
+                {field: 'dept_name', title: '发送范围', sort: true,width:110},
+                {field: 'username', title: '发布人', sort: true,width:100},
+                {field: 'type', title: '公告类型', sort: true,width:110},
+                {field: 'subject', title: '标题', sort: true,width:110},
+                {field: 'send_time', title: '发布时间', sort: true,width:170},
+                {field: 'no_status', title: '公告状态', sort: true,width:150},
+                
+                {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 260}
             ]],
             //回调函数 在表格渲染完成后 执行 用num判断  让它只在页面加载时执行一次   点击上一页下一页不执行
             done: function (res) {
@@ -94,6 +124,106 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 
     }
+    
+     function cli(obj){
+         var notify_id = $(obj).parent().parent().prev().prev().prev().prev().prev().prev().prev().children().html();
+         $.ajax({
+            url: "address/selectnotifyById",
+            type:'post',
+            data: {
+                notify_id: notify_id
+            },
+/*             dataType:'json',
+ */            success: function (data) {
+            alert(notify_id)
+          $("#fbfw option[value='"+data.dept_id+"']").attr("selected","selected");
+          $("#gglx option[value='"+data.type_id+"']").attr("selected","selected");
+            
+            $("#fbfw").val(data.dept_id);
+            $("#gglx").val(data.type_id);
+            $("#bt").val(data.subject);
+            $("#nr").val(data.content);
+                /*  window.location.reload()   */ }
+               })
+                $.ajax({
+                url: "address/getAllNotifyType",
+                type:'post',
+                 success: function (data) {
+                  $("#gglx").html("")
+                  var sel = ""
+                    for (var i = 0; i < data.length; i++) {
+                     sel += "<option value='" + data[i].type_id + "'>" + data[i].type + "</option>";
+                    
+                    }
+                    $("#gglx").append(sel)
+                    }
+                  
+               })
+            
+           $.ajax({
+                url: "address/getAllDeptTwo",
+                type:'post',
+                data:{
+                keyWord:""
+                },
+                 success: function (data) {
+                 alert(data)
+                  $("#fbfw").html("")
+                  var sel = ""
+                    for (var i = 0; i < data.length; i++) {
+                     sel += "<option value='" + data[i].dept_id + "'>" + data[i].dept_name + "</option>";
+                    
+                    }
+                    $("#fbfw").append(sel)
+                    
+                  }
+               })  
+           $("#sureFour").click(function () {
+        alert($("#bbb").serialize())
+            $.ajax({
+                url: "address/updatenotify",
+                type:'post',
+                data: $("#bbb").serialize(),
+                dataType:'text',
+                success: function (data) {
+                    
+                    window.location.reload()
+                }
+            })
+        })     
+         }
+        
+    function shi(obj){
+      var notify_id = $(obj).parent().parent().prev().prev().prev().prev().prev().prev().prev().children().html();
+     $.ajax({
+     url: "address/updatestatus",
+            type:'post',
+            data: {
+            notify_id:notify_id,
+            no_status:"失效"
+            },
+                success:function(data){
+                    window.location.reload()
+    }
+    
+    })
+    }
+    
+   function sheng(obj){
+      var notify_id = $(obj).parent().parent().prev().prev().prev().prev().prev().prev().prev().children().html();
+     $.ajax({
+     url: "address/updatestatus",
+            type:'post',
+            data: {
+            notify_id:notify_id,
+            no_status:"生效"
+            },
+                success:function(data){
+                    window.location.reload()
+    }
+    
+    })
+    }  
 
     /*渲染分页工具条
       同样传入两个参数   关键字   总数据
