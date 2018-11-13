@@ -8,7 +8,11 @@ import org.apache.ibatis.annotations.Param;
 import com.lpr.entity.SalData;
 import com.lpr.entity.SalaDataAndAdmin;
 import com.lpr.entity.SalaDataSearch;
-
+/**
+ * 工资流程中的上报数据表
+ * @author 刘培然
+ *
+ */
 public interface SalDataService {
 	/**
 	 * 根据状态（1,0）进行分页查询
@@ -22,7 +26,7 @@ public interface SalDataService {
 	 * @param sid
 	 * @return
 	 */
-	public List<Map> findBySalaryFlowId(int sid,String nickname,Integer deptId);
+	public List<Map> findBySalaryFlowId(int sid,String nickname,Integer deptId,Integer start,Integer end);
 	/**
 	 * 批量录入
 	 * @param userStr

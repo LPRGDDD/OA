@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="title">
 						<!--     <button class="layui-btn" style="position: relative;left: 500px;" onclick="addCs()">添加抄送</button><button class="layui-btn layui-btn-danger" style="position: relative;left: 550px;" onclick="delCs()">删除抄送</button>
  -->
-						<br> <span>发件人：</span><input value="<shiro:principal property="username"/>"
+						<br> <span>发件人：</span><input value="<shiro:principal property="fullname"/>"
 							style="height: 30px;width: 235px;background-color:white"
 							readonly="readonly"><input value="<shiro:principal property="id"/>"
 							style="display: none" id="userId"><br>
@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									style="width:192px;height:35px" id="subject"><br>
 								<br> 发送时间： <input type="text" readonly="readonly"
 									style="width:192px;height:35px" id="sendtime"><br>
-								<br> 内容： <input type="text" readonly="readonly"
+								<br> 内容&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;： <input type="text" readonly="readonly"
 									style="width:400px;height:150px" id="content"><br>
 								<br>
 
@@ -217,14 +217,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<div class="modal-body">
 								<!-- 选择负责人 -->
-								<!-- 收件箱查看详情 -->
+								<!-- 已发送查看详情 -->
 								发件人：&nbsp; <input type="text" readonly="readonly"
 									style="width:192px;height:35px" id="username1"><br><br>
 								 主题：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly"
 									style="width:192px;height:35px" id="subject1"><br>
 								<br> 发送时间： <input type="text" readonly="readonly"
 									style="width:192px;height:35px" id="sendtime1"><br>
-								<br> 内容： <input type="text" readonly="readonly"
+								<br> 内容&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;： <input type="text" readonly="readonly"
 									style="width:400px;height:150px" id="content1"><br>
 								<br>
 
@@ -241,25 +241,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- /.modal -->
 				</div>					
 		</div>
-			<div class="layui-tab-item">55</div>
-</div>
-</div>
-<!--   		<button onclick="cli2(this)"   class="layui-btn" data-toggle="modal" data-target="#myModal2">编辑邮件</button>*/
-  -->
+			<div class="layui-tab-item">
+			 <!--   <input value="1" style="display: none" id="userId" >
+ -->					       					<%-- ${user_id} --%>
+					       					<fieldset class="layui-elem-field layui-field-title"
+					       						style="margin-top: 50px;">
+					       						<legend>电子邮件>>>>>垃圾箱</legend>
+					       					</fieldset>
+					       					<!-- 表格数据 -->
+					       					<div id="serch4">
+					       						<input type="text" id="ipt4" placeholder="请输入内容" onkeyup="serch4()">
+					       					</div>
+					       					<div>
+					       						<table class="layui-hide" id="myTab4"></table>
+					       					</div>
+					       					<div id="fenye4"></div>
+					       						</div>
+             </div>
+     </div>
+
 <script type="text/html" id="barDemo1">
 		<a class="layui-btn layui-btn-xs" lay-event="edit" >编辑</a>
-   		 <button class="layui-btn layui-btn-danger"  onclick="del2(this)" >删除到垃圾箱</button>
-   		 <button class="layui-btn layui-btn-danger"  onclick="add(this)" >立即发送</button>
+   		 <button class="layui-btn layui-btn-xs layui-btn-danger"  onclick="del2(this)" >删除</button>
+   		 <button class="layui-btn layui-btn-xs layui-btn-danger"  onclick="add(this)" >立即发送</button>
 </script>
 <script type="text/html" id="barDemo">
-    	<button onclick="cli(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal1" id="hide">查阅详情</button>
-    	<button class="layui-btn layui-btn-danger"  onclick="del(this)" >删除邮件</button>
+    	<button onclick="cli(this)"  class="layui-btn layui-btn-xs" data-toggle="modal" data-target="#myModal1" id="hide">查阅详情</button>
+    	<button class="layui-btn layui-btn-xs layui-btn-danger"  onclick="del(this)" >删除邮件</button>
 </script>
 <script type="text/html" id="barDemo3">
     	<button onclick="cli3(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal3" id="hide">查阅详情</button>
 </script>
-<script type="text/html" id="barDemo2">
-    	<button onclick="cli3(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal2" id="hide">查阅详情</button>
+<script type="text/html" id="barDemo4">
+    	<button onclick="cli4(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal4" id="hide">恢复</button>
+    	<button onclick="cli5(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal5" id="hide">销毁</button>
+
 </script>
 <script>
 		$(function() {
@@ -352,8 +368,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var user_id = $("#userId").val();
 				var theme = $("#theme").val();
 				var conent = layedit.getContent(index);
-				alert(user_id)
-				alert(list)
 				if (theme == '') {
 					alert("主题不能为空！")
 					return false;
@@ -375,7 +389,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						},
 						dataType : 'text',
 						success : function(data) {
-						alert(data)
 							if (data == "success") {
 								$("#showUser").val("")
 								$("#theme").val("")
@@ -385,13 +398,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					})
 				}
 	
-			}, /*添加草稿箱  */
+			}, 
+			/*添加草稿箱  */
 			text : function() {
 				var user_id = $("#userId").val();
 				var theme = $("#theme").val();
 				var conent = layedit.getContent(index);
-				alert(user_id)
-				alert(list)
 				if (theme == '') {
 					alert("主题不能为空！")
 					return false;
@@ -545,8 +557,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          *
          */
         function cli(obj){
-        var emailId=$(obj).parent().parent().prev().prev().prev().prev().prev().children().html()
-              alert(emailId)
+        var emailId=$(obj).parent().parent().prev().prev().prev().prev().prev().children().html();
+        alert(emailId);
               $.ajax({
                         url:"mail/selectXMail",
                         type:'post',
@@ -555,8 +567,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           },
                           dataType:'json',
                         success:function (data) {
-                         alert(data.length)
-                         
                            $("#username").val(data[0].username);
                            $("#subject").val(data[0].subject);
                            $("#sendtime").val(data[0].sendtime);
@@ -598,51 +608,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        		        }
 		      }
 </script>
-</body>
+
 <script>
  /*查询草稿箱  */
     var table = layui.table; //定义全局变量  方便使用layui的表格
     var laypage = layui.laypage, layer = layui.layer; //定义全局变量  方便使用layui的分页条
     /*页面加载时查询数据  并且分页*/
     var id=$("#userId").val();
-    $(function() {
-        fenye2("",1,3,id);  //调用layui表格
-        tool2();
-    });
-    var num=0;
-    function fenye2(keyWord,pagenum,limit,userId) {
         table.render({
             id : 'myTab2', //table的id
             elem : '#myTab2',   //同上
-            height : 300,  //表格的高度
+            limit : 10, //每页默认数
+			limits : [ 10, 20, 30, 40 ],
+			totalRow: true,
             url : 'mail/selectWMail',
             where:{
-                pageNum:pagenum,
-                limit:limit,
-                keyWord:keyWord,
-                userId:userId
+                keyWord:"",
+                userId:id
             },
             cols : [ [
                 {checkbox: true, fixed: true},
-                {field : 'emailId',title : '邮件编码',sort : true,width:110},
-                {field : 'fullname',title : '发件人',sort : true,width:140},
-                {field : 'subject',title : '主题',sort : true,width:300},
-                {field : 'sendtime',title : '发送时间',sort : true,width:190},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo1', width:370}
+                {field : 'emailId',title : '邮件编码',sort : true},
+                {field : 'fullname',title : '发件人',sort : true},
+                {field : 'subject',title : '主题',sort : true},
+                {field : 'sendtime',title : '发送时间',sort : true},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo1'}
             ] ],
-            //回调函数 在表格渲染完成后 执行 用num判断  让它只在页面加载时执行一次   点击上一页下一页不执行
-            done : function(res) {
-                if(num==0){
-                    tool2($("#ipt2").val(),res.count);  //调用tool()函数   启用分页条  并传总数据数  res.count
-                    num+=1;
-                }
-            }
-        });
-
+            page : true,
+        });    
+    function del2(obj){
+    var emailId = $(obj).parent().parent().prev().prev().prev().prev().children().html();
+           alert(emailId)
+           if(confirm("确定删除到垃圾箱？？？")){
+		        $.ajax({
+		            url: "mail/deljMail",
+		            type:'post',
+		            data: {
+		                emailId: emailId
+		            },
+		            dataType:'text',
+		            success: function (data) {
+		            	alert(data)
+		             table.reload('myTab2', {
+	                	url : 'mail/selectWMail',
+	                	where : {} //设定异步数据接口的额外参数
+	           //,height: 300
+	       });
+                         }
+		        })
+		         }else{alert("取消删除");
+		        		        }
+    
+    
     }
-          
-    
-    
     
     
     
@@ -655,7 +673,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     
    
-     /*修改草稿箱 查询详情 */
+	     /*修改草稿箱 查询详情 */
         
         /* function update(obj){
          var emailId = $(obj).parent().parent().prev().prev().prev().children().html();
@@ -706,34 +724,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         })
             }
                  */
-     
-    
-    
-    
-    /*渲染分页工具条
-      同样传入两个参数   关键字   总数据
-    */
-    function tool2(keyWord,count) {
-        laypage.render({
-            elem : 'fenye2',//分页条的作用域   页面中div的id
-            count : count,  //总数据数
-            limit:3,      //每页显示的条数
-            layout : [ 'prev', 'page', 'next','limit','skip' ],
-            jump : function(obj, first) {
-                /*判断如果不是第一页执行里面的方法*/
-                if (!first) {
-                    /*重新调用分页方法*/
-                    fenye2($("#ipt2").val(),obj.curr,obj.limit,$("#userId").val());
-                }
-            }
-        });
-    }
-    
     //绑定input enter事件  在input输入完成   按下回车  调用
          function serch(){                //网页内按下回车触发
          if(event.keyCode==13)
         {
-            fenye2($("#ipt2").val(),1,3,$("#userId").val());
+            fenye2($("#ipt2").val(),1,5,$("#userId").val());
         }}
              
             
@@ -786,7 +781,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		
-		 //监听工具条
+	//跳转编辑页面
     table.on('tool(demo1)', function(obj){
     var data = obj.data;
     if(obj.event === 'detail'){
@@ -810,72 +805,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var laypage = layui.laypage, layer = layui.layer; //定义全局变量  方便使用layui的分页条
     /*页面加载时查询数据  并且分页*/
     var id=$("#userId").val();
-    $(function() {
-        fenye3("",1,6,id);  //调用layui表格
-        
-        tool3();
-    });
-    var num=0;
-    function fenye3(keyWord,pagenum,limit,id) {
         table.render({
             id : 'myTab3', //table的id
             elem : '#myTab3',   //同上
-            height : 300,  //表格的高度
+            limit : 10, //每页默认数
+			limits : [ 10, 20, 30, 40 ],
+			totalRow: true,
             url : 'mail/selectyMail',
             where:{
-                pageNum:pagenum,
-                limit:limit,
-                keyWord:keyWord,
+                keyWord:'',
                 id:id
             },
             cols : [ [
                 {checkbox: true, fixed: true},
                 {field : 'emailId',title : '邮件编码',sort : true,width:140},
-                {field : 'fullname',title : '发件人',sort : true,width:140},
+                {field : 'username',title : '发件人',sort : true,width:140},
                 {field : 'subject',title : '主题',sort : true,width:300},
                 {field : 'sendtime',title : '发送时间',sort : true,width:200},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo3', width:170}
             ] ],
-            //回调函数 在表格渲染完成后 执行 用num判断  让它只在页面加载时执行一次   点击上一页下一页不执行
-            done : function(res) {
-                if(num==0){
-                    tool3($("#ipt3").val(),res.count);  //调用tool()函数   启用分页条  并传总数据数  res.count
-                    num+=1;
-                }
-            }
+           page:true,
         });
-
-    }
-    
-      /*渲染分页工具条
-      同样传入两个参数   关键字   总数据
-    */
-    function tool3(keyWord,count) {
-        laypage.render({
-            elem : 'fenye3',//分页条的作用域   页面中div的id
-            count : count,  //总数据数
-            limit:6,      //每页显示的条数
-            layout : [ 'prev', 'page', 'next','limit','skip' ],
-            jump : function(obj, first) {
-                /*判断如果不是第一页执行里面的方法*/
-                if (!first) {
-                    /*重新调用分页方法*/
-                    fenye3($("#ipt3").val(),obj.curr,obj.limit,$("#userId").val());
-                }
-            }
-        });
-    }
-    
+        
     //绑定input enter事件  在input输入完成   按下回车  调用
          function serch3(){                //网页内按下回车触发
          if(event.keyCode==13)
         {
-            fenye3($("#ipt3").val(),1,6,$("#userId").val());
+            fenye3($("#ipt3").val(),1,3,$("#userId").val());
         }}
         //已发送详情
          function cli3(obj){
-        var emailId=$(obj).parent().parent().prev().prev().prev().prev().prev().children().html()
-              alert(emailId)
+        var emailId=$(obj).parent().parent().prev().prev().prev().prev().children().html()
               $.ajax({
                         url:"mail/selectXMail",
                         type:'post',
@@ -884,9 +844,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           },
                           dataType:'json',
                         success:function (data) {
-                         alert(data.length)
-                         
-                           $("#username1").val(data[0].username);
+                          $("#username1").val(data[0].username);
                            $("#subject1").val(data[0].subject);
                            $("#sendtime1").val(data[0].sendtime);
                            $("#content1").val(data[0].content);
@@ -904,5 +862,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
              
       </script>
+      
+      
+      <script>
+     /*查询垃圾箱  */
+    var table = layui.table; //定义全局变量  方便使用layui的表格
+    var laypage = layui.laypage, layer = layui.layer; //定义全局变量  方便使用layui的分页条
+    /*页面加载时查询数据  并且分页*/
+    var id=$("#userId").val();
+        table.render({
+            id : 'myTab4', //table的id
+            elem : '#myTab4',   //同上
+            limit : 10, //每页默认数
+			limits : [ 10, 20, 30, 40 ],
+			totalRow: true,
+            url : 'mail/selectlMail',
+            where:{
+                keyWord:'',
+                userId:id
+            },
+            cols : [ [
+                {checkbox: true, fixed: true},
+                {field : 'emailId',title : '邮件编码',sort : true,width:110},
+                {field : 'fullname',title : '发件人',sort : true,width:140},
+                {field : 'subject',title : '主题',sort : true,width:300},
+                {field : 'sendtime',title : '发送时间',sort : true,width:190},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo4', width:370}
+            ] ],
+           page:true,
+        });    
+    //绑定input enter事件  在input输入完成   按下回车  调用
+         function serch4(){                //网页内按下回车触发
+         if(event.keyCode==13)
+        {
+            fenye4($("#ipt4").val(),1,3,$("#userId").val());
+        }}
+</script>
+<script>
+/* 垃圾箱 */
+     
+ function cli4(obj){
+    var emailId = $(obj).parent().parent().prev().prev().prev().prev().children().html();
+           if(confirm("确定恢复到草稿箱？？？")){
+		        $.ajax({
+		            url: "mail/updateLMail",
+		            type:'post',
+		            data: {
+		                emailId: emailId
+		            },
+		            dataType:'text',
+		            success: function (data) {
+		            	alert(data)
+		              table.reload('myTab4', {
+	                	url : 'mail/selectlMail',
+	                	where : {} //设定异步数据接口的额外参数
+	           //,height: 300
+	       });
+                         }
+		        })
+		         }else{alert("取消恢复");
+		        		        }
+    
+    
+    }
+    
+    function cli5(obj){
+    var emailId = $(obj).parent().parent().prev().prev().prev().prev().children().html();
+           alert(emailId)
+           if(confirm("确定销毁？？？")){
+		        $.ajax({
+		            url: "mail/delMail",
+		            type:'post',
+		            data: {
+		                emailId: emailId
+		            },
+		            dataType:'text',
+		            success: function (data) {
+		            	alert(data)
+		             table.reload('myTab4', {
+	                	url : 'mail/selectlMail',
+	                	where : {} //设定异步数据接口的额外参数
+	           //,height: 300
+	       });
+                         }
+		        })
+		         }else{alert("取消销毁 ");
+		        		        }
+    
+    
+    }
+    
+    
+
+
+
+</script>
+</body>
 </html>
 

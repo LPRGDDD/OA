@@ -8,7 +8,11 @@ import org.apache.ibatis.annotations.Select;
 
 import com.lpr.entity.SalData;
 import com.lpr.entity.SalaDataSearch;
-
+/**
+ * 工资流程中的上报数据表
+ * @author 刘培然
+ *
+ */
 public interface SalDataMapper {
 	/**
 	 * 根据工资上报编号删除
@@ -49,5 +53,5 @@ public interface SalDataMapper {
      * @param sid
      * @return
      */
-    public List<Map> findBySalaryFlowId(@Param("sid") int sid,@Param("nickname") String nickname,@Param("deptId") Integer deptId);
+    public List<Map> findBySalaryFlowId(@Param("sid") int sid,@Param("nickname") String nickname,@Param("deptId") Integer deptId,@Param("start") Integer start,@Param("end") Integer end);
 }

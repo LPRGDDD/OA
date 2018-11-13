@@ -48,14 +48,16 @@ public class MailServiceImpl implements MailService{
 		return dao.selectXMail(emailId);
 	}
 	@Override
+	@Transactional
 	public int delMail(@Param("emailId") Integer emailId) {
 		// TODO Auto-generated method stub
 		return dao.delMail(emailId);
 	}
 	@Override
-	public int updateMail(Map map) {
+	@Transactional
+	public int updateMail(String subject,String content,Integer emailId) {
 		// TODO Auto-generated method stub
-		return dao.updateMail(map);
+		return dao.updateMail(subject, content, emailId);
 	}
 	@Override
 	public List<Map> getAllUsers(String keyWord) {
@@ -77,6 +79,22 @@ public class MailServiceImpl implements MailService{
 	public List<Map> selectyMail(Integer id) {
 		// TODO Auto-generated method stub
 		return dao.selectyMail(id);
+	}
+	@Override
+	public int deljMail(Integer emailId) {
+		// TODO Auto-generated method stub
+		return dao.deljMail(emailId);
+	}
+	@Override
+	public List<Map> selectlMail(String keyWord, Integer userId) {
+		// TODO Auto-generated method stub
+		return dao.selectlMail(keyWord, userId);
+	}
+	@Override
+	@Transactional
+	public int updateLMail(Integer emailId) {
+		// TODO Auto-generated method stub
+		return dao.updateLMail(emailId);
 	}
 
 }

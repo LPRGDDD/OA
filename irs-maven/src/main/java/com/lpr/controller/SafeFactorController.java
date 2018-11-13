@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lpr.dao.SafeFactorMapper;
 import com.lpr.service.SafeFactorService;
+/**
+ * 保险系数设置表
+ * @author 刘培然
+ *
+ */
 @Controller
 @RequestMapping("/safefactor")
 public class SafeFactorController {

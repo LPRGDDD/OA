@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.lpr.dao.DeptMapper;
 import com.lpr.entity.Dept;
 import com.lpr.service.DeptService;
+/**
+ * 部门表
+ * @author 刘培然
+ *
+ */
 @Service
 public class DeptServiceImpl implements DeptService{
 @Autowired

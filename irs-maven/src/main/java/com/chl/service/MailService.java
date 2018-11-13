@@ -42,10 +42,12 @@ public interface MailService {
 	public List selectXMail(@Param("emailId") Integer emailId );
 	 //删除已收邮件
     public int delMail(@Param("emailId") Integer emailId);
+  //删除到垃圾箱
+    public int deljMail(@Param("emailId")Integer emailId);
   //根据ID查询
     public Map selectById(@Param ("emailId") Integer emailId);
 	//修改草稿箱 查看详情
-	public int updateMail(Map map);
+	public int updateMail(String subject,String content,Integer emailId);
 	
 //  查询所有用户
 	 /**
@@ -56,5 +58,9 @@ public interface MailService {
   public List<Map> getAllUsers(@Param("keyWord")String keyWord);
 //查 询已发送邮件
 public  List<Map> selectyMail(@Param("id")Integer id);
+//查询垃圾箱邮件
+public List<Map> selectlMail(@Param("keyWord")String keyWord,@Param("userId") Integer userId);
+//恢复邮件
+public int updateLMail(@Param("emailId") Integer emailId);
 }
 

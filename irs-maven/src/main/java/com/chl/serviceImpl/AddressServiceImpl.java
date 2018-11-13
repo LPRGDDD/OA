@@ -92,10 +92,34 @@ private AddressDao dao;
 		return dao.getAllNotify(keyWord);
 	}
 
+	@Override
+	public List notifyX(Integer notify_id) {
+		// TODO Auto-generated method stub
+		return dao.notifyX(notify_id);
+	}
+
+	@Override
+	public Map selectnotifyById(Integer notify_id) {
+		// TODO Auto-generated method stub
+		return dao.selectnotifyById(notify_id);
+	}
+
+	@Override
+	public int updatenotify(Map map) {
+		// TODO Auto-generated method stub
+		return dao.updatenotify(map);
+	}
+
+	@Override
+	public int updatestatus(Integer notify_id, String no_status) {
+		// TODO Auto-generated method stub
+		return dao.updatestatus(notify_id, no_status);
+	}
+
 	/*@Override
 	public List<Map> getAllUsers(String keyWord) {
 		// TODO Auto-generated method stub
 		return dao.getAllUsers(keyWord);
 	}*/
-
+   
 }

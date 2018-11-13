@@ -6,7 +6,11 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.lpr.entity.Dept;
-
+/**
+ * 部门表
+ * @author 刘培然
+ *
+ */
 public interface DeptMapper {
 	/**
 	 * 根据部门编号删除

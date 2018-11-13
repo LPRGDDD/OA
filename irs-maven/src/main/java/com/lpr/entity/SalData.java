@@ -1,11 +1,11 @@
 package com.lpr.entity;
 
 import com.irs.pojo.TbAdmin;
-
+/**
+ * 工资流程中的上报数据
+ */
 public class SalData {
-	/**
-	 * 工资流程中的上报数据
-	 */
+	
     private Integer salDataId;//工资流程编号
 
     private Double salSsalary;//应发工资

@@ -12,6 +12,11 @@ import com.irs.pojo.TbAdmin;
 import com.lpr.dao.PersonXcMapper;
 import com.lpr.entity.PersonXc;
 import com.lpr.service.PersonXcService;
+/**
+ * 员工薪酬基数设置表
+ * @author 刘培然
+ *
+ */
 @Service
 public class PersonXcServiceImpl implements PersonXcService{
 @Autowired

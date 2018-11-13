@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.beust.jcommander.Parameter;
 import com.chl.entity.BasePojo;
 import com.chl.entity.Mail;
 import com.chl.service.MailService;
@@ -104,8 +105,8 @@ public @ResponseBody Map getEmail(String keyWord,Integer limit,Integer pageNum,I
 }
 //根据用户 查询自己的已发送
 @RequestMapping("/selectyMail")
-public @ResponseBody Map selectyMail(String keyWord,Integer limit,Integer pageNum,Integer id){
-  PageHelper.startPage(pageNum,limit);
+public @ResponseBody Map selectyMail(String keyWord,Integer limit,Integer page,Integer id){
+  PageHelper.startPage(page,limit);
   List<Map> list=ser.getMail(keyWord,id);
   PageInfo<Map> info=new PageInfo<Map>(list);
   Map map = new HashMap();
@@ -138,8 +139,8 @@ public @ResponseBody Map selectsEmail(String keyWord,Integer limit,Integer pageN
 
 //查询未发送邮件 草稿箱
 @RequestMapping("/selectWMail")
-public @ResponseBody Map selectWMail(String keyWord,Integer limit,Integer pageNum,Integer userId){
-    PageHelper.startPage(pageNum,limit);
+public @ResponseBody Map selectWMail(String keyWord,Integer limit,Integer page,Integer userId){
+    PageHelper.startPage(page,limit);
     System.out.println(userId);
      List<Map> list=ser.selectWMail(keyWord,userId);
     PageInfo<Map> info=new PageInfo<Map>(list);
@@ -162,8 +163,17 @@ public @ResponseBody List selectXMail(Integer emailId){
 public @ResponseBody
 String delMail(Integer emailId) {
 	System.out.println(emailId);
-    ser.delMail(emailId);
-    return "success";
+    int result=ser.delMail(emailId);
+    if (result!=0) {
+    	return "success";
+	}return "error";
+}
+// 删除到垃圾箱
+@RequestMapping("/deljMail")
+public @ResponseBody
+String deljMail(Integer emailId){
+	ser.deljMail(emailId);
+	return "success";
 }
 //根据ID查询
 
@@ -190,10 +200,30 @@ public String selectById(HttpServletRequest req,@PathVariable("emailId")int id){
 //修改草稿箱
 @RequestMapping("/updateMail")
 public @ResponseBody
-String updateUser(BasePojo map,String subject,String content ) {
-  System.out.println(map.getMap());
-  ser.updateMail(map.getMap());
-  return "success";
+String updateUser(String subject,String content,Integer emailId) {
+  ser.updateMail(subject,content,emailId);
+	  return "success";
+}
+//查询垃圾箱
+@RequestMapping("/selectlMail")
+public @ResponseBody Map selectlMail(String keyWord,Integer limit,Integer page,Integer userId){
+    PageHelper.startPage(page,limit);
+    System.out.println(userId);
+     List<Map> list=ser.selectlMail(keyWord,userId);
+    PageInfo<Map> info=new PageInfo<Map>(list);
+    Map map = new HashMap();
+    map.put("code", 0);
+    map.put("msg", "");
+    map.put("count",info.getTotal());
+    map.put("data", info.getList());
+    return map;
+}
+//恢复邮件
+@RequestMapping("/updateLMail")
+public @ResponseBody
+String updateLMail(Integer emailId){
+	ser.updateLMail(emailId);
+	return "success";
 }
 
 }

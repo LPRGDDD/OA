@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2018-11-11 17:16:36
+Date: 2018-11-13 23:55:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,20 +43,22 @@ CREATE TABLE `address_book` (
   PRIMARY KEY (`add_id`),
   KEY `FK_ADDRESS__REFERENCE_TB_TXGRO` (`group_id`),
   CONSTRAINT `FK_ADDRESS__REFERENCE_TB_TXGRO` FOREIGN KEY (`group_id`) REFERENCES `tb_txgroup` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of address_book
 -- ----------------------------
-INSERT INTO `address_book` VALUES ('1', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `address_book` VALUES ('1', '1', '1', '问问', null, ' 为', '2018-11-14', '恶趣味', '而我却', '去恶趣味', ' 我去', '213123', '12312', ' 我去额', '1231', ' 1312', '3213', '321312', '1231', null);
 INSERT INTO `address_book` VALUES ('2', '1', '1', '张扬', null, '杨杨', '2012-11-06', '销售经理11', 'dsds', '上海', '234234', '4232432', '32423423', 'sdfsfsdf', '23423423', '324234234', '23423423', '32423423432', '234234324', null);
 INSERT INTO `address_book` VALUES ('3', '1111', '1', '张扬', null, '杨杨', '2018-11-05', '销售经理', '上海有限公司', '', '', '', '', '', '', '', '', '', '', null);
-INSERT INTO `address_book` VALUES ('4', '1', '1', '网页上', '男', '', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
+INSERT INTO `address_book` VALUES ('4', '1', '1', '网页上', null, 'ddddddd', '', '哒哒哒哒哒哒多多多', 'ddddddd', '哒哒哒哒哒哒多多多', 'dddddddd', '阿萨德', ' das', '大', '啊的', '阿萨德', 'ad', '啊', '大神as', null);
 INSERT INTO `address_book` VALUES ('5', '1', '1', '网页上', '男', '', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
-INSERT INTO `address_book` VALUES ('6', '1', '1', '网页上', '男', '', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
-INSERT INTO `address_book` VALUES ('7', '1', '1', '网页上', '男', '', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
 INSERT INTO `address_book` VALUES ('8', '1', '1', '鲁发', null, '', '', '多个地方', '', '', '', '', '', '', '', '', '', '', '', null);
 INSERT INTO `address_book` VALUES ('9', '1', '1', 'USD好几年', '男', '年', '', '技术的比例', '', '', '', '', '', '', '', '', '', '', '', null);
+INSERT INTO `address_book` VALUES ('10', '1', '3', '郭迪', '男', '二位', '2018-11-07', '请问', '二位', '二位翁无', '12312312', '12312321', '12312321', '诉讼费', '123123', '12312312', '123123123123', '12312321', '12312312312', null);
+INSERT INTO `address_book` VALUES ('11', '1', '1', 'dddd', '男', '', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
+INSERT INTO `address_book` VALUES ('12', '1', '1', 'fsdfdfs ', '男', '', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
+INSERT INTO `address_book` VALUES ('13', '1', '1', 'sdfds', '男', 'fdsf', '2018-11-15', 'dsf', 'dsf', 'fsdf', 'dsfsdfds', 'fsdf', 'dsf', 'sdf', 'fsd', 'dsf', 'fds', 'fds', 'fds', null);
 
 -- ----------------------------
 -- Table structure for `apply`
@@ -100,18 +102,20 @@ CREATE TABLE `apply` (
   CONSTRAINT `FK_APPLY_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`),
   CONSTRAINT `FK_APPLY_RELATIONS_COURT` FOREIGN KEY (`cId`) REFERENCES `court` (`cId`),
   CONSTRAINT `FK_APPLY_RELATIONS_SHOP` FOREIGN KEY (`sId`) REFERENCES `shop` (`sId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of apply
 -- ----------------------------
-INSERT INTO `apply` VALUES ('1', '1', '1', '1', '1', '20', '1', '一张纸', '草稿纸', '借用', '2018-10-24', '1', '3', '1', '报废', '晨光', '稿纸', '1', '1', '1', '张山', '1', '1', '经理', '1', '2018-10-16', '1', null, null);
-INSERT INTO `apply` VALUES ('2', '1', '1', '1', '1', '15', '2', '两张纸', '草稿纸', '借用', '2018-10-31', '1', '3', '1', '不要', '晨光', '稿纸', '1', '1', '1', '李四', '1', '1', '经理', '1', '2018-10-25', '1', null, null);
-INSERT INTO `apply` VALUES ('3', '1', '3', '1', null, '2', '1', '申请个挖掘机', null, '借用', '2018-11-01', '1', '1', null, '啦啦啦', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `apply` VALUES ('4', '1', '1', '1', null, '1', '1', '申请一张纸', null, '领用', '2018-11-01', '1', '2', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `apply` VALUES ('5', '1', '2', '1', null, '2', '1', '再领一个', null, '领用', '2018-11-06', '1', '2', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `apply` VALUES ('6', '1', '4', '1', null, '1', '1', '身亲', null, '领用', '2018-11-07', '1', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `apply` VALUES ('7', '1', '4', '1', null, '1', '1', '13513', null, '领用', '2018-10-11', '1', '3', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('1', '1', '1', '1', '1', '20', '1', '一张纸', '草稿纸', '借用', '2018-10-24', '1', '5', '1', '报废', '晨光', '稿纸', '1', '1', '1', '张山', '61', '2', '经理', '1', '2018-10-16', '1', null, null);
+INSERT INTO `apply` VALUES ('2', '1', '1', '1', '1', '15', '2', '两张纸', '草稿纸', '借用', '2018-10-31', '1', '5', '1', '不要', '晨光', '稿纸', '1', '1', '1', '李四', '61', '2', '经理', '1', '2018-10-25', '1', null, null);
+INSERT INTO `apply` VALUES ('5', '1', '2', '1', null, '2', '1', '再领一个', null, '领用', '2018-11-06', '1', '4', null, null, null, null, null, null, null, null, '18', '1', null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('6', '1', '4', '1', null, '1', '1', '身亲', null, '领用', '2018-11-07', '1', '4', null, null, null, null, null, null, null, null, '18', '1', null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('7', '1', '4', '1', null, '1', '1', '13513', null, '领用', '2018-10-11', '1', '5', null, null, null, null, null, null, null, null, '18', '2', null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('8', '1', '4', '18', null, '1', '1', 'dsds', null, '领用', '2018-11-11', '18', '5', null, null, null, null, null, null, null, null, '18', '2', null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('9', '1', '2', '23', null, '2', '1', 'dddd', null, '领用', '2018-11-12', '23', '3', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('10', '1', '3', '23', null, '2', '1', 'jieyong', null, '借用', '2018-11-12', '23', '3', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `apply` VALUES ('11', '1', '4', '1', null, '1', '1', 'huihibib', null, '领用', '2018-11-12', '1', '4', null, null, null, null, null, null, null, null, '18', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `applyset`
@@ -222,13 +226,14 @@ CREATE TABLE `examination` (
   `departmentName` varchar(50) DEFAULT NULL,
   `staffName` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`exId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of examination
 -- ----------------------------
 INSERT INTO `examination` VALUES ('1', '1,', '1,', '总经办,', 'admin,');
-INSERT INTO `examination` VALUES ('2', '2,3,4,5,6,7,8,9,10,', '23,24,', '综合管理部,人力资源部,财务部,行政部,市场营销部,市场部,品牌部,网络营销中心,商务中心,', 'xiaoli,chl,');
+INSERT INTO `examination` VALUES ('2', '21,22,23,24,25,26,27,28,29,30,', '1,22,', '开发一部,开发二部,质量保证部,设计部,项目部,项目一部,项目二部,生产部,采购部,生产一部,', 'admin,gd,');
+INSERT INTO `examination` VALUES ('3', '2,3,', '1,', '综合管理部,人力资源部,', 'admin,');
 
 -- ----------------------------
 -- Table structure for `examinationrecord`
@@ -387,9 +392,9 @@ DROP TABLE IF EXISTS `hr_dimission`;
 CREATE TABLE `hr_dimission` (
   `hr_dimission_id` int(11) NOT NULL AUTO_INCREMENT,
   `dept_id` int(11) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL,
+  `hr_record_id` int(11) DEFAULT NULL,
   `hr_dimission_duty` varchar(100) DEFAULT NULL,
-  `hr_dimission_leavetype` int(11) DEFAULT NULL,
+  `hr_dimission_leavetype` varchar(100) DEFAULT NULL,
   `hr_dimission_applicationdate` date DEFAULT NULL,
   `hr_dimission_departuredate` date DEFAULT NULL,
   `hr_dimission_cutoffdate` date DEFAULT NULL,
@@ -401,14 +406,18 @@ CREATE TABLE `hr_dimission` (
   `hr_dimission_currenttime` date DEFAULT NULL,
   PRIMARY KEY (`hr_dimission_id`),
   KEY `FK_HR_DIMIS_REFERENCE_TB_DEPT` (`dept_id`),
-  KEY `FK_HR_DIMIS_REFERENCE_TB_ADMIN` (`id`),
-  CONSTRAINT `FK_HR_DIMIS_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`),
+  KEY `FK_HR_DIMIS_REFERENCE_TB_ADMIN` (`hr_record_id`),
+  CONSTRAINT `FK_HR_DIMIS_REFERENCE_TB_ADMIN` FOREIGN KEY (`hr_record_id`) REFERENCES `hr_record` (`hr_record_id`),
   CONSTRAINT `FK_HR_DIMIS_REFERENCE_TB_DEPT` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`dept_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_dimission
 -- ----------------------------
+INSERT INTO `hr_dimission` VALUES ('1', '2', '1', '大官', '离职', '2018-11-10', '2018-11-30', '2018-11-30', null, null, '回家种地', '拜拜了您嘞', 'arthur', '2018-11-11');
+INSERT INTO `hr_dimission` VALUES ('2', '5', '13', 'da', '辞职', '2018-11-10', '2018-11-30', '2018-11-30', null, null, 'ddd', 'ssss', 'arthur', '2018-11-11');
+INSERT INTO `hr_dimission` VALUES ('3', '14', '2', '2018-11-30', '退休', '2018-11-10', '2018-11-30', '2018-11-30', null, null, 'dddd', 'sssss', 'arthur', '2018-11-11');
+INSERT INTO `hr_dimission` VALUES ('4', '10', '3', '2018-11-17', '辞职', '2018-11-02', '2018-11-17', '2018-11-17', null, null, 'qqq111', 'aaaaaa22', 'arthur', '2018-11-11');
 
 -- ----------------------------
 -- Table structure for `hr_hire`
@@ -439,13 +448,14 @@ CREATE TABLE `hr_hire` (
   CONSTRAINT `FK_HR_HIRE_REFERENCE_HR_PLAN` FOREIGN KEY (`hr_plan_id`) REFERENCES `hr_plan` (`hr_plan_id`),
   CONSTRAINT `FK_HR_HIRE_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`),
   CONSTRAINT `FK_HR_HIRE_REFERENCE_TB_DEPT` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_hire
 -- ----------------------------
 INSERT INTO `hr_hire` VALUES ('1', '41', '1', null, null, '2018-11-05', '经理', null, '经理', null, '2018-11-05', '苟富贵', null, null, '42');
 INSERT INTO `hr_hire` VALUES ('2', '4', '1', null, null, '2018-10-12', 'ceo', null, '经理', '2018-10-12', '2018-10-15', '嗯嗯嗯', null, null, '8');
+INSERT INTO `hr_hire` VALUES ('3', '4', '21', null, null, '2018-11-12', '员工', null, '组长', '2018-11-12', '2018-11-13', '66', '郭迪', null, '9');
 
 -- ----------------------------
 -- Table structure for `hr_plan`
@@ -473,28 +483,29 @@ CREATE TABLE `hr_plan` (
   PRIMARY KEY (`hr_plan_id`),
   KEY `FK_HR_PLAN_REFERENCE_TB_ADMIN` (`id`),
   CONSTRAINT `FK_HR_PLAN_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_plan
 -- ----------------------------
 INSERT INTO `hr_plan` VALUES ('4', '1', '1', '超神计划', '猎头', '10000.100', '2017-07-08', '2018-01-02', '2', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者1', '招聘部门', '招聘岗位', '2018-10-18');
-INSERT INTO `hr_plan` VALUES ('23', '1', '1', '测试数据', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', null, '1', '2018-01-03', '创建者2', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('24', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件6', '1', '2018-01-03', '创建者3', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('25', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件7', '1', '2018-01-03', '创建者4', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('26', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('27', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('28', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('29', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('30', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('31', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('32', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('23', '1', '1', '测试数据', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', null, '2', '2018-01-03', '创建者2', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('24', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件6', '2', '2018-01-03', '创建者3', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('25', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件7', '2', '2018-01-03', '创建者4', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('26', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('27', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('28', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('29', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('30', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('31', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('32', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
 INSERT INTO `hr_plan` VALUES ('33', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('34', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('35', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '1', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('34', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
+INSERT INTO `hr_plan` VALUES ('35', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '2', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
 INSERT INTO `hr_plan` VALUES ('36', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '0', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
 INSERT INTO `hr_plan` VALUES ('37', '1', '1', '计划', '猎头', '10000.1', '2017-07-08', '2018-01-02', '5', '招聘说明', '招聘备注', '附件', '0', '2018-01-03', '创建者', '招聘部门', '招聘岗位', '2018-10-10');
-INSERT INTO `hr_plan` VALUES ('41', '1', '0005', 'lpr1', '猎头公司', '500', '2018-11-05', '2018-11-14', '500', 'd', 'd', null, '1', '2018-11-29', 'arthur', '销售部', '会计', '2018-11-13');
+INSERT INTO `hr_plan` VALUES ('41', '1', '0005', 'lpr1', '猎头公司', '500', '2018-11-05', '2018-11-14', '500', 'd', 'd', null, '2', '2018-11-29', 'arthur', '销售部', '会计', '2018-11-13');
+INSERT INTO `hr_plan` VALUES ('42', '1', '1888', '招聘1', '网络招聘', '50000', '2018-11-12', '2018-11-30', '50', '凄凄切切111', '招聘人员', null, '1', '2018-11-12', 'arthur', '研发部', '应用工程师', '2018-12-05');
 
 -- ----------------------------
 -- Table structure for `hr_record`
@@ -546,13 +557,13 @@ CREATE TABLE `hr_record` (
   CONSTRAINT `FK_HR_RECOR_REFERENCE_TB_DEPT` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`dept_id`),
   CONSTRAINT `FK_HR_RECOR_REFERENCE_TB_ROLES` FOREIGN KEY (`role_id`) REFERENCES `tb_roles` (`role_id`),
   CONSTRAINT `hr_record_ibfk_1` FOREIGN KEY (`hr_talents_id`) REFERENCES `hr_talents` (`hr_talents_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_record
 -- ----------------------------
 INSERT INTO `hr_record` VALUES ('1', '1', '4', '1', '木子李', 'OAName', '1', '1', '2018-10-10', '英文名', '412721199703294017', '1997-03-29', '男', '21', '民族', '15553646499', '123456789@qq.com', '婚姻状况', '政治面貌', '籍贯	', '健康', '户口所在地', '现住址 ', '1', '开发人员', '2018-10-15', '2018-10-18', null, '毕业院校', '2016-10-10', '学历', '专业', '特长', '0', '备注', null, '创建人', '2018-11-02');
-INSERT INTO `hr_record` VALUES ('2', '1', '1', '62', '张三', 'OAName', '1', '1', '2018-10-10', '英文名', '412721199703294017', '1997-03-29', '男', '21', '民族', '15553646499', '123456789@qq.com', '婚姻状况', '政治面貌', '籍贯	', '健康', '户口所在地', '现住址 ', '2', '开发人员', '2018-10-15', '2018-10-18', null, '毕业院校', '2016-10-10', '学历', '专业', '特长', '0', '备注', null, '创建人', '2018-11-02');
+INSERT INTO `hr_record` VALUES ('2', '1', '2', '62', '张三', 'OAName', '1', '1', '2018-10-10', '英文名', '412721199703294017', '1997-03-29', '男', '21', '民族', '15553646499', '123456789@qq.com', '婚姻状况', '政治面貌', '籍贯	', '健康', '户口所在地', '现住址 ', '2', '开发人员', '2018-10-15', '2018-10-18', null, '毕业院校', '2016-10-10', '学历', '专业', '特长', '0', '备注', null, '创建人', '2018-11-02');
 INSERT INTO `hr_record` VALUES ('3', '1', '2', '1', '李四', 'OAName', '1', '1', '2018-10-10', '英文名', '412721199703294017', '1997-03-29', '男', '21', '民族', '15553646499', '123456789@qq.com', '婚姻状况', '政治面貌', '籍贯	', '健康', '户口所在地', '现住址 ', '3', '开发人员', '2018-10-15', '2018-10-18', null, '毕业院校', '2016-10-10', '学历', '专业', '特长', '0', '备注', null, '创建人', '2018-11-02');
 INSERT INTO `hr_record` VALUES ('4', '1', '4', '1', '李四', 'OAName', '1', '1', '2018-10-10', '英文名', '412721199703294017', '1997-03-29', '男', '21', '民族', '15553646499', '123456789@qq.com', '婚姻状况', '政治面貌', '籍贯	', '健康', '户口所在地', '现住址 ', '4', '开发人员', '2018-10-15', '2018-10-18', null, '毕业院校', '2016-10-10', '学历', '专业', '特长', '0', '备注', null, '创建人', '2018-11-02');
 INSERT INTO `hr_record` VALUES ('5', '2', '6', '1', '王五1', 'OAName', '1', '1', '2018-10-10', '英文名', '412721199703294017', '1997-03-29', '男', '21', '民族', '15553646499', '123456789@qq.com', '婚姻状况', '政治面貌', '籍贯	', '健康', '户口所在地', '现住址 ', '1', '开发人员', '2018-10-15', '2018-10-18', null, '毕业院校', '2016-10-10', '学历', '专业', '特长', '0', '备注', null, '创建人', '2018-11-02');
@@ -583,6 +594,7 @@ INSERT INTO `hr_record` VALUES ('35', null, '1', '1', '上下7', 'SX7', '1203', 
 INSERT INTO `hr_record` VALUES ('36', null, '3', '62', '大神12', 'DS12', '1230', '1230', '2018-10-23', 'ds', '41272119960510', null, '男', '21', '汉', '15239474900', '123456789@qq.com', '极光中雪白的肌肤', '偷睡的书桌', '河南省', '健康', '河南郑州金水区', '河南新乡', '十级', '开发', '2018-11-08', '2018-11-10', null, '毕业学校', '2018-06-06', '大专', '电子信息', '想法特长', '0', 'sss', null, 'arthur', '2018-11-07');
 INSERT INTO `hr_record` VALUES ('37', null, null, '61', '上下7', 'SX7', '1203', null, '2018-10-23', null, '412721199710154015', '2018-11-08', '男', '21', '汉', '15239474900', '123456789@qq.com', '未婚可撩', '共青团员1', null, '健康', '河南郑州金水区', '河南新乡', '十级', '开发', '2018-11-08', '2018-11-10', null, '毕业学校', '2018-06-06', '大专', '电子信息', '想法特长', null, '水电费', null, 'arthur', '2018-11-07');
 INSERT INTO `hr_record` VALUES ('38', null, '1', '1', '上下', 'sx', '1231233', '1231233', '2018-10-23', 'sx', '410928199504094817', null, '男', '27', '汉', '15239474900', '123456789@qq.com', '未婚可撩', '共青团员', '河南省', '健康', '河南郑州金水区', '河南新乡', '正式录用', '开发', null, null, null, '毕业学校', '2018-06-06', '大专', '电子信息', '想法特长', '0', 'ffffff', null, 'arthur', '2018-11-11');
+INSERT INTO `hr_record` VALUES ('39', null, '1', '1', '上下', 'ssx', '123', '521', '2018-10-23', 'sx', '41092819950487414', null, '男', '28', '汉', '15239474900', '123456789@qq.com', '未婚可撩', '共青团员', '河南省', '健康', '河南郑州金水区', '河南新乡', '合同工', '开发', null, null, null, '毕业学校', '2018-06-06', '大专', '电子信息', '想法特长', '0', '顶顶顶顶', null, '郭迪', '2018-11-12');
 
 -- ----------------------------
 -- Table structure for `hr_screen`
@@ -608,7 +620,7 @@ CREATE TABLE `hr_screen` (
   CONSTRAINT `hr_screen_ibfk_2` FOREIGN KEY (`hr_talents_id`) REFERENCES `hr_talents` (`hr_talents_id`),
   CONSTRAINT `FK_HR_SCREE_REFERENCE_HR_PLAN` FOREIGN KEY (`hr_plan_id`) REFERENCES `hr_plan` (`hr_plan_id`),
   CONSTRAINT `hr_screen_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_screen
@@ -616,6 +628,8 @@ CREATE TABLE `hr_screen` (
 INSERT INTO `hr_screen` VALUES ('1', '41', '1', null, '面试', '计算', '通过', '2018-11-06', null, 'arthur', '2018-11-05', '42');
 INSERT INTO `hr_screen` VALUES ('2', '4', '22', null, null, null, null, null, null, 'arthur', '2018-10-12', '5');
 INSERT INTO `hr_screen` VALUES ('3', '4', '1', null, '笔试', '仪容仪表', '通过', '2018-10-12', null, 'arthur', '2018-10-12', '8');
+INSERT INTO `hr_screen` VALUES ('4', '4', '22', null, '面试', 'hdakshd', 'tg', '2018-11-12', null, 'arthur', '2018-11-12', '9');
+INSERT INTO `hr_screen` VALUES ('5', '42', '1', null, '笔试', '方法', '方法 ', '2018-11-12', null, 'arthur', '2018-11-13', '44');
 
 -- ----------------------------
 -- Table structure for `hr_talents`
@@ -625,6 +639,7 @@ CREATE TABLE `hr_talents` (
   `hr_talents_id` int(11) NOT NULL AUTO_INCREMENT,
   `hr_plan_id` int(11) DEFAULT NULL,
   `hr_talents_name` varchar(100) DEFAULT NULL,
+  `hr_talents_identity` varchar(100) DEFAULT NULL,
   `hr_talents_birth` date DEFAULT NULL,
   `hr_talents_sex` varchar(100) DEFAULT NULL,
   `hr_talents_age` int(11) DEFAULT NULL,
@@ -665,31 +680,25 @@ CREATE TABLE `hr_talents` (
   PRIMARY KEY (`hr_talents_id`),
   KEY `FK_HR_TALEN_REFERENCE_HR_PLAN` (`hr_plan_id`),
   CONSTRAINT `FK_HR_TALEN_REFERENCE_HR_PLAN` FOREIGN KEY (`hr_plan_id`) REFERENCES `hr_plan` (`hr_plan_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_talents
 -- ----------------------------
-INSERT INTO `hr_talents` VALUES ('1', '4', '大神', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
-INSERT INTO `hr_talents` VALUES ('2', '4', '大神', '1997-03-30', '男', '22', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
-INSERT INTO `hr_talents` VALUES ('3', '24', '大神', '1997-03-30', '男', '23', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
-INSERT INTO `hr_talents` VALUES ('4', '4', '郭迪', '1997-03-30', '男', '24', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', null, '李', '开发');
-INSERT INTO `hr_talents` VALUES ('5', '4', '上下', '1997-03-30', '男', '25', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '1', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('6', '4', '大神', '1997-03-30', '男', '26', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
-INSERT INTO `hr_talents` VALUES ('8', '4', '上下', '1997-03-30', '男', '27', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '5', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('9', '4', '上下', '1997-03-30', '男', '28', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('10', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('11', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('12', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('13', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('14', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('15', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('16', '4', '上下', '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
-INSERT INTO `hr_talents` VALUES ('38', '4', '士大夫', '2018-10-24', '男', '20', '河南', '和那', '汉', '未婚', '撒旦', '65165165', null, '2018-10-24', '爱的', '阿瑟东', '阿瑟东', '2018-10-24', '大幅', '阿瑟东', '阿瑟东', '大风车', '爱的', '盛大的', null, '撒旦', '撒大', '的城市', '洒出', '按市场', '撒擦擦', '撒擦擦', '21421', null, '士大夫', '阿瑟东', '阿瑟东', '1', '大神', '开发');
-INSERT INTO `hr_talents` VALUES ('39', '4', '士大夫', '2018-10-24', '男', '20', '河南', '和那', '汉', '未婚', '撒旦', '65165165', null, '2018-10-24', '爱的', '阿瑟东', '阿瑟东', '2018-10-24', '大幅', '阿瑟东', '阿瑟东', '大风车', '爱的', '盛大的', '2018-10-24', '撒旦', '撒大', '的城市', '洒出', '按市场', '撒擦擦', '撒擦擦', '21421', null, '士大夫', '阿瑟东', '阿瑟东', '1', '大神', '开发');
-INSERT INTO `hr_talents` VALUES ('40', '4', '士大夫', '2018-10-24', '男', '20', '河南', '和那', '汉', '未婚', '撒旦', '65165165', null, '2018-10-24', '爱的', '阿瑟东', '阿瑟东', '2018-10-24', '大幅', '阿瑟东', '阿瑟东', '大风车', '爱的', '盛大的', '2018-10-23', '撒旦', '撒大', '的城市', '洒出', '按市场', '撒擦擦', '撒擦擦', '21421', null, '士大夫', '阿瑟东', '阿瑟东', '1', '大神', '开发');
-INSERT INTO `hr_talents` VALUES ('41', '4', '士大夫', '2018-10-24', '男', '20', '河南', '和那', '汉', '未婚', '撒旦', '65165165', null, '2018-10-24', '爱的', '阿瑟东', '阿瑟东', '2018-10-24', '大幅', '阿瑟东', '阿瑟东', '大风车', '爱的', '盛大的', '2018-10-26', '撒旦', '撒大', '的城市', '洒出', '按市场', '撒擦擦', '撒擦擦', '21421', null, '士大夫', '阿瑟东', '阿瑟东', '1', '大神', '开发');
-INSERT INTO `hr_talents` VALUES ('42', '41', 'lpr', '2018-11-05', '男', '19', '打', '鼎折覆餗', '汉', '未婚', '中共党员', '1635256336', '1144512404@qq.com', '2018-11-02', '健康', '博士', '学士学位', '2018-11-14', '大萨达', '哲学', '二级', '', '放到', '放到', '2018-11-13', '辅导费', '放到', '个的', '辅导费', '地方', '规范', '放到f', '', '2', null, 'f', null, '4', 'arthur', '项目经理');
+INSERT INTO `hr_talents` VALUES ('1', '4', '大神', null, '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
+INSERT INTO `hr_talents` VALUES ('2', '4', '大神', null, '1997-03-30', '男', '22', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
+INSERT INTO `hr_talents` VALUES ('3', '24', '大神', null, '1997-03-30', '男', '23', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
+INSERT INTO `hr_talents` VALUES ('4', '4', '郭迪', '410928199405048147', '1997-03-30', '男', '24', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', null, '李', '开发');
+INSERT INTO `hr_talents` VALUES ('5', '4', '上下', null, '1997-03-30', '男', '25', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '1', '李', '开发');
+INSERT INTO `hr_talents` VALUES ('6', '4', '大神', null, '1997-03-30', '男', '26', '河南省', '河南郑州金水区', '汉', '极光中雪白的肌肤', '偷睡的书桌', '15239474900', '123456789@qq.com', '2018-10-16', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '8000', '1', '照骗', '备注', '附件', '1', '小', '开发');
+INSERT INTO `hr_talents` VALUES ('8', '4', '上下', null, '1997-03-30', '男', '27', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '4', '李', '开发');
+INSERT INTO `hr_talents` VALUES ('9', '4', '上下', null, '1997-03-30', '男', '28', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
+INSERT INTO `hr_talents` VALUES ('14', '4', '上下', null, '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
+INSERT INTO `hr_talents` VALUES ('15', '4', '上下', null, '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
+INSERT INTO `hr_talents` VALUES ('16', '4', '上下', null, '1997-03-30', '男', '21', '河南省', '河南郑州金水区', '汉', '未婚可撩', '共青团员', '15239474900', '123456789@qq.com', '2018-10-10', '健康', '大专', '学位', '2018-06-06', '毕业学校', '电子信息', '计算机二级', '日语', '十级', '想法特长', '2018-10-23', '开发', '熟悉java语言', '工作经验', '项目经验', '河南新乡', '实习', 'IT', '800', '1', '照骗', '备注', '附件', '0', '李', '开发');
+INSERT INTO `hr_talents` VALUES ('38', '4', '士大夫', null, '2018-10-24', '男', '20', '河南', '和那', '汉', '未婚', '撒旦', '65165165', null, '2018-10-24', '爱的', '阿瑟东', '阿瑟东', '2018-10-24', '大幅', '阿瑟东', '阿瑟东', '大风车', '爱的', '盛大的', null, '撒旦', '撒大', '的城市', '洒出', '按市场', '撒擦擦', '撒擦擦', '21421', null, '士大夫', '阿瑟东', '阿瑟东', '1', '大神', '开发');
+INSERT INTO `hr_talents` VALUES ('42', '41', 'lpr', null, '2018-11-05', '男', '19', '打', '鼎折覆餗', '汉', '未婚', '中共党员', '1635256336', '1144512404@qq.com', '2018-11-02', '健康', '博士', '学士学位', '2018-11-14', '大萨达', '哲学', '二级', '', '放到', '放到', '2018-11-13', '辅导费', '放到', '个的', '辅导费', '地方', '规范', '放到f', '', '2', null, 'f', null, '4', 'arthur', '项目经理');
+INSERT INTO `hr_talents` VALUES ('44', '42', '王晓小', '410928199585854521', '2018-11-12', '男', '20', '濮阳', '濮阳', '汉', '未婚', '中共党员', '13525696552', '1144512404@qq.com', '2018-11-12', '健康', '硕士', '硕士学位', '2018-11-21', '', '哲学', '四级', '', '', '121', '2018-11-12', '', '', '', '', '', '', '', '50000', '0', null, '', null, '2', 'arthur', '开发人员');
 
 -- ----------------------------
 -- Table structure for `hr_transfer`
@@ -721,7 +730,7 @@ CREATE TABLE `hr_transfer` (
   CONSTRAINT `FK_HR_TRANS_REFERENCE_TB_ADMIN` FOREIGN KEY (`hr_record_id`) REFERENCES `hr_record` (`hr_record_id`),
   CONSTRAINT `FK_HR_TRANS_REFERENCE_TB_DEPT` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`dept_id`),
   CONSTRAINT `FK_HR_TRANS_REFERENCE_TB_ROLES` FOREIGN KEY (`role_id`) REFERENCES `tb_roles` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hr_transfer
@@ -734,6 +743,7 @@ INSERT INTO `hr_transfer` VALUES ('5', '1', '61', '1', '降级', '2018-11-09', '
 INSERT INTO `hr_transfer` VALUES ('6', '3', '62', '1', '平调', '2018-11-09', '2018-11-10', 'acas', 'acas', 'saddasd', 'sdaasd', 'asdasd', 'sadasd', '2018-11-11', 'arthur', '2018-11-10', '总经办', null);
 INSERT INTO `hr_transfer` VALUES ('7', '2', '1', '33', '晋升', '2018-11-09', '2018-11-10', 'terg', 'dsfd', 'dfdf', 'dfdsf', 'dfdfs', 'dfsdf', null, 'arthur', '2018-11-10', '行政部', null);
 INSERT INTO `hr_transfer` VALUES ('8', '4', '1', '1', '晋升', '2018-11-11', '2018-11-12', 'qwe', 'qwe', 'qwe', 'qwe', 'ee', 'ee', '2018-11-11', 'arthur', '2018-11-11', '综合管理部', null);
+INSERT INTO `hr_transfer` VALUES ('9', '2', '1', '2', '降级', null, '2018-11-13', '1', '2', '', '', '蝴蝶飞', '放到', null, '郭迪', '2018-11-12', '总经办', null);
 
 -- ----------------------------
 -- Table structure for `jobwork`
@@ -824,13 +834,41 @@ CREATE TABLE `notify` (
   CONSTRAINT `FK_NOTIFY_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`),
   CONSTRAINT `FK_NOTIFY_REFERENCE_TB_DEPT` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`dept_id`),
   CONSTRAINT `FK_NOTIFY_REFERENCE_TB_NOTIF` FOREIGN KEY (`type_id`) REFERENCES `tb_notifytype` (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notify
 -- ----------------------------
-INSERT INTO `notify` VALUES ('1', '1', '1', '1', '第一次测试', '通知开会', '2018-11-09 16:13:23', '生效');
+INSERT INTO `notify` VALUES ('1', '1', '1', '1', '第一次测试', '通知开会', '2018-11-09 16:13:23', '失效');
 INSERT INTO `notify` VALUES ('2', '2', '1', '1', '第一次测试', '通知开会', '2018-11-09 16:13:23', '生效');
+INSERT INTO `notify` VALUES ('3', '2', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('4', '3', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('5', '4', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('6', '5', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('7', '7', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('8', '8', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('9', '9', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('10', '10', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('11', '12', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('12', '13', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:18', '生效');
+INSERT INTO `notify` VALUES ('13', '14', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('14', '15', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('15', '17', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('16', '18', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('17', '19', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('18', '20', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('19', '22', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('20', '23', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('21', '24', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('22', '25', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('23', '27', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('24', '28', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('25', '29', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('26', '30', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('27', '32', '1', '1', '顶顶顶顶', '  <img src=\"http://localhost:8080/oa/layui/images/face/0.gif\" alt=\"[微笑]\"><b>持续成长性发顺丰水电费第三方</b><u><b></b></u>', '2018-11-13 22:45:19', '生效');
+INSERT INTO `notify` VALUES ('28', '2', '1', '24', 'ggggggg', '<b><i>  <img src=\"http://localhost:8080/oa/layui/images/face/41.gif\" alt=\"[悲伤]\">dsadasdas&nbsp;</i></b>', '2018-11-13 22:51:09', '生效');
+INSERT INTO `notify` VALUES ('29', '3', '1', '24', 'ggggggg', '<b><i>  <img src=\"http://localhost:8080/oa/layui/images/face/41.gif\" alt=\"[悲伤]\">dsadasdas&nbsp;</i></b>', '2018-11-13 22:51:09', '生效');
+INSERT INTO `notify` VALUES ('30', '4', '2', '22', '通报迟到的人', '<a target=\"_blank\" href=\"http://localhost:8080/oa/index.jsp\">http://localhost:8080/oa/index.jsp<img src=\"http://localhost:8080/oa/layui/images/face/29.gif\" alt=\"[拜拜]\"></a>\n', '2018-11-13 23:00:26', '生效');
 
 -- ----------------------------
 -- Table structure for `pbjl`
@@ -852,7 +890,7 @@ CREATE TABLE `pbjl` (
   PRIMARY KEY (`pid`),
   KEY `ssss` (`id`),
   CONSTRAINT `ssss` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1903 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1993 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pbjl
@@ -887,6 +925,96 @@ INSERT INTO `pbjl` VALUES ('1899', '2018-11-27', '2018-11-27 09:00:00', '2018-11
 INSERT INTO `pbjl` VALUES ('1900', '2018-11-28', '2018-11-28 09:00:00', '2018-11-28 12:00:00', '2018-11-28 02:00:00', '2018-11-28 18:00:00', '1', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
 INSERT INTO `pbjl` VALUES ('1901', '2018-11-29', '2018-11-29 09:00:00', '2018-11-29 12:00:00', '2018-11-29 02:00:00', '2018-11-29 18:00:00', '1', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
 INSERT INTO `pbjl` VALUES ('1902', '2018-11-30', '2018-11-30 09:00:00', '2018-11-30 12:00:00', '2018-11-30 02:00:00', '2018-11-30 18:00:00', '1', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1903', '2018-11-01', '2018-11-01 09:00:00', '2018-11-01 12:00:00', '2018-11-01 02:00:00', '2018-11-01 18:00:00', '23', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1904', '2018-11-02', '2018-11-02 09:00:00', '2018-11-02 12:00:00', '2018-11-02 02:00:00', '2018-11-02 18:00:00', '23', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1905', '2018-11-03', '2018-11-03 09:00:00', '2018-11-03 12:00:00', '2018-11-03 02:00:00', '2018-11-03 18:00:00', '23', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1906', '2018-11-04', '2018-11-04 09:00:00', '2018-11-04 12:00:00', '2018-11-04 02:00:00', '2018-11-04 18:00:00', '23', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1907', '2018-11-05', '2018-11-05 09:00:00', '2018-11-05 12:00:00', '2018-11-05 02:00:00', '2018-11-05 18:00:00', '23', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1908', '2018-11-06', '2018-11-06 09:00:00', '2018-11-06 12:00:00', '2018-11-06 02:00:00', '2018-11-06 18:00:00', '23', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1909', '2018-11-07', '2018-11-07 09:00:00', '2018-11-07 12:00:00', '2018-11-07 02:00:00', '2018-11-07 18:00:00', '23', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1910', '2018-11-08', '2018-11-08 09:00:00', '2018-11-08 12:00:00', '2018-11-08 02:00:00', '2018-11-08 18:00:00', '23', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1911', '2018-11-09', '2018-11-09 09:00:00', '2018-11-09 12:00:00', '2018-11-09 02:00:00', '2018-11-09 18:00:00', '23', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1912', '2018-11-10', '2018-11-10 09:00:00', '2018-11-10 12:00:00', '2018-11-10 02:00:00', '2018-11-10 18:00:00', '23', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1913', '2018-11-11', '2018-11-11 09:00:00', '2018-11-11 12:00:00', '2018-11-11 02:00:00', '2018-11-11 18:00:00', '23', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1914', '2018-11-12', '2018-11-12 09:00:00', '2018-11-12 12:00:00', '2018-11-12 02:00:00', '2018-11-12 18:00:00', '23', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1915', '2018-11-13', '2018-11-13 09:00:00', '2018-11-13 12:00:00', '2018-11-13 02:00:00', '2018-11-13 18:00:00', '23', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1916', '2018-11-14', '2018-11-14 09:00:00', '2018-11-14 12:00:00', '2018-11-14 02:00:00', '2018-11-14 18:00:00', '23', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1917', '2018-11-15', '2018-11-15 09:00:00', '2018-11-15 12:00:00', '2018-11-15 02:00:00', '2018-11-15 18:00:00', '23', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1918', '2018-11-16', '2018-11-16 09:00:00', '2018-11-16 12:00:00', '2018-11-16 02:00:00', '2018-11-16 18:00:00', '23', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1919', '2018-11-17', '2018-11-17 09:00:00', '2018-11-17 12:00:00', '2018-11-17 02:00:00', '2018-11-17 18:00:00', '23', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1920', '2018-11-18', '2018-11-18 09:00:00', '2018-11-18 12:00:00', '2018-11-18 02:00:00', '2018-11-18 18:00:00', '23', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1921', '2018-11-19', '2018-11-19 09:00:00', '2018-11-19 12:00:00', '2018-11-19 02:00:00', '2018-11-19 18:00:00', '23', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1922', '2018-11-20', '2018-11-20 09:00:00', '2018-11-20 12:00:00', '2018-11-20 02:00:00', '2018-11-20 18:00:00', '23', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1923', '2018-11-21', '2018-11-21 09:00:00', '2018-11-21 12:00:00', '2018-11-21 02:00:00', '2018-11-21 18:00:00', '23', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1924', '2018-11-22', '2018-11-22 09:00:00', '2018-11-22 12:00:00', '2018-11-22 02:00:00', '2018-11-22 18:00:00', '23', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1925', '2018-11-23', '2018-11-23 09:00:00', '2018-11-23 12:00:00', '2018-11-23 02:00:00', '2018-11-23 18:00:00', '23', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1926', '2018-11-24', '2018-11-24 09:00:00', '2018-11-24 12:00:00', '2018-11-24 02:00:00', '2018-11-24 18:00:00', '23', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1927', '2018-11-25', '2018-11-25 09:00:00', '2018-11-25 12:00:00', '2018-11-25 02:00:00', '2018-11-25 18:00:00', '23', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1928', '2018-11-26', '2018-11-26 09:00:00', '2018-11-26 12:00:00', '2018-11-26 02:00:00', '2018-11-26 18:00:00', '23', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1929', '2018-11-27', '2018-11-27 09:00:00', '2018-11-27 12:00:00', '2018-11-27 02:00:00', '2018-11-27 18:00:00', '23', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1930', '2018-11-28', '2018-11-28 09:00:00', '2018-11-28 12:00:00', '2018-11-28 02:00:00', '2018-11-28 18:00:00', '23', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1931', '2018-11-29', '2018-11-29 09:00:00', '2018-11-29 12:00:00', '2018-11-29 02:00:00', '2018-11-29 18:00:00', '23', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1932', '2018-11-30', '2018-11-30 09:00:00', '2018-11-30 12:00:00', '2018-11-30 02:00:00', '2018-11-30 18:00:00', '23', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1933', '2018-11-01', '2018-11-01 09:00:00', '2018-11-01 12:00:00', '2018-11-01 02:00:00', '2018-11-01 18:00:00', '22', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1934', '2018-11-02', '2018-11-02 09:00:00', '2018-11-02 12:00:00', '2018-11-02 02:00:00', '2018-11-02 18:00:00', '22', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1935', '2018-11-03', '2018-11-03 09:00:00', '2018-11-03 12:00:00', '2018-11-03 02:00:00', '2018-11-03 18:00:00', '22', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1936', '2018-11-04', '2018-11-04 09:00:00', '2018-11-04 12:00:00', '2018-11-04 02:00:00', '2018-11-04 18:00:00', '22', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1937', '2018-11-05', '2018-11-05 09:00:00', '2018-11-05 12:00:00', '2018-11-05 02:00:00', '2018-11-05 18:00:00', '22', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1938', '2018-11-06', '2018-11-06 09:00:00', '2018-11-06 12:00:00', '2018-11-06 02:00:00', '2018-11-06 18:00:00', '22', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1939', '2018-11-07', '2018-11-07 09:00:00', '2018-11-07 12:00:00', '2018-11-07 02:00:00', '2018-11-07 18:00:00', '22', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1940', '2018-11-08', '2018-11-08 09:00:00', '2018-11-08 12:00:00', '2018-11-08 02:00:00', '2018-11-08 18:00:00', '22', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1941', '2018-11-09', '2018-11-09 09:00:00', '2018-11-09 12:00:00', '2018-11-09 02:00:00', '2018-11-09 18:00:00', '22', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1942', '2018-11-10', '2018-11-10 09:00:00', '2018-11-10 12:00:00', '2018-11-10 02:00:00', '2018-11-10 18:00:00', '22', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1943', '2018-11-11', '2018-11-11 09:00:00', '2018-11-11 12:00:00', '2018-11-11 02:00:00', '2018-11-11 18:00:00', '22', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1944', '2018-11-12', '2018-11-12 09:00:00', '2018-11-12 12:00:00', '2018-11-12 02:00:00', '2018-11-12 18:00:00', '22', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1945', '2018-11-13', '2018-11-13 09:00:00', '2018-11-13 12:00:00', '2018-11-13 02:00:00', '2018-11-13 18:00:00', '22', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1946', '2018-11-14', '2018-11-14 09:00:00', '2018-11-14 12:00:00', '2018-11-14 02:00:00', '2018-11-14 18:00:00', '22', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1947', '2018-11-15', '2018-11-15 09:00:00', '2018-11-15 12:00:00', '2018-11-15 02:00:00', '2018-11-15 18:00:00', '22', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1948', '2018-11-16', '2018-11-16 09:00:00', '2018-11-16 12:00:00', '2018-11-16 02:00:00', '2018-11-16 18:00:00', '22', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1949', '2018-11-17', '2018-11-17 09:00:00', '2018-11-17 12:00:00', '2018-11-17 02:00:00', '2018-11-17 18:00:00', '22', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1950', '2018-11-18', '2018-11-18 09:00:00', '2018-11-18 12:00:00', '2018-11-18 02:00:00', '2018-11-18 18:00:00', '22', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1951', '2018-11-19', '2018-11-19 09:00:00', '2018-11-19 12:00:00', '2018-11-19 02:00:00', '2018-11-19 18:00:00', '22', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1952', '2018-11-20', '2018-11-20 09:00:00', '2018-11-20 12:00:00', '2018-11-20 02:00:00', '2018-11-20 18:00:00', '22', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1953', '2018-11-21', '2018-11-21 09:00:00', '2018-11-21 12:00:00', '2018-11-21 02:00:00', '2018-11-21 18:00:00', '22', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1954', '2018-11-22', '2018-11-22 09:00:00', '2018-11-22 12:00:00', '2018-11-22 02:00:00', '2018-11-22 18:00:00', '22', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1955', '2018-11-23', '2018-11-23 09:00:00', '2018-11-23 12:00:00', '2018-11-23 02:00:00', '2018-11-23 18:00:00', '22', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1956', '2018-11-24', '2018-11-24 09:00:00', '2018-11-24 12:00:00', '2018-11-24 02:00:00', '2018-11-24 18:00:00', '22', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1957', '2018-11-25', '2018-11-25 09:00:00', '2018-11-25 12:00:00', '2018-11-25 02:00:00', '2018-11-25 18:00:00', '22', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1958', '2018-11-26', '2018-11-26 09:00:00', '2018-11-26 12:00:00', '2018-11-26 02:00:00', '2018-11-26 18:00:00', '22', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1959', '2018-11-27', '2018-11-27 09:00:00', '2018-11-27 12:00:00', '2018-11-27 02:00:00', '2018-11-27 18:00:00', '22', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1960', '2018-11-28', '2018-11-28 09:00:00', '2018-11-28 12:00:00', '2018-11-28 02:00:00', '2018-11-28 18:00:00', '22', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1961', '2018-11-29', '2018-11-29 09:00:00', '2018-11-29 12:00:00', '2018-11-29 02:00:00', '2018-11-29 18:00:00', '22', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1962', '2018-11-30', '2018-11-30 09:00:00', '2018-11-30 12:00:00', '2018-11-30 02:00:00', '2018-11-30 18:00:00', '22', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1963', '2018-11-01', '2018-11-01 09:00:00', '2018-11-01 12:00:00', '2018-11-01 02:00:00', '2018-11-01 18:00:00', '19', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1964', '2018-11-02', '2018-11-02 09:00:00', '2018-11-02 12:00:00', '2018-11-02 02:00:00', '2018-11-02 18:00:00', '19', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1965', '2018-11-03', '2018-11-03 09:00:00', '2018-11-03 12:00:00', '2018-11-03 02:00:00', '2018-11-03 18:00:00', '19', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1966', '2018-11-04', '2018-11-04 09:00:00', '2018-11-04 12:00:00', '2018-11-04 02:00:00', '2018-11-04 18:00:00', '19', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1967', '2018-11-05', '2018-11-05 09:00:00', '2018-11-05 12:00:00', '2018-11-05 02:00:00', '2018-11-05 18:00:00', '19', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1968', '2018-11-06', '2018-11-06 09:00:00', '2018-11-06 12:00:00', '2018-11-06 02:00:00', '2018-11-06 18:00:00', '19', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1969', '2018-11-07', '2018-11-07 09:00:00', '2018-11-07 12:00:00', '2018-11-07 02:00:00', '2018-11-07 18:00:00', '19', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1970', '2018-11-08', '2018-11-08 09:00:00', '2018-11-08 12:00:00', '2018-11-08 02:00:00', '2018-11-08 18:00:00', '19', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1971', '2018-11-09', '2018-11-09 09:00:00', '2018-11-09 12:00:00', '2018-11-09 02:00:00', '2018-11-09 18:00:00', '19', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1972', '2018-11-10', '2018-11-10 09:00:00', '2018-11-10 12:00:00', '2018-11-10 02:00:00', '2018-11-10 18:00:00', '19', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1973', '2018-11-11', '2018-11-11 09:00:00', '2018-11-11 12:00:00', '2018-11-11 02:00:00', '2018-11-11 18:00:00', '19', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1974', '2018-11-12', '2018-11-12 09:00:00', '2018-11-12 12:00:00', '2018-11-12 02:00:00', '2018-11-12 18:00:00', '19', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1975', '2018-11-13', '2018-11-13 09:00:00', '2018-11-13 12:00:00', '2018-11-13 02:00:00', '2018-11-13 18:00:00', '19', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1976', '2018-11-14', '2018-11-14 09:00:00', '2018-11-14 12:00:00', '2018-11-14 02:00:00', '2018-11-14 18:00:00', '19', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1977', '2018-11-15', '2018-11-15 09:00:00', '2018-11-15 12:00:00', '2018-11-15 02:00:00', '2018-11-15 18:00:00', '19', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1978', '2018-11-16', '2018-11-16 09:00:00', '2018-11-16 12:00:00', '2018-11-16 02:00:00', '2018-11-16 18:00:00', '19', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1979', '2018-11-17', '2018-11-17 09:00:00', '2018-11-17 12:00:00', '2018-11-17 02:00:00', '2018-11-17 18:00:00', '19', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1980', '2018-11-18', '2018-11-18 09:00:00', '2018-11-18 12:00:00', '2018-11-18 02:00:00', '2018-11-18 18:00:00', '19', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1981', '2018-11-19', '2018-11-19 09:00:00', '2018-11-19 12:00:00', '2018-11-19 02:00:00', '2018-11-19 18:00:00', '19', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1982', '2018-11-20', '2018-11-20 09:00:00', '2018-11-20 12:00:00', '2018-11-20 02:00:00', '2018-11-20 18:00:00', '19', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1983', '2018-11-21', '2018-11-21 09:00:00', '2018-11-21 12:00:00', '2018-11-21 02:00:00', '2018-11-21 18:00:00', '19', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1984', '2018-11-22', '2018-11-22 09:00:00', '2018-11-22 12:00:00', '2018-11-22 02:00:00', '2018-11-22 18:00:00', '19', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1985', '2018-11-23', '2018-11-23 09:00:00', '2018-11-23 12:00:00', '2018-11-23 02:00:00', '2018-11-23 18:00:00', '19', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1986', '2018-11-24', '2018-11-24 09:00:00', '2018-11-24 12:00:00', '2018-11-24 02:00:00', '2018-11-24 18:00:00', '19', '星期六', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1987', '2018-11-25', '2018-11-25 09:00:00', '2018-11-25 12:00:00', '2018-11-25 02:00:00', '2018-11-25 18:00:00', '19', '星期日', '休息', '休息', '休息', '休息');
+INSERT INTO `pbjl` VALUES ('1988', '2018-11-26', '2018-11-26 09:00:00', '2018-11-26 12:00:00', '2018-11-26 02:00:00', '2018-11-26 18:00:00', '19', '星期一', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1989', '2018-11-27', '2018-11-27 09:00:00', '2018-11-27 12:00:00', '2018-11-27 02:00:00', '2018-11-27 18:00:00', '19', '星期二', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1990', '2018-11-28', '2018-11-28 09:00:00', '2018-11-28 12:00:00', '2018-11-28 02:00:00', '2018-11-28 18:00:00', '19', '星期三', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1991', '2018-11-29', '2018-11-29 09:00:00', '2018-11-29 12:00:00', '2018-11-29 02:00:00', '2018-11-29 18:00:00', '19', '星期四', '缺勤', '缺勤', '缺勤', '缺勤');
+INSERT INTO `pbjl` VALUES ('1992', '2018-11-30', '2018-11-30 09:00:00', '2018-11-30 12:00:00', '2018-11-30 02:00:00', '2018-11-30 18:00:00', '19', '星期五', '缺勤', '缺勤', '缺勤', '缺勤');
 
 -- ----------------------------
 -- Table structure for `qingtype`
@@ -997,16 +1125,17 @@ CREATE TABLE `shop` (
   KEY `FK_SHOP_REFERENCE_GOOD_TYP` (`goId`),
   CONSTRAINT `FK_SHOP_REFERENCE_GOOD_TYP` FOREIGN KEY (`goId`) REFERENCES `goodtype` (`goId`),
   CONSTRAINT `FK_SHOP_RELATIONS_COURT` FOREIGN KEY (`cId`) REFERENCES `court` (`cId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop
 -- ----------------------------
-INSERT INTO `shop` VALUES ('1', '2', '1', '草稿纸', '1', '附件', '消耗品', '789789', '1', '晨光', '500', '50', '95', '50', '1', '1', '123', '李', '1', '1', '1', '2018-11-05');
-INSERT INTO `shop` VALUES ('2', '1', '1', '签字笔', '1', '附件', '消耗品', '123456', '2', '得力', '50', '10', '20', '20', '1', '1', 'admin', '1', null, null, null, '2018-11-05');
-INSERT INTO `shop` VALUES ('3', '1', '2', '蓝翔挖掘机', '1', '附件', '小号', '123456', '2', '啦啦', '20', '50', '30', '30', '1', '1', null, '1', null, null, null, '2018-11-28');
-INSERT INTO `shop` VALUES ('4', '1', '2', '冰露', '1', '附', '1', '12333', '1', '经', '50', '20', '24', '25', null, null, null, '1', null, null, null, '2018-11-06');
+INSERT INTO `shop` VALUES ('1', '2', '1', '草稿纸', '1', '附件', '消耗品', '789789', '1', '晨光', '500', '50', '97', '50', '1', '1', '123', '李', '1', '1', '1', '2018-11-05');
+INSERT INTO `shop` VALUES ('2', '1', '1', '签字笔', '1', '附件', '消耗品', '123456', '2', '得力', '50', '10', '18', '20', '1', '1', 'admin', '1', null, null, null, '2018-11-05');
+INSERT INTO `shop` VALUES ('3', '1', '2', '蓝翔挖掘机', '1', '附件', '小号', '123456', '2', '啦啦', '20', '50', '29', '30', '1', '1', null, '1', null, null, null, '2018-11-28');
+INSERT INTO `shop` VALUES ('4', '1', '2', '冰露', '1', '附', '1', '12333', '1', '经', '50', '20', '23', '25', null, null, null, '1', null, null, null, '2018-11-06');
 INSERT INTO `shop` VALUES ('5', '1', null, 'ceshi', null, '1', '1', '1', '1', '1', '30', '10', '15', '15', null, null, null, '1', null, null, null, '2018-10-11');
+INSERT INTO `shop` VALUES ('6', '2', null, '测试1', null, '1', '1', '123123', '123', '是的', '30', '10', '15', '15', null, null, null, '1', null, null, null, '2018-11-12');
 
 -- ----------------------------
 -- Table structure for `springfestival`
@@ -1057,7 +1186,7 @@ CREATE TABLE `synthesis` (
   KEY `FK_SYNTHESI_REFERENCE_TB_ADMIN` (`id`),
   CONSTRAINT `FK_SYNTHESI_REFERENCE_QINGTYPE` FOREIGN KEY (`qtid`) REFERENCES `qingtype` (`qtId`),
   CONSTRAINT `FK_SYNTHESI_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of synthesis
@@ -1067,8 +1196,15 @@ INSERT INTO `synthesis` VALUES ('2', null, '1', '生病', '2018-10-08 20:22:57',
 INSERT INTO `synthesis` VALUES ('3', null, '1', '想加班', '2018-10-08 20:23:07', null, null, null, null, null, null, null, null, '2018-10-08 23:16:17', '3', '3', null, '1', '24', '0', '2018-10-08 00:00:00', '2018-10-09 00:00:00');
 INSERT INTO `synthesis` VALUES ('4', null, '1', '受伤', '2018-10-08 23:07:47', null, null, null, null, null, null, null, null, '2018-10-08 23:16:36', '3', '2', null, '1', '11', '0', '2018-10-08 00:00:00', '2018-10-19 00:00:00');
 INSERT INTO `synthesis` VALUES ('5', null, '1', '招聘', '2018-10-08 23:32:22', null, null, null, null, '上海', null, null, null, '2018-10-09 14:03:18', '3', '4', null, '22', '6', null, '2018-10-08 00:00:00', '2018-10-14 00:00:00');
-INSERT INTO `synthesis` VALUES ('6', null, '1', '外出访谈', '2018-10-09 14:28:25', '2018-10-09 00:00:00', null, null, null, null, null, null, '0', null, '0', '1', null, '22', '2', '3', '14:28:53', '16:31:57');
+INSERT INTO `synthesis` VALUES ('6', null, '1', '外出访谈', '2018-10-09 14:28:25', '2018-10-09 00:00:00', null, null, null, null, '你快回来', null, '0', null, '1', '1', null, '22', '2', '3', '14:28:53', '16:31:57');
 INSERT INTO `synthesis` VALUES ('7', null, '1', '旅游', '2018-11-09 23:38:36', '2018-11-09 00:00:00', null, null, null, null, null, null, null, '2018-11-09 23:43:05', '3', '1', null, '24', '0', '22', '23:36:59', '23:59:14');
+INSERT INTO `synthesis` VALUES ('8', null, '23', '外出借东西', '2018-11-11 21:19:08', '2018-11-11 00:00:00', null, null, null, null, null, null, '1', '2018-11-11 21:23:35', '3', '1', null, '22', '1', '2', '21:19:46', '22:21:49');
+INSERT INTO `synthesis` VALUES ('9', null, '23', '外出借东西', '2018-11-11 21:19:08', '2018-11-11 00:00:00', null, null, null, null, '1\n', null, '1', null, '1', '1', null, '22', '1', '2', '21:19:46', '22:21:49');
+INSERT INTO `synthesis` VALUES ('10', null, '23', '外出借东西', '2018-11-11 21:19:08', '2018-11-11 00:00:00', null, null, null, null, '1\n', null, '1', null, '1', '1', null, '22', '1', '2', '21:19:46', '22:21:49');
+INSERT INTO `synthesis` VALUES ('11', null, '23', '生病', '2018-11-11 21:24:21', null, null, null, null, null, null, null, null, '2018-11-11 21:29:27', '3', '2', null, '22', '2', '0', '2018-11-11 21:24:47', '2018-11-13 21:24:51');
+INSERT INTO `synthesis` VALUES ('12', null, '23', '去路由', '2018-11-11 21:27:00', '2018-11-11 00:00:00', null, null, null, null, null, null, '1', '2018-11-12 08:25:16', '3', '1', null, '22', '1', '0', '21:27:44', '22:27:46');
+INSERT INTO `synthesis` VALUES ('13', null, '23', '外出1', '2018-11-12 08:20:50', '2018-11-12 00:00:00', null, null, null, null, null, null, '0', '2018-11-12 08:25:02', '3', '1', null, '1', '5', '0', '08:21:09', '13:21:12');
+INSERT INTO `synthesis` VALUES ('14', null, '19', 'q', '2018-11-12 09:42:54', '2018-11-12 00:00:00', null, null, null, null, null, null, '0', null, '0', '1', null, '1', '3', '0', '09:43:03', '12:43:05');
 
 -- ----------------------------
 -- Table structure for `tb_admin`
@@ -1103,9 +1239,9 @@ INSERT INTO `tb_admin` VALUES ('19', 'lpr', '4297f44b13955235245b2497399d7a93', 
 INSERT INTO `tb_admin` VALUES ('20', 'mm', '4297f44b13955235245b2497399d7a93', null, '毛毛', '135256335@qq.com', '0', '2018-10-22', 'asdasd', '13525636996', '1', '2');
 INSERT INTO `tb_admin` VALUES ('21', 'zx', '4297f44b13955235245b2497399d7a93', null, '张肖', '1584777854@qq.com', '1', '2011-07-29', 'asdasd', '13525636996', '1', '1');
 INSERT INTO `tb_admin` VALUES ('22', 'gd', '4297f44b13955235245b2497399d7a93', null, '郭迪', '1144514404@qq.com', '1', '1995-04-09', '濮阳县', '13525636996', '1', '1');
-INSERT INTO `tb_admin` VALUES ('23', 'xiaoli', '4297f44b13955235245b2497399d7a93', null, '小李', '14585985655@qq.com', '1', '2012-11-05', '新乡', '13525856552', '62', '3');
+INSERT INTO `tb_admin` VALUES ('23', 'xiaoli', '4297f44b13955235245b2497399d7a93', null, '小李', '14585985655@qq.com', '1', '2012-11-05', '新乡', '13525856552', '63', '21');
 INSERT INTO `tb_admin` VALUES ('24', 'chl', '4297f44b13955235245b2497399d7a93', null, '崔红柳', '1458585845@qq.com', '1', '1996-10-08', '新乡', '13525856552', '62', '7');
-INSERT INTO `tb_admin` VALUES ('25', 'wangmengwei', '4297f44b13955235245b2497399d7a93', null, '王梦威', '1458598555@qq.com', '1', '2012-10-09', '新乡', '13525856552', '62', '4');
+INSERT INTO `tb_admin` VALUES ('25', 'wangmengwei', '4297f44b13955235245b2497399d7a93', null, '王梦威', '1458598555@qq.com', '1', '2012-10-09', '新乡', '13525856552', '64', '4');
 
 -- ----------------------------
 -- Table structure for `tb_affair`
@@ -1329,7 +1465,7 @@ CREATE TABLE `tb_log` (
   `ip` varchar(64) DEFAULT NULL COMMENT 'ip',
   `create_time` datetime NOT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=784 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=855 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_log
@@ -1400,6 +1536,77 @@ INSERT INTO `tb_log` VALUES ('780', 'admin', '添加用户', '/oa/user/insUser',
 INSERT INTO `tb_log` VALUES ('781', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":66,\"title\":\"人事调动\",\"icon\":\"\",\"href\":\"transfer/findtransfer.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":991,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-11 15:59:50');
 INSERT INTO `tb_log` VALUES ('782', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":66,\"title\":\"人事档案\",\"icon\":\"\",\"href\":\"recoed/findrecord.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":992,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-11 16:01:32');
 INSERT INTO `tb_log` VALUES ('783', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":1,\"roleName\":\"超级管理员\",\"roleRemark\":\"超级管理员\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,9,10,33,11,34,35,36,37,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86\";', '0:0:0:0:0:0:0:1', '2018-11-11 16:01:53');
+INSERT INTO `tb_log` VALUES ('784', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":83,\"title\":\"物品归还\",\"icon\":\"\",\"href\":\"apply/find4.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":900,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-11 19:00:54');
+INSERT INTO `tb_log` VALUES ('785', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":86,\"title\":\"物品信息管理\",\"icon\":\"\",\"href\":\"tree/findshop.action\",\"perms\":\"\",\"spread\":null,\"parentId\":83,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-11 19:02:09');
+INSERT INTO `tb_log` VALUES ('786', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":83,\"title\":\"归还审批\",\"icon\":\"\",\"href\":\"apply/find5.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":899,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-11 19:02:53');
+INSERT INTO `tb_log` VALUES ('787', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":1,\"roleName\":\"超级管理员\",\"roleRemark\":\"超级管理员\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,9,10,33,11,34,35,36,37,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86,93,94\";', '0:0:0:0:0:0:0:1', '2018-11-11 19:03:21');
+INSERT INTO `tb_log` VALUES ('788', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":61,\"roleName\":\"test\",\"roleRemark\":\"test\"};\"1,2,3,16,17,18,19,4,20,46,47,48,49,50,9,11,34,14,15,42,43,44,45,83,84,93\";', '0:0:0:0:0:0:0:1', '2018-11-11 19:08:40');
+INSERT INTO `tb_log` VALUES ('789', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":83,\"title\":\"物品报表\",\"icon\":\"\",\"href\":\"apply/find3.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":800,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-11 20:23:09');
+INSERT INTO `tb_log` VALUES ('790', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":1,\"roleName\":\"超级管理员\",\"roleRemark\":\"超级管理员\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,9,10,33,11,34,35,36,37,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86,93,94,95\";', '0:0:0:0:0:0:0:1', '2018-11-11 20:23:32');
+INSERT INTO `tb_log` VALUES ('791', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":62,\"roleName\":\"ceo\",\"roleRemark\":\"管理大部分权限\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86,93,94,95\";', '0:0:0:0:0:0:0:1', '2018-11-11 20:25:30');
+INSERT INTO `tb_log` VALUES ('792', 'admin', '添加角色信息', '/oa/sys/insRole', '{\"roleId\":null,\"roleName\":\"普通员工\",\"roleRemark\":\"员工一些日常操作\"};\"1,68,74,75,76,77,78,87,88,89,83,84,93\";', '0:0:0:0:0:0:0:1', '2018-11-11 20:28:59');
+INSERT INTO `tb_log` VALUES ('793', 'admin', '添加角色信息', '/oa/sys/insRole', '{\"roleId\":null,\"roleName\":\"财务人员\",\"roleRemark\":\"管理薪酬页面\"};\"57,58,59,60,61,62,63,64,65,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,94\";', '0:0:0:0:0:0:0:1', '2018-11-11 20:33:14');
+INSERT INTO `tb_log` VALUES ('794', 'admin', '更新管理员信息', '/oa/sys/updAdmin', '{\"id\":25,\"username\":\"wangmengwei\",\"password\":null,\"salt\":null,\"fullname\":\"王梦威\",\"eMail\":\"1458598555@qq.com\",\"sex\":\"1\",\"birthday\":\"2012-10-09\",\"address\":\"新乡\",\"phone\":\"13525856552\",\"roleId\":64,\"roleName\":null,\"deptId\":4,\"deptName\":null};', '0:0:0:0:0:0:0:1', '2018-11-11 20:33:44');
+INSERT INTO `tb_log` VALUES ('795', 'admin', '更新管理员信息', '/oa/sys/updAdmin', '{\"id\":23,\"username\":\"xiaoli\",\"password\":null,\"salt\":null,\"fullname\":\"小李\",\"eMail\":\"14585985655@qq.com\",\"sex\":\"1\",\"birthday\":\"2012-11-05\",\"address\":\"新乡\",\"phone\":\"13525856552\",\"roleId\":63,\"roleName\":null,\"deptId\":21,\"deptName\":null};', '0:0:0:0:0:0:0:1', '2018-11-11 20:35:24');
+INSERT INTO `tb_log` VALUES ('796', 'test', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":61,\"roleName\":\"test\",\"roleRemark\":\"test\"};\"1,2,3,16,17,18,19,4,20,46,47,48,49,50,9,11,34,14,15,42,43,44,45,83,84,85,86,93,94,95\";', '0:0:0:0:0:0:0:1', '2018-11-12 10:55:54');
+INSERT INTO `tb_log` VALUES ('797', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":74,\"title\":\"个人考勤\",\"icon\":\"\",\"href\":\"GeRen/KaoQin.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":996,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:01:48');
+INSERT INTO `tb_log` VALUES ('798', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":74,\"title\":\"个人考勤\",\"icon\":\"\",\"href\":\"GeRen/KaoQin.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":996,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:02:14');
+INSERT INTO `tb_log` VALUES ('799', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":89,\"title\":\"考勤记录\",\"icon\":\"\",\"href\":\"GeRen/KaoQinJiLu.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":995,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:02:33');
+INSERT INTO `tb_log` VALUES ('800', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":75,\"title\":\"外出登记\",\"icon\":\"\",\"href\":\"schedule/test.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":999,\"checked\":null,\"isOpen\":false};\"\";', '127.0.0.1', '2018-11-12 21:05:08');
+INSERT INTO `tb_log` VALUES ('801', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":76,\"title\":\"请假登记\",\"icon\":\"\",\"href\":\"GeRen/QingJia.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '127.0.0.1', '2018-11-12 21:05:25');
+INSERT INTO `tb_log` VALUES ('802', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":77,\"title\":\"加班登记\",\"icon\":\"\",\"href\":\"GeRen/JiaBan.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '127.0.0.1', '2018-11-12 21:05:35');
+INSERT INTO `tb_log` VALUES ('803', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":78,\"title\":\"出差登记\",\"icon\":\"\",\"href\":\"GeRen/ChuChai.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '127.0.0.1', '2018-11-12 21:05:46');
+INSERT INTO `tb_log` VALUES ('804', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":87,\"title\":\"电子邮件\",\"icon\":\"&#xe63a\",\"href\":\"dept/mailfind.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":1000,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:11:10');
+INSERT INTO `tb_log` VALUES ('805', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":88,\"title\":\"通讯簿\",\"icon\":\"&#xe770\",\"href\":\"address/find.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":1000,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:12:13');
+INSERT INTO `tb_log` VALUES ('806', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":75,\"title\":\"外出登记\",\"icon\":\"&#xe655\",\"href\":\"schedule/test.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":999,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:13:44');
+INSERT INTO `tb_log` VALUES ('807', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":76,\"title\":\"请假登记\",\"icon\":\"&#xe655\",\"href\":\"GeRen/QingJia.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:13:57');
+INSERT INTO `tb_log` VALUES ('808', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":77,\"title\":\"加班登记\",\"icon\":\"&#xe655\",\"href\":\"GeRen/JiaBan.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:14:08');
+INSERT INTO `tb_log` VALUES ('809', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":78,\"title\":\"出差登记\",\"icon\":\"&#xe655\",\"href\":\"GeRen/ChuChai.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:14:20');
+INSERT INTO `tb_log` VALUES ('810', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":83,\"title\":\"公共事务\",\"icon\":\"&#xe63f\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:15:22');
+INSERT INTO `tb_log` VALUES ('811', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":83,\"title\":\"公共事务\",\"icon\":\"&#xe62a\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:15:51');
+INSERT INTO `tb_log` VALUES ('812', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":57,\"title\":\"薪酬管理\",\"icon\":\"&#xe63d\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:17:20');
+INSERT INTO `tb_log` VALUES ('813', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":57,\"title\":\"薪酬管理\",\"icon\":\"&#xe628\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:18:23');
+INSERT INTO `tb_log` VALUES ('814', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":69,\"title\":\"考勤设置\",\"icon\":\"&#xe637\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:18:51');
+INSERT INTO `tb_log` VALUES ('815', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":62,\"title\":\"组织机构信息\",\"icon\":\"&#xe656\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":996,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:19:32');
+INSERT INTO `tb_log` VALUES ('816', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":2,\"title\":\"管理员管理\",\"icon\":\"&#xe66f\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":995,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:20:11');
+INSERT INTO `tb_log` VALUES ('817', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":9,\"title\":\"用户管理\",\"icon\":\"&#xe676\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":0,\"sorting\":995,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:20:35');
+INSERT INTO `tb_log` VALUES ('818', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":74,\"title\":\"个人考勤\",\"icon\":\"&#xe62a\",\"href\":\"GeRen/KaoQin.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":996,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:21:42');
+INSERT INTO `tb_log` VALUES ('819', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":89,\"title\":\"考勤记录\",\"icon\":\"&#xe62d\",\"href\":\"GeRen/KaoQinJiLu.action\",\"perms\":\"\",\"spread\":null,\"parentId\":68,\"sorting\":995,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:22:09');
+INSERT INTO `tb_log` VALUES ('820', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":84,\"title\":\"申领物品\",\"icon\":\"&#xe617\",\"href\":\"apply/find.action\",\"perms\":\"\",\"spread\":null,\"parentId\":83,\"sorting\":1000,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:23:04');
+INSERT INTO `tb_log` VALUES ('821', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":86,\"title\":\"物品信息管理\",\"icon\":\"&#xe606\",\"href\":\"tree/findshop.action\",\"perms\":\"\",\"spread\":null,\"parentId\":83,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:23:40');
+INSERT INTO `tb_log` VALUES ('822', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":93,\"title\":\"物品归还\",\"icon\":\"&#xe60a\",\"href\":\"apply/find4.action\",\"perms\":\"\",\"spread\":null,\"parentId\":83,\"sorting\":900,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:24:34');
+INSERT INTO `tb_log` VALUES ('823', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":94,\"title\":\"归还审批\",\"icon\":\"&#xe642\",\"href\":\"apply/find5.action\",\"perms\":\"\",\"spread\":null,\"parentId\":83,\"sorting\":899,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:25:11');
+INSERT INTO `tb_log` VALUES ('824', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":95,\"title\":\"物品报表\",\"icon\":\"&#xe62d\",\"href\":\"apply/find3.action\",\"perms\":\"\",\"spread\":null,\"parentId\":83,\"sorting\":800,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:26:05');
+INSERT INTO `tb_log` VALUES ('825', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":67,\"title\":\"招聘计划\",\"icon\":\"&#xe63c\",\"href\":\"plan/findplan.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":1000,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:27:03');
+INSERT INTO `tb_log` VALUES ('826', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":79,\"title\":\"招聘计划筛选\",\"icon\":\"&#xe639\",\"href\":\"plan/findplan0.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:27:56');
+INSERT INTO `tb_log` VALUES ('827', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":80,\"title\":\"人才库\",\"icon\":\"&#xe670\",\"href\":\"talent/findtalent.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:29:04');
+INSERT INTO `tb_log` VALUES ('828', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":81,\"title\":\"招聘人员筛选\",\"icon\":\"\",\"href\":\"screen/findscreen.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":996,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:29:29');
+INSERT INTO `tb_log` VALUES ('829', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":82,\"title\":\"招聘录用\",\"icon\":\"&#xe654\",\"href\":\"hire/findhire.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":995,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:29:51');
+INSERT INTO `tb_log` VALUES ('830', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":92,\"title\":\"人事档案\",\"icon\":\"&#xe770\",\"href\":\"recoed/findrecord.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":992,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:30:14');
+INSERT INTO `tb_log` VALUES ('831', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":91,\"title\":\"人事调动\",\"icon\":\"&#xe613\",\"href\":\"transfer/findtransfer.action\",\"perms\":\"\",\"spread\":null,\"parentId\":66,\"sorting\":991,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:30:50');
+INSERT INTO `tb_log` VALUES ('832', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":58,\"title\":\"薪酬项目及保险\",\"icon\":\"&#xe6af\",\"href\":\"salitem/findxc.action\",\"perms\":\"\",\"spread\":null,\"parentId\":57,\"sorting\":1000,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:32:00');
+INSERT INTO `tb_log` VALUES ('833', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":59,\"title\":\"薪酬基数设置\",\"icon\":\"&#xe65e\",\"href\":\"personxc/find.action\",\"perms\":\"\",\"spread\":null,\"parentId\":57,\"sorting\":999,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:34:57');
+INSERT INTO `tb_log` VALUES ('834', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":60,\"title\":\"工资流程管理\",\"icon\":\"&#xe705\",\"href\":\"salaryflow/find.action\",\"perms\":\"\",\"spread\":null,\"parentId\":57,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:35:18');
+INSERT INTO `tb_log` VALUES ('835', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":61,\"title\":\"部门工资上报\",\"icon\":\"&#xe67c\",\"href\":\"saldata/find.action\",\"perms\":\"\",\"spread\":null,\"parentId\":57,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:35:37');
+INSERT INTO `tb_log` VALUES ('836', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":70,\"title\":\"排版管理\",\"icon\":\"&#xe638\",\"href\":\"duty/PaiBan.action\",\"perms\":\"\",\"spread\":null,\"parentId\":69,\"sorting\":1000,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:36:21');
+INSERT INTO `tb_log` VALUES ('837', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":72,\"title\":\"审批规则设置\",\"icon\":\"&#xe631\",\"href\":\"exam/Exam.action\",\"perms\":\"\",\"spread\":null,\"parentId\":69,\"sorting\":999,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:36:46');
+INSERT INTO `tb_log` VALUES ('838', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":73,\"title\":\"免签节假日\",\"icon\":\"&#xe756\",\"href\":\"Festival/festival.action\",\"perms\":\"\",\"spread\":null,\"parentId\":69,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:37:31');
+INSERT INTO `tb_log` VALUES ('839', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":71,\"title\":\"班次管理\",\"icon\":\"&#xe637\",\"href\":\"schedule/Ban.action\",\"perms\":\"\",\"spread\":null,\"parentId\":69,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:38:12');
+INSERT INTO `tb_log` VALUES ('840', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":90,\"title\":\"考勤统计\",\"icon\":\"&#xe638\",\"href\":\"GeRen/KaoQinTongji.action\",\"perms\":\"\",\"spread\":null,\"parentId\":69,\"sorting\":900,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-12 21:38:36');
+INSERT INTO `tb_log` VALUES ('841', 'test', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":61,\"roleName\":\"test\",\"roleRemark\":\"test\"};\"1,2,3,16,17,18,19,4,20,46,47,48,49,50,9,11,34,14,15,42,43,44,45,68,74,75,76,77,78,87,88,89,83,84,85,86,93,94,95\";', '0:0:0:0:0:0:0:1', '2018-11-13 17:58:13');
+INSERT INTO `tb_log` VALUES ('842', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":0,\"title\":\"通告管理\",\"icon\":\"&#xe642\",\"href\":\"\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":999,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:33:11');
+INSERT INTO `tb_log` VALUES ('843', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":96,\"title\":\"新建通告\",\"icon\":\"&#xe642\",\"href\":\"address/sendNotce.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":999,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:36:44');
+INSERT INTO `tb_log` VALUES ('844', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":1,\"roleName\":\"超级管理员\",\"roleRemark\":\"超级管理员\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,9,10,33,11,34,35,36,37,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86,93,94,95,96,97\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:37:07');
+INSERT INTO `tb_log` VALUES ('845', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":96,\"title\":\"通告查询\",\"icon\":\"&#xe258\",\"href\":\"address/noticegl.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:39:05');
+INSERT INTO `tb_log` VALUES ('846', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":96,\"title\":\"通告查询所有\",\"icon\":\"&#xe258\",\"href\":\"address/showNotice.action\",\"perms\":\"\",\"spread\":null,\"parentId\":null,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"1\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:39:48');
+INSERT INTO `tb_log` VALUES ('847', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":1,\"roleName\":\"超级管理员\",\"roleRemark\":\"超级管理员\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,9,10,33,11,34,35,36,37,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86,93,94,95,96,97,98,99\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:39:59');
+INSERT INTO `tb_log` VALUES ('848', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":64,\"roleName\":\"财务人员\",\"roleRemark\":\"管理薪酬页面\"};\"57,58,59,60,61,62,63,64,65,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,94,96,99\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:47:26');
+INSERT INTO `tb_log` VALUES ('849', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":98,\"title\":\"通告查询所有\",\"icon\":\"\",\"href\":\"address/noticegl.action\",\"perms\":\"\",\"spread\":null,\"parentId\":96,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:47:42');
+INSERT INTO `tb_log` VALUES ('850', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":99,\"title\":\"通告查询1\",\"icon\":\"\",\"href\":\"address/showNotice.action\",\"perms\":\"\",\"spread\":null,\"parentId\":96,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:47:55');
+INSERT INTO `tb_log` VALUES ('851', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":98,\"title\":\"通告查询所有\",\"icon\":\"\",\"href\":\"address/noticegl.action\",\"perms\":\"\",\"spread\":null,\"parentId\":96,\"sorting\":998,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:48:06');
+INSERT INTO `tb_log` VALUES ('852', 'admin', '维护菜单信息', '/oa/sys/menuForm', '{\"menuId\":99,\"title\":\"通告查询\",\"icon\":\"\",\"href\":\"address/showNotice.action\",\"perms\":\"\",\"spread\":null,\"parentId\":96,\"sorting\":997,\"checked\":null,\"isOpen\":false};\"\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:48:13');
+INSERT INTO `tb_log` VALUES ('853', 'admin', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":62,\"roleName\":\"ceo\",\"roleRemark\":\"管理大部分权限\"};\"1,2,3,16,17,18,19,4,20,21,22,23,46,47,48,49,50,57,58,59,60,61,62,63,64,65,66,67,79,80,81,82,91,92,68,74,75,76,77,78,87,88,89,69,70,71,72,73,90,83,84,85,86,93,94,95,96,97,98,99\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:49:02');
+INSERT INTO `tb_log` VALUES ('854', 'chl', '更新角色信息', '/oa/sys/updRole', '{\"roleId\":63,\"roleName\":\"普通员工\",\"roleRemark\":\"员工一些日常操作\"};\"1,68,74,75,76,77,78,87,88,89,83,84,93,96,99\";', '0:0:0:0:0:0:0:1', '2018-11-13 22:52:33');
 
 -- ----------------------------
 -- Table structure for `tb_mail`
@@ -1408,31 +1615,62 @@ DROP TABLE IF EXISTS `tb_mail`;
 CREATE TABLE `tb_mail` (
   `emailId` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) DEFAULT NULL,
-  `from_id` varchar(500) DEFAULT NULL,
-  `to_id2` varchar(500) DEFAULT NULL,
+  `from_id` int(11) DEFAULT NULL,
+  `to_id2` int(11) DEFAULT NULL,
   `copy_to_id` varchar(500) DEFAULT NULL,
   `subject` varchar(500) DEFAULT NULL,
   `content` varchar(1000) DEFAULT NULL,
-  `sendtime` datetime DEFAULT NULL,
+  `sendtime` varchar(200) DEFAULT NULL,
   `attachment_id` varchar(200) DEFAULT NULL,
   `attachment_name` varchar(200) DEFAULT NULL,
   `send_flag` int(11) DEFAULT NULL,
   `sms_remind` int(11) DEFAULT NULL,
   `important` int(11) DEFAULT NULL,
-  `keyword` varchar(500) DEFAULT NULL,
   `secret_level` int(11) DEFAULT NULL,
   PRIMARY KEY (`emailId`),
   KEY `FK_TB_MAIL_REFERENCE_TB_ADMIN` (`id`),
   CONSTRAINT `FK_TB_MAIL_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_mail
 -- ----------------------------
-INSERT INTO `tb_mail` VALUES ('1', '1', '1', '1', null, '当你老了', '我们一起去旅行', '2018-11-02 09:32:46', null, null, '0', null, null, null, null);
-INSERT INTO `tb_mail` VALUES ('2', '18', '1', '2', null, '当你老了', '我们一起去旅行', '2018-10-12 09:47:39', null, null, '0', null, null, null, null);
-INSERT INTO `tb_mail` VALUES ('3', '19', '1', '1', null, '当你老了', '香山红叶', '2018-10-12 09:48:23', null, '', '2', null, null, null, null);
-INSERT INTO `tb_mail` VALUES ('4', '1', '1', '1', null, '喜马拉雅山', '珠穆朗玛峰', '2018-10-12 09:48:56', null, '', '2', null, null, null, null);
+INSERT INTO `tb_mail` VALUES ('4', '1', '1', '1', null, '当你老了rrr', '我们一起去旅行', '2018-11-02 09:32:46', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('5', '18', '18', '2', null, '当你老了', '我们一起去旅行', '2018-11-02 09:34:06', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('7', '19', '19', '1', null, '当你老了', '香山红叶', '2018-11-02 14:01:50', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('11', '1', '1', '18', null, '水hh', '                     生命', '2018-11-08 09:03:02', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('13', '1', '1', '18', null, '人生', '棋盘', '2018-11-08 09:03:33', null, null, '3', null, null, null);
+INSERT INTO `tb_mail` VALUES ('14', '1', '1', '19', null, '人生', '棋盘', '2018-11-08 09:03:33', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('17', '1', '1', '1', null, '人生', '人生', '2018-11-08 09:03:33', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('18', '1', '1', '1', null, '水', '水', '2018-11-08 09:03:33', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('19', '1', '1', '1', null, '水', '水', '2018-11-08 09:03:33', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('21', '20', '1', '18', null, 'fgfgf', '                     gfgdfgdsgdgd', '2018-10-27 19:44:31', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('22', '22', '1', '19', null, 'fgfgf', '                     gfgdfgdsgdgd', '2018-10-27 19:44:31', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('23', '23', '1', '20', null, 'fgfgf', '                     gfgdfgdsgdgd', '2018-10-27 19:44:31', null, null, '1', null, null, null);
+INSERT INTO `tb_mail` VALUES ('24', '20', '1', '19', null, '文艺', '                     文采', '2018-10-28 08:34:36', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('25', '18', '1', '19', null, 'jashkbsdc', '                     ghfgh', '2018-10-28 09:38:09', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('26', '24', '1', '19', null, '我叫刘培然平', '哈哈哈哈哈哈哈哈哈哈', '2018-11-13 15:32:29', null, null, '2', null, null, null);
+INSERT INTO `tb_mail` VALUES ('27', '25', '1', '1', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:50', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('28', '18', '1', '18', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:50', null, null, '1', null, null, null);
+INSERT INTO `tb_mail` VALUES ('29', '22', '1', '19', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:50', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('30', '23', '1', '20', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:51', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('31', '23', '1', '21', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:51', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('33', '24', '1', '23', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:51', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('34', '22', '1', '24', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:51', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('37', null, '1', '19', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:51', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('38', null, '1', '20', null, '开会啦', '                     ！！！！！！！！！！！对对对', '2018-11-13 17:54:51', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('39', null, '1', '18', null, 'dsdsd', '                     dsdsd', '2018-11-13 19:44:35', null, null, '1', null, null, null);
+INSERT INTO `tb_mail` VALUES ('40', null, '1', '19', null, 'aaaaa', '                     aaaaaa', '2018-11-13 19:44:52', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('41', null, '1', '19', null, 'qqqqqqqqqqq', '                     qqqqqqqqqqqqqqqqqq', '2018-11-13 19:45:22', null, null, '1', null, null, null);
+INSERT INTO `tb_mail` VALUES ('42', null, '1', '20', null, 'qqqqqqqqqqq', '                     qqqqqqqqqqqqqqqqqq', '2018-11-13 19:45:22', null, null, '1', null, null, null);
+INSERT INTO `tb_mail` VALUES ('43', null, '1', '21', null, 'qqqqqqqqqqq', '                     qqqqqqqqqqqqqqqqqq', '2018-11-13 19:45:22', null, null, '1', null, null, null);
+INSERT INTO `tb_mail` VALUES ('44', null, '1', '19', null, 'vvvvvvvvvvvvvvvvvvvvv', '                     vvvvvvvvvvvvvvvvvvvvvvvvvvv', '2018-11-13 19:45:40', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('45', null, '1', '20', null, 'vvvvvvvvvvvvvvvvvvvvv', '                     vvvvvvvvvvvvvvvvvvvvvvvvvvv', '2018-11-13 19:45:40', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('46', null, '1', '21', null, 'vvvvvvvvvvvvvvvvvvvvv', '                     vvvvvvvvvvvvvvvvvvvvvvvvvvv', '2018-11-13 19:45:40', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('47', null, '1', '19', null, 'qqq', 'qqq1111111111111', '2018-11-13 21:19:52', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('48', null, '1', '21', null, 'x', '                     x', '2018-11-13 22:18:57', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('49', null, '1', '21', null, 'xx', '                     xx', '2018-11-13 22:19:23', null, null, '0', null, null, null);
+INSERT INTO `tb_mail` VALUES ('50', null, '1', '22', null, 'xx', '                     xx', '2018-11-13 22:19:23', null, null, '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for `tb_menus`
@@ -1448,16 +1686,16 @@ CREATE TABLE `tb_menus` (
   `parent_id` int(11) DEFAULT NULL,
   `sorting` int(11) DEFAULT NULL,
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_menus
 -- ----------------------------
 INSERT INTO `tb_menus` VALUES ('1', '后台首页', '', 'page/main.html', '', 'false', '0', '9999');
-INSERT INTO `tb_menus` VALUES ('2', '管理员管理', '', '', '', 'false', '0', '995');
+INSERT INTO `tb_menus` VALUES ('2', '管理员管理', '&#xe66f', '', '', 'false', '0', '995');
 INSERT INTO `tb_menus` VALUES ('3', '角色管理', '&#xe613;', 'sys/roleList', null, 'false', '2', null);
 INSERT INTO `tb_menus` VALUES ('4', '管理员列表', '&#xe613;', 'sys/adminList', null, 'false', '2', null);
-INSERT INTO `tb_menus` VALUES ('9', '用户管理', '', '', '', 'false', '0', '995');
+INSERT INTO `tb_menus` VALUES ('9', '用户管理', '&#xe676', '', '', 'false', '0', '995');
 INSERT INTO `tb_menus` VALUES ('10', '添加用户', '&#xe608;', 'user/addUser', null, 'false', '9', null);
 INSERT INTO `tb_menus` VALUES ('11', '管理用户', '&#xe60e;', 'user/userList', null, 'false', '9', null);
 INSERT INTO `tb_menus` VALUES ('14', '系统日志', '&#xe61d;', null, null, 'false', '0', '995');
@@ -1490,42 +1728,49 @@ INSERT INTO `tb_menus` VALUES ('53', '查看', '', '', 'carousel:carousel:list',
 INSERT INTO `tb_menus` VALUES ('54', '删除', '', '', 'carousel:carousel:delete', 'false', '52', null);
 INSERT INTO `tb_menus` VALUES ('55', '修改', '', '', 'carousel:carousel:update', 'false', '52', null);
 INSERT INTO `tb_menus` VALUES ('56', '新增', '', '', 'carousel:carousel:save', 'false', '52', null);
-INSERT INTO `tb_menus` VALUES ('57', '薪酬管理', '&#xe642', '', '', 'false', '0', '997');
-INSERT INTO `tb_menus` VALUES ('58', '薪酬项目及保险', '', 'salitem/findxc.action', '', 'false', '57', '1000');
-INSERT INTO `tb_menus` VALUES ('59', '薪酬基数设置', '', 'personxc/find.action', '', 'false', '57', '999');
-INSERT INTO `tb_menus` VALUES ('60', '工资流程管理', '', 'salaryflow/find.action', '', 'false', '57', '998');
-INSERT INTO `tb_menus` VALUES ('61', '部门工资上报', '', 'saldata/find.action', '', 'false', '57', '997');
-INSERT INTO `tb_menus` VALUES ('62', '组织机构信息', '&#xe642', '', '', 'false', '0', '996');
+INSERT INTO `tb_menus` VALUES ('57', '薪酬管理', '&#xe628', '', '', 'false', '0', '997');
+INSERT INTO `tb_menus` VALUES ('58', '薪酬项目及保险', '&#xe6af', 'salitem/findxc.action', '', 'false', '57', '1000');
+INSERT INTO `tb_menus` VALUES ('59', '薪酬基数设置', '&#xe65e', 'personxc/find.action', '', 'false', '57', '999');
+INSERT INTO `tb_menus` VALUES ('60', '工资流程管理', '&#xe705', 'salaryflow/find.action', '', 'false', '57', '998');
+INSERT INTO `tb_menus` VALUES ('61', '部门工资上报', '&#xe67c', 'saldata/find.action', '', 'false', '57', '997');
+INSERT INTO `tb_menus` VALUES ('62', '组织机构信息', '&#xe656', '', '', 'false', '0', '996');
 INSERT INTO `tb_menus` VALUES ('63', '单位信息查询', '', 'dwinformation/find.action', '', 'false', '62', '1000');
 INSERT INTO `tb_menus` VALUES ('64', '部门信息查询', '', 'dept/find.action', '', 'false', '62', '999');
 INSERT INTO `tb_menus` VALUES ('65', '用户信息查询', '&#xe642', '', '', 'false', '62', '997');
 INSERT INTO `tb_menus` VALUES ('66', '人才管理', '', '', '', 'false', '0', '997');
-INSERT INTO `tb_menus` VALUES ('67', '招聘计划', '&#xe642', 'plan/findplan.action', '', 'false', '66', '1000');
+INSERT INTO `tb_menus` VALUES ('67', '招聘计划', '&#xe63c', 'plan/findplan.action', '', 'false', '66', '1000');
 INSERT INTO `tb_menus` VALUES ('68', '个人事务', '', '', '', 'false', '0', '998');
-INSERT INTO `tb_menus` VALUES ('69', '考勤设置', '&#xe642', '', '', 'false', '0', '997');
-INSERT INTO `tb_menus` VALUES ('70', '排版管理', '', 'duty/PaiBan.action', '', 'false', '69', '1000');
-INSERT INTO `tb_menus` VALUES ('71', '班次管理', '', 'schedule/Ban.action', '', 'false', '69', '997');
-INSERT INTO `tb_menus` VALUES ('72', '审批规则设置', '&#xe642', 'exam/Exam.action', '', 'false', '69', '999');
-INSERT INTO `tb_menus` VALUES ('73', '免签节假日', '&#xe642', 'Festival/festival.action', '', 'false', '69', '998');
-INSERT INTO `tb_menus` VALUES ('74', '个人考勤', '&#xe642', 'GeRen/KaoQin.action', '', 'false', '68', '1000');
-INSERT INTO `tb_menus` VALUES ('75', '外出登记', '', 'schedule/test.action', '', 'false', '68', '999');
-INSERT INTO `tb_menus` VALUES ('76', '请假登记', '', 'GeRen/QingJia.action', '', 'false', '68', '998');
-INSERT INTO `tb_menus` VALUES ('77', '加班登记', '', 'GeRen/JiaBan.action', '', 'false', '68', '997');
-INSERT INTO `tb_menus` VALUES ('78', '出差登记', '', 'GeRen/ChuChai.action', '', 'false', '68', '997');
-INSERT INTO `tb_menus` VALUES ('79', '招聘计划筛选', '', 'plan/findplan0.action', '', 'false', '66', '998');
-INSERT INTO `tb_menus` VALUES ('80', '人才库', '', 'talent/findtalent.action', '', 'false', '66', '997');
-INSERT INTO `tb_menus` VALUES ('81', '招聘人员筛选', '', 'screen/findscreen.action', '', 'false', '66', '996');
-INSERT INTO `tb_menus` VALUES ('82', '招聘录用', '', 'hire/findhire.action', '', 'false', '66', '995');
-INSERT INTO `tb_menus` VALUES ('83', '公共事务', '&#xe642', '', '', 'false', '0', '997');
-INSERT INTO `tb_menus` VALUES ('84', '申领物品', '', 'apply/find.action', '', 'false', '83', '1000');
+INSERT INTO `tb_menus` VALUES ('69', '考勤设置', '&#xe637', '', '', 'false', '0', '997');
+INSERT INTO `tb_menus` VALUES ('70', '排版管理', '&#xe638', 'duty/PaiBan.action', '', 'false', '69', '1000');
+INSERT INTO `tb_menus` VALUES ('71', '班次管理', '&#xe637', 'schedule/Ban.action', '', 'false', '69', '997');
+INSERT INTO `tb_menus` VALUES ('72', '审批规则设置', '&#xe631', 'exam/Exam.action', '', 'false', '69', '999');
+INSERT INTO `tb_menus` VALUES ('73', '免签节假日', '&#xe756', 'Festival/festival.action', '', 'false', '69', '998');
+INSERT INTO `tb_menus` VALUES ('74', '个人考勤', '&#xe62a', 'GeRen/KaoQin.action', '', 'false', '68', '996');
+INSERT INTO `tb_menus` VALUES ('75', '外出登记', '&#xe655', 'schedule/test.action', '', 'false', '68', '999');
+INSERT INTO `tb_menus` VALUES ('76', '请假登记', '&#xe655', 'GeRen/QingJia.action', '', 'false', '68', '998');
+INSERT INTO `tb_menus` VALUES ('77', '加班登记', '&#xe655', 'GeRen/JiaBan.action', '', 'false', '68', '997');
+INSERT INTO `tb_menus` VALUES ('78', '出差登记', '&#xe655', 'GeRen/ChuChai.action', '', 'false', '68', '997');
+INSERT INTO `tb_menus` VALUES ('79', '招聘计划筛选', '&#xe639', 'plan/findplan0.action', '', 'false', '66', '998');
+INSERT INTO `tb_menus` VALUES ('80', '人才库', '&#xe670', 'talent/findtalent.action', '', 'false', '66', '997');
+INSERT INTO `tb_menus` VALUES ('81', '招聘人员筛选', '', 'screen/findscreen.action', '', 'false', '66', '996');
+INSERT INTO `tb_menus` VALUES ('82', '招聘录用', '&#xe654', 'hire/findhire.action', '', 'false', '66', '995');
+INSERT INTO `tb_menus` VALUES ('83', '公共事务', '&#xe62a', '', '', 'false', '0', '997');
+INSERT INTO `tb_menus` VALUES ('84', '申领物品', '&#xe617', 'apply/find.action', '', 'false', '83', '1000');
 INSERT INTO `tb_menus` VALUES ('85', '物品审批', '&#xe642', 'apply/find2.action', '', 'false', '83', '999');
-INSERT INTO `tb_menus` VALUES ('86', '物品信息', '', 'tree/findshop.action', '', 'false', '83', '998');
-INSERT INTO `tb_menus` VALUES ('87', '电子邮件', '', 'dept/mailfind.action', '', 'false', '68', '1000');
-INSERT INTO `tb_menus` VALUES ('88', '通讯簿', '&#xe642', 'address/find.action', '', 'false', '68', '1000');
-INSERT INTO `tb_menus` VALUES ('89', '考勤记录', '', 'GeRen/KaoQinJiLu.action', '', 'false', '68', '1000');
-INSERT INTO `tb_menus` VALUES ('90', '考勤统计', '', 'GeRen/KaoQinTongji.action', '', 'false', '69', '900');
-INSERT INTO `tb_menus` VALUES ('91', '人事调动', '', 'transfer/findtransfer.action', '', 'false', '66', '991');
-INSERT INTO `tb_menus` VALUES ('92', '人事档案', '', 'recoed/findrecord.action', '', 'false', '66', '992');
+INSERT INTO `tb_menus` VALUES ('86', '物品信息管理', '&#xe606', 'tree/findshop.action', '', 'false', '83', '998');
+INSERT INTO `tb_menus` VALUES ('87', '电子邮件', '&#xe63a', 'dept/mailfind.action', '', 'false', '68', '1000');
+INSERT INTO `tb_menus` VALUES ('88', '通讯簿', '&#xe770', 'address/find.action', '', 'false', '68', '1000');
+INSERT INTO `tb_menus` VALUES ('89', '考勤记录', '&#xe62d', 'GeRen/KaoQinJiLu.action', '', 'false', '68', '995');
+INSERT INTO `tb_menus` VALUES ('90', '考勤统计', '&#xe638', 'GeRen/KaoQinTongji.action', '', 'false', '69', '900');
+INSERT INTO `tb_menus` VALUES ('91', '人事调动', '&#xe613', 'transfer/findtransfer.action', '', 'false', '66', '991');
+INSERT INTO `tb_menus` VALUES ('92', '人事档案', '&#xe770', 'recoed/findrecord.action', '', 'false', '66', '992');
+INSERT INTO `tb_menus` VALUES ('93', '物品归还', '&#xe60a', 'apply/find4.action', '', 'false', '83', '900');
+INSERT INTO `tb_menus` VALUES ('94', '归还审批', '&#xe642', 'apply/find5.action', '', 'false', '83', '899');
+INSERT INTO `tb_menus` VALUES ('95', '物品报表', '&#xe62d', 'apply/find3.action', '', 'false', '83', '800');
+INSERT INTO `tb_menus` VALUES ('96', '通告管理', '&#xe642', '', '', 'false', '0', '999');
+INSERT INTO `tb_menus` VALUES ('97', '新建通告', '&#xe642', 'address/sendNotce.action', '', 'false', '96', '999');
+INSERT INTO `tb_menus` VALUES ('98', '通告查询所有', '', 'address/noticegl.action', '', 'false', '96', '998');
+INSERT INTO `tb_menus` VALUES ('99', '通告查询', '', 'address/showNotice.action', '', 'false', '96', '997');
 
 -- ----------------------------
 -- Table structure for `tb_notifytype`
@@ -1535,11 +1780,13 @@ CREATE TABLE `tb_notifytype` (
   `type_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_notifytype
 -- ----------------------------
+INSERT INTO `tb_notifytype` VALUES ('1', '通告');
+INSERT INTO `tb_notifytype` VALUES ('2', '通报');
 
 -- ----------------------------
 -- Table structure for `tb_personxc`
@@ -1587,9 +1834,9 @@ CREATE TABLE `tb_personxc` (
 -- Records of tb_personxc
 -- ----------------------------
 INSERT INTO `tb_personxc` VALUES ('1', '1', '54254', '2000', '2000', '1000', '500', '600', '200', '32', null, null, '5000', '1350', '1000', '350.00000000000006', '700', '500', '200', '750', '750', '1250', '1000', '250', '250', '250', '400', '400', '0', '好', null, null);
-INSERT INTO `tb_personxc` VALUES ('4', '18', '5000', '400', '200', '100', '500', '400', '100', null, null, null, '400', '108', '80', '28', '56', '40', '16', '60', '60', '100', '80', '20', '20', '20', '32', '32', '0', null, null, null);
-INSERT INTO `tb_personxc` VALUES ('5', '19', '5000', '400', '200', '100', '500', '400', '100', null, null, null, '400', '108', '80', '28', '56', '40', '16', '60', '60', '100', '80', '20', '20', '20', '32', '32', '0', null, null, null);
-INSERT INTO `tb_personxc` VALUES ('6', '20', '5000', '400', '200', '100', '500', '400', '100', null, null, null, '400', '108', '80', '28', '56', '40', '16', '60', '60', '100', '80', '20', '20', '20', '32', '32', '0', null, null, null);
+INSERT INTO `tb_personxc` VALUES ('4', '18', '10000', '200', '200', '200', '200', '200', '10000', '200', null, null, '800', '216', '160', '56', '112', '80', '32', '120', '120', '200', '160', '40', '40', '40', '64', '64', '0', null, null, null);
+INSERT INTO `tb_personxc` VALUES ('5', '19', '10000', '200', '200', '200', '200', '200', '10000', '200', null, null, '800', '216', '160', '56', '112', '80', '32', '120', '120', '200', '160', '40', '40', '40', '64', '64', '0', null, null, null);
+INSERT INTO `tb_personxc` VALUES ('6', '20', '10000', '200', '200', '200', '200', '200', '10000', '200', null, null, '800', '216', '160', '56', '112', '80', '32', '120', '120', '200', '160', '40', '40', '40', '64', '64', '0', null, null, null);
 INSERT INTO `tb_personxc` VALUES ('7', '21', '65254', '6000', '3000', '2000', '1000', '200', '100', '21', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '好', null, null);
 INSERT INTO `tb_personxc` VALUES ('8', '22', '32024', '6000', '3000', '2000', '1000', '200', '100', '12', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '差', null, null);
 INSERT INTO `tb_personxc` VALUES ('9', '25', '200', '50', '20', '20', '1', '2', '3', '5', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', null, null, null);
@@ -1603,7 +1850,7 @@ CREATE TABLE `tb_roles` (
   `role_name` varchar(50) DEFAULT NULL,
   `role_remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_roles
@@ -1611,6 +1858,8 @@ CREATE TABLE `tb_roles` (
 INSERT INTO `tb_roles` VALUES ('1', '超级管理员', '超级管理员');
 INSERT INTO `tb_roles` VALUES ('61', 'test', 'test');
 INSERT INTO `tb_roles` VALUES ('62', 'ceo', '管理大部分权限');
+INSERT INTO `tb_roles` VALUES ('63', '普通员工', '员工一些日常操作');
+INSERT INTO `tb_roles` VALUES ('64', '财务人员', '管理薪酬页面');
 
 -- ----------------------------
 -- Table structure for `tb_roles_menus`
@@ -1631,73 +1880,42 @@ CREATE TABLE `tb_roles_menus` (
 INSERT INTO `tb_roles_menus` VALUES ('1', '61');
 INSERT INTO `tb_roles_menus` VALUES ('2', '61');
 INSERT INTO `tb_roles_menus` VALUES ('3', '61');
-INSERT INTO `tb_roles_menus` VALUES ('4', '61');
-INSERT INTO `tb_roles_menus` VALUES ('9', '61');
-INSERT INTO `tb_roles_menus` VALUES ('11', '61');
-INSERT INTO `tb_roles_menus` VALUES ('14', '61');
-INSERT INTO `tb_roles_menus` VALUES ('15', '61');
 INSERT INTO `tb_roles_menus` VALUES ('16', '61');
 INSERT INTO `tb_roles_menus` VALUES ('17', '61');
 INSERT INTO `tb_roles_menus` VALUES ('18', '61');
 INSERT INTO `tb_roles_menus` VALUES ('19', '61');
+INSERT INTO `tb_roles_menus` VALUES ('4', '61');
 INSERT INTO `tb_roles_menus` VALUES ('20', '61');
-INSERT INTO `tb_roles_menus` VALUES ('34', '61');
-INSERT INTO `tb_roles_menus` VALUES ('42', '61');
-INSERT INTO `tb_roles_menus` VALUES ('43', '61');
-INSERT INTO `tb_roles_menus` VALUES ('44', '61');
-INSERT INTO `tb_roles_menus` VALUES ('45', '61');
 INSERT INTO `tb_roles_menus` VALUES ('46', '61');
 INSERT INTO `tb_roles_menus` VALUES ('47', '61');
 INSERT INTO `tb_roles_menus` VALUES ('48', '61');
 INSERT INTO `tb_roles_menus` VALUES ('49', '61');
 INSERT INTO `tb_roles_menus` VALUES ('50', '61');
-INSERT INTO `tb_roles_menus` VALUES ('1', '62');
-INSERT INTO `tb_roles_menus` VALUES ('2', '62');
-INSERT INTO `tb_roles_menus` VALUES ('3', '62');
-INSERT INTO `tb_roles_menus` VALUES ('16', '62');
-INSERT INTO `tb_roles_menus` VALUES ('17', '62');
-INSERT INTO `tb_roles_menus` VALUES ('18', '62');
-INSERT INTO `tb_roles_menus` VALUES ('19', '62');
-INSERT INTO `tb_roles_menus` VALUES ('4', '62');
-INSERT INTO `tb_roles_menus` VALUES ('20', '62');
-INSERT INTO `tb_roles_menus` VALUES ('21', '62');
-INSERT INTO `tb_roles_menus` VALUES ('22', '62');
-INSERT INTO `tb_roles_menus` VALUES ('23', '62');
-INSERT INTO `tb_roles_menus` VALUES ('46', '62');
-INSERT INTO `tb_roles_menus` VALUES ('47', '62');
-INSERT INTO `tb_roles_menus` VALUES ('48', '62');
-INSERT INTO `tb_roles_menus` VALUES ('49', '62');
-INSERT INTO `tb_roles_menus` VALUES ('50', '62');
-INSERT INTO `tb_roles_menus` VALUES ('57', '62');
-INSERT INTO `tb_roles_menus` VALUES ('58', '62');
-INSERT INTO `tb_roles_menus` VALUES ('59', '62');
-INSERT INTO `tb_roles_menus` VALUES ('60', '62');
-INSERT INTO `tb_roles_menus` VALUES ('61', '62');
-INSERT INTO `tb_roles_menus` VALUES ('62', '62');
-INSERT INTO `tb_roles_menus` VALUES ('63', '62');
-INSERT INTO `tb_roles_menus` VALUES ('64', '62');
-INSERT INTO `tb_roles_menus` VALUES ('65', '62');
-INSERT INTO `tb_roles_menus` VALUES ('66', '62');
-INSERT INTO `tb_roles_menus` VALUES ('67', '62');
-INSERT INTO `tb_roles_menus` VALUES ('79', '62');
-INSERT INTO `tb_roles_menus` VALUES ('80', '62');
-INSERT INTO `tb_roles_menus` VALUES ('81', '62');
-INSERT INTO `tb_roles_menus` VALUES ('82', '62');
-INSERT INTO `tb_roles_menus` VALUES ('68', '62');
-INSERT INTO `tb_roles_menus` VALUES ('74', '62');
-INSERT INTO `tb_roles_menus` VALUES ('75', '62');
-INSERT INTO `tb_roles_menus` VALUES ('76', '62');
-INSERT INTO `tb_roles_menus` VALUES ('77', '62');
-INSERT INTO `tb_roles_menus` VALUES ('78', '62');
-INSERT INTO `tb_roles_menus` VALUES ('69', '62');
-INSERT INTO `tb_roles_menus` VALUES ('70', '62');
-INSERT INTO `tb_roles_menus` VALUES ('71', '62');
-INSERT INTO `tb_roles_menus` VALUES ('72', '62');
-INSERT INTO `tb_roles_menus` VALUES ('73', '62');
-INSERT INTO `tb_roles_menus` VALUES ('83', '62');
-INSERT INTO `tb_roles_menus` VALUES ('84', '62');
-INSERT INTO `tb_roles_menus` VALUES ('85', '62');
-INSERT INTO `tb_roles_menus` VALUES ('86', '62');
+INSERT INTO `tb_roles_menus` VALUES ('9', '61');
+INSERT INTO `tb_roles_menus` VALUES ('11', '61');
+INSERT INTO `tb_roles_menus` VALUES ('34', '61');
+INSERT INTO `tb_roles_menus` VALUES ('14', '61');
+INSERT INTO `tb_roles_menus` VALUES ('15', '61');
+INSERT INTO `tb_roles_menus` VALUES ('42', '61');
+INSERT INTO `tb_roles_menus` VALUES ('43', '61');
+INSERT INTO `tb_roles_menus` VALUES ('44', '61');
+INSERT INTO `tb_roles_menus` VALUES ('45', '61');
+INSERT INTO `tb_roles_menus` VALUES ('68', '61');
+INSERT INTO `tb_roles_menus` VALUES ('74', '61');
+INSERT INTO `tb_roles_menus` VALUES ('75', '61');
+INSERT INTO `tb_roles_menus` VALUES ('76', '61');
+INSERT INTO `tb_roles_menus` VALUES ('77', '61');
+INSERT INTO `tb_roles_menus` VALUES ('78', '61');
+INSERT INTO `tb_roles_menus` VALUES ('87', '61');
+INSERT INTO `tb_roles_menus` VALUES ('88', '61');
+INSERT INTO `tb_roles_menus` VALUES ('89', '61');
+INSERT INTO `tb_roles_menus` VALUES ('83', '61');
+INSERT INTO `tb_roles_menus` VALUES ('84', '61');
+INSERT INTO `tb_roles_menus` VALUES ('85', '61');
+INSERT INTO `tb_roles_menus` VALUES ('86', '61');
+INSERT INTO `tb_roles_menus` VALUES ('93', '61');
+INSERT INTO `tb_roles_menus` VALUES ('94', '61');
+INSERT INTO `tb_roles_menus` VALUES ('95', '61');
 INSERT INTO `tb_roles_menus` VALUES ('1', '1');
 INSERT INTO `tb_roles_menus` VALUES ('2', '1');
 INSERT INTO `tb_roles_menus` VALUES ('3', '1');
@@ -1759,6 +1977,117 @@ INSERT INTO `tb_roles_menus` VALUES ('83', '1');
 INSERT INTO `tb_roles_menus` VALUES ('84', '1');
 INSERT INTO `tb_roles_menus` VALUES ('85', '1');
 INSERT INTO `tb_roles_menus` VALUES ('86', '1');
+INSERT INTO `tb_roles_menus` VALUES ('93', '1');
+INSERT INTO `tb_roles_menus` VALUES ('94', '1');
+INSERT INTO `tb_roles_menus` VALUES ('95', '1');
+INSERT INTO `tb_roles_menus` VALUES ('96', '1');
+INSERT INTO `tb_roles_menus` VALUES ('97', '1');
+INSERT INTO `tb_roles_menus` VALUES ('98', '1');
+INSERT INTO `tb_roles_menus` VALUES ('99', '1');
+INSERT INTO `tb_roles_menus` VALUES ('57', '64');
+INSERT INTO `tb_roles_menus` VALUES ('58', '64');
+INSERT INTO `tb_roles_menus` VALUES ('59', '64');
+INSERT INTO `tb_roles_menus` VALUES ('60', '64');
+INSERT INTO `tb_roles_menus` VALUES ('61', '64');
+INSERT INTO `tb_roles_menus` VALUES ('62', '64');
+INSERT INTO `tb_roles_menus` VALUES ('63', '64');
+INSERT INTO `tb_roles_menus` VALUES ('64', '64');
+INSERT INTO `tb_roles_menus` VALUES ('65', '64');
+INSERT INTO `tb_roles_menus` VALUES ('68', '64');
+INSERT INTO `tb_roles_menus` VALUES ('74', '64');
+INSERT INTO `tb_roles_menus` VALUES ('75', '64');
+INSERT INTO `tb_roles_menus` VALUES ('76', '64');
+INSERT INTO `tb_roles_menus` VALUES ('77', '64');
+INSERT INTO `tb_roles_menus` VALUES ('78', '64');
+INSERT INTO `tb_roles_menus` VALUES ('87', '64');
+INSERT INTO `tb_roles_menus` VALUES ('88', '64');
+INSERT INTO `tb_roles_menus` VALUES ('89', '64');
+INSERT INTO `tb_roles_menus` VALUES ('69', '64');
+INSERT INTO `tb_roles_menus` VALUES ('70', '64');
+INSERT INTO `tb_roles_menus` VALUES ('71', '64');
+INSERT INTO `tb_roles_menus` VALUES ('72', '64');
+INSERT INTO `tb_roles_menus` VALUES ('73', '64');
+INSERT INTO `tb_roles_menus` VALUES ('90', '64');
+INSERT INTO `tb_roles_menus` VALUES ('83', '64');
+INSERT INTO `tb_roles_menus` VALUES ('84', '64');
+INSERT INTO `tb_roles_menus` VALUES ('94', '64');
+INSERT INTO `tb_roles_menus` VALUES ('96', '64');
+INSERT INTO `tb_roles_menus` VALUES ('99', '64');
+INSERT INTO `tb_roles_menus` VALUES ('1', '62');
+INSERT INTO `tb_roles_menus` VALUES ('2', '62');
+INSERT INTO `tb_roles_menus` VALUES ('3', '62');
+INSERT INTO `tb_roles_menus` VALUES ('16', '62');
+INSERT INTO `tb_roles_menus` VALUES ('17', '62');
+INSERT INTO `tb_roles_menus` VALUES ('18', '62');
+INSERT INTO `tb_roles_menus` VALUES ('19', '62');
+INSERT INTO `tb_roles_menus` VALUES ('4', '62');
+INSERT INTO `tb_roles_menus` VALUES ('20', '62');
+INSERT INTO `tb_roles_menus` VALUES ('21', '62');
+INSERT INTO `tb_roles_menus` VALUES ('22', '62');
+INSERT INTO `tb_roles_menus` VALUES ('23', '62');
+INSERT INTO `tb_roles_menus` VALUES ('46', '62');
+INSERT INTO `tb_roles_menus` VALUES ('47', '62');
+INSERT INTO `tb_roles_menus` VALUES ('48', '62');
+INSERT INTO `tb_roles_menus` VALUES ('49', '62');
+INSERT INTO `tb_roles_menus` VALUES ('50', '62');
+INSERT INTO `tb_roles_menus` VALUES ('57', '62');
+INSERT INTO `tb_roles_menus` VALUES ('58', '62');
+INSERT INTO `tb_roles_menus` VALUES ('59', '62');
+INSERT INTO `tb_roles_menus` VALUES ('60', '62');
+INSERT INTO `tb_roles_menus` VALUES ('61', '62');
+INSERT INTO `tb_roles_menus` VALUES ('62', '62');
+INSERT INTO `tb_roles_menus` VALUES ('63', '62');
+INSERT INTO `tb_roles_menus` VALUES ('64', '62');
+INSERT INTO `tb_roles_menus` VALUES ('65', '62');
+INSERT INTO `tb_roles_menus` VALUES ('66', '62');
+INSERT INTO `tb_roles_menus` VALUES ('67', '62');
+INSERT INTO `tb_roles_menus` VALUES ('79', '62');
+INSERT INTO `tb_roles_menus` VALUES ('80', '62');
+INSERT INTO `tb_roles_menus` VALUES ('81', '62');
+INSERT INTO `tb_roles_menus` VALUES ('82', '62');
+INSERT INTO `tb_roles_menus` VALUES ('91', '62');
+INSERT INTO `tb_roles_menus` VALUES ('92', '62');
+INSERT INTO `tb_roles_menus` VALUES ('68', '62');
+INSERT INTO `tb_roles_menus` VALUES ('74', '62');
+INSERT INTO `tb_roles_menus` VALUES ('75', '62');
+INSERT INTO `tb_roles_menus` VALUES ('76', '62');
+INSERT INTO `tb_roles_menus` VALUES ('77', '62');
+INSERT INTO `tb_roles_menus` VALUES ('78', '62');
+INSERT INTO `tb_roles_menus` VALUES ('87', '62');
+INSERT INTO `tb_roles_menus` VALUES ('88', '62');
+INSERT INTO `tb_roles_menus` VALUES ('89', '62');
+INSERT INTO `tb_roles_menus` VALUES ('69', '62');
+INSERT INTO `tb_roles_menus` VALUES ('70', '62');
+INSERT INTO `tb_roles_menus` VALUES ('71', '62');
+INSERT INTO `tb_roles_menus` VALUES ('72', '62');
+INSERT INTO `tb_roles_menus` VALUES ('73', '62');
+INSERT INTO `tb_roles_menus` VALUES ('90', '62');
+INSERT INTO `tb_roles_menus` VALUES ('83', '62');
+INSERT INTO `tb_roles_menus` VALUES ('84', '62');
+INSERT INTO `tb_roles_menus` VALUES ('85', '62');
+INSERT INTO `tb_roles_menus` VALUES ('86', '62');
+INSERT INTO `tb_roles_menus` VALUES ('93', '62');
+INSERT INTO `tb_roles_menus` VALUES ('94', '62');
+INSERT INTO `tb_roles_menus` VALUES ('95', '62');
+INSERT INTO `tb_roles_menus` VALUES ('96', '62');
+INSERT INTO `tb_roles_menus` VALUES ('97', '62');
+INSERT INTO `tb_roles_menus` VALUES ('98', '62');
+INSERT INTO `tb_roles_menus` VALUES ('99', '62');
+INSERT INTO `tb_roles_menus` VALUES ('1', '63');
+INSERT INTO `tb_roles_menus` VALUES ('68', '63');
+INSERT INTO `tb_roles_menus` VALUES ('74', '63');
+INSERT INTO `tb_roles_menus` VALUES ('75', '63');
+INSERT INTO `tb_roles_menus` VALUES ('76', '63');
+INSERT INTO `tb_roles_menus` VALUES ('77', '63');
+INSERT INTO `tb_roles_menus` VALUES ('78', '63');
+INSERT INTO `tb_roles_menus` VALUES ('87', '63');
+INSERT INTO `tb_roles_menus` VALUES ('88', '63');
+INSERT INTO `tb_roles_menus` VALUES ('89', '63');
+INSERT INTO `tb_roles_menus` VALUES ('83', '63');
+INSERT INTO `tb_roles_menus` VALUES ('84', '63');
+INSERT INTO `tb_roles_menus` VALUES ('93', '63');
+INSERT INTO `tb_roles_menus` VALUES ('96', '63');
+INSERT INTO `tb_roles_menus` VALUES ('99', '63');
 
 -- ----------------------------
 -- Table structure for `tb_safefactor`
@@ -1797,15 +2126,15 @@ CREATE TABLE `tb_salaryflow` (
   `salaryflow_mark` varchar(500) DEFAULT NULL,
   `salaryflow_status` int(11) DEFAULT NULL,
   PRIMARY KEY (`salaryflow_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_salaryflow
 -- ----------------------------
 INSERT INTO `tb_salaryflow` VALUES ('1', '2018-06-07', '系统管理员', '2018-10-05', '2018-10-19', '2018', '2018-10', '', '0');
-INSERT INTO `tb_salaryflow` VALUES ('2', '2018-01-01', '系统管理员', '2018-02-02', '2018-02-02', '2018', '02-02', '这是2018年1月份工资', '0');
-INSERT INTO `tb_salaryflow` VALUES ('3', '2018-06-16', '系统管理员', '2018-10-04', '2018-10-31', '2018', '2018-11', 'jjj', '0');
-INSERT INTO `tb_salaryflow` VALUES ('4', '2018-06-08', '系统管理员', '2018-11-04', '2018-11-13', '2018', '2018-10', '这是11月\r\n', '0');
+INSERT INTO `tb_salaryflow` VALUES ('2', '2018-01-01', '系统管理员', '2018-02-02', '2018-02-02', '2018', '02-02', '这是2018年1月份工资', '1');
+INSERT INTO `tb_salaryflow` VALUES ('3', '2018-06-16', '系统管理员', '2018-10-04', '2018-10-31', '2018', '2018-11', 'jjj', '1');
+INSERT INTO `tb_salaryflow` VALUES ('4', '2018-06-08', '系统管理员', '2018-11-04', '2018-11-13', '2018', '2018-10', '这是11月\r\n', '1');
 INSERT INTO `tb_salaryflow` VALUES ('5', '2018-06-07', '系统管理员', '2018-10-04', '2018-10-25', '2019', '2018-10', '噢噢噢噢', '1');
 INSERT INTO `tb_salaryflow` VALUES ('6', '2018-06-10', '系统管理员', '2018-06-16', '2018-06-14', '2018', '06-29', '这是2018年6月份的工资', '1');
 INSERT INTO `tb_salaryflow` VALUES ('7', '2018-06-24', '系统管理员', '2018-06-21', '2018-06-21', '2018', '06-16', '这是2018年6月份的工资', '1');
@@ -1813,6 +2142,8 @@ INSERT INTO `tb_salaryflow` VALUES ('15', '2017-05-04', '王哈哈', '2018-11-02
 INSERT INTO `tb_salaryflow` VALUES ('16', '2017-05-04', 'arthur', '2018-11-02', '2018-12-25', '2018', '12', '6666666666666666666666666666666', '1');
 INSERT INTO `tb_salaryflow` VALUES ('17', '2017-05-04', 'arthur', '2018-11-06', '2018-11-30', '2018', '11', '11月份工资', '1');
 INSERT INTO `tb_salaryflow` VALUES ('18', '2017-05-04', 'arthur', '2018-10-13', '2018-10-14', '2018', '10', '10月份工资', '1');
+INSERT INTO `tb_salaryflow` VALUES ('19', '2017-05-04', '郭迪', '2018-11-12', '2018-12-12', '2018', '06', '11月份工资', '1');
+INSERT INTO `tb_salaryflow` VALUES ('20', '2017-05-04', 'arthur', '2018-11-13', '2018-12-13', '2018', '06', '12月份工资', '0');
 
 -- ----------------------------
 -- Table structure for `tb_sal_data`
@@ -1860,7 +2191,7 @@ CREATE TABLE `tb_sal_data` (
   CONSTRAINT `FK_TB_SAL_D_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`),
   CONSTRAINT `FK_TB_SAL_D_REFERENCE_TB_PERSO` FOREIGN KEY (`personxc_id`) REFERENCES `tb_personxc` (`personxc_id`),
   CONSTRAINT `FK_TB_SAL_D_REFERENCE_TB_SALAR` FOREIGN KEY (`salaryflow_id`) REFERENCES `tb_salaryflow` (`salaryflow_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_sal_data
@@ -1910,6 +2241,20 @@ INSERT INTO `tb_sal_data` VALUES ('42', null, '18', '19', null, null, '35000', '
 INSERT INTO `tb_sal_data` VALUES ('43', null, '18', '20', null, null, '35000', '500', '200', '100', '200', '200', '200', null, null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', null);
 INSERT INTO `tb_sal_data` VALUES ('44', null, '18', '21', null, null, '65254', '6000', '3000', '2000', '1000', '200', '100', null, null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '好');
 INSERT INTO `tb_sal_data` VALUES ('45', null, '4', '25', '3769', null, '4000', '50', '20', '20', '1', '2', '3', null, null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '好');
+INSERT INTO `tb_sal_data` VALUES ('46', null, '19', '1', null, null, '54254', '2000', '2000', '1000', '500', '600', '200', '32', null, null, '5000', '1350', '1000', '350.00000000000006', '700', '500', '200', '750', '750', '1250', '1000', '250', '250', '250', '400', '400', '0', '好');
+INSERT INTO `tb_sal_data` VALUES ('47', null, '19', '18', null, null, '7000', '200', '200', '500', '200', '200', '200', '100', null, null, '560', '151.2', '112', '39.2', '78.4', '56', '22.4', '84', '84', '140', '112', '28', '28', '28', '44', '44', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('48', null, '19', '19', null, null, '7000', '200', '200', '500', '200', '200', '200', '100', null, null, '560', '151.2', '112', '39.2', '78.4', '56', '22.4', '84', '84', '140', '112', '28', '28', '28', '44', '44', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('49', null, '19', '20', null, null, '7000', '200', '200', '500', '200', '200', '200', '100', null, null, '560', '151.2', '112', '39.2', '78.4', '56', '22.4', '84', '84', '140', '112', '28', '28', '28', '44', '44', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('50', null, '19', '21', null, null, '65254', '6000', '3000', '2000', '1000', '200', '100', '21', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '好');
+INSERT INTO `tb_sal_data` VALUES ('51', null, '19', '22', null, null, '32024', '6000', '3000', '2000', '1000', '200', '100', '12', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '差');
+INSERT INTO `tb_sal_data` VALUES ('52', null, '19', '25', null, null, '200', '50', '20', '20', '1', '2', '3', '5', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('53', null, '1', '1', null, null, '54254', '2000', '2000', '1000', '500', '600', '200', '32', null, null, '5000', '1350', '1000', '350.00000000000006', '700', '500', '200', '750', '750', '1250', '1000', '250', '250', '250', '400', '400', '0', '好');
+INSERT INTO `tb_sal_data` VALUES ('54', null, '1', '18', null, null, '10000', '231', '200', '200', '200', '200', '10000', '200', null, null, '800', '216', '160', '56', '112', '80', '32', '120', '120', '200', '160', '40', '40', '40', '64', '64', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('55', null, '1', '19', null, null, '10000', '200', '200', '200', '200', '200', '10000', '200', null, null, '800', '216', '160', '56', '112', '80', '32', '120', '120', '200', '160', '40', '40', '40', '64', '64', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('56', null, '1', '20', null, null, '10000', '200', '200', '200', '200', '200', '10000', '200', null, null, '800', '216', '160', '56', '112', '80', '32', '120', '120', '200', '160', '40', '40', '40', '64', '64', '0', null);
+INSERT INTO `tb_sal_data` VALUES ('57', null, '1', '21', null, null, '65254', '6000', '3000', '2000', '1000', '200', '100', '21', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '好');
+INSERT INTO `tb_sal_data` VALUES ('58', null, '1', '22', null, null, '32024', '6000', '3000', '2000', '1000', '200', '100', '12', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', '差');
+INSERT INTO `tb_sal_data` VALUES ('59', null, '1', '25', null, null, '200', '50', '20', '20', '1', '2', '3', '5', null, null, '2000', '540', '400', '140', '280', '200', '80', '300', '300', '500', '400', '100', '100', '100', '160', '160', '0', null);
 
 -- ----------------------------
 -- Table structure for `tb_sal_item`
@@ -1922,7 +2267,7 @@ CREATE TABLE `tb_sal_item` (
   PRIMARY KEY (`Item_id`),
   KEY `FK_TB_SAL_I_REFERENCE_TB_ITEMT` (`Itemtype_id`),
   CONSTRAINT `FK_TB_SAL_I_REFERENCE_TB_ITEMT` FOREIGN KEY (`Itemtype_id`) REFERENCES `tb_itemtype` (`Itemtype_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_sal_item
@@ -1934,6 +2279,7 @@ INSERT INTO `tb_sal_item` VALUES ('4', '1', '劳务费');
 INSERT INTO `tb_sal_item` VALUES ('5', '2', '房贴');
 INSERT INTO `tb_sal_item` VALUES ('6', '1', '高温费');
 INSERT INTO `tb_sal_item` VALUES ('21', '3', '迟到扣款');
+INSERT INTO `tb_sal_item` VALUES ('27', '1', '测试');
 
 -- ----------------------------
 -- Table structure for `tb_staff`
@@ -1969,7 +2315,7 @@ CREATE TABLE `tb_txgroup` (
   PRIMARY KEY (`group_id`),
   KEY `FK_TB_TXGRO_REFERENCE_TB_ADMIN` (`id`),
   CONSTRAINT `FK_TB_TXGRO_REFERENCE_TB_ADMIN` FOREIGN KEY (`id`) REFERENCES `tb_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_txgroup
@@ -1979,6 +2325,7 @@ INSERT INTO `tb_txgroup` VALUES ('2', '1', '家人');
 INSERT INTO `tb_txgroup` VALUES ('3', '1', '同事');
 INSERT INTO `tb_txgroup` VALUES ('4', '1', '员工');
 INSERT INTO `tb_txgroup` VALUES ('5', '1', '尔尔');
+INSERT INTO `tb_txgroup` VALUES ('6', '1', 'qqq');
 
 -- ----------------------------
 -- Table structure for `tb_users`
@@ -2026,13 +2373,16 @@ CREATE TABLE `tongji` (
   `chuci` varchar(11) DEFAULT NULL,
   `waici` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`kid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tongji
 -- ----------------------------
 INSERT INTO `tongji` VALUES ('7', '1', 'admin', '26', '24', '8', '2', '30', '16', '4', '3', '3', '8');
 INSERT INTO `tongji` VALUES ('8', '18', 'test', '26', '24', '8', '2', '30', '16', '2', '3', '4', '3');
+INSERT INTO `tongji` VALUES ('9', '23', 'xiaoli', '5', '2', '2', '3', '0', '0', '0', '0', '0', '0');
+INSERT INTO `tongji` VALUES ('10', '22', null, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `tongji` VALUES ('11', '19', null, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Procedure structure for `ShenPi`

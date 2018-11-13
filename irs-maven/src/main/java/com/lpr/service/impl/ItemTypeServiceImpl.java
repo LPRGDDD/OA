@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.lpr.dao.ItemTypeMapper;
 import com.lpr.entity.ItemType;
 import com.lpr.service.ItemTypeService;
+/**
+ * 薪酬项目类型表
+ * @author 刘培然
+ *
+ */
 @Service
 public class ItemTypeServiceImpl implements ItemTypeService{
 @Autowired

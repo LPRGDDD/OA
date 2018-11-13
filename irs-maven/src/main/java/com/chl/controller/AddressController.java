@@ -125,6 +125,11 @@ public class AddressController {
       m.put("data", list);
       return m;
   }
+  @RequestMapping("/getAllDeptTwo")
+  public @ResponseBody List getAllDeptTwo() {
+      List<Map> list = ser.getAllDept(null);
+      return list;
+  }
 //  发布公告
   @RequestMapping("/sendNotce")
   public @ResponseBody String sendNotce(BasePojo list,Integer type_id){
@@ -140,7 +145,6 @@ public class AddressController {
 //  查询公告类型
   @RequestMapping("/getAllNotifyType")
   public @ResponseBody List<Map> getAllNotifyType(){
-	  System.out.println("所有");
        return ser.getAllNotifyType();
   }
 //  根据userid查询部门
@@ -174,6 +178,43 @@ public @ResponseBody Map getAllNotify(String keyWord, Integer limit, Integer pag
   map.put("data", info.getList());
   return map;
 }  
+
+
+//查询公告通知详情
+@RequestMapping("/notifyX")
+public @ResponseBody List selectXMail(Integer notify_id){
+	System.out.println("已发送");
+	return ser.notifyX(notify_id);
+	
+}
+
+//根据ID查询公告
+
+@RequestMapping("/selectnotifyById")
+public  @ResponseBody
+Map selectnotifyById(HttpServletRequest request, Integer notify_id){
+	System.out.println("cui");
+      return ser.selectnotifyById(notify_id);   
+}
+
+
+//公告管理修改
+@RequestMapping("/updatenotify")
+public @ResponseBody
+String updatenotify(BasePojo map) {
+    System.out.println(map.getMap());
+    ser.updatenotify(map.getMap());
+    return "success";
+}
+//公告管理修改状态
+@RequestMapping("/updatestatus")
+public @ResponseBody
+String updatenostuts(Integer notify_id,String no_status){
+	ser.updatestatus(notify_id, no_status);
+	return "success";
+	
+}
+
 @RequestMapping("/sendNotce.action")
 public String find1(){
 return "page/view/chl/notice";
@@ -188,6 +229,6 @@ public String find3(){
 return "page/view/chl/showNotice";
 
 }
-    
+
     
 }

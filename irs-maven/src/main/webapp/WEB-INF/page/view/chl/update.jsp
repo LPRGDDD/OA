@@ -70,21 +70,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					
                         <form id="addre" method="post">
-							<br>收件人： <input type="text" style="width:192px;height:35px"
-									id="showUser" name="id"> 
-									<input type="hidden" value="${map.emailId }" name="emailId" >
-									<!-- <button class="layui-btn" style="height: 30px" data-toggle="modal"
-							         data-target="#myModal" onclick="getUsers()">+</button> -->
-									<div class="layui-input-inline">
-										<button type="button" onclick="selectUser()"
-											class="layui-btn layui-btn-primary layui-btn-radius">查询员工</button>
-											 
-										
-										<!-- selectUser()是自定义的 -->
-									</div>
-                                    <br> <br>
-		                                                                         主题： <input type="text"
-									style="width:192px;height:35px" value="${map.subject }" name="subject"id="subject"><br> <br>
+							 <input type="hidden" style="width:192px;height:35px" id="showUser" name="id" > 
+							 <input type="hidden" value="${map.emailId }" id="emailId">
+							<!--  <div class="layui-input-inline">
+								<button type="button" onclick="selectUser()" class="layui-btn layui-btn-primary layui-btn-radius">查询员工</button>
+							 </div> -->
+		                    收件人： <input type="text" style="width:192px;height:35px" value="${map.fullname }"><br> <br>
+		                       主题： <input type="text" style="width:192px;height:35px" value="${map.subject }" name="subject"id="subject"><br> <br>
 						                        内容： <input
 									type="text" style="width:400px;height:150px" value="${map.content }" name="content"id="content"><br>
 								<br>
@@ -188,20 +180,22 @@ $("#off").click(function(){
 			})
 		}
 	
-
-      function update(obj){
-/*          var emailId = $(obj).parent().parent().prev().prev().prev().children().html();
- */        alert($("#addre").serialize())
+      function update(obj){  
+      alert("success");
+      parent.location.reload();
             $.ajax({
                url:"mail/updateMail",
                type:'post',
-               data:$("#addre").serialize(),
+               data:{
+               "emailId":$("#emailId").val(),
+               "subject":$("#subject").val(),
+               "content":$("#content").val()
+               },
                dataType:'text',
                success:function(data){
-               alert(data);
-                    window.location.reload()
+               
+				//刷新父页面
                }
-            
             })
         }
              

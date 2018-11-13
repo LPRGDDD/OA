@@ -37,5 +37,12 @@ public List<Map> getNotify(@Param("keyWord")String keyWord,@Param("deptId")Integ
 //    公告管理 查询所有公告
 public List<Map> getAllNotify(@Param("keyWord")String keyWord); 
   
-	
+//查询公告通知详情
+public List notifyX(@Param("notify_id") Integer notify_id );
+//根据ID 查询 公告
+public Map selectnotifyById(@Param("notify_id")Integer notify_id);
+//公告管理修改
+public int updatenotify(Map map);
+//公告管理修改状态
+public int  updatestatus(@Param("notify_id")Integer notify_id,@Param("no_status")String no_status);
 }

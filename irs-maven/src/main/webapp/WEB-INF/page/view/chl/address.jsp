@@ -41,7 +41,7 @@
     </style>
 </head>
 <body>
-<%-- <input value="${userID}" style="display: none" id="userId"> --%>
+<%-- <input value="<shiro:principal property="id"/>" style="display: none" id="userId"> --%>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -98,7 +98,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabelTwo">
-                    添加分组
+                                                                          添加分组
                 </h4>
             </div>
             <div class="modal-body">
@@ -132,15 +132,14 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabelThree">
-                    选择您要修改的联系人
+                                                   我的分组
                 </h4>
             </div>
             <div class="modal-body">
-                <!-- 选择负责人 -->
-                <input type="text" style="width:192px;height:35px" id="keyWordThree">
+                    <input type="text" style="width:192px;height:35px" id="keyWordThree">
                 <button style="height:35px;position:relative;top:-5px;" class="layui-btn" id="getUserByKeyThree">查询
                 </button>
-                <table class="layui-hide" id="testThree"></table>
+                <table class="layui-hide" id="testThree"></table> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -228,7 +227,7 @@
     var table = layui.table; //定义全局变量  方便使用layui的表格
     var laypage = layui.laypage, layer = layui.layer; //定义全局变量  方便使用layui的分页条
     $(function () {
-        fenye("", 1,5, 1);  //调用layui表格
+        fenye("", 1,7, 1);  //调用layui表格
         tool();
         $.ajax({
             url: "../address/login",
@@ -247,8 +246,7 @@
                     userId: 1
                 }
                 , cols: [[ //表头
-                    {checkbox: true, fixed: true}
-                    , {field: 'group_id', title: '分组编号', width: 235, sort: true, fixed: 'left'}
+                   {field: 'group_id', title: '分组编号', width: 235, sort: true, fixed: 'left'}
                     , {field: 'group_name', width: 290, title: '分组名称',}
                 ]]
             });
@@ -355,8 +353,6 @@
         table.render({
             id: 'myTab', //table的id
             elem: '#myTab',   //同上
-            height: 610,  //表格的高度
-            width:2140,
             url: '../address/getAddressBook',
             where: {
                 pageNum: pagenum,
@@ -366,9 +362,9 @@
             },
             cols: [[
                 {field: 'add_id', title: '通讯编码', sort: true,width:110},
-                {field: 'group_name', title: '分组', sort: true,width:50},
+                {field: 'group_name', title: '分组', sort: true,width:70},
                 {field: 'psn_name', title: '姓名', sort: true,width:100},
-                {field: 'sex', title: '性别', sort: true,width:50},
+                {field: 'sex', title: '性别', sort: true,width:70},
 /*                 {field: 'nick_name', title: '昵称', sort: true,width:50},
  *//*                 {field: 'birthday', title: '生日', sort: true,width:50},
  */                {field: 'ministration', title: '职务', sort: true,width:100},
@@ -407,8 +403,8 @@
             },
             dataType:'json',
             success: function (data) {
-                 alert(data.userId)
-                 alert($("#chlid").val(data.userId));
+            alert(data.group_id)
+            $("#fz option[value='"+data.group_id+"']").attr("selected","selected");
         $("#addId").val(data.add_id);
         $("#chlid").val(data.userId);
         $("#xm").val(data.psn_name);
@@ -427,10 +423,7 @@
         $("#jtsj").val(data.moble_no);
         $("#dzyj").val(data.email);
         $("#qq").val(data.oicq_noqq);
-                 
-                /*  window.location.reload()   */
-               
-               }
+       }
                })
                 $.ajax({
                 url: "../address/findGroup",
@@ -446,6 +439,7 @@
                      sel += "<option value='" + data[i].group_id + "'>" + data[i].group_name + "</option>";
                     }
                     $("#fz").append(sel)
+                  /*   $("#eventlevel option[value='']") */
                   }
                   
                })
@@ -464,7 +458,7 @@
         laypage.render({
             elem: 'fenye',//分页条的作用域   页面中di'v的id
             count: count,  //总数据数
-            limit: 5,      //每页显示的条数
+            limit: 7,      //每页显示的条数
             layout: ['prev', 'page', 'next', 'limit', 'skip'],
             jump: function (obj, first) {
                 /*判断如果不是第一页执行里面的方法*/

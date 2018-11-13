@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lpr.entity.SalItem;
 import com.lpr.service.SalItemService;
+/**
+ * 薪酬项目定义表
+ * @author 刘培然
+ *
+ */
 @Controller
 @RequestMapping("/salitem")
 public class SalItemController {
@@ -39,8 +44,8 @@ public class SalItemController {
 	@RequestMapping("insert")
 	public void insert(SalItem salitem,HttpServletRequest request,HttpServletResponse response) throws IOException {
 		System.out.println(salitem);
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
+		response.setContentType("text/html;charset=utf-8");//解决中文乱码
+		PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 		int result=service.insert(salitem);
 		if (result!=0) {
 			out.print("添加成功！");
@@ -51,8 +56,8 @@ public class SalItemController {
 	//薪酬项目定义表的编辑
 	@RequestMapping("update")
     public void update(SalItem salitem,HttpServletResponse response) throws IOException{
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
+		response.setContentType("text/html;charset=utf-8");//解决中文乱码
+		PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 		int result=service.update(salitem);
 		if (result!=0) {
 			out.print("修改成功！！！");
@@ -64,8 +69,8 @@ public class SalItemController {
 	//薪酬项目定义表的删除
 	@RequestMapping("delete")
     public void delete(int itemId,HttpServletResponse response) throws IOException{
-    	response.setContentType("text/html;charset=utf-8");
-    	PrintWriter out=response.getWriter();
+    	response.setContentType("text/html;charset=utf-8");//解决中文乱码
+    	PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
     	 int result=service.delete(itemId);
     	 if(result!=0){
    		   out.print("删除成功！！！");

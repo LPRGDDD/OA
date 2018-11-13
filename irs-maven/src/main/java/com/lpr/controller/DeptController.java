@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lpr.service.DeptService;
+/**
+ * 部门表
+ * @author 刘培然
+ *
+ */
 @Controller
 @RequestMapping("/dept")
 public class DeptController {
@@ -35,12 +40,13 @@ public class DeptController {
 	}
 	//根据部门编号传员工
 	@RequestMapping("/findUser")
-	public @ResponseBody Map findUser(Integer page,Integer limit,Integer deptId) {
+	public @ResponseBody Map findUser(Integer page,Integer limit,Integer deptId) {//page是当前页，limit是每页显示的页数
 		System.out.println(deptId);
-		PageHelper.startPage(page, limit);
+		PageHelper.startPage(page, limit);//分页插件
 		List<Map> list=service.findUser(deptId);
-		PageInfo<Map> info=new PageInfo<Map>(list);
+		PageInfo<Map> info=new PageInfo<Map>(list);//插件里面的一个方法pageInfo,用来处理list
 		Map map = new HashMap();
+		//往前台传map
         map.put("code", 0);
         map.put("msg", "");
         map.put("count",info.getTotal());
@@ -49,11 +55,12 @@ public class DeptController {
 	}
 	//查询所有员工
 	@RequestMapping("/findAllUser")
-	public @ResponseBody Map findAllUser(Integer page,Integer limit) {
-		PageHelper.startPage(page, limit);
+	public @ResponseBody Map findAllUser(Integer page,Integer limit) {//page是当前页，limit是每页显示的页数
+		PageHelper.startPage(page, limit);//分页插件
 		List<Map> list=service.findAllUser();
-		PageInfo<Map> info=new PageInfo<Map>(list);
+		PageInfo<Map> info=new PageInfo<Map>(list);//插件里面的一个方法pageInfo,用来处理list
 		Map map = new HashMap();
+		//往前台传map
         map.put("code", 0);
         map.put("msg", "");
         map.put("count",info.getTotal());

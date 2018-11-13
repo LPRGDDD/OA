@@ -89,4 +89,26 @@
             </if>
         </where>
     </select> 
+    <!--查询公告通知详情  -->
+    <select id="notifyX" resultType="java.util.Map">
+       select n.notify_id, n.content from notify n join tb_admin a on n.id=a.id
+        <where>
+             <if test="notify_id !=null and notify_id!=''">
+                n.notify_id=#{notify_id}
+            </if>
+        </where> 
+    </select>
+     <!--根据ID查询公告  -->
+    <select id="selectnotifyById" resultType="Map" parameterType="Integer">
+       select * from notify where notify_id=#{notify_id}
+    </select>
+    <!--公告管理修改  -->
+  <update id="updatenotify" parameterType="java.util.Map">
+        update notify set type_id=#{type_id},dept_id=#{dept_id},subject=#{subject} content=#{content} where notify_id=#{notify_id}
+    </update>  
+    
+   <!--公告管理修改状态  --> 
+  <update id="updatestatus" parameterType="java.util.Map">
+     	update notify set no_status=#{no_status} where notify_id=#{notify_id}  
+  </update>  
  </mapper>

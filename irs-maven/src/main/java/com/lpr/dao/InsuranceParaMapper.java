@@ -1,7 +1,11 @@
 package com.lpr.dao;
 
 import com.lpr.entity.InsurancePara;
-
+/**
+ * 上报信息设置表
+ * @author 刘培然
+ *
+ */
 public interface InsuranceParaMapper {
 	/**
 	 * 根据上报信息设置编号删除

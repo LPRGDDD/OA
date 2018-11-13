@@ -15,6 +15,11 @@ import com.lpr.entity.SalaDataAndAdmin;
 import com.lpr.entity.SalaDataSearch;
 import com.lpr.entity.SalaryFlow;
 import com.lpr.service.SalDataService;
+/**
+ * 工资流程表的上报数据表
+ * @author 刘培然
+ *
+ */
 @Service
 public class SalDataServiceImpl implements SalDataService{
 @Autowired
@@ -30,6 +35,7 @@ private SalDataMapper dao;
 		// TODO Auto-generated method stub
 		return dao.findByStatus1();
 	}
+	@Transactional
 	@Override
 	public int insert(SalData s, String userId) {
 		int[] intArr=new int[0];//生成一个int数组
@@ -61,31 +67,30 @@ private SalDataMapper dao;
 		return 0;//返回错误的结果，返回0
 	}
 	@Override
-	public List<Map> findBySalaryFlowId(int sid,String nickname,Integer deptId) {
+	public List<Map> findBySalaryFlowId(int sid,String nickname,Integer deptId,Integer start,Integer end) {
 		// TODO Auto-generated method stub
-		return dao.findBySalaryFlowId(sid,nickname,deptId);
+		return dao.findBySalaryFlowId(sid,nickname,deptId, end, end);
 	}
 	@Transactional
 	@Override
 	public int PLInsert(String userStr,String salaryflowIdStr, List<SalaDataAndAdmin> list) {
 		// TODO Auto-generated method stub
 		int[] intArr=new int[0];//生成一个int数组
-		int salaryflowId=Integer.parseInt(salaryflowIdStr);
+		int salaryflowId=Integer.parseInt(salaryflowIdStr);//把字符串转换为int
 		String[] valArr=userStr.split(",");//根据逗号（，）把userID分割成String数组
 		intArr=new int[valArr.length];//把String数组的长度赋给int数组
 		for (int i = 0; i < valArr.length; i++) {
 			intArr[i]=Integer.parseInt(valArr[i]);//循环把String数组转换int数组
 		}
-		//根据员工ID和流程ID查询表是否存在
 		TbAdmin user=new TbAdmin();
 		SalaryFlow salaryFlow=new SalaryFlow();
 		List<SalData> slist=new ArrayList<SalData>();
 		//从表SalaDataAndAdmin向SalData循环赋值
 		if (salaryflowId!=0) {
-			for (SalaDataAndAdmin salaDataAndAdmin : list) {
+			for (SalaDataAndAdmin salaDataAndAdmin : list) {//循环遍SalaDataAndAdmin历数据
 				SalData sal1=new SalData();
-				if (salaDataAndAdmin.getPersonxc_s1()!=null) {
-					sal1.setPersonxcS1(salaDataAndAdmin.getPersonxc_s1());
+				if (salaDataAndAdmin.getPersonxc_s1()!=null) {//判断数据不为空
+					sal1.setPersonxcS1(salaDataAndAdmin.getPersonxc_s1());//赋值
 				}
 				if (salaDataAndAdmin.getPersonxc_s2()!=null) {
 					sal1.setPersonxcS2(salaDataAndAdmin.getPersonxc_s2());
@@ -176,26 +181,26 @@ private SalDataMapper dao;
 					salaryFlow.setSalaryflowId(salaryflowId);
 					sal1.setSalaryflow(salaryFlow);
 				}
-				slist.add(sal1);
+				slist.add(sal1);/*循环向slist集合添加数据*/
 			}
-			for (int i = 0; i < intArr.length; i++) {//循环取出人员ID
-				long a=intArr[i];
-				for (int j = i; j < slist.size(); j++) {
-					if (i==j) {
-						int count=dao.countxc(salaryflowId, a);
+			for (int i = 0; i < intArr.length; i++) {//循环取出人员ID[1 2 3]
+				long a=intArr[i];//从数组中取出数据[0]=1
+				for (int j = i; j < slist.size(); j++) {//从slist集合中取出数据
+					if (i==j) {//判断当i=j时，及执行一次人员，就录入或修改一条数据，
+						int count=dao.countxc(salaryflowId, a);//查询saldata是否有数据，//根据员工ID和流程ID查询表是否存在
 						if (count==0) {//当没有数据时
-							user.setId(a);
-							slist.get(j).setUser(user);
-							slist.get(j).setSalDataId(null);//把saldataId置空
+							user.setId(a);//向用户表内存入人员id	
+							slist.get(j).setUser(user);//
+							slist.get(j).setSalDataId(null);//把saldataId置空,因为添加不需要ID
 							slist.set(j, slist.get(j));//放进slist里
-							dao.insert(slist.get(j));
-						}else{
-							int b=dao.findById(a,salaryflowId);
-							user.setId(a);
+							dao.insert(slist.get(j));//执行添加
+						}else{//当有数据时
+							int b=dao.findById(a,salaryflowId);//查询saldata数据获取id作为修改的条件
+							user.setId(a);//向用户表内存入人员id	
 							slist.get(j).setUser(user);
 							slist.get(j).setSalDataId(b);
-							slist.set(j, slist.get(j));
-							dao.updateByPrimaryKey(slist.get(j));
+							slist.set(j, slist.get(j));//把添加的数据放到slist集合中
+							dao.updateByPrimaryKey(slist.get(j));//执行修改
 						}
 					}
 				}

@@ -21,8 +21,9 @@ import com.github.pagehelper.PageInfo;
 import com.lpr.entity.SalaryFlow;
 import com.lpr.service.SalaryFlowService;
 /**
- * 工资流程
- * 
+ * 薪酬管理中的工资流程表
+ * @author 刘培然
+ *
  */
 @Controller
 @RequestMapping("/salaryflow")
@@ -40,8 +41,8 @@ public class SalaryFlowController {
 	@ResponseBody
 	public void insert(SalaryFlow salaryFlow,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		System.out.println("添加："+salaryFlow);
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
+		response.setContentType("text/html;charset=utf-8");//解决中文乱码
+		PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 		int result=service.insert(salaryFlow);
 		if (result!=0) {
 			out.print("添加成功！");
@@ -51,11 +52,12 @@ public class SalaryFlowController {
 	}
 	//工资流程表的查询方法
 	@RequestMapping("findAll")
-	public @ResponseBody Map findAll(Integer page,Integer limit) {
-		PageHelper.startPage(page,limit);
+	public @ResponseBody Map findAll(Integer page,Integer limit) {//page是当前页，limit是每页显示的页数
+		PageHelper.startPage(page,limit);//分页插件
 		List<Map> list=service.findAll(null, null);
-		PageInfo<Map> info=new PageInfo<Map>(list);
+		PageInfo<Map> info=new PageInfo<Map>(list);//插件里面的一个方法pageInfo,用来处理list
 		Map map = new HashMap();
+		//往前台传map
         map.put("code", 0);
         map.put("msg", "");
         map.put("count",info.getTotal());
@@ -63,11 +65,11 @@ public class SalaryFlowController {
 		return map;
 	}
 	//工资流程表的编辑
-		@RequestMapping(value="update",method=RequestMethod.POST)
+		@RequestMapping(value="update",method=RequestMethod.POST)//页面请求为post
 		@ResponseBody
 	    public void update(SalaryFlow salaryflow,HttpServletResponse response) throws IOException{
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
+			response.setContentType("text/html;charset=utf-8");//解决中文乱码
+			PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 			int result=service.update(salaryflow);
 			if (result!=0) {
 				out.print("修改成功！！！");
@@ -78,8 +80,8 @@ public class SalaryFlowController {
 	  //工资流程表的删除
 		@RequestMapping("delete")
 	    public void delete(int salaryflowId,HttpServletResponse response) throws IOException{
-	    	response.setContentType("text/html;charset=utf-8");
-	    	PrintWriter out=response.getWriter();
+	    	response.setContentType("text/html;charset=utf-8");//解决中文乱码
+	    	PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 	    	 int result=service.delete(salaryflowId);
 	    	 if(result!=0){
 	   		   out.print("删除成功！！！");
@@ -89,7 +91,7 @@ public class SalaryFlowController {
 	    }
 	  //工资流程表编辑之前的查询
 	    @RequestMapping("/selectByPrimaryKey/{salaryflow_id}")
-	   public String selectByPrimaryKey(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){
+	   public String selectByPrimaryKey(HttpServletRequest req,@PathVariable("salaryflow_id") int salaryflow_id){//前台传过来的参数“salaryflow_id”这个参数，后台进行标识
 	    	System.out.println(salaryflow_id);
 	    	SalaryFlow sf=service.findById(salaryflow_id);
 	    	System.out.println(sf);
@@ -100,8 +102,8 @@ public class SalaryFlowController {
 	    @RequestMapping("/setXcStatus")
 	    @ResponseBody
 	    public void setXcStatus(SalaryFlow salaryflow,HttpServletResponse response) throws IOException{
-	    	response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
+	    	response.setContentType("text/html;charset=utf-8");//解决中文乱码
+			PrintWriter out=response.getWriter();//获取内置对象respose的getWriter方法，向页面发送信息
 			int result=service.setXcStatus(salaryflow);
 			if (result!=0) {
 				out.print("ok");
