@@ -3,6 +3,7 @@ package com.lwb.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 
 import com.lwb.entity.Hire;
 
@@ -10,7 +11,7 @@ import com.lwb.entity.Hire;
 
 public interface HireDao {
 	   //分页查询所有
-	   public List<Map> queryHire();
+	   public List<Map> queryHire(@Param("jhmc") String jhmc,@Param("ypzxm")String ypzxm,@Param("ypgw")String ypgw);
 	   //添加商品
 	   public int saveHire(Hire h);
 	   //根据ID查询

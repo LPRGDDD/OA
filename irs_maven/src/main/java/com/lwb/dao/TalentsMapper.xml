@@ -13,9 +13,16 @@
      select * from hr_talents t left join hr_plan p on t.hr_plan_id=p.hr_plan_id
      <where>
       <if test="keyWord!='' and keyWord!=null">
-          t.hrTalentsName like '%${keyWord}%'
+          t.hr_talents_name like CONCAT('%','${keyWord}','%')
+      </if>
+      <if test="major!='' and major!=null">
+         and t.hr_talents_major like CONCAT('%','${major}','%')
+      </if>
+      <if test="pname!='' and pname!=null">
+         and p.hr_plan_name like CONCAT('%','${pname}','%')
       </if>
     </where>
+       order by t.hr_talents_id desc
   </select>
   
   
@@ -28,7 +35,7 @@
    </select>
   
   <update id="updaterck" parameterType="com.lwb.entity.Talents">
-            update hr_talents set hr_plan_id=#{hrPlanId},hr_talents_name =#{hrTalentsName},hr_talents_identity =#{hrTalentsIdentity},hr_talents_birth =#{hrTalentsBirth},hr_talents_sex = #{hrTalentsSex},hr_talents_age =#{hrTalentsAge},hr_talents_native =#{hrTalentsNative},hr_talents_place =#{hrTalentsPlace},hr_talents_nation =#{hrTalentsNation},hr_talents_state =#{hrTalentsState},hr_talents_face =#{hrTalentsFace},hr_talents_relation = #{hrTalentsRelation},hr_talents_mall =#{hrTalentsMall},hr_talents_workdate = #{hrTalentsWorkdate},hr_talents_health =#{hrTalentsHealth},hr_talents_background =#{hrTalentsBackground},hr_talents_degree = #{hrTalentsDegree},hr_talents_graduate =#{hrTalentsGraduate},hr_talents_school =#{hrTalentsSchool},hr_talents_filestatus=#{hrTalentsFilestatus},hr_talents_major = #{hrTalentsMajor},hr_talents_computer = #{hrTalentsComputer},hr_talents_foreign = #{hrTalentsForeign},hr_talents_strong = #{hrTalentsStrong},hr_talents_register =#{hrTalentsRegister},hr_talents_expect = #{hrTalentsExpect},hr_talents_skill = #{hrTalentsSkill},hr_talents_workExperience = #{hrTalentsWorkexperience},hr_talents_projectExperience = #{hrTalentsProjectexperience},hr_talents_dwell =#{hrTalentsDwell},hr_talents_nature = #{hrTalentsNature},hr_talents_industry = #{hrTalentsIndustry},hr_talents_pay = #{hrTalentsPay},hr_talents_remark = #{hrTalentsRemark},hr_talents_toemploy=#{hrTalentsToemploy},hr_talents_username =#{hrTalentsUsername} where hr_talents_id = #{hrTalentsId}
+            update hr_talents set hr_plan_id=#{hrPlanId},hr_talents_name =#{hrTalentsName},hr_talents_identity =#{hrTalentsIdentity},hr_talents_birth =#{hrTalentsBirth},hr_talents_sex = #{hrTalentsSex},hr_talents_age =#{hrTalentsAge},hr_talents_native =#{hrTalentsNative},hr_talents_place =#{hrTalentsPlace},hr_talents_nation =#{hrTalentsNation},hr_talents_state =#{hrTalentsState},hr_talents_face =#{hrTalentsFace},hr_talents_relation = #{hrTalentsRelation},hr_talents_mall =#{hrTalentsMall},hr_talents_health =#{hrTalentsHealth},hr_talents_background =#{hrTalentsBackground},hr_talents_degree = #{hrTalentsDegree},hr_talents_graduate =#{hrTalentsGraduate},hr_talents_school =#{hrTalentsSchool},hr_talents_filestatus=#{hrTalentsFilestatus},hr_talents_major = #{hrTalentsMajor},hr_talents_computer = #{hrTalentsComputer},hr_talents_foreign = #{hrTalentsForeign},hr_talents_strong = #{hrTalentsStrong},hr_talents_register =#{hrTalentsRegister},hr_talents_expect = #{hrTalentsExpect},hr_talents_skill = #{hrTalentsSkill},hr_talents_workExperience = #{hrTalentsWorkexperience},hr_talents_projectExperience = #{hrTalentsProjectexperience},hr_talents_dwell =#{hrTalentsDwell},hr_talents_nature = #{hrTalentsNature},hr_talents_industry = #{hrTalentsIndustry},hr_talents_pay = #{hrTalentsPay},hr_talents_remark = #{hrTalentsRemark},hr_talents_toemploy=#{hrTalentsToemploy},hr_talents_username =#{hrTalentsUsername} where hr_talents_id = #{hrTalentsId}
   </update>
   
   <delete id="deleterck">

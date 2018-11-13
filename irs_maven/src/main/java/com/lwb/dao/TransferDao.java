@@ -9,7 +9,7 @@ import com.lwb.entity.Transfer;
 
 public interface TransferDao {
 	//分页查询所有
-	public List<Map> queryTransfer();
+	public List<Map> queryTransfer(@Param("name") String name,@Param("fertype")String fertype);
 	//新增人事调动信息
     public int transferSave(Transfer tf);
     //根据部门查询人员

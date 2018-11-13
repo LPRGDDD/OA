@@ -9,8 +9,8 @@ import com.lwb.entity.Talents;
 
 public interface TalentsDao {
 
-	     //分页查询所有
-	   public List<Map> queryAllrck(@Param("keyWord") String keyWord);
+	     //分页查询所有，条件查询
+	   public List<Map> queryAllrck(@Param("keyWord") String keyWord,@Param("major")String major,@Param("pname")String pname);
 	   //查询计划
 	   public List<Map<String, Object>> planAll();
 	     //添加商品

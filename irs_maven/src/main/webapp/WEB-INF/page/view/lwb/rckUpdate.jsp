@@ -126,26 +126,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		             <input name="hrTalentsMall"  value="${rck.hr_talents_mall}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	        <div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>参加工作时间</label>
-			    <div class="layui-input-inline">
-                      <input name="hrTalentsWorkdate"  value="${rck.hr_talents_workdate}" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>学历</label>
 			    <div class="layui-input-inline">			    
                       <input name="hrTalentsBackground"  value="${rck.hr_talents_background}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	   </div>
-	   <div class="layui-form-item">
 	         <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>健康状况</label>
 			    <div class="layui-input-inline">
                       <input name="hrTalentsHealth"  value="${rck.hr_talents_health}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
+	   </div>
+	   <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>学位</label>
 				<div class="layui-input-inline">
@@ -153,23 +147,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>毕业时间</label>
+				<label class="layui-form-label"><span class="yan">*</span>毕业年限</label>
 			    <div class="layui-input-inline">
-					<input name="hrTalentsGraduate"  value="${rck.hr_talents_graduate}" class="layui-input ym" type="date"  autocomplete="off">
+					<input name="hrTalentsGraduate"  value="${rck.hr_talents_graduate}" class="layui-input ym" type="text"  autocomplete="off">
 				</div>
 			</div>
-	    </div>
-	    
-	    
-	    
-	    
-	<div class="layui-form-item">
-	    <div class="layui-inline">
+	        <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>毕业学校</label>
 			    <div class="layui-input-inline">
 					<input name="hrTalentsSchool"  value="${rck.hr_talents_school}" class="layui-input ym" type="text"  autocomplete="off">
 				</div>
 			</div>
+	    </div>
+	        
+	<div class="layui-form-item">
 	   <div class="layui-inline">
           <label class="layui-form-label">专业</label>
             <div class="layui-input-inline">			           
@@ -182,34 +173,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="layui-input-inline">            
 					<input name="hrTalentsComputer"  value="${rck.hr_talents_computer}" class="layui-input ym" type="text"  autocomplete="off">
             </div>
-       </div>
-  </div>
-	   
-	   
-	   
-	   
-	   <div class="layui-form-item">
+         </div>
 	         <div class="layui-inline">
 		          <label class="layui-form-label">外语语种</label>
 		            <div class="layui-input-inline">
 							<input name="hrTalentsForeign"  value="${rck.hr_talents_foreign}" class="layui-input ym" type="text"  autocomplete="off">
 		            </div>
              </div>
-	        <div class="layui-inline">
-					<label class="layui-form-label"><span class="yan">*</span>外语水平</label>
-				<div class="layui-input-inline">
-					<input name="hrTalentsLevel"  value="${rck.hr_talents_level}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
-				</div>
-			</div>
+  </div>
+	      
+	   
+	   <div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>特长</label>
 			    <div class="layui-input-inline">
 					<input name="hrTalentsStrong"  value="${rck.hr_talents_strong}" class="layui-input ym" type="text"/>
 				</div>
 			</div>
-	 </div>	
-	 
-	  <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>期望从事职业</label>
 				<div class="layui-input-inline">
@@ -222,15 +202,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsSkill"  value="${rck.hr_talents_skill}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
+	 </div>	
+	 
+	  <div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>工作经验</label>
 			    <div class="layui-input-inline">
 					<input name="hrTalentsWorkexperience"  value="${rck.hr_talents_workExperience}" class="layui-input ym" type="text" />
 				</div>
 			</div>
-	 </div>
-	 
-	  <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>项目经验</label>
 				<div class="layui-input-inline">
@@ -243,21 +223,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input name="hrTalentsDwell"  value="${rck.hr_talents_dwell}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
+	 </div>
+	 
+	  <div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>期望工作性质</label>
 			    <div class="layui-input-inline">
 					<input name="hrTalentsNature"  value="${rck.hr_talents_nature}" class="layui-input ym" type="text">
 				</div>
 			</div>
-	 </div>		
-	 
-	 <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>期望从事行业</label>
 				<div class="layui-input-inline">
 					<input name="hrTalentsIndustry"  value="${rck.hr_talents_industry}" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
+	 </div>		
+	 
+	 <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>期望薪水</label>
 				<div class="layui-input-inline">

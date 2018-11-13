@@ -15,11 +15,11 @@ public class TalentsServiceImpl implements TalentsService {
 
 	@Autowired
 	private TalentsDao dao;
-
+	
 	@Override
-	public List<Map> queryAllrck(String keyWord) {
+	public List<Map> queryAllrck(String keyWord, String major, String pname) {
 		// TODO Auto-generated method stub
-		return dao.queryAllrck(keyWord);
+		return dao.queryAllrck(keyWord, major, pname);
 	}
 
 	@Override
@@ -51,7 +51,5 @@ public class TalentsServiceImpl implements TalentsService {
 		// TODO Auto-generated method stub
 		return dao.planAll();
 	}
-
-	
 
 }

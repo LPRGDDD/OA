@@ -48,6 +48,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!-- 第一块 -->
     <div class="layui-tab-item layui-show">
            
+           <div class="demoTable1">
+		                  根据人员姓名：
+		       <div class="layui-inline">
+		         <input name="keyWord" class="layui-input" id="demoReload1" autocomplete="off">
+		       </div>
+		                 根据人员专业：
+		       <div class="layui-inline">
+		         <input name="major" class="layui-input" id="demoReload2" autocomplete="off">
+		       </div>
+		         <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
             <table class="layui-hide" id="myTab" lay-filter="demo"></table>
 	<div id="fenye"></div>
 	
@@ -71,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,height:500
 				    ,url: 'screen/queryScreen?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -81,6 +93,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_talents_filestatus', title: '应聘人状态', width: 220, align:'center'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
 		      ,{fixed: 'right', width:220, align:'center', toolbar: '#barDemo'}
 				    ]],
+				    id: 'testReload'
+				    ,page: true
+				    ,height: 315,
 		done:function(res,page,count){
 		  $("[data-field='hr_talents_filestatus']").children().each(function(){
            if($(this).text()=='1'){
@@ -93,7 +108,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               })
               }
 				  });
-               
+             /*  layui重载  */
+	 var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload1 = $('#demoReload1');
+      var demoReload2 = $('#demoReload2');
+      
+      //执行重载
+      table.reload('testReload', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            keyWord: demoReload1.val(),
+            major: demoReload2.val(),
+              }
+      });
+    }
+  };
+  $('.demoTable1 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });   
 				});
 			//监听工具条
 			table.on('tool(demo)', function(obj) {
@@ -133,24 +170,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </td>
       <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
       <td class="TableData" style="width: 20%">
-        <input type="text" name="hrTalentsName" id="hr_talents_name" class="form-control">
+        <input type="text" name="hrTalentsName" readonly="readonly" id="hr_talents_name" class="form-control">
         <input type="hidden" name="hrTalentsId" id="hr_talents_id"/>
       </td>
    </tr>
    <tr>
       <td nowrap class="col-md-2 control-label" style="width: 20%">应聘岗位:</td>
       <td class="TableData">
-         <input type="text" name="hrTalentsToemploy" id="hr_talents_toemploy" class="form-control"   >
+         <input type="text" name="hrTalentsToemploy" readonly="readonly" id="hr_talents_toemploy" class="form-control"   >
       </td>
       <td nowrap class="col-md-2 control-label">所选专业:</td>
       <td class="TableData">
-        <input type="text" name="hrTalentsMajor" id="hr_talents_major" class="form-control" >
+        <input type="text" name="hrTalentsMajor" readonly="readonly" id="hr_talents_major" class="form-control" >
       </td>
    </tr>
    <tr>
       <td nowrap class="col-md-2 control-label">联系方式:</td>
       <td class="TableData">
-         <input type="text" name="hrTalentsRelation" id="hr_talents_relation" class="form-control" >
+         <input type="text" name="hrTalentsRelation" readonly="readonly" id="hr_talents_relation" class="form-control" >
       </td>
       <td nowrap class="col-md-2 control-label">发起人:</td>
       <td class="TableData">
@@ -180,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- 按钮触发模态框 -->
 <button  data-toggle="modal" data-target="#myModal" onclick="queryScreen1()" id="mtk">
-	+++
+	选择
 </button>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

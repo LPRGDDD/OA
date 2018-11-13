@@ -35,9 +35,10 @@ public class HireController {
 	}
 	@RequestMapping("/queryHire")
 	@ResponseBody
-	public Map queryHire(Integer page,Integer limit) {
+	public Map queryHire(String jhmc, String ypzxm, String ypgw,Integer page,Integer limit) {
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.queryHire();
+		System.out.println(jhmc);
+		List<Map> list=ser.queryHire(jhmc,ypzxm,ypgw);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);

@@ -10,7 +10,7 @@ import com.lwb.entity.Screen;
 
 public interface ScreenDao {
 	   //分页查询所有
-	   public List<Map> queryScreen(@Param("keyWord") String keyWord,@Param("uid") Integer uid);
+	   public List<Map> queryScreen(@Param("keyWord") String keyWord,@Param("major") String major,@Param("uid") Integer uid);
 	   //查询计划
 	   public List<Map> ptAll();
 	   //查询计划内人员

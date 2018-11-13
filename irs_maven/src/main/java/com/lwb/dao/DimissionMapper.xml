@@ -3,7 +3,19 @@
 <mapper namespace="com.lwb.dao.DimissionDao">
   <!-- 查询所有 -->
   <select id="queryDimission" resultType="Map">
-    select * from hr_dimission d left join hr_record r on d.hr_record_id=r.hr_record_id left join tb_dept tb on d.dept_id=tb.dept_id
+    select * from hr_dimission d left join hr_record r on d.hr_record_id=r.hr_record_id left join tb_dept td on d.dept_id=td.dept_id
+    <where>
+      <if test="name!='' and name!=null">
+          r.hr_record_name like CONCAT('%','${name}','%')
+      </if>
+      <if test="dept!='' and dept!=null">
+         and td.dept_name like CONCAT('%','${dept}','%')
+      </if>
+      <if test="leavetype!='' and leavetype!=null">
+         and d.hr_dimission_leavetype like CONCAT('%','${leavetype}','%')
+      </if>
+    </where>
+       order by d.hr_dimission_id desc
   </select>
   <!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from hr_dimission

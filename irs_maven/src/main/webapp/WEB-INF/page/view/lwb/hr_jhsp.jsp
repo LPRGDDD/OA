@@ -40,7 +40,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
            
-      
+            <div class="demoTable1">
+		                根据计划查询：
+		       <div class="layui-inline">
+		         <input name="keyWord" class="layui-input" id="demoReload1" autocomplete="off">
+		       </div>
+		          <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
              <table class="layui-hide" id="myTab0" lay-filter="demo0"></table>
 	           <div id="fenye"></div>
 	 
@@ -61,6 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,height:500
 				    ,url: 'plan/fianAll0?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -76,6 +83,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_plan_username', width:120, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo0'}
 				    ]],
+				    id: 'testReload1'
+				    ,page: true
+				    ,height: 315,
 		done:function(res,page,count){
 		  $("[data-field='hr_plan_state']").children().each(function(){
            if($(this).text()=='0'){
@@ -88,7 +98,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               })
               }
 				  });
-               
+               var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload1 = $('#demoReload1');
+      
+      //执行重载
+      table.reload('testReload1', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            keyWord: demoReload1.val(),
+              }
+      });
+    }
+  };
+  $('.demoTable1 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  }); 
 				});
 			//监听工具条
 			table.on('tool(demo0)', function(obj) {
@@ -144,6 +173,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
     </div>
     <div class="layui-tab-item">
+             <div class="demoTable2">
+		                 根据计划查询：
+		       <div class="layui-inline">
+		         <input name="keyWord" class="layui-input" id="demoReload2" autocomplete="off">
+		       </div>
+		          <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
 					 <table class="layui-hide" id="myTab1" lay-filter="demo1"></table>
 	           <div id="fenye"></div>
 	 
@@ -163,6 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,height:500
 				    ,url: 'plan/fianAll1?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -178,6 +215,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_plan_username', width:120, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo1'}
 				    ]],
+				    id: 'testReload2'
+				    ,page: true
+				    ,height: 315,
 		done:function(res,page,count){
 		  $("[data-field='hr_plan_state']").children().each(function(){
            if($(this).text()=='0'){
@@ -190,7 +230,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               })
               }
 				  });
-               
+               var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload2 = $('#demoReload2');
+      
+      //执行重载
+      table.reload('testReload2', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            keyWord: demoReload2.val(),
+              }
+      });
+    }
+  };
+  $('.demoTable2 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  }); 
 				});
 			//监听工具条
 			table.on('tool(demo1)', function(obj) {
@@ -224,6 +283,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
     </div>
     <div class="layui-tab-item">
+            <div class="demoTable3">
+		                根据计划查询：
+		       <div class="layui-inline">
+		         <input name="keyWord" class="layui-input" id="demoReload3" autocomplete="off">
+		       </div>
+		          <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
+		    
                       <table class="layui-hide" id="myTab2" lay-filter="demo2"></table>
 	           <div id="fenye"></div>
 	 
@@ -243,6 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,height:500
 				    ,url: 'plan/fianAll2?uid='+<shiro:principal property="id"/>+'' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -258,6 +326,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_plan_username', width:120, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo2'}
 				    ]],
+				    id: 'testReload3'
+				    ,page: true
+				    ,height: 315,
 		done:function(res,page,count){
 		  $("[data-field='hr_plan_state']").children().each(function(){
            if($(this).text()=='0'){
@@ -270,7 +341,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               })
               }
 				  });
-               
+               var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload3 = $('#demoReload3');
+      
+      //执行重载
+      table.reload('testReload3', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            keyWord: demoReload3.val(),
+              }
+      });
+    }
+  };
+  $('.demoTable3 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  }); 
 				});
 			//监听工具条
 			table.on('tool(demo2)', function(obj) {

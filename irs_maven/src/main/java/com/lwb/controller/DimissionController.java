@@ -43,9 +43,9 @@ public class DimissionController {
 	
 	@RequestMapping("/queryDimission")
 	@ResponseBody
-	public Map queryDimission(Integer page,Integer limit) {
+	public Map queryDimission(String name, String dept, String leavetype,Integer page,Integer limit) {
 		PageHelper.startPage(page,limit);
-		List<Map> m=ser.queryDimission();
+		List<Map> m=ser.queryDimission(name, dept, leavetype);
 		PageInfo<Map> info=new PageInfo<Map>(m);
 		Map map = new HashMap();
         map.put("code", 0);

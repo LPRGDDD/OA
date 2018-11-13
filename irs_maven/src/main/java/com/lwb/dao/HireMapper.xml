@@ -29,23 +29,18 @@
 
    <select id="queryHire" resultType="Map">
          select * FROM hr_hire h left join hr_talents t on h.hr_talents_id=t.hr_talents_id LEFT JOIN hr_plan p on h.hr_plan_id=p.hr_plan_id
+    <where>
+      <if test="jhmc!='' and jhmc!=null">
+         and p.hr_plan_name like CONCAT('%','${jhmc}','%')
+      </if>
+      <if test="ypzxm!='' and ypzxm!=null">
+          t.hr_talents_name like CONCAT('%','${ypzxm}','%')
+      </if>
+      <if test="ypgw!='' and ypgw!=null">
+         and t.hr_talents_major like CONCAT('%','${ypgw}','%')
+      </if>
+    </where>
+       order by h.hr_hire_id desc
   </select>
   
-  <!--<update id="updateByPrimaryKey" parameterType="com.lwb.entity.Hire" >
-    update hr_hire
-    set hr_plan_id = #{hrPlanId,jdbcType=INTEGER},
-      tb__user_id = #{tbUserId,jdbcType=INTEGER},
-      dept_id = #{deptId,jdbcType=INTEGER},
-      hr_hire_name = #{hrHireName,jdbcType=VARCHAR},
-      hr_hire_date = #{hrHireDate,jdbcType=DATE},
-      hr_hire_type = #{hrHireType,jdbcType=VARCHAR},
-      hr_hire_classa = #{hrHireClassa,jdbcType=VARCHAR},
-      hr_hire_duty = #{hrHireDuty,jdbcType=VARCHAR},
-      hr_hire_entrytime = #{hrHireEntrytime,jdbcType=DATE},
-      hr_hire_startingsalary = #{hrHireStartingsalary,jdbcType=DATE},
-      hr_hire_remark = #{hrHireRemark,jdbcType=VARCHAR},
-      hr_hire_username = #{hrHireUsername,jdbcType=VARCHAR},
-      hr_hire_currenttime = #{hrHireCurrenttime,jdbcType=DATE}
-    where hr_hire_id = #{hrHireId,jdbcType=INTEGER}
-  </update> -->
 </mapper>

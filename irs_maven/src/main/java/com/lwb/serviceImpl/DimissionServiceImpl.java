@@ -14,10 +14,11 @@ public class DimissionServiceImpl implements DimissionService {
 
 	@Autowired
 	private DimissionDao dao;
+	
 	@Override
-	public List<Map> queryDimission() {
+	public List<Map> queryDimission(String name, String dept, String leavetype) {
 		// TODO Auto-generated method stub
-		return dao.queryDimission();
+		return dao.queryDimission(name, dept, leavetype);
 	}
 
 	@Override
@@ -43,5 +44,6 @@ public class DimissionServiceImpl implements DimissionService {
 		// TODO Auto-generated method stub
 		return dao.updaterecordStats4(id);
 	}
+
 
 }

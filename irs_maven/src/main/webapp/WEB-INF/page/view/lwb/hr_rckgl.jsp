@@ -36,7 +36,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="layui-tab-content">
   <!-- 第一块 -->
     <div class="layui-tab-item layui-show">
-           
+           <div class="demoTable1">
+		                  根据应聘人姓名：
+		       <div class="layui-inline">
+		         <input name="keyWord" class="layui-input" id="demoReload1" autocomplete="off">
+		       </div>
+		                 根据应聘人专业：
+		       <div class="layui-inline">
+		         <input name="major" class="layui-input" id="demoReload2" autocomplete="off">
+		       </div>
+		                根据计划查询：
+		       <div class="layui-inline">
+		         <input name="pname" class="layui-input" id="demoReload3" autocomplete="off">
+		       </div>
+		         <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
          <table class="layui-hide" id="myTab" lay-filter="demo"></table>
 	<div id="fenye"></div>
 	
@@ -52,18 +66,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			table.on('checkbox(demo)', function(obj) {
 				console.log(obj)
 			});
-			layui.use('table', function(){
-				  var table = layui.table;
 				  //监听单元格编辑
 				   table.render({
 				    elem: '#myTab'
 				    ,height:500
 				    ,url: 'talent/queryAllrck' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
-
 			   {field:'hr_plan_name', width:120, title: '计划名称'}
 			  ,{field:'hr_talents_name', width:120, title: '应聘人姓名'}
 		      ,{field:'hr_talents_toemploy', width:157, title: '应聘岗位'}
@@ -73,9 +85,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_talents_username', width:157, title: '创建人'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
 				    ]],
+				    id: 'testReload'
+				    ,page: true
+				    ,height: 315
 				  });
-               
-				});
+               /*  layui重载  */
+	 var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload1 = $('#demoReload1');
+      var demoReload2 = $('#demoReload2');
+      var demoReload3 = $('#demoReload3');
+      
+      //执行重载
+      table.reload('testReload', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            keyWord: demoReload1.val(),
+            major: demoReload2.val(),
+            pname: demoReload3.val()
+              }
+      });
+    }
+  };
+  $('.demoTable1 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+				
+				
+  
+  
 			//监听工具条
 			table.on('tool(demo)', function(obj) {
 				var data = obj.data;
@@ -113,8 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 				}
 			});
-	
-		});
+	});
 	</script>
             
     </div>
@@ -130,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <div class="layui-inline">
 					<label class="layui-form-label"><span>*</span>计划</label>
 				<div class="layui-input-inline">
-					<select name="plan.hrPlanId" id="sele1">
+					<select name="hrPlanId" id="sele1">
 				     </select>
 				</div>
 			  </div>
@@ -232,19 +273,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		             <input name="hrTalentsMall"  class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
 				</div>
 			</div>
-	        <div class="layui-inline">
-				<label class="layui-form-label">参加工作时间</label>
-			    <div class="layui-input-inline">
-			          <select name="hrTalentsWorkdate">
-				          <option>无工作经验</option>
-				          <option>1~2年工作经验</option>
-				          <option>2~3年工作经验</option>
-				          <option>3~4年工作经验</option>
-				          <option>4~5年工作经验</option>
-				          <option>5~10年工作经验</option>
-				     </select>
-				</div>
-			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">学历</label>
 			    <div class="layui-input-inline">	
@@ -259,14 +287,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </select>		    
 				</div>
 			</div>
-	   </div>
-	   <div class="layui-form-item">
 	        <div class="layui-inline">
 				<label class="layui-form-label">健康状况</label>
 			    <div class="layui-input-inline">
-                      <input name="hrTalentsHealth" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+			          <select name="hrTalentsHealth">
+			             <option>健康</option>
+			             <option>亚健康</option>
+			             <option>不健康</option>
+			          </select>
 				</div>
 			</div>
+	   </div>
+	   <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label">学位</label>
 				<div class="layui-input-inline">
@@ -291,18 +323,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    </select>
 				</div>
 			</div>
+	       <div class="layui-inline">
+				<label class="layui-form-label">毕业学校</label>
+			    <div class="layui-input-inline">
+					<input name="hrTalentsSchool" class="layui-input ym" type="text"  autocomplete="off">
+				</div>
+			</div>
 	    </div>
 	    
 	    
 	    
 	    
 	<div class="layui-form-item">
-	     <div class="layui-inline">
-				<label class="layui-form-label">毕业学校</label>
-			    <div class="layui-input-inline">
-					<input name="hrTalentsSchool" class="layui-input ym" type="text"  autocomplete="off">
-				</div>
-			</div>
 	     <div class="layui-inline">
           <label class="layui-form-label">专业</label>
             <div class="layui-input-inline">	
@@ -333,12 +365,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </select>	
             </div>
        </div>
-  </div>
-	   
-	   
-	   
-	   
-	   <div class="layui-form-item">
 	        <div class="layui-inline">
                  <label class="layui-form-label">外语语种</label>
                  <div class="layui-input-inline">
@@ -347,11 +373,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			             <option>法语</option>
 			             <option>日语</option>
 			             <option>六级</option>
-			             <option>八级</option>
 			          </select>
-					<input name="hrTalentsForeign" class="layui-input ym" type="text"  autocomplete="off">
                  </div>
             </div>
+  </div>
+	   
+	   
+	   
+	   
+	   <div class="layui-form-item">
 		   <div class="layui-inline">
 				<label class="layui-form-label">特长</label>
 			    <div class="layui-input-inline">
@@ -363,9 +393,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          </select>
 				</div>
 			</div>
-	 </div>	
-	 
-	  <div class="layui-form-item">
 	        <div class="layui-inline">
 					<label class="layui-form-label">期望从事职业</label>
 				<div class="layui-input-inline">
@@ -384,6 +411,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<label class="layui-form-label">职业技能</label>
 				<div class="layui-input-inline">
 				    <select name="hrTalentsSkill">
+				         <option>无</option>
 			             <option>具有较强的领导能力</option>
 			             <option>具有娴熟的沟通技巧与团队建设和管理能力</option>
 			             <option>极强的谈判能力及优秀的口头表达，能承受压力。</option>
@@ -392,25 +420,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          </select>
 				 </div>
 			</div>
+	 </div>	
+	 
+	  <div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">工作经验</label>
 			    <div class="layui-input-inline">
 			        <select name="hrTalentsWorkexperience">
-			             <option>具有较强的领导能力</option>
-			             <option>具有娴熟的沟通技巧与团队建设和管理能力</option>
-			             <option>极强的谈判能力及优秀的口头表达，能承受压力。</option>
-			             <option>极强的谈判能力及优秀的口头表达，能承受压力。</option>
-			             <option>为人诚实可靠、品行端正、具有亲和力</option>
-			          </select>
-				</div>
-			</div>
-	 </div>
-	 
-	  <div class="layui-form-item">
-	        <div class="layui-inline">
-					<label class="layui-form-label">项目经验</label>
-				<div class="layui-input-inline">
-					<input name="hrTalentsProjectexperience" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				          <option>无工作经验</option>
+				          <option>1~2年工作经验</option>
+				          <option>2~3年工作经验</option>
+				          <option>3~4年工作经验</option>
+				          <option>4~5年工作经验</option>
+				          <option>5~10年工作经验</option>
+				     </select>
 				</div>
 			</div>
 	        <div class="layui-inline">
@@ -422,7 +445,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">
 				<label class="layui-form-label">期望工作性质</label>
 			    <div class="layui-input-inline">
-					<input name="hrTalentsNature" class="layui-input ym" type="text">
+			        <select name="hrTalentsNature">
+			             <option>全职</option>
+			             <option>兼职</option>
+			             <option>临时</option>
+			         </select>
 				</div>
 			</div>
 	 </div>		
@@ -431,13 +458,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="layui-inline">
 					<label class="layui-form-label">期望从事行业</label>
 				<div class="layui-input-inline">
-					<input name="hrTalentsIndustry" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+			        <select name="hrTalentsIndustry">
+			             <option>项目经理</option>
+			             <option>开发人员</option>
+			             <option>销售经理</option>
+			             <option>销售人员</option>
+			         </select>
 				</div>
 			</div>
 	        <div class="layui-inline">
 					<label class="layui-form-label">期望薪水</label>
 				<div class="layui-input-inline">
-					<input name="hrTalentsPay" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+				    <select name="hrTalentsPay">
+			             <option>1000以下</option>
+			             <option>1000~2500</option>
+			             <option>2500~5000</option>
+			             <option>5000~7000</option>
+			             <option>7000~9000</option>
+			             <option>9000~12000</option>
+			             <option>20000以上</option>
+			         </select>
 				</div>
 			</div>
 			<div class="layui-inline">
@@ -452,7 +492,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 	 </div>	
-	<div class="layui-form-item">
+	 <div class="layui-form-item">
+	         <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>到岗时间</label>
 			    <div class="layui-input-inline">
 			        <select name="hrTalentsPositiondate">
@@ -461,8 +502,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			             <option value="2">两周内</option>
 			         </select>
 				</div>
-			</div>
-	     <div class="layui-form-item layui-form-text">
+	         </div>
+		   </div>
+	   <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">项目经验</label>
+            <div class="layui-input-block">
+               <textarea name="hrTalentsProjectexperience"  placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+		  <div class="layui-form-item layui-form-text">
           <label class="layui-form-label">备注</label>
             <div class="layui-input-block">
                <textarea name="hrTalentsRemark"  placeholder="请输入内容" class="layui-textarea"></textarea>
@@ -570,7 +618,6 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 		        		      parent.location.reload();
 		        	}
 		 		});
-
     return false;
   });
  

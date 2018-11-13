@@ -8,7 +8,7 @@ import com.lwb.entity.Hire;
 
 public interface HireService {
 	//分页查询所有
-	   public List<Map> queryHire();
+	   public List<Map> queryHire(String jhmc,String ypzxm,String ypgw);
 	   //根据ID查询
 	   public Map planById(int id);
 	   //修改

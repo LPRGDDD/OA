@@ -43,8 +43,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="layui-tab-content">
   <!-- 第一块 -->
     <div class="layui-tab-item layui-show">
-    
-    
+             <div class="demoTable1">
+			                根据计划：
+			       <div class="layui-inline">
+			         <input name="jhmc" class="layui-input" id="demoReload1" autocomplete="off">
+			       </div>
+		 	                  根据姓名：
+			       <div class="layui-inline">
+			         <input name="ypzxm" class="layui-input" id="demoReload2" autocomplete="off">
+			       </div>
+			                 根据岗位：
+			       <div class="layui-inline">
+			         <input name="ypgw" class="layui-input" id="demoReload3" autocomplete="off">
+			       </div>
+		            <button class="layui-btn" data-type="reload">搜索</button>
+             </div>
           <table class="layui-hide" id="myTab" lay-filter="demo"></table>
 	<div id="fenye"></div>
 	
@@ -66,6 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,height:500
 				    ,url: 'hire/queryHire' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -77,7 +91,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_hire_date', title: '录用时间', width: 220, align:'center'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
 		      /* ,{fixed: 'right', width:220, align:'center', toolbar: '#barDemo'} */
 				    ]],
-				  });             
+				    id: 'testReload'
+				    ,page: true
+				    ,height: 315
+				  }); 
+				  
+				    /*  layui重载  */
+	 var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload1 = $('#demoReload1');
+      var demoReload2 = $('#demoReload2');
+      var demoReload3 = $('#demoReload3');
+      
+      //执行重载
+      table.reload('testReload', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            jhmc: demoReload1.val(),
+            ypzxm: demoReload2.val(),
+            ypgw: demoReload3.val()
+              }
+      });
+    }
+  };
+  $('.demoTable1 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });            
 				});
 			//监听工具条
 			table.on('tool(demo)', function(obj) {
@@ -147,12 +190,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <tr>
       <td nowrap class="col-md-2 control-label" style="width: 20%">员工类型:</td>
       <td class="TableData">
-          <input type="text" type="text" name="hrHireType" class="form-control">
+                    <select name="hrHireType" class="form-control">
+			             <option>全职</option>
+			             <option>兼职</option>
+			             <option>临时</option>
+			             <option>实习</option>
+			         </select>
       </td>
 
       <td nowrap class="col-md-2 control-label">职务:</td>
       <td class="TableData">
-        <input type="text" type="date" name="hrHireDuty" class="form-control">
+                   <select name="hrHireDuty" class="form-control">
+			             <option>总经理</option>
+			             <option>销售部长</option>
+			             <option>技术部长</option>
+			             <option>财务部长</option>
+			             <option>人力资源总监</option>
+			             <option>会计</option>
+			             <option>出纳</option>
+			             <option>业务员</option>
+			             <option>采购经理</option>
+			             <option>采购员</option>
+			             <option>文员</option>
+			         </select>
       </td>
    </tr>
    <tr>
@@ -163,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <td nowrap class="col-md-2 control-label">正式起薪日期:</td>
       <td class="TableData">
-      <input type="date" name="hrHireStartingsalary" class="form-control" 
+          <input type="date" name="hrHireStartingsalary" class="form-control">
       </td>     
    </tr>
    

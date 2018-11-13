@@ -34,9 +34,9 @@ public class TransferServiceImpl implements TransferService {
 	}
 
 	@Override
-	public List<Map> queryTransfer() {
+	public List<Map> queryTransfer(String name,String fertype) {
 		// TODO Auto-generated method stub
-		return dao.queryTransfer();
+		return dao.queryTransfer(name,fertype);
 	}
 
 	@Override

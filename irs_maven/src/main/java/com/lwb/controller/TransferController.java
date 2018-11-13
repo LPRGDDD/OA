@@ -43,9 +43,9 @@ public class TransferController {
 	
 	@RequestMapping("/queryTransfer")
 	@ResponseBody
-	public Map queryTransfer(Integer page,Integer limit) {
+	public Map queryTransfer(String name,String fertype,Integer page,Integer limit) {
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.queryTransfer();
+		List<Map> list=ser.queryTransfer(name,fertype);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);

@@ -7,7 +7,7 @@ import com.lwb.entity.Dimission;
 
 public interface DimissionService {
 	    //分页查询所有
-		public List<Map> queryDimission();
+		public List<Map> queryDimission(String name,String dept,String leavetype);
 		//新增人事调动信息
 	    public int dimissionSave(Dimission di);
 	    //根据ID查询

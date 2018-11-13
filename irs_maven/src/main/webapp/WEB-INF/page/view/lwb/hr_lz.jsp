@@ -41,8 +41,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
+    
+           <div class="demoTable1">
+		                  根据离职人员姓名：
+		       <div class="layui-inline">
+		         <input name="name" class="layui-input" id="demoReload1" autocomplete="off">
+		       </div>
+		                 根据离职部门：
+		       <div class="layui-inline">
+		         <input name="dept" class="layui-input" id="demoReload2" autocomplete="off">
+		       </div>
+		                根据离职类型：
+		       <div class="layui-inline">
+		         <input name="leavetype" class="layui-input" id="demoReload3" autocomplete="off">
+		       </div>
+		         <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
+		    
+		    
            <table class="layui-hide" id="myTab" lay-filter="demo"></table>
-	<div id="fenye"></div>
+	       <div id="fenye"></div>
 	
 <script id="barDemo" type="text/html">
   <a class="layui-btn layui-btn-xs" lay-event="edit"> 修改  </a>
@@ -54,14 +72,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			table.on('checkbox(demo)', function(obj) {
 				console.log(obj)
 			});
-			layui.use('table', function(){
-				  var table = layui.table;
 				  //监听单元格编辑
 				   table.render({
 				    elem: '#myTab'
 				    ,height:500
 				    ,url: 'dimission/queryDimission' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -73,35 +90,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_dimission_username', width:180, title: '创建人',align: 'center'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
 				    ]],
+				    id: 'testReload'
+				    ,page: true
+				    ,height: 315
 				  });
-               
-				});
+                /*  layui重载  */
+	 var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload1 = $('#demoReload1');
+      var demoReload2 = $('#demoReload2');
+      var demoReload3 = $('#demoReload3');
+      
+      //执行重载
+      table.reload('testReload', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            name: demoReload1.val(),
+            dept: demoReload2.val(),
+            leavetype: demoReload3.val()
+              }
+      });
+    }
+  };
+  $('.demoTable1 .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+				
 			//监听工具条
 			table.on('tool(demo)', function(obj) {
 				var data = obj.data;
-				/* if (obj.event === 'del') {
-					layer.confirm('真的删除行么',function(index) {
-						obj.del();
-						layer.close(index);
-						$.ajax({
-							url : "plan/deletePlan",
-							data : {
-								'id' : data.hr_dimission_id
-							},
-							type : "post",
-							dataType : 'json',
-							success : function(data) {
-								if(data>0){
-									layer.msg("删除成功");
-									location.reload();
-								}else{
-									layer.msg("删除失败");
-									location.reload();
-								}
-							}
-						})
-					});//判断
-				} else  */if (obj.event === 'edit') {
+				if (obj.event === 'edit') {
 					layer.msg(data.hr_dimission_id);
 	//打开一个窗口
 		layer.open({
@@ -113,8 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
 				}
 			});
-	
-		});
+	});
 	</script>
     </div>
     

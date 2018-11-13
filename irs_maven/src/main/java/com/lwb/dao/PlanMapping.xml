@@ -14,12 +14,24 @@
 	<!-- 计划状态查询  -->
 	<select id="fianAll0" resultType="java.util.Map">
         select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=0 and u.id=#{uid}
+        <if test="keyWord!='' and keyWord!=null">
+         and p.hr_plan_name like CONCAT('%','${keyWord}','%')
+      </if>
+        order by p.hr_plan_id desc
   </select>
   <select id="fianAll1" resultType="java.util.Map">
         select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=1  and u.id=#{uid}
+        <if test="keyWord!='' and keyWord!=null">
+         and p.hr_plan_name like CONCAT('%','${keyWord}','%')
+      </if>
+        order by p.hr_plan_id desc
   </select>
   <select id="fianAll2" resultType="java.util.Map">
         select * from hr_plan p left join tb_admin u on p.id=u.id where hr_plan_state=2 and u.id=#{uid}
+        <if test="keyWord!='' and keyWord!=null">
+         and p.hr_plan_name like CONCAT('%','${keyWord}','%')
+      </if>
+        order by p.hr_plan_id desc
   </select>
 	
 	
@@ -44,18 +56,19 @@
 	
 	
 	<delete id="deletePlan" parameterType="java.lang.Integer">
-	          delete from hr_plan where hr_plan_id = #{id,jdbcType=INTEGER}
+	          delete from hr_plan where hr_plan_id = #{id}
      </delete>
      
 
      <!--分页： 查询所有信息 -->
-  <select id="queryPlan" resultType="Map">
+  <select id="queryPlan" resultType="Map" parameterType="String">
      select * from hr_plan p left join tb_admin u on p.id=u.id
     <where>
       <if test="keyWord!='' and keyWord!=null">
-          p.hr_plan_name like '%${keyWord}%'
+         p.hr_plan_name like CONCAT('%','${keyWord}','%')
       </if>
     </where>
+        order by p.hr_plan_id desc
   </select>
      <select id="selebh" resultType="java.lang.Integer" parameterType="java.lang.Integer">
             select count(*) from hr_plan where hr_plan_number=#{id}

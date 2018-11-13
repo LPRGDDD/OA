@@ -36,9 +36,10 @@ public class TalentsController {
 		return "page/view/lwb/hr_rckgl";
 	}
 	@RequestMapping("/queryAllrck")
-	public @ResponseBody Map queryAllrck(Integer page,Integer limit) {
+	public @ResponseBody Map queryAllrck(String keyWord, String major, String pname,Integer page,Integer limit) {
+		System.out.println(keyWord+"111"+major+"pname");
 		PageHelper.startPage(page,limit);
-		List<Map> list=ser.queryAllrck(null);
+		List<Map> list=ser.queryAllrck(keyWord, major, pname);
 		PageInfo<Map> info=new PageInfo<Map>(list);
 		Map map = new HashMap();
         map.put("code", 0);

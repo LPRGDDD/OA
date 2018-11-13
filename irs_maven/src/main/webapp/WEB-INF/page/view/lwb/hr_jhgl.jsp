@@ -42,7 +42,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="layui-tab-content">
   <!-- 第一块 -->
     <div class="layui-tab-item layui-show">
-           
+           <div class="demoTable">
+		                根据计划查询：
+		       <div class="layui-inline">
+		         <input name="keyWord" class="layui-input" id="demoReload" autocomplete="off">
+		       </div>
+		          <button class="layui-btn" data-type="reload">搜索</button>
+		    </div>
           <table class="layui-hide" id="myTab" lay-filter="demo"></table>
 	<div id="fenye"></div>
 	
@@ -66,6 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    ,height:500
 				    ,url: 'plan/queryPlan' //数据接口
 				    ,page: true //开启分页
+				    ,method:"post"
 				    ,cols: [[ //表头
 				       //全选
 				       //edit: 'text'为开启单元格编辑，sort:true开启排序
@@ -81,6 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      ,{field:'hr_plan_username', width:137, title: '创建者用户名'}
 		      ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
 				    ]],
+				    id: 'testReload'
+				    ,page: true
+				    ,height: 315,
 		done:function(res,page,count){
 		  $("[data-field='hr_plan_state']").children().each(function(){
            if($(this).text()=='0'){
@@ -94,7 +104,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               }
 				  });
                
+		 
+	 var $ = layui.$, active = {
+    	reload: function(){
+      var demoReload = $('#demoReload');
+      
+      //执行重载
+      table.reload('testReload', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+         
+            keyWord: demoReload.val(),
+              }
+      });
+    }
+  };
+  $('.demoTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  }); 
 				});
+  
 			//监听工具条
 			table.on('tool(demo)', function(obj) {
 				var data = obj.data;

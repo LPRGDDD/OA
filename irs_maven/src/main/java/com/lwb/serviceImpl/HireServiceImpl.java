@@ -16,9 +16,9 @@ public class HireServiceImpl implements HireService {
 	private HireDao dao;
 	
 	@Override
-	public List<Map> queryHire() {
+	public List<Map> queryHire(String jhmc, String ypzxm, String ypgw) {
 		// TODO Auto-generated method stub
-		return dao.queryHire();
+		return dao.queryHire(jhmc, ypzxm, ypgw);
 	}
 
 

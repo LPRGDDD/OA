@@ -11,7 +11,17 @@
    <!-- 查询所有 -->
    <select id="queryTransfer" resultType="Map">
          select * from hr_transfer t left join hr_record r on t.hr_record_id=r.hr_record_id
+         <where>
+      <if test="name!='' and name!=null">
+          r.hr_record_name like CONCAT('%','${name}','%')
+      </if>
+      <if test="fertype!='' and fertype!=null">
+         and t.hr_transfer_transfertype like CONCAT('%','${fertype}','%')
+      </if>
+    </where>
+       order by t.hr_transfer_id desc
   </select>
+  <!-- 查询部门 -->
   <select id="queryrecord" resultType="Map">
         select * from hr_record
    </select>

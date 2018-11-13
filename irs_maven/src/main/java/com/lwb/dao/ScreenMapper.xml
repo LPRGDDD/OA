@@ -24,11 +24,13 @@
 
   <select id="queryScreen" resultType="Map">
          select * from hr_screen s LEFT JOIN hr_talents t on s.hr_talents_id=t.hr_talents_id where t.hr_talents_filestatus &gt; 0 and t.hr_talents_filestatus &lt; 4 and s.id=#{uid}
-	<where>
       <if test="keyWord!='' and keyWord!=null">
-          s.hrScreenUsername like '%${keyWord}%'
+         and t.hr_talents_name like CONCAT('%','${keyWord}','%')
       </if>
-    </where>
+      <if test="major!='' and major!=null">
+         and t.hr_talents_major like CONCAT('%','${major}','%')
+      </if>
+       order by t.hr_talents_id desc
   </select>
   <delete id="deleteScreen" parameterType="java.lang.Integer">
     delete from hr_screen where hr_screen_id = #{id}
