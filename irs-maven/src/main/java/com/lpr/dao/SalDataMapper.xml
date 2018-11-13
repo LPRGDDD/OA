@@ -116,7 +116,7 @@
 			and a.dept_id=#{deptId}
 		</if>
 		<if test="start!=null and end!=null">
-			and s.personxc_s1 BETWEEN #{start} and #{end}
+			and s.personxc_s1 &gt; #{start} and s.personxc_s1 &lt; #{end}
 		</if>
 	</where>
 	ORDER BY s.sal_data_id DESC

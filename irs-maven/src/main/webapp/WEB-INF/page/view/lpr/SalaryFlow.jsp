@@ -205,8 +205,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
           <!-- 工资流程管理 -->
           <div class="layui-tab-item layui-show">
+	          <blockquote class="layui-elem-quote news_search">
+				   <form class="layui-form">
+							<div class="layui-inline">
+								<div class="layui-input-inline">
+									<input type="text" id="nickname" value="" placeholder="请输入姓名"
+										class="layui-input search_input">
+								</div>
+								<div class="layui-inline">
+								      <label class="layui-form-label">范围</label>
+								      <div class="layui-input-inline" style="width: 100px;">
+								        <input type="text" id="createTimeStart" name="createTimeStart" placeholder="￥" autocomplete="off" class="layui-input" value="">
+								      </div>
+								      <div class="layui-form-mid">-</div>
+								      <div class="layui-input-inline" style="width: 100px;">
+								        <input type="text" id="createTimeEnd" name="createTimeEnd" placeholder="￥" autocomplete="off" class="layui-input" value="">
+								      </div>
+							    </div>
+									<a class="layui-btn search_btn" lay-submit="" data-type="search" lay-filter="search">查询</a>
+								</div>
+					</form>
+				</blockquote>
 			   <table class="layui-hide" id="myTab" lay-filter="myTab"></table>
-			   <div id="fenye"></div>
           </div>
       </div>
  </div>
@@ -225,7 +245,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			id : 'myTab', //table的id
 			elem : '#myTab',   //同上
 			//height : 700,  //表格的高度
-			width:1300,
+			limit : 10, //每页默认数
+			limits : [ 10, 20, 30, 40 ],
+			totalRow: true,
 			url : 'salaryflow/findAll',
 			page: true,
 			cols : [ [ 

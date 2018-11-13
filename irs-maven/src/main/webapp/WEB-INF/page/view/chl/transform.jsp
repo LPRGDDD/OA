@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="title">
 						<!--     <button class="layui-btn" style="position: relative;left: 500px;" onclick="addCs()">添加抄送</button><button class="layui-btn layui-btn-danger" style="position: relative;left: 550px;" onclick="delCs()">删除抄送</button>
  -->
-						<br> <span>发件人：</span><input value="<shiro:principal property="username"/>"
+						<br> <span>发件人：</span><input value="<shiro:principal property="fullname"/>"
 							style="height: 30px;width: 235px;background-color:white"
 							readonly="readonly"><input value="<shiro:principal property="id"/>"
 							style="display: none" id="userId"><br>
@@ -262,12 +262,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script type="text/html" id="barDemo1">
 		<a class="layui-btn layui-btn-xs" lay-event="edit" >编辑</a>
-   		 <button class="layui-btn layui-btn-danger"  onclick="del2(this)" >删除到垃圾箱</button>
-   		 <button class="layui-btn layui-btn-danger"  onclick="add(this)" >立即发送</button>
+   		 <button class="layui-btn layui-btn-xs layui-btn-danger"  onclick="del2(this)" >删除</button>
+   		 <button class="layui-btn layui-btn-xs layui-btn-danger"  onclick="add(this)" >立即发送</button>
 </script>
 <script type="text/html" id="barDemo">
-    	<button onclick="cli(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal1" id="hide">查阅详情</button>
-    	<button class="layui-btn layui-btn-danger"  onclick="del(this)" >删除邮件</button>
+    	<button onclick="cli(this)"  class="layui-btn layui-btn-xs" data-toggle="modal" data-target="#myModal1" id="hide">查阅详情</button>
+    	<button class="layui-btn layui-btn-xs layui-btn-danger"  onclick="del(this)" >删除邮件</button>
 </script>
 <script type="text/html" id="barDemo3">
     	<button onclick="cli3(this)"  class="layui-btn" data-toggle="modal" data-target="#myModal3" id="hide">查阅详情</button>
@@ -628,11 +628,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             },
             cols : [ [
                 {checkbox: true, fixed: true},
-                {field : 'emailId',title : '邮件编码',sort : true,width:110},
-                {field : 'fullname',title : '发件人',sort : true,width:140},
-                {field : 'subject',title : '主题',sort : true,width:300},
-                {field : 'sendtime',title : '发送时间',sort : true,width:190},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo1', width:370}
+                {field : 'emailId',title : '邮件编码',sort : true},
+                {field : 'fullname',title : '发件人',sort : true},
+                {field : 'subject',title : '主题',sort : true},
+                {field : 'sendtime',title : '发送时间',sort : true},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo1'}
             ] ],
             page : true,
         });    
@@ -673,7 +673,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     
    
-     /*修改草稿箱 查询详情 */
+	     /*修改草稿箱 查询详情 */
         
         /* function update(obj){
          var emailId = $(obj).parent().parent().prev().prev().prev().children().html();
@@ -781,7 +781,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		
-		 //监听工具条
+	//跳转编辑页面
     table.on('tool(demo1)', function(obj){
     var data = obj.data;
     if(obj.event === 'detail'){

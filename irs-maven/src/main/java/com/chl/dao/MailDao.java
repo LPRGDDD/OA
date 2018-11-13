@@ -77,7 +77,7 @@ public int deljMail(@Param("emailId")Integer emailId);
 //根据ID查询
 public Map selectById(@Param ("emailId") Integer emailId);
 //修改草稿箱 查看详情
-public int updateMail(Map map);
+public int updateMail(@Param ("subject")String subject,@Param ("content")String content,@Param ("emailId")Integer emailId);
 //草稿箱删除到垃圾箱
 public int delLMail(@Param("emailId") Integer emailId);
 //查询所有用户

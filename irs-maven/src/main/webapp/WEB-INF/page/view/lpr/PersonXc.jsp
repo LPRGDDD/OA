@@ -171,10 +171,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <!-- 薪酬基数分页查询页面  -->
           <div class="layui-tab-item">
              <div class="panel-body">
+             <blockquote class="layui-elem-quote news_search">
+				<form class="layui-form">
+					<div>
+						<div class="layui-inline">
+							<div class="layui-input-inline">
+								<input type="text" id="nickname" value="" placeholder="请输入姓名"
+									class="layui-input search_input">
+							</div>
+							<div class="layui-input-inline layui-form">
+								<select name="sex" class="" id="sex">
+									<option value="-1">请选择部门</option>
+									<%-- <c:forEach items="${d}" var="d">
+											<option value="${d.deptId }" selected>${d.deptName }</option>
+									</c:forEach> --%>
+								</select>
+							</div>
+							<div class="layui-inline">
+							      <label class="layui-form-label">范围</label>
+							      <div class="layui-input-inline" style="width: 100px;">
+							        <input type="text" id="createTimeStart" name="createTimeStart" placeholder="￥" autocomplete="off" class="layui-input" value="">
+							      </div>
+							      <div class="layui-form-mid">-</div>
+							      <div class="layui-input-inline" style="width: 100px;">
+							        <input type="text" id="createTimeEnd" name="createTimeEnd" placeholder="￥" autocomplete="off" class="layui-input" value="">
+							      </div>
+						    </div>
+								<a class="layui-btn search_btn" lay-submit="" data-type="search" lay-filter="search">查询</a>
+							</div>
+					</div>
+				</form>
+	</blockquote>
              <table class="layui-hide" id="myTab1" lay-filter="myTab1"></table>
 				<div id="fenye1"></div>
 		        <button class="layui-btn" onclick="personxcFind()">返回</button>
-          </div>
+         	 </div>
           </div>
         </div>  
    </div>

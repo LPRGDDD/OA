@@ -200,10 +200,9 @@ public String selectById(HttpServletRequest req,@PathVariable("emailId")int id){
 //ĞŞ¸Ä²İ¸åÏä
 @RequestMapping("/updateMail")
 public @ResponseBody
-String updateUser(BasePojo map,String subject,String content ) {
-  System.out.println(map.getMap());
-  ser.updateMail(map.getMap());
-  return "success";
+String updateUser(String subject,String content,Integer emailId) {
+  ser.updateMail(subject,content,emailId);
+	  return "success";
 }
 //²éÑ¯À¬»øÏä
 @RequestMapping("/selectlMail")

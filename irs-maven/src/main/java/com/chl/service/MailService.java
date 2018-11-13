@@ -47,7 +47,7 @@ public interface MailService {
   //根据ID查询
     public Map selectById(@Param ("emailId") Integer emailId);
 	//修改草稿箱 查看详情
-	public int updateMail(Map map);
+	public int updateMail(String subject,String content,Integer emailId);
 	
 //  查询所有用户
 	 /**

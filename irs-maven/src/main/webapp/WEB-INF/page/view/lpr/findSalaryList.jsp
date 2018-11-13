@@ -35,7 +35,7 @@
 					</div>
 					<div class="layui-input-inline layui-form">
 						<select name="sex" class="" id="sex">
-							<option value="-1">请选择部门</option>
+							<option value="-1" selected>请选择部门</option>
 							<c:forEach items="${d}" var="d">
 									<option value="${d.deptId }" selected>${d.deptName }</option>
 							</c:forEach>
@@ -48,14 +48,14 @@
 					      </div>
 					      <div class="layui-form-mid">-</div>
 					      <div class="layui-input-inline" style="width: 100px;">
-					        <input type="text" id="createTimeStart" name="createTimeEnd" placeholder="￥" autocomplete="off" class="layui-input" value="">
+					        <input type="text" id="createTimeEnd" name="createTimeEnd" placeholder="￥" autocomplete="off" class="layui-input" value="">
 					      </div>
 				    </div>
 						<a class="layui-btn search_btn" lay-submit="" data-type="search" lay-filter="search">查询</a>
 					</div>
 			</div>
+		</form>
 	</blockquote>
-	</form>
 	<div class="layui-form">
 		<table id="userList" lay-filter="userList"></table>
 	</div>
@@ -161,7 +161,7 @@
 						        layer.msg(checkStatus.isAll ? '全选': '未全选')
 						      break;
 						    };
-						  });
+						  });	
 					//查询
 					$(".search_btn").click(function() {
 						var type = $(this).data('type');
