@@ -3,7 +3,7 @@
 <mapper namespace="com.lwb.dao.RecordDao" >
 <!-- 根据ID查询档案信息 -->
    <select id="queryRecord" resultType="Map" parameterType="Integer">
-    select * from hr_record where hr_record_id=#{id}
+    select * from hr_record r left join tb_dept d on r.dept_id=d.dept_id left join tb_roles role on r.role_id=role.role_id  where hr_record_id=#{id}
   </select>
 <!--根据人才库状态查询已录用未建档人员 -->
   <select id="RecordqueryAllrck" resultType="Map">

@@ -67,7 +67,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</tr>
     		<tr>
     			<td>角色:</td>
-    			<td><select class="easyui-combobox" name="roleId"  style="width: 185px;"  id="sele2"></select></td>    			
+    			<td>
+    			<input class="easyui-textbox" readonly="readonly" type="text" id="role_name"></input>
+    			<input class="easyui-textbox" type="hidden" name="roleId" id="role_id"></input></td>    			
     			<td>编号:</td>
     			<td><input class="easyui-textbox" type="text" name="hrRecordSerial" id="hr_record_serial"></input></td>
     		</tr>
@@ -79,7 +81,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</tr>
     		<tr>
     			<td>部门:</td>
-    			<td><select class="easyui-combobox" name="deptId" style="width: 185px;" id="sele1"></select></td>
+    			<td>
+    			<input class="easyui-textbox" readonly="readonly" type="text" id="dept_name"></input>
+    			<input class="easyui-textbox" type="hidden" name="deptId" id="dept_id"></input></td>
     			<td>英文名:</td>
     			<td><input class="easyui-textbox" type="text" name="hrRecordEnglishname" id="hr_record_englishName"></input></td>
     		</tr>
@@ -188,6 +192,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#hr_record_name").html("");
 					 $("#hr_record_oaname").html("");
 					$("#role_id").html("");
+					$("#role_name").html("");
+					$("#dept_id").html("");
+					$("#dept_name").html("");
 					$("#hr_record_serial").html("");
 					$("#hr_record_jobNumber").html("");
 					$("#hr_record_createtime").html("");
@@ -221,6 +228,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#hr_record_name").textbox('setValue',data.hr_record_name);
 					 $("#hr_record_oaname").textbox('setValue',data.hr_record_oaname);
 					$("#role_id").textbox('setValue',data.role_id);
+					$("#role_name").textbox('setValue',data.role_name);
+					$("#dept_id").textbox('setValue',data.dept_id);
+					$("#dept_name").textbox('setValue',data.dept_name);
 					$("#hr_record_serial").textbox('setValue',data.hr_record_serial);
 					$("#hr_record_jobNumber").textbox('setValue',data.hr_record_jobNumber);
 					$("#hr_record_createtime").textbox('setValue',data.hr_record_createtime);
@@ -303,7 +313,10 @@ url:"recoed/seleroles",
     		</tr>
     		<tr>
     			<td>角色:</td>
-    			<td><select class="easyui-combobox" name="roleId"  style="width: 162px;"  id="sele4"></select></select></input></td>
+    			<td>
+    			<input class="easyui-textbox" readonly="readonly" type="text" id="role_name2"></input>
+    			<input class="easyui-textbox" type="hidden" name="roleId" id="role_id2"></input></td>
+    			</td>
     			<td>编号:</td>
     			<td><input class="easyui-textbox" type="text" name="hrRecordSerial" id="hr_record_serial2"></input></td>
     		</tr>
@@ -315,7 +328,8 @@ url:"recoed/seleroles",
     		</tr>
     		<tr>
     			<td>部门:</td>
-    			<td><select class="easyui-combobox" name="deptId" style="width: 162px;" id="sele3"></select></td>
+    			<td><input class="easyui-textbox" readonly="readonly" type="text" id="dept_name2"></input>
+    			<input class="easyui-textbox" type="hidden" name="deptId" id="dept_id2"></input></td>
     			<td>英文名:</td>
     			<td><input class="easyui-textbox" type="text" name="hrRecordEnglishname" id="hr_record_englishName2"></input></td>
     		</tr>
@@ -424,6 +438,9 @@ url:"recoed/seleroles",
 					$("#hr_record_name2").html("");
 					 $("#hr_record_oaname2").html("");
 					$("#role_id2").html("");
+					$("#role_name2").html("");
+					$("#dept_id2").html("");
+					$("#dept_name2").html("");
 					$("#hr_record_serial2").html("");
 					$("#hr_record_jobNumber2").html("");
 					$("#hr_record_createtime2").html("");
@@ -457,6 +474,9 @@ url:"recoed/seleroles",
 					$("#hr_record_name2").textbox('setValue',data.hr_record_name);
 					 $("#hr_record_oaname2").textbox('setValue',data.hr_record_oaname);
 					$("#role_id2").textbox('setValue',data.role_id);
+					$("#role_name2").textbox('setValue',data.role_name);
+					$("#dept_id2").textbox('setValue',data.dept_id);
+					$("#dept_name2").textbox('setValue',data.dept_name);
 					$("#hr_record_serial2").textbox('setValue',data.hr_record_serial);
 					$("#hr_record_jobNumber2").textbox('setValue',data.hr_record_jobNumber);
 					$("#hr_record_createtime2").textbox('setValue',data.hr_record_createtime);

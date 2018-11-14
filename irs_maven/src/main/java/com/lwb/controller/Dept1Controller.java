@@ -26,7 +26,6 @@ public class Dept1Controller{
 	@ResponseBody
 	public List<EmployeeTree> queryDept0(){
 		List<Dept1> list=dao1.queryDept0();
-		System.out.println(list);
 		//创建deptlist集合接受dept中的数据
 		List<EmployeeTree> deptlist=new ArrayList<EmployeeTree>();
 		for (Dept1 dept:list) {//遍历list

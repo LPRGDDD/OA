@@ -20,7 +20,7 @@
    </select>
    
    <insert id="saveHire" parameterType="com.lwb.entity.Hire" >
-    insert into hr_hire(hr_plan_id,hr_talents_id,dept_id, hr_hire_name, hr_hire_date,hr_hire_type, hr_hire_classa, hr_hire_duty,hr_hire_entrytime, hr_hire_startingsalary, hr_hire_remark,hr_hire_username) values(#{hrPlanId}, #{hrTalentsId},#{deptId}, #{hrHireName}, #{hrHireDate}, #{hrHireType}, #{hrHireClassa}, #{hrHireDuty},#{hrHireEntrytime}, #{hrHireStartingsalary}, #{hrHireRemark},#{hrHireUsername})
+    insert into hr_hire(hr_plan_id,hr_talents_id,dept_id, hr_hire_name, hr_hire_date,hr_hire_type, hr_hire_classa, hr_hire_duty,hr_hire_entrytime, hr_hire_remark,hr_hire_username) values(#{hrPlanId}, #{hrTalentsId},#{deptId}, #{hrHireName}, #{hrHireDate}, #{hrHireType}, #{hrHireClassa}, #{hrHireDuty},#{hrHireEntrytime}, #{hrHireRemark},#{hrHireUsername})
   </insert>
   <!-- 添加时根据Id修改状态 -->
   <update id="updateStats4" parameterType="java.lang.Integer">

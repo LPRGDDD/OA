@@ -161,14 +161,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </td>
       <td nowrap class="col-md-4 control-label" style="width: 20%">应聘人姓名:</td>
       <td class="TableData" style="width: 20%">
-        <input type="text" name="hrTalentsName" id="hr_talents_name" class="form-control">
+        <input type="text" name="hrTalentsName" readonly="readonly" id="hr_talents_name" class="form-control">
         <input type="hidden" name="hrTalentsId" id="hr_talents_id"/>
       </td>
    </tr>
    <tr>
       <td nowrap class="col-md-2 control-label" style="width: 20%">应聘岗位:</td>
       <td class="TableData">
-         <input type="text" name="hrTalentsToemploy" id="hr_talents_toemploy" class="form-control"   >
+         <input type="text" name="hrTalentsToemploy" readonly="readonly" id="hr_talents_toemploy" class="form-control"   >
       </td>
 
       <td nowrap class="col-md-2 control-label">录用负责人:</td>
@@ -219,12 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <td nowrap class="col-md-2 control-label">入职时间:</td>
       <td class="TableData">
         <input type="date" name="hrHireEntrytime" class="form-control">
-      </td>
-      
-      <td nowrap class="col-md-2 control-label">正式起薪日期:</td>
-      <td class="TableData">
-          <input type="date" name="hrHireStartingsalary" class="form-control">
-      </td>     
+      </td>   
    </tr>
    
    <tr>
@@ -244,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- 按钮触发模态框 -->
 <button  data-toggle="modal" data-target="#myModal" onclick="queryScreen1()" id="mtk">
-	+++
+	选择
 </button>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

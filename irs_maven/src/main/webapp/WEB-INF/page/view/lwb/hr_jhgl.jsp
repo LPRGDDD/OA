@@ -53,9 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="fenye"></div>
 	
 <script id="barDemo" type="text/html">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
 		layui.use('table', function() {
@@ -130,31 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//监听工具条
 			table.on('tool(demo)', function(obj) {
 				var data = obj.data;
-				if (obj.event === 'detail') {
-					layer.msg('ID：' + data.hr_plan_id + ' 的查看操作');
-				} else if (obj.event === 'del') {
-					layer.confirm('真的删除行么',function(index) {
-						obj.del();
-						layer.close(index);
-						$.ajax({
-							url : "plan/deletePlan",
-							data : {
-								'id' : data.hr_plan_id
-							},
-							type : "post",
-							dataType : 'json',
-							success : function(data) {
-								if(data>0){
-									layer.msg("删除成功");
-									location.reload();
-								}else{
-									layer.msg("删除失败");
-									location.reload();
-								}
-							}
-						})
-					});//判断
-				} else if (obj.event === 'edit') {
+				if (obj.event === 'edit') {
 					layer.msg(data.hr_plan_id);
 	//打开一个窗口
 		layer.open({
@@ -183,13 +157,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>计划编号</label>
 			    <div class="layui-input-inline">
-					<input name="hrPlanNumber" onblur="blur1()" id="q1" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+					<input name="hrPlanNumber" onblur="blur1()" id="q1" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off" lay-verify="jhbh">
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>计划名称</label>
 			    <div class="layui-input-inline">
-					<input name="hrPlanName" onblur="blur2()" id="jihuaName" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+					<input name="hrPlanName" onblur="blur2()" id="jihuaName" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off" lay-verify="jhmc">
 				</div>
 			</div>
 	   </div>
@@ -209,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>招聘人数</label>
 				<div class="layui-input-inline">
-					<input name="hrPlanCount" class="layui-input ym" type="text"  placeholder="请输入" autocomplete="off">
+					<input name="hrPlanCount" class="layui-input ym" type="text"  placeholder="请输入" autocomplete="off" lay-verify="zprs">
 				</div>
 			</div>
 	   </div>
@@ -218,13 +192,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="layui-inline">
 					<label class="layui-form-label"><span class="yan">*</span>开始时间</label>
 				<div class="layui-input-inline">
-					<input name="hrPlanStartdate" class="layui-input ym" type="date"  autocomplete="off">
+					<input name="hrPlanStartdate" class="layui-input ym" type="date"  autocomplete="off" lay-verify="kssj">
 				</div>
 			</div>
 	        <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>结束时间</label>
 			    <div class="layui-input-inline">
-					<input name="hrPlanDateclosed" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off">
+					<input name="hrPlanDateclosed" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off" lay-verify="jssj">
 				</div>
 			</div>
 	   </div>
@@ -233,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>预算费用</label>
 			    <div class="layui-input-inline">
-					<input name="hrPlanBudget" class="layui-input ym" type="text" placeholder="请输入" autocomplete="off">
+					<input name="hrPlanBudget" class="layui-input ym" type="number" placeholder="请输入" autocomplete="off" lay-verify="ysfy">
 				</div>
 			</div>
 	        <div class="layui-inline">
@@ -267,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="layui-inline">
 				<label class="layui-form-label"><span class="yan">*</span>用工日期</label>
 			    <div class="layui-input-inline">
-					<input name="hrPlanSkilldate" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off">
+					<input name="hrPlanSkilldate" class="layui-input ym" type="date" placeholder="请输入" autocomplete="off"  lay-verify="ygrq">
 				</div>
 			</div>
 	   </div>
@@ -277,12 +251,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="layui-input-inline">
 					<select name="admin.id" id="sele1">
 				     </select>
-				</div>
-			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>审批日期</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanAuditingdate"  class="layui-input ym" type="date"  autocomplete="off">
 				</div>
 			</div>
 	    </div>
@@ -356,8 +324,10 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 	        		}
 				}
 			})
+	
 			
    });
+  
   //日期
   laydate.render({
     elem: '#date'
@@ -371,14 +341,45 @@ layui.use(['form', 'layedit', 'laydate'], function(){
  
   //自定义验证规则
   form.verify({
-    title: function(value){
-      if(value.length < 5){
-        return '标题至少得5个字符啊';
+    jhbh: function(value){
+      if(value.length == 0){
+        return '计划编号不得为空';
       }
-    }
-    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    ,content: function(value){
-      layedit.sync(editIndex);
+    },
+    jhmc: function(value){
+      if(value.length == 0){
+        return '计划名称不得为空';
+      }
+    },
+    zprs: function(value){
+      if(value.length == 0){
+        return '招聘人数不得为空';
+      }
+    },
+    kssj: function(value){
+      if(value.length == 0){
+        return '开始时间不得为空';
+      }
+    },
+    jssj: function(value){
+      if(value.length == 0){
+        return '结束时间不得为空';
+      }
+    },
+    ygrq: function(value){
+      if(value.length == 0){
+        return '用工日期不得为空';
+      }
+    },
+    sprq: function(value){
+      if(value.length == 0){
+        return '审批日期不得为空';
+      }
+    },
+    ysfy: function(value){
+      if(value.length == 0){
+        return '预算费用不得为空';
+      }
     }
   });
   
@@ -412,6 +413,11 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 </script>
 <script type="text/javascript">
 		function blur1(){
+			 var Num="000";
+				         for(var i=0;i<8;i++){
+				             Num+=Math.floor(Math.random()*10);
+				         }
+				         $("#q1").val(Num);
 			var qid = $("#q1").val();
 			$.ajax({
 				url : "plan/selebh",

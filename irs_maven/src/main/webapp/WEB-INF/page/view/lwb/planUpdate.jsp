@@ -115,12 +115,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 <input type="hidden" name="admin.id" value="${p.Id}"/>
 				</div>
 			</div>
-			<div class="layui-inline">
-				<label class="layui-form-label"><span class="yan">*</span>审批日期</label>
-			    <div class="layui-input-inline">
-					<input name="hrPlanAuditingdate"  value="${p.hr_plan_auditingDate}" class="layui-input ym" type="date"  autocomplete="off">
-				</div>
-			</div>
 	    </div>
 	<div class="layui-form-item layui-form-text">
           <label class="layui-form-label">招聘说明</label>
